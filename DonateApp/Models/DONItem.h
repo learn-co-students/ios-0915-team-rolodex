@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) DONUser *listedBy;
-@property (nonatomic, strong) PFGeoPoint *location;
+//@property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) UIImage *itemImage;
 @property (nonatomic, strong) UIImage *itemThumbnailImage;
@@ -40,7 +40,7 @@
 +(instancetype)createItemWithName:(NSString *)name
 											description:(NSString *)description
 											listedBy:(DONUser *)
-											location:(PFGeoPoint *)location
+//											location:(PFGeoPoint *)location
 														 tags:(NSArray *)tags
 										    itemImage:(UIImage *)itemImage
 							 itemThumbnailImage:(UIImage *)itemThumbnailImage;

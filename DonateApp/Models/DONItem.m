@@ -16,7 +16,7 @@
 @dynamic name;
 @dynamic description;
 @dynamic listedBy;
-@dynamic location;
+//@dynamic location;
 @dynamic createdAt;
 @dynamic updatedAt;
 @dynamic tags;
