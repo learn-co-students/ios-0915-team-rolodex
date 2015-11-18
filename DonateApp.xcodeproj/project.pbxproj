@@ -21,6 +21,21 @@
 		61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574861BFBCBD600D80141 /* Laurent.storyboard */; };
 		61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574881BFBCBDA00D80141 /* Jon.storyboard */; };
 		61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */; };
+
+		6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */; };
+		6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6237E05D1BFCC56D00C5AD27 /* xibCell.xib */; };
+		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
+		6237E0641BFCE52900C5AD27 /* DONFakeThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0631BFCE52900C5AD27 /* DONFakeThing.m */; };
+		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
+		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
+		6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
+		6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0751BFD35EC00C5AD27 /* music-record.png */; };
+		6237E07C1BFD35EC00C5AD27 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0761BFD35EC00C5AD27 /* book.png */; };
+		6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0771BFD35EC00C5AD27 /* suitcase.png */; };
+		6237E07E1BFD35EC00C5AD27 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0781BFD35EC00C5AD27 /* tree.png */; };
+		6237E07F1BFD35EC00C5AD27 /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0791BFD35EC00C5AD27 /* desk.png */; };
+		6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E07A1BFD35EC00C5AD27 /* clothing.png */; };
+
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C03F25902F002B71EBF83 /* libPods-DonateApp.a */; };
@@ -49,6 +64,24 @@
 		61C574881BFBCBDA00D80141 /* Jon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Jon.storyboard; sourceTree = "<group>"; };
 		61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONMainViewController.h; sourceTree = "<group>"; };
 		61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONMainViewController.m; sourceTree = "<group>"; };
+		6237E05A1BFBD2B600C5AD27 /* DONCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCollectionViewController.h; sourceTree = "<group>"; };
+		6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCollectionViewController.m; sourceTree = "<group>"; };
+		6237E05D1BFCC56D00C5AD27 /* xibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xibCell.xib; sourceTree = "<group>"; };
+		6237E05F1BFCD30500C5AD27 /* QueryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCell.h; sourceTree = "<group>"; };
+		6237E0601BFCD30500C5AD27 /* QueryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCell.m; sourceTree = "<group>"; };
+		6237E0621BFCE52900C5AD27 /* DONFakeThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONFakeThing.h; sourceTree = "<group>"; };
+		6237E0631BFCE52900C5AD27 /* DONFakeThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONFakeThing.m; sourceTree = "<group>"; };
+		6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonQueryCollectionViewController.h; sourceTree = "<group>"; };
+		6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonQueryCollectionViewController.m; sourceTree = "<group>"; };
+		6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.collection.storyboard; sourceTree = "<group>"; };
+		6237E0711BFD1BE200C5AD27 /* DonSearchBarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonSearchBarCollectionView.h; sourceTree = "<group>"; };
+		6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonSearchBarCollectionView.m; sourceTree = "<group>"; };
+		6237E0751BFD35EC00C5AD27 /* music-record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-record.png"; sourceTree = "<group>"; };
+		6237E0761BFD35EC00C5AD27 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		6237E0771BFD35EC00C5AD27 /* suitcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suitcase.png; sourceTree = "<group>"; };
+		6237E0781BFD35EC00C5AD27 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		6237E0791BFD35EC00C5AD27 /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desk.png; sourceTree = "<group>"; };
+		6237E07A1BFD35EC00C5AD27 /* clothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clothing.png; sourceTree = "<group>"; };
 		61C5748D1BFBE4C500D80141 /* DONUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUser.h; sourceTree = "<group>"; };
 		61C5748E1BFBE4C500D80141 /* DONUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUser.m; sourceTree = "<group>"; };
 		61C574921BFBE7E100D80141 /* DONSecrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONSecrets.h; sourceTree = "<group>"; };
@@ -119,6 +152,7 @@
 				61C574921BFBE7E100D80141 /* DONSecrets.h */,
 				25881C201BFCE58A00C4E2AD /* DONSecrets.m */,
 				61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */,
+				6237E0591BFBD28A00C5AD27 /* guangClasses */,
 				614A96C81BFCE74F00BD543A /* DONAppDelegate.m */,
 				61C574811BFBCB4F00D80141 /* Models */,
 				61C574801BFBCB4500D80141 /* View Controllers */,
@@ -185,6 +219,55 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6237E0591BFBD28A00C5AD27 /* guangClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6237E0621BFCE52900C5AD27 /* DONFakeThing.h */,
+				6237E0631BFCE52900C5AD27 /* DONFakeThing.m */,
+				6237E05F1BFCD30500C5AD27 /* QueryCell.h */,
+				6237E0601BFCD30500C5AD27 /* QueryCell.m */,
+				6237E05D1BFCC56D00C5AD27 /* xibCell.xib */,
+				6237E06D1BFD006B00C5AD27 /* WorkingTest */,
+				6237E06C1BFCFFF900C5AD27 /* testOne */,
+			);
+			name = guangClasses;
+			sourceTree = "<group>";
+		};
+		6237E06C1BFCFFF900C5AD27 /* testOne */ = {
+			isa = PBXGroup;
+			children = (
+				6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */,
+				6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */,
+				6237E0711BFD1BE200C5AD27 /* DonSearchBarCollectionView.h */,
+				6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */,
+				6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */,
+				6237E0741BFD357600C5AD27 /* icons */,
+			);
+			name = testOne;
+			sourceTree = "<group>";
+		};
+		6237E06D1BFD006B00C5AD27 /* WorkingTest */ = {
+			isa = PBXGroup;
+			children = (
+				6237E05A1BFBD2B600C5AD27 /* DONCollectionViewController.h */,
+				6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */,
+			);
+			name = WorkingTest;
+			sourceTree = "<group>";
+		};
+		6237E0741BFD357600C5AD27 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				6237E0751BFD35EC00C5AD27 /* music-record.png */,
+				6237E0761BFD35EC00C5AD27 /* book.png */,
+				6237E0771BFD35EC00C5AD27 /* suitcase.png */,
+				6237E0781BFD35EC00C5AD27 /* tree.png */,
+				6237E0791BFD35EC00C5AD27 /* desk.png */,
+				6237E07A1BFD35EC00C5AD27 /* clothing.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,6 +280,7 @@
 				61C574611BFBC88F00D80141 /* Frameworks */,
 				61C574621BFBC88F00D80141 /* Resources */,
 				A65BF0449CD1D927218C323F /* Copy Pods Resources */,
+
 				89042DE4A6EFE3BC7AEA5287 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -245,6 +329,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237E07F1BFD35EC00C5AD27 /* desk.png in Resources */,
+				6237E07C1BFD35EC00C5AD27 /* book.png in Resources */,
+				61C574771BFBC88F00D80141 /* LaunchScreen.storyboard in Resources */,
+				6237E07E1BFD35EC00C5AD27 /* tree.png in Resources */,
+				6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */,
+				6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */,
+				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
+				6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,
 				61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */,
 				61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */,
@@ -252,6 +344,7 @@
 				614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */,
 				61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */,
 				61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */,
+				6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +396,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BD923069D734823E1C6698C9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -310,6 +418,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */,
+				61C5746C1BFBC88F00D80141 /* DONAppDelegate.m in Sources */,
+				6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */,
+				6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */,
+				6237E0641BFCE52900C5AD27 /* DONFakeThing.m in Sources */,
+				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
 				61C574951BFC273E00D80141 /* DONItem.m in Sources */,

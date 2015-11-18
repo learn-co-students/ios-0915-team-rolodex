@@ -7,6 +7,7 @@
 //
 
 #import "DONMainViewController.h"
+#import "DONCollectionViewController.h"
 
 @interface DONMainViewController ()
 
@@ -33,5 +34,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)guangLink:(id)sender
+{
+    
+}
+
+
 
 @end

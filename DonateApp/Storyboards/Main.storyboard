@@ -29,6 +29,9 @@
                                 <rect key="frame" x="120" y="198" width="53" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Guang"/>
+                                <connections>
+                                    <segue destination="kOF-Gu-05U" kind="show" id="7BG-uN-teq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAp-Aw-zXL">
                                 <rect key="frame" x="120" y="141" width="53" height="30"/>
@@ -69,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="1380.5" y="21"/>
         </scene>
-        <!--Guang-->
+        <!--guang.collection-->
         <scene sceneID="Hml-n5-3Ii">
             <objects>
-                <viewControllerPlaceholder storyboardName="Guang" id="kOF-Gu-05U" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="guang.collection" id="kOF-Gu-05U" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXT-Oe-lfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1379" y="93"/>
