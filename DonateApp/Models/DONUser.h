@@ -8,7 +8,6 @@
 
 #import "PFUser.h"
 #import "PFSubclassing.h"
-#import "DONItem.h"
 
 @interface DONUser : PFUser <PFSubclassing>
 

@@ -289,7 +289,8 @@
 				61C574711BFBC88F00D80141 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
+			path = /Users/porter/fis/DonateApp/DonateApp;
+			sourceTree = "<absolute>";
 		};
 		61C574751BFBC88F00D80141 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -297,6 +298,7 @@
 				61C574761BFBC88F00D80141 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

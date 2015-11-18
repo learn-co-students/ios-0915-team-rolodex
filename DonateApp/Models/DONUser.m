@@ -9,6 +9,7 @@
 #import "DONUser.h"
 #import <Parse/Parse.h>
 #import "PFObject+Subclass.h"
+#import "DONItem.h"
 
 @implementation DONUser
 
