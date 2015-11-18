@@ -3,6 +3,7 @@ PODS:
   - ChameleonFramework (2.0.4):
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
+  - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MMDrawerController (0.6.0):
     - MMDrawerController/Core (= 0.6.0)
@@ -18,18 +19,25 @@ PODS:
     - MMDrawerController/Core
   - Parse (1.9.1):
     - Bolts/Tasks (>= 1.4.0)
+  - ParseUI (1.1.6):
+    - Bolts/Tasks (~> 1.2)
+    - Parse (~> 1.8)
 
 DEPENDENCIES:
   - ChameleonFramework
+  - Masonry
   - MBProgressHUD
   - MMDrawerController
   - Parse
+  - ParseUI
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
+  ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
 
 COCOAPODS: 0.39.0

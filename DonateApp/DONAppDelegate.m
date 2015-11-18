@@ -7,6 +7,10 @@
 //
 
 #import "DONAppDelegate.h"
+#import "DONSecrets.h"
+#import "Parse.h"
+#import "DONItem.h"
+#import "DONUser.h"
 
 @interface DONAppDelegate ()
 
@@ -16,7 +20,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
+
     return YES;
 }
 
