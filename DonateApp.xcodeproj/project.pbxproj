@@ -10,6 +10,8 @@
 		614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */; };
 		614A96C71BFCE72300BD543A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C51BFCE72300BD543A /* Main.storyboard */; };
 		614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96C81BFCE74F00BD543A /* DONAppDelegate.m */; };
+		614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */; };
+		614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
@@ -28,6 +30,10 @@
 		614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		614A96C51BFCE72300BD543A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		614A96C81BFCE74F00BD543A /* DONAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONAppDelegate.m; sourceTree = "<group>"; };
+		614A96CB1BFCF87D00BD543A /* DONUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserProfileViewController.h; sourceTree = "<group>"; };
+		614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserProfileViewController.m; sourceTree = "<group>"; };
+		614A96CE1BFD2AF500BD543A /* DONUserSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserSettingsTableViewController.h; sourceTree = "<group>"; };
+		614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserSettingsTableViewController.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +84,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		614A96CA1BFCF56D00BD543A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		61C5745B1BFBC88F00D80141 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +120,7 @@
 				61C574811BFBCB4F00D80141 /* Models */,
 				61C574801BFBCB4500D80141 /* View Controllers */,
 				61C5747F1BFBCB4000D80141 /* Views */,
+				614A96CA1BFCF56D00BD543A /* Controllers */,
 				61C5747E1BFBCB1E00D80141 /* Storyboards */,
 				61C574671BFBC88F00D80141 /* Supporting Files */,
 			);
@@ -147,6 +161,10 @@
 			children = (
 				61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */,
 				61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */,
+				614A96CB1BFCF87D00BD543A /* DONUserProfileViewController.h */,
+				614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */,
+				614A96CE1BFD2AF500BD543A /* DONUserSettingsTableViewController.h */,
+				614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,9 +292,11 @@
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
 				61C574951BFC273E00D80141 /* DONItem.m in Sources */,
 				61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */,
+				614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				61C574911BFBE7D400D80141 /* DONSecrets.m in Sources */,
+				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

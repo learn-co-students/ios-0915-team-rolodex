@@ -7,9 +7,12 @@
 //
 
 #import "DONUser.h"
-#import <Parse/Parse.h>
 #import "PFObject+Subclass.h"
 #import "DONItem.h"
+
+@interface DONUser ()
+
+@end
 
 @implementation DONUser
 
@@ -57,6 +60,22 @@
             completion(objects,YES);
         }
     }];
+}
+
+# pragma mark - Overriden setters & getters
+
+-(PFFile *)photoFile
+{
+    return [[DONUser currentUser] objectForKey:@"photo"];
+}
+
+-(void)setPhoto:(UIImage *)image
+{
+    DONUser *user = [DONUser currentUser];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
+    user[@"photo"] = imageFile;
+    [user saveInBackground];
 }
 
 @end
