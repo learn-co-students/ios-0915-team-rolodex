@@ -14,15 +14,38 @@
                         <viewControllerLayoutGuide type="bottom" id="WlN-Kn-gxr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Af2-By-CbT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMp-H4-zd3">
+                                <rect key="frame" x="219" y="596" width="136" height="51"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="UICollectionView">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="guangLink:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="huN-V2-UYi"/>
+                                    <segue destination="975-0P-Cgr" kind="show" id="FjV-9x-kzB"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPB-ef-H2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="234"/>
+            <point key="canvasLocation" x="116.5" y="233.5"/>
+        </scene>
+        <!--testOne-->
+        <scene sceneID="gMt-ck-zxJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="guang.collection" referencedIdentifier="testOne" id="975-0P-Cgr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BvN-Ow-n7s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="497" y="234"/>
         </scene>
     </scenes>
 </document>
