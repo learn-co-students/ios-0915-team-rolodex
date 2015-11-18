@@ -132,7 +132,7 @@
 				61C574861BFBCBD600D80141 /* Laurent.storyboard */,
 				61C574881BFBCBDA00D80141 /* Jon.storyboard */,
 			);
-			name = Storyboards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		61C5747F1BFBCB4000D80141 /* Views */ = {
@@ -148,7 +148,7 @@
 				61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */,
 				61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		61C574811BFBCB4F00D80141 /* Models */ = {
@@ -159,7 +159,7 @@
 				61C574931BFC273E00D80141 /* DONItem.h */,
 				61C574941BFC273E00D80141 /* DONItem.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
