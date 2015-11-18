@@ -3,10 +3,12 @@
 
 target 'DonateApp' do
 pod 'Parse'
+pod 'ParseUI'
 pod 'ChameleonFramework'
 pod 'MBProgressHUD'
 pod 'MMDrawerController'
-pod 'ParseUI'
+pod 'Masonry'
+
 
 end
 

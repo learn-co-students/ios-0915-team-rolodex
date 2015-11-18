@@ -9,8 +9,8 @@
 #import "DONAppDelegate.h"
 #import "DONSecrets.h"
 #import "Parse.h"
-#import "DONUser.h"
 #import "DONItem.h"
+#import "DONUser.h"
 
 @interface DONAppDelegate ()
 
@@ -21,13 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
-		
-		[DONUser testUserWithCompletion:^(DONUser *user, NSError *error) {
-				
-		}];
-		
 
-		
     return YES;
 }
 
