@@ -21,9 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
-    
-    DONItem *aNewItem = [DONItem createItemWithName:@"Jar of Jam" description:@"Exactly what it sounds like"];
-    [DONItem listItemForCurrentUser:aNewItem];
+		
+		[DONUser testUserWithCompletion:^(DONUser *user, NSError *error) {
+				
+		}];
+		
+
+		
     return YES;
 }
 

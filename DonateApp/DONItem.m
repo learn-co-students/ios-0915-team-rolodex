@@ -20,6 +20,11 @@
 @dynamic createdAt;
 @dynamic updatedAt;
 @dynamic tags;
+@dynamic itemImage;
+@dynamic itemThumbnailImage;
+
+//
+//@synthesize itemImage = _itemImage;
 
 + (void)load {
     [self registerSubclass];
@@ -51,11 +56,30 @@
 
 +(instancetype)createItemWithName:(NSString *)name
                 description:(NSString *)description
+								tags:(NSArray *)tags
+								itemImage:(UIImage *)itemImage
+								itemThumbnailImage:(UIImage *)itemThumbnailImage
 {
     DONItem *item = [[DONItem alloc] init];
     item.name = name;
     item.description = description;
+		item.tags = tags;
+		item.itemImage = itemImage;
+		item.itemThumbnailImage = itemThumbnailImage;
     return item;
 }
+
+//-(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion{
+//		
+//		if (!_itemImage) {
+//				PFFile *itemImageFile = [self objectForKey:@"itemImage"];
+//				[itemImageFile get]
+//		}
+//		
+//		
+//}
+
+
+//-(void)setItemImage
 
 @end

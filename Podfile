@@ -6,5 +6,7 @@ pod 'Parse'
 pod 'ChameleonFramework'
 pod 'MBProgressHUD'
 pod 'MMDrawerController'
+pod 'ParseUI'
+
 end
 
