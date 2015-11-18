@@ -17,6 +17,9 @@
 		61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574861BFBCBD600D80141 /* Laurent.storyboard */; };
 		61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574881BFBCBDA00D80141 /* Jon.storyboard */; };
 		61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */; };
+		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
+		61C574911BFBE7D400D80141 /* DONSecrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574901BFBE7D400D80141 /* DONSecrets.m */; };
+		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C03F25902F002B71EBF83 /* libPods-DonateApp.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,12 @@
 		61C574881BFBCBDA00D80141 /* Jon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Jon.storyboard; sourceTree = "<group>"; };
 		61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONMainViewController.h; sourceTree = "<group>"; };
 		61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONMainViewController.m; sourceTree = "<group>"; };
+		61C5748D1BFBE4C500D80141 /* DONUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUser.h; sourceTree = "<group>"; };
+		61C5748E1BFBE4C500D80141 /* DONUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUser.m; sourceTree = "<group>"; };
+		61C574901BFBE7D400D80141 /* DONSecrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONSecrets.m; sourceTree = "<group>"; };
+		61C574921BFBE7E100D80141 /* DONSecrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONSecrets.h; sourceTree = "<group>"; };
+		61C574931BFC273E00D80141 /* DONItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONItem.h; sourceTree = "<group>"; };
+		61C574941BFC273E00D80141 /* DONItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItem.m; sourceTree = "<group>"; };
 		840C03F25902F002B71EBF83 /* libPods-DonateApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DonateApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB99CF7E70277FCAE56AE9BA /* Pods-DonateApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				61C574731BFBC88F00D80141 /* Assets.xcassets */,
+				61C574921BFBE7E100D80141 /* DONSecrets.h */,
+				61C574901BFBE7D400D80141 /* DONSecrets.m */,
 				61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */,
 				61C5746B1BFBC88F00D80141 /* DONAppDelegate.m */,
 				61C574811BFBCB4F00D80141 /* Models */,
@@ -143,6 +154,10 @@
 		61C574811BFBCB4F00D80141 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				61C5748D1BFBE4C500D80141 /* DONUser.h */,
+				61C5748E1BFBE4C500D80141 /* DONUser.m */,
+				61C574931BFC273E00D80141 /* DONItem.h */,
+				61C574941BFC273E00D80141 /* DONItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -256,9 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C574951BFC273E00D80141 /* DONItem.m in Sources */,
+				61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */,
 				61C5746C1BFBC88F00D80141 /* DONAppDelegate.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
+				61C574911BFBE7D400D80141 /* DONSecrets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
