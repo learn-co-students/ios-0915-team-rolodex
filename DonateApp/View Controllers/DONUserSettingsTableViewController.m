@@ -29,7 +29,10 @@
     self.navigationItem.title = @"Settings";
     
     self.tableView.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:235.0/255.0 blue:241.0/255.0 alpha:1.0];
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     [self loadSettingsData];
 }
 
