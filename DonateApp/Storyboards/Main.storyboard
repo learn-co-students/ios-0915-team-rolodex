@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -17,40 +18,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8r-e6-tDh">
-                                <rect key="frame" x="120" y="103" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8r-e6-tDh">
+                                <rect key="frame" x="20" y="100" width="53" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Mickey"/>
                                 <connections>
                                     <segue destination="Ocp-Ag-4M8" kind="show" id="7aC-4n-hhR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-OW-8uu">
-                                <rect key="frame" x="120" y="198" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-OW-8uu">
+                                <rect key="frame" x="20" y="195" width="53" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Guang"/>
                                 <connections>
                                     <segue destination="kOF-Gu-05U" kind="show" id="7BG-uN-teq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAp-Aw-zXL">
-                                <rect key="frame" x="120" y="141" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAp-Aw-zXL">
+                                <rect key="frame" x="20" y="138" width="53" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Laurent"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtn-q7-ukE">
-                                <rect key="frame" x="107" y="255" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtn-q7-ukE">
+                                <rect key="frame" x="20" y="253" width="80" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Profile Flow"/>
                                 <connections>
-                                    <segue destination="wQQ-nf-RA0" kind="show" id="kEr-C2-Qk6"/>
+                                    <action selector="showProfileButtonTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="Nfs-iU-9Oj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9F-by-qbs">
+                                <rect key="frame" x="20" y="378" width="107" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Login Test User"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="Ibv-pu-FC5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9y3-cL-hWX">
+                                <rect key="frame" x="20" y="347" width="560" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="560" id="RwW-Ht-Ods"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="477-hk-dNT">
+                                <rect key="frame" x="20" y="416" width="67" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Login Jon"/>
+                                <connections>
+                                    <action selector="loginJonPressed:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="LTY-4m-jRY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtF-pQ-shg">
+                                <rect key="frame" x="20" y="454" width="55" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOutTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="Rjs-BB-PVI"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9y3-cL-hWX" firstAttribute="top" secondItem="PT6-4p-YLx" secondAttribute="bottom" constant="283" id="fHq-nM-8sq"/>
+                            <constraint firstItem="9y3-cL-hWX" firstAttribute="leading" secondItem="Af2-By-CbT" secondAttribute="leadingMargin" id="rZW-mn-Rrh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="siP-lE-ZSQ"/>
+                    <connections>
+                        <outlet property="currentUserLabel" destination="9y3-cL-hWX" id="zbB-jN-ddy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPB-ef-H2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,7 +104,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="Jon" storyboardName="Jon" id="wQQ-nf-RA0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFD-PF-prN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1370.5" y="-52"/>
+            <point key="canvasLocation" x="1329.5" y="-66"/>
         </scene>
         <!--Mickey-->
         <scene sceneID="LZu-zI-8kQ">

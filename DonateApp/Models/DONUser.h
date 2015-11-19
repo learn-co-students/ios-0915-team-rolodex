@@ -33,6 +33,4 @@
 + (void)testUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion;
 + (void)allItemsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion;
 
-
-
 @end
