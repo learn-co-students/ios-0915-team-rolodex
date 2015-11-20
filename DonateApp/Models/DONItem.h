@@ -19,14 +19,16 @@
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
 
-//created ourselves
+//
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *pickupInstructions;
 @property (nonatomic, strong) DONUser *listedBy;
+
 //@property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSArray *tags;
-@property (nonatomic, strong) UIImage *itemImage;
-@property (nonatomic, strong) UIImage *itemThumbnailImage;
+@property (nonatomic, strong) PFFile *itemImagePF;
+
 //@property (nonatomic, strong)
 
 +(NSString *)parseClassName;
@@ -37,16 +39,26 @@
 +(void)listItemForCurrentUser:(DONItem *)item;
 
 // Item creation factories
-+(instancetype)createItemWithName:(NSString *)name
-											description:(NSString *)description
-											listedBy:(DONUser *)
-//											location:(PFGeoPoint *)location
-														 tags:(NSArray *)tags
-										    itemImage:(UIImage *)itemImage
-							 itemThumbnailImage:(UIImage *)itemThumbnailImage;
 
-//											listedBy:(DONUser *)currentUser
 
--(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion;
+
++ (void)createItemWithNameForCurrentUserWithCompletionBlock:(NSString *)name
+																								description:(NSString *)description
+																				 pickupInstructions:(NSString *)pickupInstructions
+																											 tags:(NSArray *)tags
+																									itemImage:(PFFile *)itemImage
+
+
+//																				location:(PFGeoPoint *)location
+																						 withCompletion:(void(^)(BOOL success, DONItem *object))completionBlock;
+//																						 withCompletion:(void(^)(BOOL success, DONItem *newItem))completionBlock;
+
+
+
+
+
+
+
+
 
 @end
