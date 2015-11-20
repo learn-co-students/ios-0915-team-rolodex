@@ -29,6 +29,25 @@
             </objects>
             <point key="canvasLocation" x="934" y="560"/>
         </scene>
+        <!--View Other User Profile View Controller-->
+        <scene sceneID="kqL-yz-4bN">
+            <objects>
+                <viewController storyboardIdentifier="viewOtherUserProfile" id="Z6Z-bg-xIG" customClass="DONViewOtherUserProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z1V-1S-xdo"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qbc-w0-Fhz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oH6-7X-kBS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YJe-KV-hBr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934" y="1230"/>
+        </scene>
         <!--User Settings Table View Controller-->
         <scene sceneID="bcA-Kd-S58">
             <objects>

@@ -9,6 +9,7 @@
 #import "DONMainViewController.h"
 #import "DONCollectionViewController.h"
 #import "DONUser.h"
+#import "DONViewOtherUserProfileViewController.h"
 
 @interface DONMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserLabel;
@@ -19,12 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureTestingData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self configureTestingData];
 }
 
 /*
@@ -57,7 +62,7 @@
 
 - (IBAction)loginButtonPressed:(id)sender {
     [DONUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        [DONUser testUserWithCompletion:^(DONUser *user, NSError *error) {
+        [DONUser loginTestUserWithCompletion:^(DONUser *user, NSError *error) {
             NSLog(@"Test user login complete.");
             [self configureTestingData];
         }];
@@ -87,6 +92,14 @@
         UIViewController *theInitialViewController = [secondStoryBoard instantiateInitialViewController];
         [self.navigationController pushViewController:theInitialViewController animated:YES];
     }
+}
+- (IBAction)showOtherUserProfileTapped:(id)sender {
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Jon" bundle:nil];
+    DONViewOtherUserProfileViewController *otherUserProfileVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"viewOtherUserProfile"];
+    [DONUser testUserWithCompletion:^(DONUser *user, NSError *error) {
+        otherUserProfileVC.user = user;
+        [self.navigationController pushViewController:otherUserProfileVC animated:YES];
+    }];
 }
 
 

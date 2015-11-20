@@ -2,54 +2,41 @@
 //  DONUserProfileViewController.m
 //  DonateApp
 //
-//  Created by Jon on 11/18/15.
+//  Created by Jon on 11/19/15.
 //  Copyright © 2015 Rolodex. All rights reserved.
 //
 
-#import "DONUserProfileViewController.h"
+#import "DONViewOtherUserProfileViewController.h"
 #import "DONUser.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <Masonry/Masonry.h>
 #define MAS_SHORTHAND
 
-#import "DONUserSettingsTableViewController.h"
-
-@interface DONUserProfileViewController ()
-@property (nonatomic, strong) DONUser *currentUser;
+@interface DONViewOtherUserProfileViewController ()
 @property (nonatomic, strong) PFImageView *userPhotoImageView;
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *donatedItemsLabel;
 @property (nonatomic, strong) UILabel *donatedItemsCaptionLabel;
+@property (nonatomic, strong) UILabel *verifiedItemsLabel;
+@property (nonatomic, strong) UILabel *verifiedItemsCaptionLabel;
 @end
 
-@implementation DONUserProfileViewController
+@implementation DONViewOtherUserProfileViewController
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.currentUser = [DONUser currentUser];
-    NSLog(@"Current user %@", self.currentUser);
     
-    self.navigationItem.title = @"My Profile";
+    NSLog(@"Fetching info for user: %@", self.user);
     
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@'s Profile", self.user.username];
     
-    UIFont *customFont = [UIFont fontWithName:@"Helvetica" size:24.0];
-    NSDictionary *fontDictionary = @{NSFontAttributeName : customFont};
-    [settingsButton setTitleTextAttributes:fontDictionary forState:UIControlStateNormal];
-    
-    self.navigationItem.rightBarButtonItem = settingsButton;
-
     [self setupViews];
     [self constrainViews];
+    [self setupViewProperties];
     [self setupViewData];
     
-}
-
--(void)showSettings
-{
-    [self performSegueWithIdentifier:@"showSettings" sender:self];
 }
 
 -(void)setupViews
@@ -58,11 +45,15 @@
     self.userNameLabel = [[UILabel alloc] init];
     self.donatedItemsLabel = [[UILabel alloc] init];
     self.donatedItemsCaptionLabel = [[UILabel alloc] init];
+    self.verifiedItemsLabel = [[UILabel alloc] init];
+    self.verifiedItemsCaptionLabel = [[UILabel alloc] init];
     
     [self.view addSubview:self.userPhotoImageView];
     [self.view addSubview:self.userNameLabel];
     [self.view addSubview:self.donatedItemsLabel];
     [self.view addSubview:self.donatedItemsCaptionLabel];
+    [self.view addSubview:self.verifiedItemsLabel];
+    [self.view addSubview:self.verifiedItemsCaptionLabel];
 }
 
 -(void)constrainViews
@@ -80,39 +71,70 @@
     
     [self.donatedItemsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.userNameLabel.mas_bottom).offset(50);
-        make.centerX.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.left.equalTo(self.view.mas_centerX);
     }];
     
     [self.donatedItemsCaptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.donatedItemsLabel.mas_bottom);
-        make.centerX.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.left.equalTo(self.view.mas_centerX);
+    }];
+    
+    [self.verifiedItemsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.userNameLabel.mas_bottom).offset(50);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view.mas_centerX);
+    }];
+    
+    [self.verifiedItemsCaptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.verifiedItemsLabel.mas_bottom);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view.mas_centerX);
     }];
 }
 
--(void)setupViewData
+-(void)setupViewProperties
 {
     self.userPhotoImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.userPhotoImageView.clipsToBounds = YES;
     self.userPhotoImageView.layer.borderWidth = 3.0f;
     self.userPhotoImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.userPhotoImageView.file = self.currentUser.photoFile;
-    [self.userPhotoImageView loadInBackground];
-    
-    self.userNameLabel.text = self.currentUser.username;
+
     self.userNameLabel.font = [UIFont systemFontOfSize:36];
     self.userNameLabel.textColor = [UIColor whiteColor];
     
-    self.donatedItemsLabel.font = [UIFont systemFontOfSize:72];
-    self.donatedItemsLabel.textColor = [UIColor whiteColor];
+    [self whiteCenteredLabelWithSize:72 label:self.donatedItemsLabel];
+    [self whiteCenteredLabelWithSize:72 label:self.verifiedItemsLabel];
+    
+    [self whiteCenteredLabelWithSize:14 label:self.donatedItemsCaptionLabel];
+    [self whiteCenteredLabelWithSize:14 label:self.verifiedItemsCaptionLabel];
+}
 
-    [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success) {
+-(void)whiteCenteredLabelWithSize:(NSInteger)size label:(UILabel *)label
+{
+    label.font = [UIFont systemFontOfSize:size];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+}
+
+-(void)setupViewData
+{
+    self.userPhotoImageView.file = self.user.photoFile;
+    [self.userPhotoImageView loadInBackground];
+    
+    self.userNameLabel.text = self.user.username;
+   
+    [DONUser allItemsForUser:self.user withCompletion:^(NSArray *items, BOOL success) {
         self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
     }];
     
-    self.donatedItemsCaptionLabel.font = [UIFont systemFontOfSize:14];
-    self.donatedItemsCaptionLabel.textColor = [UIColor whiteColor];
+    [DONUser allVerificationsForUser:self.user withCompletion:^(NSArray *items, BOOL success) {
+        self.verifiedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
+    }];
+    
     self.donatedItemsCaptionLabel.text = @"total items donated";
+    self.verifiedItemsCaptionLabel.text = @"total verifications";
 }
 
 -(void)viewDidLayoutSubviews

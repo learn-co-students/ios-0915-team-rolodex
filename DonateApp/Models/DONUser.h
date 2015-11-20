@@ -30,7 +30,10 @@
      testUser = user;
  }];
  */
++ (void)loginTestUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion;
 + (void)testUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion;
 + (void)allItemsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion;
-
++ (void)allItemsForUser:(DONUser *)user withCompletion:(void (^)(NSArray *items, BOOL success))completion;
++ (void)allVerificationsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion;
++ (void)allVerificationsForUser:(DONUser *)user withCompletion:(void (^)(NSArray *items, BOOL success))completion;
 @end
