@@ -9,6 +9,7 @@
 #import "DONUser.h"
 #import "PFObject+Subclass.h"
 #import "DONItem.h"
+#import "DONVerification.h"
 
 @interface DONUser ()
 
@@ -28,7 +29,7 @@
     [self registerSubclass];
 }
 
-+ (void)testUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion
++ (void)loginTestUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion
 {
     if ([DONUser currentUser] && [[DONUser currentUser].username isEqualToString:@"jdoe"]) {
         completion([DONUser currentUser], nil);
@@ -37,6 +38,15 @@
            completion((DONUser *)user, error);
         }];
     }
+}
+
++ (void)testUserWithCompletion:(void (^)(DONUser *user, NSError *error))completion
+{
+    DONUser *userToLoad = [DONUser objectWithoutDataWithClassName:[self parseClassName] objectId:@"wvBL77sPZ1"];
+    [userToLoad fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        DONUser *user = (DONUser *)object;
+        completion(user, error);
+    }];
 }
 
 + (void)allItemsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion
@@ -62,20 +72,77 @@
     }];
 }
 
++ (void)allItemsForUser:(DONUser *)user withCompletion:(void (^)(NSArray *items, BOOL success))completion
+{
+    PFQuery *itemsQuery = [PFQuery queryWithClassName:[DONItem parseClassName]];
+    [itemsQuery whereKey:@"listedBy" equalTo:user];
+    
+    [itemsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Error fetching listedItems for specific user: %@", error);
+            completion(nil,NO);
+        } else {
+            NSLog(@"Successfully fetched and loaded listedItems for specific user");
+            completion(objects,YES);
+        }
+    }];
+}
+
+
++ (void)allVerificationsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion
+{
+    // Get the current user
+    if (![DONUser currentUser]) {
+        NSLog(@"Failed loading verifications. No current user found");
+        return;
+    }
+    
+    PFQuery *verificationsQuery = [PFQuery queryWithClassName:[DONVerification parseClassName]];
+    [verificationsQuery whereKey:@"verifiee" equalTo:[DONUser currentUser]];
+    
+    [verificationsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Error fetching verifications for current user: %@", error);
+            completion(nil,NO);
+        } else {
+            NSLog(@"Successfully fetched and loaded verifications for current user");
+            completion(objects,YES);
+        }
+    }];
+}
+
++ (void)allVerificationsForUser:(DONUser *)user withCompletion:(void (^)(NSArray *items, BOOL success))completion
+{
+    PFQuery *verificationsQuery = [PFQuery queryWithClassName:[DONVerification parseClassName]];
+    [verificationsQuery whereKey:@"verifiee" equalTo:user];
+    
+    [verificationsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if (error) {
+            NSLog(@"Error fetching verifications for specific user: %@", error);
+            completion(nil,NO);
+        } else {
+            NSLog(@"Successfully fetched and loaded verifications for specific user");
+            completion(objects,YES);
+        }
+    }];
+}
+
 # pragma mark - Overriden setters & getters
 
 -(PFFile *)photoFile
 {
-    return [[DONUser currentUser] objectForKey:@"photo"];
+    return [self objectForKey:@"photo"];
 }
 
 -(void)setPhoto:(UIImage *)image
 {
-    DONUser *user = [DONUser currentUser];
     NSData *imageData = UIImagePNGRepresentation(image);
     PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
-    user[@"photo"] = imageFile;
-    [user saveInBackground];
+    self[@"photo"] = imageFile;
+    [self saveInBackground];
 }
 
 @end

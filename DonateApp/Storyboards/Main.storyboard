@@ -40,9 +40,9 @@
                                 <state key="normal" title="Laurent"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtn-q7-ukE">
-                                <rect key="frame" x="20" y="253" width="80" height="30"/>
+                                <rect key="frame" x="20" y="253" width="81" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Profile Flow"/>
+                                <state key="normal" title="User Profile"/>
                                 <connections>
                                     <action selector="showProfileButtonTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="Nfs-iU-9Oj"/>
                                 </connections>
@@ -79,6 +79,14 @@
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logOutTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="Rjs-BB-PVI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V22-dx-hhV">
+                                <rect key="frame" x="139" y="253" width="115" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Non-User Profile"/>
+                                <connections>
+                                    <action selector="showOtherUserProfileTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="zaR-SL-egN"/>
                                 </connections>
                             </button>
                         </subviews>
