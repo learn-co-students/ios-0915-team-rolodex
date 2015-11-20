@@ -50,7 +50,7 @@
 		item[@"image"] = self.itemImagePF;
 		item[@"pickupInstructions"] = self.pickupInstructions;
 		item[@"itemDescription"] = self.itemDescription;
-		item[@"location"] = self.locationPF;
+//		item[@"location"] = self.locationPF;
 		//save it!
 		[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
