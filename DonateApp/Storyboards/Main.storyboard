@@ -78,7 +78,7 @@
                 <viewControllerPlaceholder storyboardName="guang.collection" id="kOF-Gu-05U" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXT-Oe-lfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379" y="93"/>
+            <point key="canvasLocation" x="1380.5" y="284"/>
         </scene>
         <!--Laurent-->
         <scene sceneID="A73-Uz-osP">

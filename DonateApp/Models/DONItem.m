@@ -69,6 +69,12 @@
     return item;
 }
 
+-(PFFile *)imageFile
+{
+    return [self objectForKey:@"image"];
+}
+
+
 //-(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion{
 //		
 //		if (!_itemImage) {
@@ -79,7 +85,12 @@
 //		
 //}
 
-
+//PFFile *userImageFile = anotherPhoto[@"imageFile"];
+//[userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+//    if (!error) {
+//        UIImage *image = [UIImage imageWithData:imageData];
+//    }
+//}];
 //-(void)setItemImage
 
 @end

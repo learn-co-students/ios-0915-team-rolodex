@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) UIImage *itemImage;
 @property (nonatomic, strong) UIImage *itemThumbnailImage;
+@property (nonatomic, strong, readonly) PFFile *imageFile;
+
 //@property (nonatomic, strong)
 
 +(NSString *)parseClassName;

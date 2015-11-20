@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DonQueryCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface DonQueryCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *queryCollection;
 
