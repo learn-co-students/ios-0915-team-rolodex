@@ -31,7 +31,7 @@
     [self.view addSubview:self.mapView];
     
     
-    self.mapView.delegate = self;
+    //self.mapView.delegate = self;
     
     // Declare the annotation `point` and set its coordinates, title, and subtitle
     MGLPointAnnotation *point = [[MGLPointAnnotation alloc] init];

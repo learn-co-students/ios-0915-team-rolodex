@@ -51,4 +51,20 @@
 
 -(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion;
 
+/**
+ Adds a category to an item based on a string representation
+ Make sure to check the Parse table names under 'Category' first!
+ */
+-(void)addCategory:(NSString *)category withCompletion:(void (^)(BOOL success))completion;
+
+/**
+ Adds multiple categories to a single item 
+*/
+-(void)addCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success))completion;
+
+/**
+ Returns an array of items for the given category
+*/
++(void)itemsWithCategory:(NSString *)category withCompletion:(void (^)(BOOL success, NSArray *items))completion;
+
 @end

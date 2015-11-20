@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PFObject+Subclass.h"
 #import "DONUser.h"
+#import "DONCategory.h"
 
 @implementation DONItem
 
@@ -72,8 +73,57 @@
 -(PFFile *)imageFile
 {
     return [self objectForKey:@"image"];
+
 }
 
+-(void)addCategory:(NSString *)category withCompletion:(void (^)(BOOL success))completion;
+{
+    [DONCategory categoryWithName:category withCompletion:^(BOOL success, DONCategory *category) {
+        [self addUniqueObject:category forKey:@"categories"];
+        [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            completion(YES);
+        }];
+    }];
+}
+
+-(void)addCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success))completion;
+{
+    NSOperationQueue *bgQueue = [[NSOperationQueue alloc] init];
+    bgQueue.maxConcurrentOperationCount = 1;
+
+    __block BOOL allSuccessful = YES;
+    
+    for (NSString *category in categories) {
+        [bgQueue addOperationWithBlock:^{
+            [self addCategory:category withCompletion:^(BOOL success) {
+                if (!success) {
+                    allSuccessful = NO;
+                }
+            }];
+        }];
+    }
+    
+    NSBlockOperation *finalOperation = [NSBlockOperation blockOperationWithBlock:^{
+        completion(allSuccessful);
+    }];
+    
+    [bgQueue addOperation:finalOperation];
+}
+
++(void)itemsWithCategory:(NSString *)category withCompletion:(void (^)(BOOL success, NSArray *items))completion
+{
+    [DONCategory categoryWithName:category withCompletion:^(BOOL success, DONCategory *category) {
+        PFQuery *itemCategoryQuery = [self query];
+        [itemCategoryQuery whereKey:@"categories" equalTo:category];
+        [itemCategoryQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            if (!error) {
+                completion(YES,objects);
+            } else {
+                completion(NO, nil);
+            }
+        }];
+    }];
+}
 
 //-(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion{
 //		

@@ -14,6 +14,10 @@
 		614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96C81BFCE74F00BD543A /* DONAppDelegate.m */; };
 		614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */; };
 		614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */; };
+		614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */; };
+		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
+		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
+		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
@@ -23,10 +27,10 @@
 		61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */; };
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
-		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
+		623667FD1BFFB61000327A9D /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
+		623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
 		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
-		6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
 		6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0751BFD35EC00C5AD27 /* music-record.png */; };
 		6237E07C1BFD35EC00C5AD27 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0761BFD35EC00C5AD27 /* book.png */; };
 		6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0771BFD35EC00C5AD27 /* suitcase.png */; };
@@ -52,6 +56,15 @@
 		614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserProfileViewController.m; sourceTree = "<group>"; };
 		614A96CE1BFD2AF500BD543A /* DONUserSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserSettingsTableViewController.h; sourceTree = "<group>"; };
 		614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserSettingsTableViewController.m; sourceTree = "<group>"; };
+		614A96D11BFE157000BD543A /* DONUserSettingsUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserSettingsUpdateViewController.h; sourceTree = "<group>"; };
+		614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserSettingsUpdateViewController.m; sourceTree = "<group>"; };
+		614A96D51BFE333B00BD543A /* DONSettingsEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONSettingsEnum.h; sourceTree = "<group>"; };
+		614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewOtherUserProfileViewController.h; sourceTree = "<group>"; };
+		614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewOtherUserProfileViewController.m; sourceTree = "<group>"; };
+		614B174F1BFF2DA40001D231 /* DONVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONVerification.h; sourceTree = "<group>"; };
+		614B17501BFF2DA40001D231 /* DONVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONVerification.m; sourceTree = "<group>"; };
+		614B17521BFF61C40001D231 /* DONCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCategory.h; sourceTree = "<group>"; };
+		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +140,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		614A96D41BFE32CD00BD543A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				614A96D51BFE333B00BD543A /* DONSettingsEnum.h */,
+			);
+			name = Enums;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		61C5745B1BFBC88F00D80141 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +178,7 @@
 				6237E0591BFBD28A00C5AD27 /* guangClasses */,
 				61C574811BFBCB4F00D80141 /* Models */,
 				61C574801BFBCB4500D80141 /* View Controllers */,
+				614A96D41BFE32CD00BD543A /* Enums */,
 				61C5747F1BFBCB4000D80141 /* Views */,
 				614A96CA1BFCF56D00BD543A /* Controllers */,
 				61C5747E1BFBCB1E00D80141 /* Storyboards */,
@@ -204,6 +227,10 @@
 				614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */,
 				614A96CE1BFD2AF500BD543A /* DONUserSettingsTableViewController.h */,
 				614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */,
+				614A96D11BFE157000BD543A /* DONUserSettingsUpdateViewController.h */,
+				614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */,
+				614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */,
+				614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -211,10 +238,14 @@
 		61C574811BFBCB4F00D80141 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				614B17521BFF61C40001D231 /* DONCategory.h */,
+				614B17531BFF61C40001D231 /* DONCategory.m */,
 				61C5748D1BFBE4C500D80141 /* DONUser.h */,
 				61C5748E1BFBE4C500D80141 /* DONUser.m */,
 				61C574931BFC273E00D80141 /* DONItem.h */,
 				61C574941BFC273E00D80141 /* DONItem.m */,
+				614B174F1BFF2DA40001D231 /* DONVerification.h */,
+				614B17501BFF2DA40001D231 /* DONVerification.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,7 +304,7 @@
 				61C574611BFBC88F00D80141 /* Frameworks */,
 				61C574621BFBC88F00D80141 /* Resources */,
 				A65BF0449CD1D927218C323F /* Copy Pods Resources */,
-				89042DE4A6EFE3BC7AEA5287 /* Embed Pods Frameworks */,
+				A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,21 +389,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		89042DE4A6EFE3BC7AEA5287 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A65BF0449CD1D927218C323F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,6 +404,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -395,18 +426,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */,
-				6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */,
+				623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */,
+				614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
+				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
+				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
 				61C574951BFC273E00D80141 /* DONItem.m in Sources */,
 				61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */,
 				614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */,
+				614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				62B45AF51BFE20480007D314 /* SearchCell.m in Sources */,
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
+				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
 			);
