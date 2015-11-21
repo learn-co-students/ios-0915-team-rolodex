@@ -10,6 +10,8 @@
 #import "DONCollectionViewController.h"
 #import "DONUser.h"
 #import "DONViewOtherUserProfileViewController.h"
+#import "MMDrawerBarButtonItem.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface DONMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserLabel;
@@ -20,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupLeftMenuButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,6 +35,14 @@
     [self configureTestingData];
 }
 
+-(void)setupLeftMenuButton{
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+}
+
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

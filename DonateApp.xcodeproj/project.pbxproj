@@ -19,6 +19,8 @@
 		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
 		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
+		617E9CA31C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 617E9CA21C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.m */; };
+		617E9CA61C00B0EE001384F4 /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617E9CA51C00B0EE001384F4 /* CenterViewController.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
@@ -28,6 +30,7 @@
 		61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */; };
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
+		61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */; };
 		6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */; };
 		6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6237E05D1BFCC56D00C5AD27 /* xibCell.xib */; };
 		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
@@ -65,6 +68,10 @@
 		614B17501BFF2DA40001D231 /* DONVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONVerification.m; sourceTree = "<group>"; };
 		614B17521BFF61C40001D231 /* DONCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCategory.h; sourceTree = "<group>"; };
 		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
+		617E9CA11C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMExampleDrawerVisualStateManager.h; path = ../../../sb/MMDrawerController/KitchenSink/ExampleFiles/MMExampleDrawerVisualStateManager.h; sourceTree = "<group>"; };
+		617E9CA21C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMExampleDrawerVisualStateManager.m; path = ../../../sb/MMDrawerController/KitchenSink/ExampleFiles/MMExampleDrawerVisualStateManager.m; sourceTree = "<group>"; };
+		617E9CA41C00B0EE001384F4 /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CenterViewController.h; path = ../../../../sb/TestingMMDrawer/TestingMMDrawer/CenterViewController.h; sourceTree = "<group>"; };
+		617E9CA51C00B0EE001384F4 /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CenterViewController.m; path = ../../../../sb/TestingMMDrawer/TestingMMDrawer/CenterViewController.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +88,8 @@
 		61C574921BFBE7E100D80141 /* DONSecrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONSecrets.h; sourceTree = "<group>"; };
 		61C574931BFC273E00D80141 /* DONItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONItem.h; sourceTree = "<group>"; };
 		61C574941BFC273E00D80141 /* DONItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItem.m; sourceTree = "<group>"; };
+		61C7AE391BFFAFD10034042A /* DONDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerViewController.h; sourceTree = "<group>"; };
+		61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerViewController.m; sourceTree = "<group>"; };
 		6237E05A1BFBD2B600C5AD27 /* DONCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCollectionViewController.h; sourceTree = "<group>"; };
 		6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCollectionViewController.m; sourceTree = "<group>"; };
 		6237E05D1BFCC56D00C5AD27 /* xibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xibCell.xib; sourceTree = "<group>"; };
@@ -182,6 +191,8 @@
 				614A96CA1BFCF56D00BD543A /* Controllers */,
 				61C5747E1BFBCB1E00D80141 /* Storyboards */,
 				61C574671BFBC88F00D80141 /* Supporting Files */,
+				617E9CA11C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.h */,
+				617E9CA21C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.m */,
 			);
 			path = DonateApp;
 			sourceTree = "<group>";
@@ -218,6 +229,10 @@
 		61C574801BFBCB4500D80141 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				617E9CA41C00B0EE001384F4 /* CenterViewController.h */,
+				617E9CA51C00B0EE001384F4 /* CenterViewController.m */,
+				61C7AE391BFFAFD10034042A /* DONDrawerViewController.h */,
+				61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */,
 				259356CF1BFD3FA100F49474 /* DONAddItemViewController.h */,
 				259356D01BFD3FA100F49474 /* DONAddItemViewController.m */,
 				61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */,
@@ -422,6 +437,7 @@
 				614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
+				617E9CA31C00A8A6001384F4 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
@@ -429,9 +445,11 @@
 				61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */,
 				614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */,
 				614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */,
+				617E9CA61C00B0EE001384F4 /* CenterViewController.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
+				61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 				614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */,
 			);
