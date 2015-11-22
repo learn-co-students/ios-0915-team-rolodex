@@ -24,7 +24,7 @@
 @implementation DONAppDelegate
 
 
-- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
     UIViewController * leftSideDrawerViewController = [[UIViewController alloc] init];
     leftSideDrawerViewController.view.backgroundColor = [UIColor grayColor];
@@ -63,18 +63,10 @@
                                           alpha:1.0];
     [self.window setTintColor:tintColor];
     [self.window setRootViewController:self.drawerController];
-    
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
