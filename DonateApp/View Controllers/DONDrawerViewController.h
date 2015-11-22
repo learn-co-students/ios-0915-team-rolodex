@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DONDrawerViewController : UIViewController
+typedef NS_ENUM(NSInteger, DrawerSection)
+{
+    DrawerSectionListItem,
+    DrawerSectionInviteFriends,
+    DrawerSectionHelp
+};
 
+@interface DONDrawerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
 @end

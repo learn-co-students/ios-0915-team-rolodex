@@ -26,20 +26,18 @@
     // Center and Drawer View Controllers
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"centerViewController"];
-    DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
-    
-    // Navigation controllers for MMDrawerController
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
-    UINavigationController * leftSideNavController = [[UINavigationController alloc] initWithRootViewController:leftSideDrawerViewController];
-  
+    DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
+
     // MMDrawerController init and setup
     self.drawerController = [[MMDrawerController alloc]
                              initWithCenterViewController:navigationController
-                             leftDrawerViewController:leftSideNavController];
+                             leftDrawerViewController:leftSideDrawerViewController];
     [self.drawerController setShowsShadow:YES];
     [self.drawerController setMaximumLeftDrawerWidth:200.0];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    [self.drawerController setShouldStretchDrawer:NO];
     
     // Set Animation style for drawer using the visual state manager
     [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
