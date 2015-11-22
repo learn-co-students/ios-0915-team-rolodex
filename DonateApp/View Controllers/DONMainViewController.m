@@ -7,7 +7,7 @@
 //
 
 #import "DONMainViewController.h"
-#import "DONCollectionViewController.h"
+//#import "DONCollectionViewController.h"
 #import "DONUser.h"
 #import "DONViewOtherUserProfileViewController.h"
 #import "MMDrawerBarButtonItem.h"

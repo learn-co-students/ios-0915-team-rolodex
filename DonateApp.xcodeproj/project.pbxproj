@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 25881C201BFCE58A00C4E2AD /* DONSecrets.m */; };
 		259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259356D01BFD3FA100F49474 /* DONAddItemViewController.m */; };
+		25F6041E1BFF994800E0530B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F6041D1BFF994800E0530B /* CoreLocation.framework */; };
 		614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */; };
 		614A96C71BFCE72300BD543A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C51BFCE72300BD543A /* Main.storyboard */; };
 		614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96C81BFCE74F00BD543A /* DONAppDelegate.m */; };
 		614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CC1BFCF87D00BD543A /* DONUserProfileViewController.m */; };
 		614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96CF1BFD2AF500BD543A /* DONUserSettingsTableViewController.m */; };
 		614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */; };
-		614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D51BFE333B00BD543A /* DONSettingsEnum.h */; };
 		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
 		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
@@ -33,17 +33,21 @@
 		61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */; };
 		6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */; };
 		6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6237E05D1BFCC56D00C5AD27 /* xibCell.xib */; };
-		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
 		6237E0641BFCE52900C5AD27 /* DONFakeThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0631BFCE52900C5AD27 /* DONFakeThing.m */; };
+		623667FD1BFFB61000327A9D /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
+		623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
 		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
-		6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
 		6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0751BFD35EC00C5AD27 /* music-record.png */; };
 		6237E07C1BFD35EC00C5AD27 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0761BFD35EC00C5AD27 /* book.png */; };
 		6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0771BFD35EC00C5AD27 /* suitcase.png */; };
 		6237E07E1BFD35EC00C5AD27 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0781BFD35EC00C5AD27 /* tree.png */; };
 		6237E07F1BFD35EC00C5AD27 /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0791BFD35EC00C5AD27 /* desk.png */; };
 		6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E07A1BFD35EC00C5AD27 /* clothing.png */; };
+		62B45AF51BFE20480007D314 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AF41BFE20480007D314 /* SearchCell.m */; };
+		62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AF81BFF6CDF0007D314 /* Settings.bundle */; };
+		62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AFB1BFF6E000007D314 /* MapViewController.m */; };
+		62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */; };
 		CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C03F25902F002B71EBF83 /* libPods-DonateApp.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +55,7 @@
 		25881C201BFCE58A00C4E2AD /* DONSecrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONSecrets.m; sourceTree = "<group>"; };
 		259356CF1BFD3FA100F49474 /* DONAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DONAddItemViewController.h; path = ../Storyboards/DONAddItemViewController.h; sourceTree = "<group>"; };
 		259356D01BFD3FA100F49474 /* DONAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DONAddItemViewController.m; path = ../Storyboards/DONAddItemViewController.m; sourceTree = "<group>"; };
+		25F6041D1BFF994800E0530B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		43DC9E76B0808AD45B0DDCE2 /* Pods-DonateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.release.xcconfig"; sourceTree = "<group>"; };
 		614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		614A96C51BFCE72300BD543A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -95,8 +100,6 @@
 		6237E05D1BFCC56D00C5AD27 /* xibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xibCell.xib; sourceTree = "<group>"; };
 		6237E05F1BFCD30500C5AD27 /* QueryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCell.h; sourceTree = "<group>"; };
 		6237E0601BFCD30500C5AD27 /* QueryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCell.m; sourceTree = "<group>"; };
-		6237E0621BFCE52900C5AD27 /* DONFakeThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONFakeThing.h; sourceTree = "<group>"; };
-		6237E0631BFCE52900C5AD27 /* DONFakeThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONFakeThing.m; sourceTree = "<group>"; };
 		6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonQueryCollectionViewController.h; sourceTree = "<group>"; };
 		6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonQueryCollectionViewController.m; sourceTree = "<group>"; };
 		6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.collection.storyboard; sourceTree = "<group>"; };
@@ -108,6 +111,12 @@
 		6237E0781BFD35EC00C5AD27 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		6237E0791BFD35EC00C5AD27 /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desk.png; sourceTree = "<group>"; };
 		6237E07A1BFD35EC00C5AD27 /* clothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clothing.png; sourceTree = "<group>"; };
+		62B45AF31BFE20480007D314 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		62B45AF41BFE20480007D314 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		62B45AF81BFF6CDF0007D314 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		62B45AFA1BFF6E000007D314 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		62B45AFB1BFF6E000007D314 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.map.Storyboard; sourceTree = "<group>"; };
 		840C03F25902F002B71EBF83 /* libPods-DonateApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DonateApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB99CF7E70277FCAE56AE9BA /* Pods-DonateApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25F6041E1BFF994800E0530B /* CoreLocation.framework in Frameworks */,
 				CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +137,7 @@
 		4F378F0A51C55C7601FEC699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25F6041D1BFF994800E0530B /* CoreLocation.framework */,
 				840C03F25902F002B71EBF83 /* libPods-DonateApp.a */,
 			);
 			name = Frameworks;
@@ -182,8 +193,8 @@
 				61C574921BFBE7E100D80141 /* DONSecrets.h */,
 				25881C201BFCE58A00C4E2AD /* DONSecrets.m */,
 				61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */,
-				6237E0591BFBD28A00C5AD27 /* guangClasses */,
 				614A96C81BFCE74F00BD543A /* DONAppDelegate.m */,
+				6237E0591BFBD28A00C5AD27 /* guangClasses */,
 				61C574811BFBCB4F00D80141 /* Models */,
 				61C574801BFBCB4500D80141 /* View Controllers */,
 				614A96D41BFE32CD00BD543A /* Enums */,
@@ -267,37 +278,30 @@
 		6237E0591BFBD28A00C5AD27 /* guangClasses */ = {
 			isa = PBXGroup;
 			children = (
-				6237E0621BFCE52900C5AD27 /* DONFakeThing.h */,
-				6237E0631BFCE52900C5AD27 /* DONFakeThing.m */,
-				6237E05F1BFCD30500C5AD27 /* QueryCell.h */,
-				6237E0601BFCD30500C5AD27 /* QueryCell.m */,
-				6237E05D1BFCC56D00C5AD27 /* xibCell.xib */,
-				6237E06D1BFD006B00C5AD27 /* WorkingTest */,
-				6237E06C1BFCFFF900C5AD27 /* testOne */,
+				62B45AF81BFF6CDF0007D314 /* Settings.bundle */,
+				6237E0741BFD357600C5AD27 /* icons */,
+				6237E06C1BFCFFF900C5AD27 /* collectionScreen */,
+				62B45AFA1BFF6E000007D314 /* MapViewController.h */,
+				62B45AFB1BFF6E000007D314 /* MapViewController.m */,
+				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
 			);
 			name = guangClasses;
 			sourceTree = "<group>";
 		};
-		6237E06C1BFCFFF900C5AD27 /* testOne */ = {
+		6237E06C1BFCFFF900C5AD27 /* collectionScreen */ = {
 			isa = PBXGroup;
 			children = (
+				6237E05F1BFCD30500C5AD27 /* QueryCell.h */,
+				6237E0601BFCD30500C5AD27 /* QueryCell.m */,
+				62B45AF31BFE20480007D314 /* SearchCell.h */,
+				62B45AF41BFE20480007D314 /* SearchCell.m */,
 				6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */,
 				6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */,
 				6237E0711BFD1BE200C5AD27 /* DonSearchBarCollectionView.h */,
 				6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */,
 				6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */,
-				6237E0741BFD357600C5AD27 /* icons */,
 			);
-			name = testOne;
-			sourceTree = "<group>";
-		};
-		6237E06D1BFD006B00C5AD27 /* WorkingTest */ = {
-			isa = PBXGroup;
-			children = (
-				6237E05A1BFBD2B600C5AD27 /* DONCollectionViewController.h */,
-				6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */,
-			);
-			name = WorkingTest;
+			name = collectionScreen;
 			sourceTree = "<group>";
 		};
 		6237E0741BFD357600C5AD27 /* icons */ = {
@@ -325,6 +329,7 @@
 				61C574611BFBC88F00D80141 /* Frameworks */,
 				61C574621BFBC88F00D80141 /* Resources */,
 				A65BF0449CD1D927218C323F /* Copy Pods Resources */,
+				A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -379,14 +384,15 @@
 				6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */,
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
 				6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */,
+				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,
+				62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */,
 				61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */,
 				61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */,
 				61C574851BFBCBD000D80141 /* Guang.storyboard in Resources */,
 				614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */,
 				61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */,
 				61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */,
-				6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +429,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -430,10 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */,
-				6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */,
-				6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */,
-				6237E0641BFCE52900C5AD27 /* DONFakeThing.m in Sources */,
+				623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */,
 				614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
@@ -448,10 +466,12 @@
 				617E9CA61C00B0EE001384F4 /* CenterViewController.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
+				62B45AF51BFE20480007D314 /* SearchCell.m in Sources */,
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
 				61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */,
+				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
-				614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */,
+				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
