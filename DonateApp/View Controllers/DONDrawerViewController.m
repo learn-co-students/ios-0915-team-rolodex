@@ -12,6 +12,8 @@
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
 @property (nonatomic, assign) NSInteger contentInset;
+@property (nonatomic, assign) NSInteger profileViewTopInset;
+@property (nonatomic, assign) NSInteger profileViewBottomInset;
 @end
 
 @implementation DONDrawerViewController
@@ -36,6 +38,8 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.contentInset = 15;
+    self.profileViewTopInset = 25;
+    self.profileViewBottomInset = 15;
 }
 
 #pragma mark - UITableViewDataSource
@@ -58,7 +62,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) return (self.contentInset * 2 + 60);
+    if (indexPath.section == 0) return (self.profileViewTopInset + self.profileViewBottomInset + 60);
     return 40.0;
 }
 
@@ -154,7 +158,7 @@
 -(UITableViewCell *)userSignInOrUpCell
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    DONDrawerProfileView *profileView = [[DONDrawerProfileView alloc] initWithFrame:CGRectMake(self.contentInset, self.contentInset, self.view.bounds.size.width - self.contentInset, 60)];
+    DONDrawerProfileView *profileView = [[DONDrawerProfileView alloc] initWithFrame:CGRectMake(self.contentInset, self.profileViewTopInset, self.view.bounds.size.width - self.contentInset, 60)];
     profileView.backgroundColor = self.tableView.backgroundColor;
     cell.backgroundColor = self.tableView.backgroundColor;
     
