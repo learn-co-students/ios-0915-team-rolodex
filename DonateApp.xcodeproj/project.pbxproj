@@ -31,9 +31,6 @@
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */; };
-		6237E05C1BFBD2B600C5AD27 /* DONCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */; };
-		6237E05E1BFCC56D00C5AD27 /* xibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6237E05D1BFCC56D00C5AD27 /* xibCell.xib */; };
-		6237E0641BFCE52900C5AD27 /* DONFakeThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0631BFCE52900C5AD27 /* DONFakeThing.m */; };
 		623667FD1BFFB61000327A9D /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
 		623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
@@ -95,9 +92,6 @@
 		61C574941BFC273E00D80141 /* DONItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItem.m; sourceTree = "<group>"; };
 		61C7AE391BFFAFD10034042A /* DONDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerViewController.h; sourceTree = "<group>"; };
 		61C7AE3A1BFFAFD10034042A /* DONDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerViewController.m; sourceTree = "<group>"; };
-		6237E05A1BFBD2B600C5AD27 /* DONCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCollectionViewController.h; sourceTree = "<group>"; };
-		6237E05B1BFBD2B600C5AD27 /* DONCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCollectionViewController.m; sourceTree = "<group>"; };
-		6237E05D1BFCC56D00C5AD27 /* xibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = xibCell.xib; sourceTree = "<group>"; };
 		6237E05F1BFCD30500C5AD27 /* QueryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCell.h; sourceTree = "<group>"; };
 		6237E0601BFCD30500C5AD27 /* QueryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCell.m; sourceTree = "<group>"; };
 		6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonQueryCollectionViewController.h; sourceTree = "<group>"; };
@@ -329,7 +323,6 @@
 				61C574611BFBC88F00D80141 /* Frameworks */,
 				61C574621BFBC88F00D80141 /* Resources */,
 				A65BF0449CD1D927218C323F /* Copy Pods Resources */,
-				A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,21 +420,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A786BF1C925BB303E5C4F429 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

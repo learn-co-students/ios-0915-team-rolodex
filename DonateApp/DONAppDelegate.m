@@ -9,13 +9,9 @@
 #import "DONAppDelegate.h"
 #import "DONSecrets.h"
 #import "Parse.h"
-#import "DONItem.h"
-#import "DONUser.h"
-#import "MMDrawerController.h"
-#import "DONMainViewController.h"
 #import "MMExampleDrawerVisualStateManager.h"
+#import "MMDrawerController.h"
 #import "DONDrawerViewController.h"
-#import "CenterViewController.h"
 
 @interface DONAppDelegate ()
 @property (nonatomic, strong) MMDrawerController *drawerController;
@@ -26,17 +22,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
-    UIViewController * leftSideDrawerViewController = [[UIViewController alloc] init];
-    leftSideDrawerViewController.view.backgroundColor = [UIColor grayColor];
     
+    // Center and Drawer View Controllers
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
     UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"centerViewController"];
+    DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
     
+    // Navigation controllers for MMDrawerController
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
-    
     UINavigationController * leftSideNavController = [[UINavigationController alloc] initWithRootViewController:leftSideDrawerViewController];
-    
+  
+    // MMDrawerController init and setup
     self.drawerController = [[MMDrawerController alloc]
                              initWithCenterViewController:navigationController
                              leftDrawerViewController:leftSideNavController];
@@ -45,6 +41,8 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
+    // Set Animation style for drawer using the visual state manager
+    [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
     [self.drawerController
      setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
          MMDrawerControllerDrawerVisualStateBlock block;
@@ -55,16 +53,11 @@
          }
      }];
     
+    // Main window setup and root view controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    UIColor * tintColor = [UIColor colorWithRed:29.0/255.0
-                                          green:173.0/255.0
-                                           blue:234.0/255.0
-                                          alpha:1.0];
-    [self.window setTintColor:tintColor];
     [self.window setRootViewController:self.drawerController];
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
