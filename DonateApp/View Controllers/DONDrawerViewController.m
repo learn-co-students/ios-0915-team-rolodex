@@ -7,8 +7,11 @@
 //
 
 #import "DONDrawerViewController.h"
+#import "DONDrawerProfileView.h"
+
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
+@property (nonatomic, assign) NSInteger contentInset;
 @end
 
 @implementation DONDrawerViewController
@@ -31,6 +34,8 @@
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.contentInset = 15;
 }
 
 #pragma mark - UITableViewDataSource
@@ -53,8 +58,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) return 60.0;
+    if (indexPath.section == 0) return (self.contentInset * 2 + 60);
     return 40.0;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 // Force insets to begin at zero
@@ -120,7 +130,7 @@
     
     cellImage = [cellImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 20, 20)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentInset, 10, 20, 20)];
     imageView.image = cellImage;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setTintColor:[UIColor whiteColor]];
@@ -128,7 +138,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 15, 0, self.view.bounds.size.width - CGRectGetMaxX(imageView.frame), 40.0)];
     
     label.text = cellText;
-    label.font = [UIFont systemFontOfSize:15];
+    label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentLeft;
     
@@ -144,10 +154,17 @@
 -(UITableViewCell *)userSignInOrUpCell
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
-    topView.backgroundColor = self.tableView.backgroundColor;
-    [cell addSubview:topView];
+    DONDrawerProfileView *profileView = [[DONDrawerProfileView alloc] initWithFrame:CGRectMake(self.contentInset, self.contentInset, self.view.bounds.size.width - self.contentInset, 60)];
+    profileView.backgroundColor = self.tableView.backgroundColor;
+    cell.backgroundColor = self.tableView.backgroundColor;
+    
+    [cell addSubview:profileView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if ([DONUser currentUser]) {
+        profileView.user = [DONUser currentUser];
+    }
+    
     return cell;
 }
 

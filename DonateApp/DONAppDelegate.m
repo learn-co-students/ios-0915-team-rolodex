@@ -34,7 +34,7 @@
                              initWithCenterViewController:navigationController
                              leftDrawerViewController:leftSideDrawerViewController];
     [self.drawerController setShowsShadow:YES];
-    [self.drawerController setMaximumLeftDrawerWidth:200.0];
+    [self.drawerController setMaximumLeftDrawerWidth:250.0];
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [self.drawerController setShouldStretchDrawer:NO];
