@@ -8,6 +8,8 @@
 
 #import "DONDrawerViewController.h"
 #import "DONDrawerProfileView.h"
+#import "DONUserProfileViewController.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
@@ -172,4 +174,42 @@
     return cell;
 }
 
+#pragma mark Table View Actions
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if ([DONUser currentUser]) {
+            [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                UIStoryboard *profileStoryboard = [UIStoryboard storyboardWithName:@"Jon" bundle:nil];
+                DONUserProfileViewController *profileViewController = [profileStoryboard instantiateInitialViewController];
+                [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:profileViewController animated:YES];
+            }];
+        } else {
+            NSLog(@"User sign up flow segue goes here.");
+        }
+    } else {
+        switch (self.drawerSectionType) {
+            case DrawerSectionListItem: {
+                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                    UIStoryboard *itemStoryboard = [UIStoryboard storyboardWithName:@"Mickey" bundle:nil];
+                    DONUserProfileViewController *listItemViewController = [itemStoryboard instantiateInitialViewController];
+                    [self.mm_drawerController.centerViewController presentViewController:listItemViewController animated:YES completion:nil];
+                }];
+
+                break;
+            }
+            case DrawerSectionInviteFriends: {
+                
+                break;
+            }
+            case DrawerSectionHelp: {
+                
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+}
 @end
