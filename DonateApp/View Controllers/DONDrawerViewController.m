@@ -188,7 +188,7 @@
             NSLog(@"User sign up flow segue goes here.");
         }
     } else {
-        switch (self.drawerSectionType) {
+        switch (indexPath.row) {
             case DrawerSectionListItem: {
                 [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
                     UIStoryboard *itemStoryboard = [UIStoryboard storyboardWithName:@"Mickey" bundle:nil];

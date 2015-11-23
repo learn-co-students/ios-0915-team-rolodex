@@ -20,6 +20,8 @@
 		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
 		61B25FAC1C029C6900505092 /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FAB1C029C6900505092 /* MMExampleDrawerVisualStateManager.m */; };
+		61B25FAF1C0399A500505092 /* DONItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FAE1C0399A500505092 /* DONItemViewController.m */; };
+		61B25FB21C03A29500505092 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB11C03A29500505092 /* DONActivity.m */; };
 		61BCD4211C022E8700A9032D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
@@ -72,6 +74,10 @@
 		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
 		61B25FAA1C029C6900505092 /* MMExampleDrawerVisualStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMExampleDrawerVisualStateManager.h; sourceTree = "<group>"; };
 		61B25FAB1C029C6900505092 /* MMExampleDrawerVisualStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMExampleDrawerVisualStateManager.m; sourceTree = "<group>"; };
+		61B25FAD1C0399A500505092 /* DONItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONItemViewController.h; sourceTree = "<group>"; };
+		61B25FAE1C0399A500505092 /* DONItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItemViewController.m; sourceTree = "<group>"; };
+		61B25FB01C03A29500505092 /* DONActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONActivity.h; sourceTree = "<group>"; };
+		61B25FB11C03A29500505092 /* DONActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONActivity.m; sourceTree = "<group>"; };
 		61BCD41F1C022E8700A9032D /* DONDrawerProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerProfileView.h; sourceTree = "<group>"; };
 		61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerProfileView.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +256,8 @@
 				614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */,
 				614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */,
 				614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */,
+				61B25FAD1C0399A500505092 /* DONItemViewController.h */,
+				61B25FAE1C0399A500505092 /* DONItemViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -265,6 +273,8 @@
 				61C574941BFC273E00D80141 /* DONItem.m */,
 				614B174F1BFF2DA40001D231 /* DONVerification.h */,
 				614B17501BFF2DA40001D231 /* DONVerification.m */,
+				61B25FB01C03A29500505092 /* DONActivity.h */,
+				61B25FB11C03A29500505092 /* DONActivity.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,6 +443,7 @@
 				614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
+				61B25FB21C03A29500505092 /* DONActivity.m in Sources */,
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
@@ -450,6 +461,7 @@
 				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
+				61B25FAF1C0399A500505092 /* DONItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

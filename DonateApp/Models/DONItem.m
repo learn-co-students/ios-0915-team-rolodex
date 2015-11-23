@@ -16,11 +16,11 @@
 
 @dynamic name;
 @dynamic description;
+@dynamic pickupInstructions;
 @dynamic listedBy;
-//@dynamic location;
+@dynamic views;
 @dynamic createdAt;
 @dynamic updatedAt;
-@dynamic tags;
 @dynamic itemImagePF;
 
 
