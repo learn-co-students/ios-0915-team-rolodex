@@ -80,7 +80,6 @@
     object.name = name;
     object.description = description;
 		object.pickupInstructions = pickupInstructions;
-		object.tags = tags;
 		object.itemImagePF = itemImagePF;
 
 		

@@ -22,6 +22,7 @@
 		61B25FAC1C029C6900505092 /* MMExampleDrawerVisualStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FAB1C029C6900505092 /* MMExampleDrawerVisualStateManager.m */; };
 		61B25FAF1C0399A500505092 /* DONItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FAE1C0399A500505092 /* DONItemViewController.m */; };
 		61B25FB21C03A29500505092 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB11C03A29500505092 /* DONActivity.m */; };
+		61B25FB51C03C46800505092 /* DONViewItemUserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */; };
 		61BCD4211C022E8700A9032D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
@@ -78,6 +79,8 @@
 		61B25FAE1C0399A500505092 /* DONItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItemViewController.m; sourceTree = "<group>"; };
 		61B25FB01C03A29500505092 /* DONActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONActivity.h; sourceTree = "<group>"; };
 		61B25FB11C03A29500505092 /* DONActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONActivity.m; sourceTree = "<group>"; };
+		61B25FB31C03C46800505092 /* DONViewItemUserProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemUserProfileView.h; sourceTree = "<group>"; };
+		61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemUserProfileView.m; sourceTree = "<group>"; };
 		61BCD41F1C022E8700A9032D /* DONDrawerProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerProfileView.h; sourceTree = "<group>"; };
 		61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerProfileView.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +238,8 @@
 			children = (
 				61BCD41F1C022E8700A9032D /* DONDrawerProfileView.h */,
 				61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */,
+				61B25FB31C03C46800505092 /* DONViewItemUserProfileView.h */,
+				61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */,
 				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
+				61B25FB51C03C46800505092 /* DONViewItemUserProfileView.m in Sources */,
 				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
 				61B25FAF1C0399A500505092 /* DONItemViewController.m in Sources */,
 			);

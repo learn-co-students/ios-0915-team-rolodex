@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DONItem.h"
 
 @interface DONItemViewController : UIViewController
-
+@property (nonatomic, strong) DONItem *item;
 @end

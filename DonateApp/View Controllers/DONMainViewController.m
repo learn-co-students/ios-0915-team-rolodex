@@ -12,6 +12,8 @@
 #import "DONViewOtherUserProfileViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
+#import "DONItem.h"
+#import "DONItemViewController.h"
 
 @interface DONMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserLabel;
@@ -122,6 +124,15 @@
         [self.navigationController pushViewController:otherUserProfileVC animated:YES];
     }];
 }
+
+- (IBAction)viewItemTapped:(id)sender {
+    [DONItem fetchItemWithItemId:@"3UpAq8hj0Q" withCompletion:^(DONItem *item, NSError *error) {
+        DONItemViewController *vc = [[DONItemViewController alloc] init];
+        vc.item = item;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+}
+
 
 
 @end
