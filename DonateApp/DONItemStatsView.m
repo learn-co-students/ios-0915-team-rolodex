@@ -51,10 +51,12 @@
 {
     self.viewsLabel.font = [UIFont systemFontOfSize:18];
     self.viewsLabel.textColor = [UIColor whiteColor];
+    self.viewsLabel.text = @"0";
     
     self.favoritesLabel.font = self.viewsLabel.font;
     self.favoritesLabel.textColor = self.viewsLabel.textColor;
-
+    self.favoritesLabel.text = @"0";
+    
     UIImage *viewsImg = [UIImage imageNamed:@"view"];
     viewsImg = [viewsImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.viewsImageView.image = viewsImg;
@@ -99,18 +101,22 @@
         make.right.equalTo(self.favoritesImageView).offset(5);
         make.top.and.bottom.equalTo(self.viewsLabel);
     }];
-}
-
--(void)setItem:(DONItem *)item
-{
-    _item = item;
-    [DONActivity activitiesForItem:self.item withCompletion:^(NSArray *activities) {
-        NSInteger numberOfFavorites = [DONActivity numberOfActivities:kActivityTypeFavorite inItemActivities:activities];
-        self.favoritesLabel.text = [NSString stringWithFormat:@"%lu", numberOfFavorites];
+    
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.background);
     }];
-
-    self.viewsLabel.text = [NSString stringWithFormat:@"%d",[self.item.views intValue]];
 }
 
+-(void)setNumberOfViews:(NSString *)numberOfViews
+{
+    _numberOfViews = numberOfViews;
+    self.viewsLabel.text = numberOfViews;
+}
+
+-(void)setNumberOfFavorites:(NSString *)numberOfFavorites
+{
+    _numberOfFavorites = numberOfFavorites;
+    self.favoritesLabel.text = numberOfFavorites;
+}
 
 @end

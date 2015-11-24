@@ -45,6 +45,21 @@
     }];
 }
 
++(void)removeActivityType:(NSString *)activityType forUser:(DONUser *)user onItem:(DONItem *)item withCompletion:(void (^)(BOOL success))completion
+{
+    [DONActivity activitiesForItem:item withCompletion:^(NSArray *activities) {
+        for (DONActivity *activity in activities) {
+            if ([activity.type isEqualToString:activityType] && [activity.fromUser.objectId isEqualToString:user.objectId]) {
+                [DONActivity deleteAllInBackground:@[activity] block:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded) {
+                        completion(succeeded);
+                    }
+                }];
+            }
+        }
+    }];
+}
+
 +(NSInteger)numberOfActivities:(NSString *)activityType inItemActivities:(NSArray *)allActivities
 {
     NSInteger activities = 0;
@@ -54,6 +69,16 @@
         }
     }
     return activities;
+}
+
++(BOOL)activityExists:(NSString *)activityType forUser:(DONUser *)user inItemActivities:(NSArray *)allActivities
+{
+    for (DONActivity *activity in allActivities) {
+        if ([activity.type isEqualToString:activityType] && [activity.fromUser.objectId isEqualToString:user.objectId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

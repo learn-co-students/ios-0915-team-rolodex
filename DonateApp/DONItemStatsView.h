@@ -10,5 +10,6 @@
 #import "DONItem.h"
 
 @interface DONItemStatsView : UIView
-@property (nonatomic, strong) DONItem *item;
+@property (nonatomic, strong) NSString *numberOfViews;
+@property (nonatomic, strong) NSString *numberOfFavorites;
 @end

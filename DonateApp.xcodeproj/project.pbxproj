@@ -24,6 +24,7 @@
 		61B25FB21C03A29500505092 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB11C03A29500505092 /* DONActivity.m */; };
 		61B25FB51C03C46800505092 /* DONViewItemUserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */; };
 		61B25FB81C04102D00505092 /* DONItemStatsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FB71C04102D00505092 /* DONItemStatsView.m */; };
+		61B25FBB1C04A40400505092 /* DONViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B25FBA1C04A40400505092 /* DONViewItemButton.m */; };
 		61BCD4211C022E8700A9032D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
@@ -84,6 +85,8 @@
 		61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemUserProfileView.m; sourceTree = "<group>"; };
 		61B25FB61C04102D00505092 /* DONItemStatsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONItemStatsView.h; sourceTree = "<group>"; };
 		61B25FB71C04102D00505092 /* DONItemStatsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItemStatsView.m; sourceTree = "<group>"; };
+		61B25FB91C04A40400505092 /* DONViewItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemButton.h; sourceTree = "<group>"; };
+		61B25FBA1C04A40400505092 /* DONViewItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemButton.m; sourceTree = "<group>"; };
 		61BCD41F1C022E8700A9032D /* DONDrawerProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerProfileView.h; sourceTree = "<group>"; };
 		61BCD4201C022E8700A9032D /* DONDrawerProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerProfileView.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +248,8 @@
 				61B25FB41C03C46800505092 /* DONViewItemUserProfileView.m */,
 				61B25FB61C04102D00505092 /* DONItemStatsView.h */,
 				61B25FB71C04102D00505092 /* DONItemStatsView.m */,
+				61B25FB91C04A40400505092 /* DONViewItemButton.h */,
+				61B25FBA1C04A40400505092 /* DONViewItemButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
 				61B25FB21C03A29500505092 /* DONActivity.m in Sources */,
+				61B25FBB1C04A40400505092 /* DONViewItemButton.m in Sources */,
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				61B25FB81C04102D00505092 /* DONItemStatsView.m in Sources */,

@@ -25,9 +25,9 @@ static NSString *const kActivityTypeClaim = @"claim";
 +(NSString *)parseClassName;
 
 +(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion;
-
++(void)removeActivityType:(NSString *)activityType forUser:(DONUser *)user onItem:(DONItem *)item withCompletion:(void (^)(BOOL success))completion;
 +(void)addActivityType:(NSString *)activityType toItem:(DONItem *)item fromUser:(DONUser *)fromUser toUser:(DONUser *)toUser withCompletion:(void (^)(BOOL success))completion;
-
 +(NSInteger)numberOfActivities:(NSString *)activityType inItemActivities:(NSArray *)allActivities;
++(BOOL)activityExists:(NSString *)activityType forUser:(DONUser *)user inItemActivities:(NSArray *)allActivities;
 
 @end

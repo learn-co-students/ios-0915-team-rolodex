@@ -59,6 +59,12 @@
         make.height.equalTo(self.userNameLabel).offset(3);
         make.centerY.equalTo(self);
     }];
+    
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.and.bottom.equalTo(self.profilePictureImageView);
+        make.right.equalTo(self.userNameBackground);
+
+    }];
 
     self.profilePictureImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.profilePictureImageView.clipsToBounds = YES;
