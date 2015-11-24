@@ -17,12 +17,13 @@
 @dynamic name;
 @dynamic description;
 @dynamic listedBy;
-//@dynamic location;
 @dynamic createdAt;
 @dynamic updatedAt;
 @dynamic tags;
 @dynamic itemImage;
 @dynamic itemThumbnailImage;
+@dynamic location;
+
 
 //
 //@synthesize itemImage = _itemImage;
@@ -125,22 +126,16 @@
     }];
 }
 
-//-(void)itemPhotoWithCompletion:(void (^)(UIImage *image))completion{
-//		
-//		if (!_itemImage) {
-//				PFFile *itemImageFile = [self objectForKey:@"itemImage"];
-//				[itemImageFile get]
-//		}
-//		
-//		
-//}
-
-//PFFile *userImageFile = anotherPhoto[@"imageFile"];
-//[userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-//    if (!error) {
-//        UIImage *image = [UIImage imageWithData:imageData];
-//    }
-//}];
-//-(void)setItemImage
-
++(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion{
+    
+    PFQuery *itemCategoryQuery = [self query];
+    [itemCategoryQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            completion(YES,objects);
+        } else {
+            completion(NO, nil);
+        }
+    }];
+    
+}
 @end

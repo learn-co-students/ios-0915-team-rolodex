@@ -12,6 +12,8 @@
 #import "DONItem.h"
 #import "DONUser.h"
 
+#import <GoogleMaps/googleMaps.h>
+
 @interface DONAppDelegate ()
 
 @end
@@ -21,6 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
+    [GMSServices provideAPIKey:@"AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo"];
 
     return YES;
 }

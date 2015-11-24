@@ -9,6 +9,8 @@ pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
 pod 'Mapbox-iOS-SDK'
+pod 'GoogleMaps'
+
 
 
 # disable bitcode in every sub-target

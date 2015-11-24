@@ -11,5 +11,6 @@
 
 extern NSString *const PARSE_APPLICATION_ID;
 extern NSString *const PARSE_CLIENT_KEY;
+extern NSString *const googleMapApiKey;
 
 #endif /* DONSecrets_h */

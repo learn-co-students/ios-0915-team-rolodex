@@ -28,15 +28,17 @@
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		623667FD1BFFB61000327A9D /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
-		623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */; };
+		623668011C02B7F200327A9D /* DonGoogleMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 623668001C02B7F200327A9D /* DonGoogleMapViewController.m */; };
+		623668051C03BF7700327A9D /* DonSearchBarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 623668041C03BF7700327A9D /* DonSearchBarCollectionView.m */; };
+		623668071C05040F00327A9D /* Misc.png in Resources */ = {isa = PBXBuildFile; fileRef = 623668061C05040F00327A9D /* Misc.png */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
 		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
-		6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0751BFD35EC00C5AD27 /* music-record.png */; };
-		6237E07C1BFD35EC00C5AD27 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0761BFD35EC00C5AD27 /* book.png */; };
+		6237E07B1BFD35EC00C5AD27 /* Music.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0751BFD35EC00C5AD27 /* Music.png */; };
+		6237E07C1BFD35EC00C5AD27 /* Book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0761BFD35EC00C5AD27 /* Book.png */; };
 		6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0771BFD35EC00C5AD27 /* suitcase.png */; };
 		6237E07E1BFD35EC00C5AD27 /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0781BFD35EC00C5AD27 /* tree.png */; };
-		6237E07F1BFD35EC00C5AD27 /* desk.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0791BFD35EC00C5AD27 /* desk.png */; };
-		6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E07A1BFD35EC00C5AD27 /* clothing.png */; };
+		6237E07F1BFD35EC00C5AD27 /* Furniture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E0791BFD35EC00C5AD27 /* Furniture.png */; };
+		6237E0801BFD35EC00C5AD27 /* Clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6237E07A1BFD35EC00C5AD27 /* Clothing.png */; };
 		62B45AF51BFE20480007D314 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AF41BFE20480007D314 /* SearchCell.m */; };
 		62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AF81BFF6CDF0007D314 /* Settings.bundle */; };
 		62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AFB1BFF6E000007D314 /* MapViewController.m */; };
@@ -81,19 +83,22 @@
 		61C574921BFBE7E100D80141 /* DONSecrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONSecrets.h; sourceTree = "<group>"; };
 		61C574931BFC273E00D80141 /* DONItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONItem.h; sourceTree = "<group>"; };
 		61C574941BFC273E00D80141 /* DONItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONItem.m; sourceTree = "<group>"; };
+		623667FF1C02B7F200327A9D /* DonGoogleMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonGoogleMapViewController.h; sourceTree = "<group>"; };
+		623668001C02B7F200327A9D /* DonGoogleMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonGoogleMapViewController.m; sourceTree = "<group>"; };
+		623668031C03BF7700327A9D /* DonSearchBarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonSearchBarCollectionView.h; sourceTree = "<group>"; };
+		623668041C03BF7700327A9D /* DonSearchBarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonSearchBarCollectionView.m; sourceTree = "<group>"; };
+		623668061C05040F00327A9D /* Misc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Misc.png; sourceTree = "<group>"; };
 		6237E05F1BFCD30500C5AD27 /* QueryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCell.h; sourceTree = "<group>"; };
 		6237E0601BFCD30500C5AD27 /* QueryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCell.m; sourceTree = "<group>"; };
 		6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonQueryCollectionViewController.h; sourceTree = "<group>"; };
 		6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonQueryCollectionViewController.m; sourceTree = "<group>"; };
 		6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.collection.storyboard; sourceTree = "<group>"; };
-		6237E0711BFD1BE200C5AD27 /* DonSearchBarCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonSearchBarCollectionView.h; sourceTree = "<group>"; };
-		6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonSearchBarCollectionView.m; sourceTree = "<group>"; };
-		6237E0751BFD35EC00C5AD27 /* music-record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "music-record.png"; sourceTree = "<group>"; };
-		6237E0761BFD35EC00C5AD27 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		6237E0751BFD35EC00C5AD27 /* Music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Music.png; sourceTree = "<group>"; };
+		6237E0761BFD35EC00C5AD27 /* Book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Book.png; sourceTree = "<group>"; };
 		6237E0771BFD35EC00C5AD27 /* suitcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suitcase.png; sourceTree = "<group>"; };
 		6237E0781BFD35EC00C5AD27 /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
-		6237E0791BFD35EC00C5AD27 /* desk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desk.png; sourceTree = "<group>"; };
-		6237E07A1BFD35EC00C5AD27 /* clothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clothing.png; sourceTree = "<group>"; };
+		6237E0791BFD35EC00C5AD27 /* Furniture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Furniture.png; sourceTree = "<group>"; };
+		6237E07A1BFD35EC00C5AD27 /* Clothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clothing.png; sourceTree = "<group>"; };
 		62B45AF31BFE20480007D314 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		62B45AF41BFE20480007D314 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		62B45AF81BFF6CDF0007D314 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -250,14 +255,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		623668021C037B2200327A9D /* maps */ = {
+			isa = PBXGroup;
+			children = (
+				62B45AFA1BFF6E000007D314 /* MapViewController.h */,
+				62B45AFB1BFF6E000007D314 /* MapViewController.m */,
+				623667FF1C02B7F200327A9D /* DonGoogleMapViewController.h */,
+				623668001C02B7F200327A9D /* DonGoogleMapViewController.m */,
+			);
+			name = maps;
+			sourceTree = "<group>";
+		};
 		6237E0591BFBD28A00C5AD27 /* guangClasses */ = {
 			isa = PBXGroup;
 			children = (
 				62B45AF81BFF6CDF0007D314 /* Settings.bundle */,
 				6237E0741BFD357600C5AD27 /* icons */,
 				6237E06C1BFCFFF900C5AD27 /* collectionScreen */,
-				62B45AFA1BFF6E000007D314 /* MapViewController.h */,
-				62B45AFB1BFF6E000007D314 /* MapViewController.m */,
+				623668021C037B2200327A9D /* maps */,
 				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
 			);
 			name = guangClasses;
@@ -272,8 +287,8 @@
 				62B45AF41BFE20480007D314 /* SearchCell.m */,
 				6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */,
 				6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */,
-				6237E0711BFD1BE200C5AD27 /* DonSearchBarCollectionView.h */,
-				6237E0721BFD1BE200C5AD27 /* DonSearchBarCollectionView.m */,
+				623668031C03BF7700327A9D /* DonSearchBarCollectionView.h */,
+				623668041C03BF7700327A9D /* DonSearchBarCollectionView.m */,
 				6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */,
 			);
 			name = collectionScreen;
@@ -282,12 +297,13 @@
 		6237E0741BFD357600C5AD27 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				6237E0751BFD35EC00C5AD27 /* music-record.png */,
-				6237E0761BFD35EC00C5AD27 /* book.png */,
+				6237E0751BFD35EC00C5AD27 /* Music.png */,
+				6237E0761BFD35EC00C5AD27 /* Book.png */,
 				6237E0771BFD35EC00C5AD27 /* suitcase.png */,
 				6237E0781BFD35EC00C5AD27 /* tree.png */,
-				6237E0791BFD35EC00C5AD27 /* desk.png */,
-				6237E07A1BFD35EC00C5AD27 /* clothing.png */,
+				6237E0791BFD35EC00C5AD27 /* Furniture.png */,
+				6237E07A1BFD35EC00C5AD27 /* Clothing.png */,
+				623668061C05040F00327A9D /* Misc.png */,
 			);
 			name = icons;
 			sourceTree = "<group>";
@@ -352,16 +368,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6237E07F1BFD35EC00C5AD27 /* desk.png in Resources */,
-				6237E07C1BFD35EC00C5AD27 /* book.png in Resources */,
+				6237E07F1BFD35EC00C5AD27 /* Furniture.png in Resources */,
+				6237E07C1BFD35EC00C5AD27 /* Book.png in Resources */,
 				6237E07E1BFD35EC00C5AD27 /* tree.png in Resources */,
-				6237E07B1BFD35EC00C5AD27 /* music-record.png in Resources */,
-				6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */,
+				6237E07B1BFD35EC00C5AD27 /* Music.png in Resources */,
+				6237E0801BFD35EC00C5AD27 /* Clothing.png in Resources */,
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
 				6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */,
 				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,
 				62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */,
+				623668071C05040F00327A9D /* Misc.png in Resources */,
 				61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */,
 				61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */,
 				61C574851BFBCBD000D80141 /* Guang.storyboard in Resources */,
@@ -426,7 +443,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				623667FE1BFFB63C00327A9D /* DonSearchBarCollectionView.m in Sources */,
 				614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
 				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
@@ -441,7 +457,9 @@
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				62B45AF51BFE20480007D314 /* SearchCell.m in Sources */,
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
+				623668011C02B7F200327A9D /* DonGoogleMapViewController.m in Sources */,
 				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
+				623668051C03BF7700327A9D /* DonSearchBarCollectionView.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
 			);

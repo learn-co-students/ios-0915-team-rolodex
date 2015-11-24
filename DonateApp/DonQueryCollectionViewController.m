@@ -9,13 +9,12 @@
 #import "DonQueryCollectionViewController.h"
 #import "DONUser.h"
 #import "DONItem.h"
-
+#import "DONCategory.h"
 #import "QueryCell.h"
 #import "SearchCell.h"
-#import  <Parse/Parse.h>
 
 #import <ChameleonFramework/Chameleon.h>
-
+#import "DonGoogleMapViewController.h"
 
 @interface DonQueryCollectionViewController ()
 
@@ -23,10 +22,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *greeting;
+@property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
 
 
 @property (strong, nonatomic) NSString * userOnPage;
 @property (strong, nonatomic) NSArray * items;
+@property (strong, nonatomic) NSMutableArray * allCategory;
 
 @end
 
@@ -40,23 +42,22 @@
     
     self.searchCollectionView.delegate = self;
     self.searchCollectionView.dataSource = self;
-    
+
     [self getAllPdata]; // do you set this as a main Queae ?
     
-
-    //[self getFakeData];
     [self activeXibCell];
     [self searchBarCellStyle];
-    
+    [self getCategoryWithBlock:^(BOOL success) {
+        NSLog(@"get the catoory");
+    }];
 
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark  delegate 
+#pragma mark collectionView delegate
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -66,7 +67,7 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    NSInteger numberOfItems = collectionView == self.collectionView ? self.items.count : [self iconImages].count;
+    NSInteger numberOfItems = collectionView == self.collectionView ? self.items.count : self.allCategory.count;
     return numberOfItems;
 }
 
@@ -95,15 +96,49 @@
     if (collectionView == self.searchCollectionView) {
         
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
-        sCell.imageView.image = self.iconImages[indexPath.row];
+        DONCategory * category = self.allCategory[indexPath.row];
+        //sCell.searchLabel.text = category.name;
+        sCell.imageView.file = category.imageFile;
+        [sCell.imageView loadInBackground];
+        [self makeTheStackOfcats];
         return sCell;
     }
     return nil;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
+    
+    if (collectionView == self.collectionView) {
+
+        NSLog(@"I tapped collectionView");
+    }
+    if (collectionView == self.searchCollectionView) {
+        NSLog(@"I tapped searchCollectionView");
+        self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
+        
+        UILabel * selectedlabel = [ UILabel new ];
+        selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
+        selectedlabel.hidden = ! selectedlabel.hidden;
+    }
+}
+
+#pragma mark stackView methods
+
+-(void)makeTheStackOfcats{
+    self.stackedViewLables.backgroundColor = [UIColor blackColor];
+    for (DONCategory * eachCat in self.allCategory) {
+        UILabel * catLabel = [[UILabel alloc] init];
+        catLabel.text = eachCat.name;
+        catLabel.textColor = [UIColor whiteColor];
+        catLabel.backgroundColor = [UIColor blackColor];
+        catLabel.hidden = YES;
+        [self.stackedViewLables addArrangedSubview:catLabel];
+    }
+}
+
 #pragma mark  cell style
 
-- (void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+-(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
     UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
     UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
@@ -113,10 +148,14 @@
    // NSLog(@"title is %@",self.fakeData[indexPath.row]);
 }
 
-
 -(void)activeXibCell{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(113, 115);
+    //flowLayout.itemSize = CGSizeMake(113, 115);
+    flowLayout.itemSize = CGSizeMake((self.view.frame.size.width/2), (self.view.frame.size.height/4));
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
+    flowLayout.headerReferenceSize = CGSizeZero;
+
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical; // add vertical
     self.collectionView.collectionViewLayout = flowLayout;
 }
@@ -139,7 +178,7 @@
      {
          if (success)
          {
-             NSLog(@"Get the info %@ with the stuffff %@",self.userOnPage,self.items);
+             //NSLog(@"Get the info %@ with the stuffff %@",self.userOnPage,self.items);
              self.greeting.text = [NSString stringWithFormat:@" ☞ "];
          } else{
          }
@@ -149,7 +188,7 @@
 -(NSMutableArray *)testingData:(NSArray *) realData{
 
     NSMutableArray * testData = [NSMutableArray new];
-    for (int i = 0 ; i < 30 ; i++)
+    for (int i = 0 ; i < 10 ; i++)
     {
         [testData addObject:realData[0]];
         [testData addObject:realData[1]];
@@ -169,8 +208,6 @@
             [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success){
                 if (success == YES)
                 {
-                    //self.items = items;// add here
-                    
                     self.items = [self testingData:items];
                     [self.collectionView reloadData];
                     completationBlock(YES);
@@ -184,16 +221,56 @@
     }];
 }
 
--(NSArray *)iconImages{
-    NSArray *icons = [NSArray arrayWithObjects:
-                      [UIImage imageNamed:@"music-record.png"],
-                      [UIImage imageNamed:@"book.png"],
-                      [UIImage imageNamed:@"suitcase.png"],
-                      [UIImage imageNamed:@"tree.png"],
-                      [UIImage imageNamed:@"desk.png"],
-                      [UIImage imageNamed:@"clothing.png"],
-                      nil ];
-    return icons;
+
+-(void)getCategoryWithBlock:(void (^)(BOOL success))completationBlock{
+    
+    [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
+        if (success){
+            self.allCategory = [NSMutableArray new];
+            self.allCategory = categories.mutableCopy;
+            NSLog(@"self.allCategory %@",self.allCategory);
+            [self.searchCollectionView reloadData];
+        }
+    }];
 }
+
+#pragma mark location
+
+- (IBAction)goTomap:(id)sender {
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    DonGoogleMapViewController * mapView = [DonGoogleMapViewController new];
+    mapView = segue.destinationViewController;
+}
+
+-(void)locationStuff{
+    
+    //+ (void)geoPointForCurrentLocationInBackground:(void ( ^ ) ( PFGeoPoint *geoPoint , NSError *error ))geoPointHandler
+    //[PFQuery whereKey:nearGeoPoint:]
+}
+
+//-(void)queryLocation{
+//    
+//
+//    NSLog(@"HELLO locations");
+//    
+//    [DONItem fetchItemWithItemId:@"fumHFXNnw8" withCompletion:^(DONItem *item, NSError *error) {
+//        PFGeoPoint * point = [PFGeoPoint geoPointWithLatitude:40.705329 longitude:-74.0161583];
+//        [item setObject:point forKey:@"location"];
+//        [item saveInBackground];
+//    }];
+// 
+//   
+//    
+//    
+//}
+
+-(void)geoPointForCurrentLocationInBackground:(void ( ^ ) ( PFGeoPoint *geoPoint , NSError *error ))geoPointHandler{
+    
+}
+
+
 
 @end
