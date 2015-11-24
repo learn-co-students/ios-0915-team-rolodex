@@ -23,6 +23,7 @@ PODS:
   - ParseUI (1.1.7):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - SCLAlertView-Objective-C (0.7.9)
 
 DEPENDENCIES:
   - ChameleonFramework
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - MMDrawerController
   - Parse
   - ParseUI
+  - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
@@ -42,5 +44,6 @@ SPEC CHECKSUMS:
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
+  SCLAlertView-Objective-C: e36ab12dc1ec4ff6f932888083b21d71a3a1ad23
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

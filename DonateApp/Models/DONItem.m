@@ -82,7 +82,7 @@
 		object.pickupInstructions = pickupInstructions;
 		object.tags = tags;
 		object.itemImagePF = itemImagePF;
-
+		
 		
 		
 
