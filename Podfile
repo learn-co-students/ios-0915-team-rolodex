@@ -12,6 +12,7 @@ pod 'Mapbox-iOS-SDK'
 pod 'GoogleMaps'
 
 
+pod 'SCLAlertView-Objective-C'
 
 # disable bitcode in every sub-target
 post_install do |installer|

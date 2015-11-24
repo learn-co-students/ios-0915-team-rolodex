@@ -16,13 +16,17 @@
 
 @dynamic name;
 @dynamic description;
+@dynamic pickupInstructions;
 @dynamic listedBy;
 @dynamic createdAt;
 @dynamic updatedAt;
-@dynamic tags;
 @dynamic itemImage;
 @dynamic itemThumbnailImage;
 @dynamic location;
+@dynamic views;
+@dynamic createdAt;
+@dynamic updatedAt;
+@dynamic itemImagePF;
 
 
 //
@@ -56,19 +60,52 @@
     [item saveInBackground];
 }
 
-+(instancetype)createItemWithName:(NSString *)name
-                description:(NSString *)description
-								tags:(NSArray *)tags
-								itemImage:(UIImage *)itemImage
-								itemThumbnailImage:(UIImage *)itemThumbnailImage
-{
-    DONItem *item = [[DONItem alloc] init];
-    item.name = name;
-    item.description = description;
-		item.tags = tags;
-		item.itemImage = itemImage;
-		item.itemThumbnailImage = itemThumbnailImage;
-    return item;
++(void)createItemWithNameForCurrentUserWithCompletionBlock:(NSString *)name
+																											 description:(NSString *)description
+																								pickupInstructions:(NSString *)pickupInstructions
+																															tags:(NSArray *)tags
+																												 itemImagePF:(PFFile *)itemImagePF
+
+
+//																				location:(PFGeoPoint *)location
+
+
+																						 withCompletion:(void(^)(BOOL success, DONItem *object))completionBlock{
+//																							 withCompletion:(void(^)(BOOL success, DONItem *newItem))completionBlock {
+//		
+
+		// BIG TODO: DONItem is a sublclass of PFObject.  How can we best handle that and not repeat steps!
+		
+		
+		// TODO: Not sure if this item here is needed.  Might be redunant, end goal seems to be that we need a PFObject.
+		
+		
+		DONItem *object = [DONItem object];
+
+    object.name = name;
+    object.description = description;
+		object.pickupInstructions = pickupInstructions;
+		object.itemImagePF = itemImagePF;
+		
+		
+		
+
+		// set properties of newObject.
+		
+		// THEN YOU SEND UP TO PARSE THIS PFOJBECT!! but it should be done where the method you're calling to send this up to Parse should have a completino Block or something.
+		
+		[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
+				if (succeeded) {
+						
+						completionBlock(YES, object);
+						
+				} else {
+				
+						completionBlock(NO, nil);
+						
+				}
+		}];
 }
 
 -(PFFile *)imageFile

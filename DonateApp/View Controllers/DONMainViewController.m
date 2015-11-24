@@ -10,6 +10,10 @@
 //#import "DONCollectionViewController.h"
 #import "DONUser.h"
 #import "DONViewOtherUserProfileViewController.h"
+#import "MMDrawerBarButtonItem.h"
+#import "UIViewController+MMDrawerController.h"
+#import "DONItem.h"
+#import "DONItemViewController.h"
 
 @interface DONMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *currentUserLabel;
@@ -20,6 +24,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupLeftMenuButton];
+    
+    self.view.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:235.0/255.0 blue:241.0/255.0 alpha:1.0];
+    UIColor * barColor = [UIColor whiteColor];
+    if([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]){
+        [self.navigationController.navigationBar setBarTintColor:barColor];
+    }
+    else {
+        [self.navigationController.navigationBar setTintColor:barColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,6 +46,15 @@
     [self configureTestingData];
 }
 
+-(void)setupLeftMenuButton{
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    leftDrawerButton.tintColor = [UIColor blackColor];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+}
+
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 
@@ -101,6 +124,15 @@
         [self.navigationController pushViewController:otherUserProfileVC animated:YES];
     }];
 }
+
+- (IBAction)viewItemTapped:(id)sender {
+    [DONItem fetchItemWithItemId:@"3UpAq8hj0Q" withCompletion:^(DONItem *item, NSError *error) {
+        DONItemViewController *vc = [[DONItemViewController alloc] init];
+        vc.item = item;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+}
+
 
 
 @end

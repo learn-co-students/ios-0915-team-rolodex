@@ -9,13 +9,14 @@
 #import "DONAppDelegate.h"
 #import "DONSecrets.h"
 #import "Parse.h"
-#import "DONItem.h"
-#import "DONUser.h"
+#import "MMExampleDrawerVisualStateManager.h"
+#import "MMDrawerController.h"
+#import "DONDrawerViewController.h"
 
 #import <GoogleMaps/googleMaps.h>
 
 @interface DONAppDelegate ()
-
+@property (nonatomic, strong) MMDrawerController *drawerController;
 @end
 
 @implementation DONAppDelegate
@@ -24,7 +25,40 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
     [GMSServices provideAPIKey:@"AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo"];
+    
+    // Center and Drawer View Controllers
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"centerViewController"];
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
+    // MMDrawerController init and setup
+    self.drawerController = [[MMDrawerController alloc]
+                             initWithCenterViewController:navigationController
+                             leftDrawerViewController:leftSideDrawerViewController];
+    [self.drawerController setShowsShadow:YES];
+    [self.drawerController setMaximumLeftDrawerWidth:250.0];
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    [self.drawerController setShouldStretchDrawer:NO];
+    
+    // Set Animation style for drawer using the visual state manager
+    [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
+    [self.drawerController
+     setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+         MMDrawerControllerDrawerVisualStateBlock block;
+         block = [[MMExampleDrawerVisualStateManager sharedManager]
+                  drawerVisualStateBlockForDrawerSide:drawerSide];
+         if(block){
+             block(drawerController, drawerSide, percentVisible);
+         }
+     }];
+    
+    // Main window setup and root view controller
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:self.drawerController];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
