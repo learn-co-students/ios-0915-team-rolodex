@@ -23,7 +23,7 @@
     return @"Activity";
 }
 
-+(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *items))completion
++(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion
 {
     PFQuery *query = [self.class query];
     [query whereKey:@"item" equalTo:item];

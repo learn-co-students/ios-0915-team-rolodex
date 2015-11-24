@@ -64,7 +64,7 @@
     self.profilePictureImageView.clipsToBounds = YES;
     self.profilePictureImageView.backgroundColor = [UIColor grayColor];
     
-    self.userNameLabel.font = [UIFont systemFontOfSize:14];
+    self.userNameLabel.font = [UIFont systemFontOfSize:16];
     self.userNameLabel.textColor = [UIColor blackColor];
     
     self.userNameBackground.backgroundColor = [UIColor grayColor];

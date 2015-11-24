@@ -8,14 +8,14 @@
 
 #import "DONItemViewController.h"
 #import "DONViewItemUserProfileView.h"
-
+#import "DONItemStatsView.h"
 #import "Masonry.h"
 #define MAS_SHORTHAND
 
 @interface DONItemViewController ()
 @property (nonatomic, strong) PFImageView *itemImageView;
 @property (nonatomic, strong) DONViewItemUserProfileView *userProfileView;
-@property (nonatomic, strong) UIView *itemStatsView;
+@property (nonatomic, strong) DONItemStatsView *itemStatsView;
 @property (nonatomic, strong) UIButton *claimButton;
 @property (nonatomic, strong) UIButton *verifyButton;
 @property (nonatomic, strong) UIView *itemDescriptionView;
@@ -32,7 +32,7 @@
     
     self.itemImageView = [[PFImageView alloc] init];
     self.userProfileView = [[DONViewItemUserProfileView alloc] init];
-    self.itemStatsView = [[UIView alloc] init];
+    self.itemStatsView = [[DONItemStatsView alloc] init];
     self.claimButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.verifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.itemDescriptionView = [[UIView alloc] init];
@@ -54,7 +54,8 @@
     
     self.userProfileView.user = self.item.listedBy;
     
-    self.itemStatsView.backgroundColor = [UIColor lightGrayColor];
+    self.itemStatsView.item = self.item;
+    
     [self.claimButton setBackgroundColor:[UIColor blueColor]];
     [self.verifyButton setBackgroundColor:[UIColor greenColor]];
     self.itemDescriptionView.backgroundColor = [UIColor orangeColor];
@@ -73,10 +74,9 @@
     }];
     
     [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(10);
+        make.top.equalTo(self.itemImageView.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(40);
-        make.width.equalTo(@80);
-        make.height.equalTo(@60);
+        make.width.equalTo(@100);
     }];
     
     [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -12,9 +12,9 @@
 #import "DONUser.h"
 #import "DONItem.h"
 
-NSString *const kActivityTypeVerification = @"verification";
-NSString *const kActivityTypeFavorite = @"favorite";
-NSString *const kActivityTypeClaim = @"claim";
+static NSString *const kActivityTypeVerification = @"verification";
+static NSString *const kActivityTypeFavorite = @"favorite";
+static NSString *const kActivityTypeClaim = @"claim";
 
 @interface DONActivity : PFObject <PFSubclassing>
 @property (nonatomic, strong) DONUser *fromUser;
@@ -24,7 +24,7 @@ NSString *const kActivityTypeClaim = @"claim";
 
 +(NSString *)parseClassName;
 
-+(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *items))completion;
++(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion;
 
 +(void)addActivityType:(NSString *)activityType toItem:(DONItem *)item fromUser:(DONUser *)fromUser toUser:(DONUser *)toUser withCompletion:(void (^)(BOOL success))completion;
 
