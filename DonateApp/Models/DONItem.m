@@ -21,11 +21,8 @@
 @dynamic createdAt;
 @dynamic updatedAt;
 @dynamic itemImage;
-@dynamic itemThumbnailImage;
 @dynamic location;
 @dynamic views;
-@dynamic createdAt;
-@dynamic updatedAt;
 @dynamic itemImagePF;
 
 
