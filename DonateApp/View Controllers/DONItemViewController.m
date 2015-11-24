@@ -12,7 +12,7 @@
 #import "DONViewItemButton.h"
 #import "DONActivity.h"
 #import "DONViewOtherUserProfileViewController.h"
-
+#import "SCLAlertView.h"
 #import "Masonry.h"
 #define MAS_SHORTHAND
 
@@ -76,19 +76,13 @@
     }];
     
     [self.userProfileView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(40);
+        make.left.equalTo(self.view).offset(20);
         make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-20);
         make.height.equalTo(@40);
     }];
     
-    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(10);
-        make.left.equalTo(self.view).offset(10);
-        make.width.equalTo(@100);
-    }];
-    
     [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.itemStatsView.mas_right).offset(20);
+        make.left.equalTo(self.view).offset(20);
         make.top.equalTo(self.itemImageView.mas_bottom).offset(5);
     }];
     
@@ -107,9 +101,15 @@
         make.top.equalTo(self.claimButton);
     }];
     
-    [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.claimButton.mas_bottom).offset(5);
-        make.left.equalTo(self.view).offset(40);
+        make.left.equalTo(self.view).offset(20);
+        make.width.equalTo(@100);
+    }];
+    
+    [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
+        make.left.equalTo(self.view).offset(20);
         make.right.equalTo(self.view).offset(-40);
         make.height.equalTo(@150);
     }];
@@ -150,33 +150,52 @@
 
 -(void)claimButtonTapped
 {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:60.0/255.0 blue:192.0/255.0 alpha:1];
+    alert.showAnimationType = FadeIn;
+    alert.hideAnimationType = FadeOut;
+    
    self.claimButton.enabled = NO;
     if (self.claimButton.currentState == YES) {
         [DONActivity addActivityType:kActivityTypeClaim toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
             [self updateItemData];
             self.claimButton.enabled = YES;
+            
+            [alert showSuccess:self title:@"Claimed!" subTitle:@"Congrats! You claimed this item." closeButtonTitle:@"OK" duration:2.0f];
+
         }];
     } else {
         [DONActivity removeActivityType:kActivityTypeClaim forUser:[DONUser currentUser] onItem:self.item withCompletion:^(BOOL success) {
             [self updateItemData];
             self.claimButton.enabled = YES;
+            
+            [alert showSuccess:self title:@"Unclaimed!" subTitle:@"Thanks for the update! You unclaimed this item." closeButtonTitle:@"OK" duration:2.0f];
+
         }];
     }
 }
 
 -(void)verifyButtonTapped
 {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
+    alert.showAnimationType = FadeIn;
+    alert.hideAnimationType = FadeOut;
+
     self.verifyButton.enabled = NO;
     if (self.verifyButton.currentState == YES) {
         [DONActivity addActivityType:kActivityTypeVerification toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
             [self updateItemData];
             self.verifyButton.enabled = YES;
+            [alert showSuccess:self title:@"Verified!" subTitle:@"Thanks for being awesome. You verified this item." closeButtonTitle:@"OK" duration:2.0f];
+
         }];
     } else {
         [DONActivity removeActivityType:kActivityTypeVerification forUser:[DONUser currentUser] onItem:self.item withCompletion:^(BOOL success) {
             [self updateItemData];
             self.verifyButton.enabled = YES;
         }];
+        [alert showSuccess:self title:@"Unverified!" subTitle:@"Thanks for the update. You unverified this item." closeButtonTitle:@"OK" duration:2.0f];
     }
 }
 

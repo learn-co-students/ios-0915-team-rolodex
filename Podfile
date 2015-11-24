@@ -9,7 +9,7 @@ pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
 pod 'Mapbox-iOS-SDK'
-
+pod 'SCLAlertView-Objective-C'
 
 # disable bitcode in every sub-target
 post_install do |installer|
