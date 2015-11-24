@@ -11,7 +11,6 @@ pod 'Masonry'
 pod 'Mapbox-iOS-SDK'
 pod 'SCLAlertView-Objective-C'
 
-
 # disable bitcode in every sub-target
 post_install do |installer|
   installer.pods_project.targets.each do |target|

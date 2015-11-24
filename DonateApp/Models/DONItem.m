@@ -16,11 +16,11 @@
 
 @dynamic name;
 @dynamic description;
+@dynamic pickupInstructions;
 @dynamic listedBy;
-//@dynamic location;
+@dynamic views;
 @dynamic createdAt;
 @dynamic updatedAt;
-@dynamic tags;
 @dynamic itemImagePF;
 
 
@@ -80,7 +80,6 @@
     object.name = name;
     object.description = description;
 		object.pickupInstructions = pickupInstructions;
-		object.tags = tags;
 		object.itemImagePF = itemImagePF;
 		
 		

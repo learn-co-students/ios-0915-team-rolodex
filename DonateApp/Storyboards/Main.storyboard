@@ -89,6 +89,14 @@
                                     <action selector="showOtherUserProfileTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="zaR-SL-egN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-oy-RCA">
+                                <rect key="frame" x="20" y="291" width="31" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Item"/>
+                                <connections>
+                                    <action selector="viewItemTapped:" destination="k6W-Ck-oxf" eventType="touchUpInside" id="QUl-L6-dV6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

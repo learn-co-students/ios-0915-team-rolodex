@@ -24,9 +24,8 @@
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *pickupInstructions;
 @property (nonatomic, strong) DONUser *listedBy;
-
+@property (nonatomic, strong) NSNumber *views;
 //@property (nonatomic, strong) PFGeoPoint *location;
-@property (nonatomic, strong) NSArray *tags;
 
 @property (nonatomic, strong) PFFile *itemImagePF;
 
