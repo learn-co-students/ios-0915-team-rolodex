@@ -10,7 +10,7 @@ pod 'MMDrawerController'
 pod 'Masonry'
 pod 'Mapbox-iOS-SDK'
 pod 'GoogleMaps'
-
+pod 'DateTools'
 
 pod 'SCLAlertView-Objective-C'
 

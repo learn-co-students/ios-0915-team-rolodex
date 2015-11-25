@@ -13,6 +13,7 @@
 #import "DONActivity.h"
 #import "DONViewOtherUserProfileViewController.h"
 #import "SCLAlertView.h"
+#import "DONViewItemDescriptionView.h"
 #import "Masonry.h"
 #define MAS_SHORTHAND
 
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) DONViewItemButton *numberOfClaimsView;
 @property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *verifyButton;
-@property (nonatomic, strong) UIView *itemDescriptionView;
+@property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
 @property (nonatomic, strong) UIView *itemMapView;
 @property (nonatomic, strong) DONViewItemButton *reportErrorButton;
 @end
@@ -46,7 +47,9 @@
     
     self.numberOfClaimsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
     self.numberOfVerificationsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
-    self.itemDescriptionView = [[UIView alloc] init];
+    
+    self.itemDescriptionView = [[DONViewItemDescriptionView alloc] initWithItem:self.item];
+    
     self.itemMapView = [[UIView alloc] init];
     self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"REPORT ERROR" color:DONViewItemButtonTypeRed];
     
@@ -67,7 +70,6 @@
     
     self.userProfileView.user = self.item.listedBy;
     
-    self.itemDescriptionView.backgroundColor = [UIColor orangeColor];
     self.itemMapView.backgroundColor = [UIColor grayColor];
     
     [self.itemImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,8 +112,7 @@
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
         make.left.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-40);
-        make.height.equalTo(@150);
+        make.right.equalTo(self.view).offset(-20);
     }];
     
     [self.itemMapView mas_makeConstraints:^(MASConstraintMaker *make) {

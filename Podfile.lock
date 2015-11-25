@@ -3,6 +3,7 @@ PODS:
   - ChameleonFramework (2.0.4):
     - ChameleonFramework/Default (= 2.0.4)
   - ChameleonFramework/Default (2.0.4)
+  - DateTools (1.7.0)
   - GoogleMaps (1.10.5)
   - Mapbox-iOS-SDK (2.1.2)
   - Masonry (0.6.3)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework
+  - DateTools
   - GoogleMaps
   - Mapbox-iOS-SDK
   - Masonry
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   Mapbox-iOS-SDK: 19aa6ad9235ad79a46f507cb831ae216d6ea373e
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f

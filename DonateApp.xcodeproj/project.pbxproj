@@ -19,6 +19,8 @@
 		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
 		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
+		614FF1AB1C05FE71004C74E1 /* DONViewItemDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */; };
+		614FF1AE1C060235004C74E1 /* DONLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AD1C060235004C74E1 /* DONLocationController.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
@@ -75,6 +77,10 @@
 		614B17501BFF2DA40001D231 /* DONVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONVerification.m; sourceTree = "<group>"; };
 		614B17521BFF61C40001D231 /* DONCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCategory.h; sourceTree = "<group>"; };
 		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
+		614FF1A91C05FE71004C74E1 /* DONViewItemDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemDescriptionView.h; sourceTree = "<group>"; };
+		614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemDescriptionView.m; sourceTree = "<group>"; };
+		614FF1AC1C060235004C74E1 /* DONLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONLocationController.h; sourceTree = "<group>"; };
+		614FF1AD1C060235004C74E1 /* DONLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONLocationController.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 			children = (
 				6284E0D91C051E8C007A4CB1 /* MMExampleDrawerVisualStateManager.h */,
 				6284E0DA1C051E8C007A4CB1 /* MMExampleDrawerVisualStateManager.m */,
+				614FF1AC1C060235004C74E1 /* DONLocationController.h */,
+				614FF1AD1C060235004C74E1 /* DONLocationController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +258,8 @@
 				6284E0DF1C051EC2007A4CB1 /* DONViewItemButton.m */,
 				6284E0E01C051EC2007A4CB1 /* DONViewItemUserProfileView.h */,
 				6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */,
+				614FF1A91C05FE71004C74E1 /* DONViewItemDescriptionView.h */,
+				614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -456,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614FF1AE1C060235004C74E1 /* DONLocationController.m in Sources */,
 				6237E0731BFD1BE200C5AD27 /* DonSearchBarCollectionView.m in Sources */,
 				6284E0DB1C051E8C007A4CB1 /* MMExampleDrawerVisualStateManager.m in Sources */,
 				6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */,
@@ -474,6 +485,7 @@
 				614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */,
 				614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */,
 				6236680D1C051C5400327A9D /* DONDrawerProfileView.m in Sources */,
+				614FF1AB1C05FE71004C74E1 /* DONViewItemDescriptionView.m in Sources */,
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				62B45AF51BFE20480007D314 /* SearchCell.m in Sources */,
