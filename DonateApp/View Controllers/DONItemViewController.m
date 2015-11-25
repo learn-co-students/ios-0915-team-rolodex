@@ -40,9 +40,9 @@
     self.userProfileView = [[DONViewItemUserProfileView alloc] init];
     self.itemStatsView = [[DONItemStatsView alloc] init];
     
-    self.claimButton = [[DONViewItemButton alloc] initWithEnabledText:@"CLAIM" disabledText:@"CLAIMED" enabled:NO color:DONViewItemButtonTypeBlue];
+    self.claimButton = [[DONViewItemButton alloc] initWithDefaultText:@"CLAIM" toggledText:@"CLAIMED" buttonState:DONViewItemButtonStateToggled color:DONViewItemButtonTypeBlue];
     
-    self.verifyButton = [[DONViewItemButton alloc] initWithEnabledText:@"VERIFY" disabledText:@"VERIFIED" enabled:NO color:DONViewItemButtonTypeGreen];
+    self.verifyButton = [[DONViewItemButton alloc] initWithDefaultText:@"VERIFY" toggledText:@"VERIFIED" buttonState:DONViewItemButtonStateToggled color:DONViewItemButtonTypeGreen];;
     
     self.numberOfClaimsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
     self.numberOfVerificationsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
@@ -156,7 +156,7 @@
     alert.hideAnimationType = FadeOut;
     
    self.claimButton.enabled = NO;
-    if (self.claimButton.currentState == YES) {
+    if (self.claimButton.buttonState == DONViewItemButtonStateDefault) {
         [DONActivity addActivityType:kActivityTypeClaim toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
             [self updateItemData];
             self.claimButton.enabled = YES;
@@ -183,7 +183,7 @@
     alert.hideAnimationType = FadeOut;
 
     self.verifyButton.enabled = NO;
-    if (self.verifyButton.currentState == YES) {
+    if (self.verifyButton.buttonState == DONViewItemButtonStateDefault) {
         [DONActivity addActivityType:kActivityTypeVerification toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
             [self updateItemData];
             self.verifyButton.enabled = YES;
@@ -218,9 +218,8 @@
         
         BOOL userHasVerifiedItem = [DONActivity activityExists:kActivityTypeVerification forUser:[DONUser currentUser] inItemActivities:activities];
         
-        self.claimButton.currentState = !userHasClaimedItem;
-        self.verifyButton.currentState = !userHasVerifiedItem;
-   
+        self.claimButton.buttonState = userHasClaimedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
+        self.verifyButton.buttonState = userHasVerifiedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
     }];
 }
 

@@ -10,6 +10,8 @@
 #import "Masonry.h"
 
 @interface DONViewItemButton ()
+@property (nonatomic, strong) NSString *defaultText;
+@property (nonatomic, strong) NSString *toggledText;
 @property (nonatomic, assign) DONViewItemButtonType DONButtonType;
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIView *background;
@@ -33,20 +35,20 @@
     return self;
 }
 
--(instancetype)initWithEnabledText:(NSString *)enabledText disabledText:(NSString *)disabledText enabled:(BOOL)enabled color:(DONViewItemButtonType)buttonType
+-(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText buttonState:(DONViewItemButtonState)buttonState color:(DONViewItemButtonType)buttonType
 {
     self = [super init];
     if (!self) return nil;
 
     self.DONButtonType = buttonType;
-    self.enabledText = enabledText;
-    self.disabledText = disabledText;
+    self.defaultText = defaultText;
+    self.toggledText = toggledText;
     
     [self setupViews];
     [self setupViewProperties];
     [self constrainViews];
     
-    self.currentState = enabled;
+    self.buttonState = buttonState;
 
     return self;
 }
@@ -67,8 +69,6 @@
     
     self.textLabel.font = [UIFont systemFontOfSize:16];
     self.textLabel.textColor = [UIColor whiteColor];
-
-    self.textLabel.text = self.disabledText;
     
     UIColor *color;
     switch (self.DONButtonType) {
@@ -120,14 +120,14 @@
     self.textLabel.text = text;
 }
 
--(void)setCurrentState:(BOOL)currentState
+-(void)setButtonState:(DONViewItemButtonState)buttonState
 {
-    _currentState = currentState;
+    _buttonState = buttonState;
     
-    if (currentState) {
-        self.textLabel.text = self.enabledText;
+    if (buttonState == DONViewItemButtonStateDefault) {
+        self.textLabel.text = self.defaultText;
     } else {
-        self.textLabel.text = self.disabledText;
+        self.textLabel.text = self.toggledText;
     }
 }
 @end

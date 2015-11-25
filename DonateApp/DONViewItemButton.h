@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, DONViewItemButtonState)
+{
+    DONViewItemButtonStateDefault,
+    DONViewItemButtonStateToggled
+};
+
 typedef NS_ENUM(NSInteger, DONViewItemButtonType)
 {
     DONViewItemButtonTypeBlue,
@@ -17,12 +23,10 @@ typedef NS_ENUM(NSInteger, DONViewItemButtonType)
 };
 
 @interface DONViewItemButton : UIControl
-@property (nonatomic, strong) NSString *enabledText;
-@property (nonatomic, strong) NSString *disabledText;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, assign) BOOL currentState;
+@property (nonatomic, assign) DONViewItemButtonState buttonState;
 
 -(instancetype)initWithText:(NSString *)text color:(DONViewItemButtonType)buttonType;
--(instancetype)initWithEnabledText:(NSString *)enabledText disabledText:(NSString *)disabledText enabled:(BOOL)enabled color:(DONViewItemButtonType)buttonType;
+-(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText buttonState:(DONViewItemButtonState)buttonState color:(DONViewItemButtonType)buttonType;
 
 @end
