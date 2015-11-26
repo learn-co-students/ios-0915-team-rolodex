@@ -32,9 +32,14 @@
     return sharedInstance;
 }
 
++(CLLocation *)locationForGeoPoint:(PFGeoPoint *)geoPoint
+{
+    return [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+}
+
 +(void)cityAndStateForGeoPoint:(PFGeoPoint *)geoPoint withCompletion:(void (^)(NSString *string))completion
 {
-    CLLocation *location = [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+    CLLocation *location = [DONLocationController locationForGeoPoint:geoPoint];
     
     DONLocationController *controller = [DONLocationController sharedInstance];
     [controller.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

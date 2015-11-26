@@ -21,6 +21,7 @@
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
 		614FF1AB1C05FE71004C74E1 /* DONViewItemDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */; };
 		614FF1AE1C060235004C74E1 /* DONLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AD1C060235004C74E1 /* DONLocationController.m */; };
+		614FF1B11C069953004C74E1 /* DONViewItemMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1B01C069953004C74E1 /* DONViewItemMapView.m */; };
 		61C574691BFBC88F00D80141 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574681BFBC88F00D80141 /* main.m */; };
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
@@ -81,6 +82,8 @@
 		614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemDescriptionView.m; sourceTree = "<group>"; };
 		614FF1AC1C060235004C74E1 /* DONLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONLocationController.h; sourceTree = "<group>"; };
 		614FF1AD1C060235004C74E1 /* DONLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONLocationController.m; sourceTree = "<group>"; };
+		614FF1AF1C069953004C74E1 /* DONViewItemMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemMapView.h; sourceTree = "<group>"; };
+		614FF1B01C069953004C74E1 /* DONViewItemMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemMapView.m; sourceTree = "<group>"; };
 		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 				6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */,
 				614FF1A91C05FE71004C74E1 /* DONViewItemDescriptionView.h */,
 				614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */,
+				614FF1AF1C069953004C74E1 /* DONViewItemMapView.h */,
+				614FF1B01C069953004C74E1 /* DONViewItemMapView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
 				614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */,
+				614FF1B11C069953004C74E1 /* DONViewItemMapView.m in Sources */,
 				61C574951BFC273E00D80141 /* DONItem.m in Sources */,
 				61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */,
 				614A96CD1BFCF87D00BD543A /* DONUserProfileViewController.m in Sources */,
@@ -587,6 +593,7 @@
 			baseConfigurationReference = FB99CF7E70277FCAE56AE9BA /* Pods-DonateApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
@@ -599,6 +606,7 @@
 			baseConfigurationReference = 43DC9E76B0808AD45B0DDCE2 /* Pods-DonateApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;

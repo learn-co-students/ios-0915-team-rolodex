@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
-	<array/>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 	<key>item 0</key>
 	<string>googlechromes</string>
 	<key>item 1</key>

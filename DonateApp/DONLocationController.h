@@ -11,5 +11,6 @@
 
 @interface DONLocationController : NSObject
 +(instancetype)sharedInstance;
++(CLLocation *)locationForGeoPoint:(PFGeoPoint *)geoPoint;
 +(void)cityAndStateForGeoPoint:(PFGeoPoint *)geoPoint withCompletion:(void (^)(NSString *string))completion;
 @end

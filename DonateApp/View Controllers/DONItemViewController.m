@@ -14,10 +14,14 @@
 #import "DONViewOtherUserProfileViewController.h"
 #import "SCLAlertView.h"
 #import "DONViewItemDescriptionView.h"
+#import "DONViewItemMapView.h"
 #import "Masonry.h"
 #define MAS_SHORTHAND
 
-@interface DONItemViewController ()
+
+@interface DONItemViewController () <UIScrollViewDelegate>
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) PFImageView *itemImageView;
 @property (nonatomic, strong) DONViewItemUserProfileView *userProfileView;
 @property (nonatomic, strong) DONItemStatsView *itemStatsView;
@@ -26,7 +30,7 @@
 @property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *verifyButton;
 @property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
-@property (nonatomic, strong) UIView *itemMapView;
+@property (nonatomic, strong) DONViewItemMapView *mapView;
 @property (nonatomic, strong) DONViewItemButton *reportErrorButton;
 @end
 
@@ -36,6 +40,9 @@
     [super viewDidLoad];
     self.navigationItem.title = @"Viewing Item";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.scrollView = [[UIScrollView alloc] init];
+    self.containerView = [[UIView alloc] init];
     
     self.itemImageView = [[PFImageView alloc] init];
     self.userProfileView = [[DONViewItemUserProfileView alloc] init];
@@ -49,20 +56,35 @@
     self.numberOfVerificationsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
     
     self.itemDescriptionView = [[DONViewItemDescriptionView alloc] initWithItem:self.item];
+  
+    self.mapView = [[DONViewItemMapView alloc] initWithLocation:self.item.location];
     
-    self.itemMapView = [[UIView alloc] init];
     self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"REPORT ERROR" color:DONViewItemButtonTypeRed];
     
-    [self.view addSubview:self.itemImageView];
-    [self.view addSubview:self.userProfileView];
-    [self.view addSubview:self.itemStatsView];
-    [self.view addSubview:self.claimButton];
-    [self.view addSubview:self.verifyButton];
-    [self.view addSubview:self.numberOfClaimsView];
-    [self.view addSubview:self.numberOfVerificationsView];
-    [self.view addSubview:self.itemDescriptionView];
-    [self.view addSubview:self.itemMapView];
-    [self.view addSubview:self.reportErrorButton];
+    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.containerView];
+    
+    [self.containerView addSubview:self.itemImageView];
+    [self.containerView addSubview:self.userProfileView];
+    [self.containerView addSubview:self.itemStatsView];
+    [self.containerView addSubview:self.claimButton];
+    [self.containerView addSubview:self.verifyButton];
+    [self.containerView addSubview:self.numberOfClaimsView];
+    [self.containerView addSubview:self.numberOfVerificationsView];
+    [self.containerView addSubview:self.itemDescriptionView];
+    [self.containerView addSubview:self.mapView];
+    [self.containerView addSubview:self.reportErrorButton];
+    
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.scrollView);
+        make.top.equalTo(self.itemImageView);
+        make.bottom.equalTo(self.reportErrorButton);
+        make.width.equalTo(self.view);
+    }];
     
     self.itemImageView.file = self.item.imageFile;
     [self.itemImageView loadInBackground];
@@ -70,21 +92,19 @@
     
     self.userProfileView.user = self.item.listedBy;
     
-    self.itemMapView.backgroundColor = [UIColor grayColor];
-    
     [self.itemImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.and.right.equalTo(self.view);
+        make.left.top.and.right.equalTo(self.containerView);
         make.height.equalTo(@300);
     }];
     
     [self.userProfileView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
+        make.left.equalTo(self.containerView).offset(20);
         make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-20);
         make.height.equalTo(@40);
     }];
     
     [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
+        make.left.equalTo(self.containerView).offset(20);
         make.top.equalTo(self.itemImageView.mas_bottom).offset(5);
     }];
     
@@ -105,26 +125,26 @@
     
     [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.claimButton.mas_bottom).offset(5);
-        make.left.equalTo(self.view).offset(20);
+        make.left.equalTo(self.containerView).offset(20);
         make.width.equalTo(@100);
     }];
     
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
-        make.left.equalTo(self.view).offset(20);
-        make.right.equalTo(self.view).offset(-20);
+        make.left.equalTo(self.containerView).offset(20);
+        make.right.equalTo(self.containerView).offset(-20);
     }];
     
-    [self.itemMapView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.itemDescriptionView.mas_bottom).offset(5);
-        make.left.and.right.equalTo(self.view);
+        make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
     
     [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemMapView.mas_bottom).offset(5);
+        make.top.equalTo(self.mapView.mas_bottom).offset(5);
         make.height.equalTo(self.claimButton);
-        make.centerX.equalTo(self.view);
+        make.centerX.equalTo(self.containerView);
     }];
     
     [self updateItemData];
@@ -138,7 +158,6 @@
     
     UITapGestureRecognizer *tappedVerifyButton = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(verifyButtonTapped)];
     [self.verifyButton addGestureRecognizer:tappedVerifyButton];
-    
 }
 
 -(void)userProfileTapped
@@ -200,7 +219,6 @@
     }
 }
 
-
 -(void)updateItemData
 {
     [DONActivity activitiesForItem:self.item withCompletion:^(NSArray *activities) {
@@ -223,6 +241,7 @@
         self.verifyButton.buttonState = userHasVerifiedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
     }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
