@@ -50,6 +50,29 @@
     self.navigationItem.title = @"Viewing Item";
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self instantiateSubviews];
+    [self setupViewHierarchy];
+    [self setupConstraints];
+
+    self.itemImageView.file = self.item.imageFile;
+    [self.itemImageView loadInBackground];
+    self.itemImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.itemImageView.clipsToBounds = YES;
+    self.userProfileView.user = self.item.listedBy;
+    
+    [self updateItemData];
+    [self setupUIGestures];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark View setup
+-(void)instantiateSubviews
+{
+    
     self.scrollView = [[UIScrollView alloc] init];
     self.containerView = [[UIView alloc] init];
     
@@ -65,11 +88,14 @@
     self.numberOfVerificationsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
     
     self.itemDescriptionView = [[DONViewItemDescriptionView alloc] initWithItem:self.item];
-  
+    
     self.mapView = [[DONViewItemMapView alloc] initWithLocation:self.item.location];
     
     self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"REPORT ERROR" color:DONViewItemButtonTypeRed];
-    
+}
+
+-(void)setupViewHierarchy
+{
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.containerView];
     
@@ -83,7 +109,11 @@
     [self.containerView addSubview:self.itemDescriptionView];
     [self.containerView addSubview:self.mapView];
     [self.containerView addSubview:self.reportErrorButton];
-    
+}
+
+-(void)setupConstraints
+{
+    // Scroll view and scroll view container
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -95,12 +125,7 @@
         make.width.equalTo(self.view);
     }];
     
-    self.itemImageView.file = self.item.imageFile;
-    [self.itemImageView loadInBackground];
-    self.itemImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-    self.userProfileView.user = self.item.listedBy;
-    
+    // Item data views
     [self.itemImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.and.right.equalTo(self.containerView);
         make.height.equalTo(@300);
@@ -156,8 +181,11 @@
         make.centerX.equalTo(self.containerView);
     }];
     
-    [self updateItemData];
-    
+}
+
+#pragma mark UI Gestures
+-(void)setupUIGestures
+{
     UITapGestureRecognizer *tappedUserProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userProfileTapped)];
     [self.userProfileView addGestureRecognizer:tappedUserProfile];
     self.userProfileView.userInteractionEnabled = YES;
@@ -228,6 +256,7 @@
     }
 }
 
+#pragma mark UI Update for Item
 -(void)updateItemData
 {
     [DONActivity activitiesForItem:self.item withCompletion:^(NSArray *activities) {
@@ -252,8 +281,4 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 @end
