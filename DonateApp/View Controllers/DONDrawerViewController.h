@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, DrawerSection)
 {
     DrawerSectionListItem,
     DrawerSectionInviteFriends,
-    DrawerSectionHelp
+    DrawerSectionHelp,
+    DrawerSectionTempLogin
 };
 
 @interface DONDrawerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

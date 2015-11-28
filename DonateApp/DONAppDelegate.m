@@ -27,8 +27,8 @@
     [GMSServices provideAPIKey:@"AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo"];
     
     // Center and Drawer View Controllers
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"centerViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
+    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 

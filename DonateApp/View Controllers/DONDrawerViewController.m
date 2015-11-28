@@ -54,7 +54,7 @@
  numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return 1;
-    return 3;
+    return 4;
 }
 
 #pragma mark - Table View UI Setup
@@ -128,6 +128,10 @@
             cellImage = [UIImage imageNamed:@"Help"];
             cellText = @"Help";
             break;
+        }
+        case DrawerSectionTempLogin: {
+            cellImage = nil;
+            cellText = @"Temp Login";
         }
         default: {
             break;
@@ -204,6 +208,15 @@
             }
             case DrawerSectionHelp: {
                 
+                break;
+            }
+            case DrawerSectionTempLogin: {
+                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    DONUserProfileViewController *tempSigninvc = [mainStoryboard instantiateInitialViewController];
+                 [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:tempSigninvc animated:YES];
+                }];
+
                 break;
             }
             default: {

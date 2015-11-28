@@ -20,6 +20,8 @@
 
 
 @interface DONItemViewController () <UIScrollViewDelegate>
+@property (nonatomic, strong) DONItem *item;
+
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) PFImageView *itemImageView;
@@ -35,6 +37,13 @@
 @end
 
 @implementation DONItemViewController
+-(instancetype)initWithItem:(DONItem *)item
+{
+    self = [super init];
+    if (!self) return nil;
+    self.item = item;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
