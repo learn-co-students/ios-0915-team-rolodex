@@ -10,8 +10,8 @@
 #import "DONViewItemUserProfileView.h"
 #import "DONItemStatsView.h"
 #import "DONViewItemButton.h"
-#import "DONActivity.h"
 #import "DONViewOtherUserProfileViewController.h"
+#import "DONActivity.h"
 #import "SCLAlertView.h"
 #import "DONViewItemDescriptionView.h"
 #import "DONViewItemMapView.h"
@@ -48,6 +48,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Viewing Item";
+    
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self instantiateSubviews];
@@ -62,6 +66,7 @@
    
     [self updateItemData];
     [self setupUIGestures];
+    [self incrementItemViews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -280,5 +285,16 @@
     }];
 }
 
+-(void)incrementItemViews
+{
+    [self.item incrementViewForCurrentUserWithCompletion:^(BOOL success) {
+        if (success) {
+            NSLog(@"Incremented views");
+        } else {
+            NSLog(@"Views already incremented for %@", [DONUser currentUser].username);
+        }
+    }];
+    
+}
 
 @end

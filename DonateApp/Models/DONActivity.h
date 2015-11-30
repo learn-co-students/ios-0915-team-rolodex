@@ -15,6 +15,7 @@
 static NSString *const kActivityTypeVerification = @"verification";
 static NSString *const kActivityTypeFavorite = @"favorite";
 static NSString *const kActivityTypeClaim = @"claim";
+static NSString *const kActivityTypeView = @"view";
 
 @interface DONActivity : PFObject <PFSubclassing>
 @property (nonatomic, strong) DONUser *fromUser;

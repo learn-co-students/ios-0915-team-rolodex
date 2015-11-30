@@ -82,6 +82,5 @@
 */
 +(void)itemsWithCategory:(NSString *)category withCompletion:(void (^)(BOOL success, NSArray *items))completion;
 +(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion;
-
-
+-(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion;
 @end

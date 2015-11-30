@@ -11,6 +11,7 @@
 #import "PFObject+Subclass.h"
 #import "DONUser.h"
 #import "DONCategory.h"
+#import "DONActivity.h"
 
 @implementation DONItem
 
@@ -172,4 +173,27 @@
     }];
     
 }
+
+-(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion
+{
+    if (![DONUser currentUser]) {
+        NSLog(@"Aborting view increment - no current user detected");
+    }
+    
+    [DONActivity activitiesForItem:self withCompletion:^(NSArray *activities) {
+       BOOL activityExists = [DONActivity activityExists:kActivityTypeView forUser:[DONUser currentUser] inItemActivities:activities];
+        if (activityExists) {
+            completion(NO);
+        } else {
+            [DONActivity addActivityType:kActivityTypeView toItem:self fromUser:[DONUser currentUser] toUser:nil withCompletion:^(BOOL success) {
+                self.views = [NSNumber numberWithInt:[self.views intValue] + 1];
+                [self saveEventually];
+                completion(YES);
+            }];
+
+        }
+   }];
+}
+
+
 @end
