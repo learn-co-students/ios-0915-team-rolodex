@@ -30,6 +30,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
     UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    
+    // Set custom back arrow for navigation controller
+    [navigationController.navigationBar setBackIndicatorImage:
+     [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
+     [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
     // MMDrawerController init and setup

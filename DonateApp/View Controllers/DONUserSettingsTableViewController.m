@@ -27,6 +27,9 @@
 {
     self.currentUser = [DONUser currentUser];
     self.navigationItem.title = @"Settings";
+   
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:235.0/255.0 blue:241.0/255.0 alpha:1.0];
 }

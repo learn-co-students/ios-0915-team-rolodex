@@ -51,6 +51,9 @@
 
     //moved data loading to viewWillAppear
     
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+ 
     [self activeXibCell];
     [self searchBarCellStyle];
     [self getCategoryWithBlock:^(BOOL success) {

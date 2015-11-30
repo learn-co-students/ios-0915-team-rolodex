@@ -59,7 +59,7 @@
     self.itemImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.itemImageView.clipsToBounds = YES;
     self.userProfileView.user = self.item.listedBy;
-    
+   
     [self updateItemData];
     [self setupUIGestures];
 }
