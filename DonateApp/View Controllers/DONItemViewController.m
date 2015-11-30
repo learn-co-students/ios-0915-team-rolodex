@@ -24,6 +24,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) UIButton *favoriteButton;
 @property (nonatomic, strong) PFImageView *itemImageView;
 @property (nonatomic, strong) DONViewItemUserProfileView *userProfileView;
 @property (nonatomic, strong) DONItemStatsView *itemStatsView;
@@ -47,11 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Viewing Item";
-    
-    // Remove "Back" nav bar text next to back arrow
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
-    
+    [self setupNavigationBar];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self instantiateSubviews];
@@ -72,6 +69,30 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setupNavigationBar
+{
+    self.navigationItem.title = @"Viewing Item";
+    
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    
+    // Set right bar favorite button
+    UIImage *favImgOutlined = [UIImage imageNamed:@"favorite-outline"];
+    UIImage *favImgFilled = [UIImage imageNamed:@"favorite-filled"];
+    
+    self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.favoriteButton setImage:favImgOutlined forState:UIControlStateNormal];
+    [self.favoriteButton setImage:favImgFilled forState:UIControlStateHighlighted];
+    
+    self.favoriteButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.favoriteButton.frame = CGRectMake(0,0,22,22);
+    
+    [self.favoriteButton addTarget:self action:@selector(favoriteTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *favoriteButton = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteButton];
+    self.navigationItem.rightBarButtonItem = favoriteButton;
 }
 
 #pragma mark View setup
@@ -261,6 +282,27 @@
     }
 }
 
+-(void)favoriteTapped
+{
+    [self toggleFavoriteButtonImages];
+    
+    [DONActivity activitiesForItem:self.item withCompletion:^(NSArray *activities) {
+        BOOL itemIsFavorite = [DONActivity activityExists:kActivityTypeFavorite forUser:[DONUser currentUser] inItemActivities:activities];
+        
+        if (itemIsFavorite) {
+            [DONActivity removeActivityType:kActivityTypeFavorite forUser:[DONUser currentUser] onItem:self.item withCompletion:^(BOOL success) {
+                [self updateItemData];
+            }];
+ 
+        } else {
+            [DONActivity addActivityType:kActivityTypeFavorite toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
+                [self updateItemData];
+            }];
+        }
+    }];
+
+}
+
 #pragma mark UI Update for Item
 -(void)updateItemData
 {
@@ -295,6 +337,15 @@
         }
     }];
     
+}
+
+-(void)toggleFavoriteButtonImages
+{
+    UIImage *imageForNormalState = [self.favoriteButton imageForState:UIControlStateNormal];
+    UIImage *imageForHighlightedState = [self.favoriteButton imageForState:UIControlStateHighlighted];
+    [self.favoriteButton setImage:imageForNormalState forState:UIControlStateHighlighted];
+    [self.favoriteButton setImage:imageForHighlightedState forState:UIControlStateNormal];
+
 }
 
 @end

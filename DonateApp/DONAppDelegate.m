@@ -38,6 +38,7 @@
      [UIImage imageNamed:@"Back-arrow"]];
     [navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
+    
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
     // MMDrawerController init and setup
