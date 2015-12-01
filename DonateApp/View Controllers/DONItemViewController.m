@@ -36,6 +36,7 @@
 @property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
 @property (nonatomic, strong) DONViewItemMapView *mapView;
 @property (nonatomic, strong) DONViewItemButton *reportErrorButton;
+@property (nonatomic, assign) BOOL isItemOwner;
 @end
 
 @implementation DONItemViewController
@@ -44,6 +45,11 @@
     self = [super init];
     if (!self) return nil;
     self.item = item;
+    
+    NSString *itemOwnerID = self.item.listedBy.objectId;
+    NSString *currentUserID = [DONUser currentUser].objectId;
+    self.isItemOwner = [itemOwnerID isEqualToString:currentUserID];
+    
     return self;
 }
 
@@ -78,6 +84,14 @@
     
     // Remove "Back" nav bar text next to back arrow
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    
+    if (!self.isItemOwner && [DONUser currentUser]) {
+        [self setupRightNavigationBarItem];
+    }
+}
+
+-(void)setupRightNavigationBarItem
+{
     
     // Set right bar favorite button
     UIImage *favImgOutlined = [UIImage imageNamed:@"favorite-outline"];
@@ -130,10 +144,14 @@
     [self.containerView addSubview:self.itemImageView];
     [self.containerView addSubview:self.userProfileView];
     [self.containerView addSubview:self.itemStatsView];
-    [self.containerView addSubview:self.claimButton];
-    [self.containerView addSubview:self.verifyButton];
-    [self.containerView addSubview:self.numberOfClaimsView];
-    [self.containerView addSubview:self.numberOfVerificationsView];
+    
+    if (!self.isItemOwner && [DONUser currentUser]) {
+        [self.containerView addSubview:self.claimButton];
+        [self.containerView addSubview:self.verifyButton];
+        [self.containerView addSubview:self.numberOfClaimsView];
+        [self.containerView addSubview:self.numberOfVerificationsView];
+    }
+    
     [self.containerView addSubview:self.itemDescriptionView];
     [self.containerView addSubview:self.mapView];
     [self.containerView addSubview:self.reportErrorButton];
@@ -141,6 +159,8 @@
 
 -(void)setupConstraints
 {
+    NSInteger topPadding = 15;
+    NSInteger sidePadding = 15;
     // Scroll view and scroll view container
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -160,52 +180,57 @@
     }];
     
     [self.userProfileView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.containerView).offset(20);
-        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-20);
+        make.left.equalTo(self.containerView).offset(sidePadding);
+        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-sidePadding);
         make.height.equalTo(@40);
     }];
     
-    [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.containerView).offset(20);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(5);
-    }];
-    
-    [self.numberOfClaimsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.claimButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
-    }];
-    
-    [self.verifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.numberOfClaimsView.mas_right).offset(5);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(5);
-    }];
-    
-    [self.numberOfVerificationsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.verifyButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
-    }];
+    if (!self.isItemOwner && [DONUser currentUser] ) {
+        [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.containerView).offset(sidePadding);
+            make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        }];
+        
+        [self.numberOfClaimsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.claimButton.mas_right).offset(1);
+            make.top.equalTo(self.claimButton);
+        }];
+        
+        [self.verifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.numberOfClaimsView.mas_right).offset(5);
+            make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        }];
+        
+        [self.numberOfVerificationsView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.verifyButton.mas_right).offset(1);
+            make.top.equalTo(self.claimButton);
+        }];
+    }
     
     [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.claimButton.mas_bottom).offset(5);
-        make.left.equalTo(self.containerView).offset(20);
-//        make.width.equalTo(@100);
+        if (!self.isItemOwner && [DONUser currentUser]) {
+            make.top.equalTo(self.claimButton.mas_bottom).offset(5);
+        } else {
+            make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        }
+        make.left.equalTo(self.containerView).offset(sidePadding);
     }];
     
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
-        make.left.equalTo(self.containerView).offset(20);
-        make.right.equalTo(self.containerView).offset(-20);
+        make.left.equalTo(self.containerView).offset(sidePadding);
+        make.right.equalTo(self.containerView).offset(-sidePadding);
     }];
     
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemDescriptionView.mas_bottom).offset(5);
+        make.top.equalTo(self.itemDescriptionView.mas_bottom).offset(topPadding);
         make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
     
     [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mapView.mas_bottom).offset(5);
-        make.height.equalTo(self.claimButton);
+        make.top.equalTo(self.mapView.mas_bottom).offset(topPadding);
+        make.height.equalTo(@35);
         make.centerX.equalTo(self.containerView);
     }];
     

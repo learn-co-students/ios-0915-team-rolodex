@@ -15,7 +15,6 @@
 @property (nonatomic, strong) DONItem *item;
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *itemDescription;
-@property (nonatomic, strong) UIImageView *locationIcon;
 @property (nonatomic, strong) UILabel *location;
 @property (nonatomic, strong) UILabel *pickupLocation;
 @property (nonatomic, strong) UILabel *expiration;
@@ -38,9 +37,6 @@
 {
     self.title = [self setupTitleLabel];
     self.itemDescription = [self setupSubtitleLabel];
-    
-    self.locationIcon = [[UIImageView alloc] init];
-    [self addSubview:self.locationIcon];
     
     self.location = [self setupTitleLabel];
     self.pickupLocation = [self setupSubtitleLabel];
@@ -89,13 +85,7 @@
     self.expiration.textAlignment = NSTextAlignmentRight;
     self.expires.textAlignment = NSTextAlignmentRight;
     
-    // Location Icon
-    UIImage *locationIconImage = [UIImage imageNamed:@"Location Icon"];
-    self.locationIcon.image = locationIconImage;
-    self.locationIcon.contentMode = UIViewContentModeScaleAspectFit;
 }
-    
-
     
 
 -(void)constrainViews
@@ -110,21 +100,15 @@
         make.right.equalTo(self);
     }];
     
-    [self.locationIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemDescription.mas_bottom).offset(10);
-        make.left.equalTo(self);
-        make.height.and.width.equalTo(@40);
-    }];
-    
     [self.location mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.locationIcon.mas_right).offset(3);
-        make.top.equalTo(self.locationIcon);
+        make.left.equalTo(self);
+        make.top.equalTo(self.itemDescription.mas_bottom).offset(10);
     }];
     
     [self.pickupLocation mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.location);
         make.top.equalTo(self.location.mas_bottom).offset(1);
-        make.right.equalTo(self.expires.mas_left).offset(-3);
+        make.right.equalTo(self.expires.mas_left).offset(-15);
     }];
     
     [self.expiration mas_makeConstraints:^(MASConstraintMaker *make) {

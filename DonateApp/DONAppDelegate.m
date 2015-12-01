@@ -24,7 +24,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
-    [GMSServices provideAPIKey:@"AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo"];
+    [GMSServices provideAPIKey:GOOGLE_MAPS_API_KEY];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *viewedObjects = [[defaults objectForKey:@"viewedObjects"] mutableCopy];
+    
+    if (!viewedObjects) {
+        [defaults setObject:[NSArray new] forKey:@"viewedObjects"];
+    }
+    [defaults synchronize];
     
     // Center and Drawer View Controllers
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];

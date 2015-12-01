@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "DONUser.h"
 #import "DONSettingsEnum.h"
-#import "DONMainViewController.h"
+#import "DONQueryCollectionViewController.h"
 
 @interface DONUserSettingsTableViewController () <UITableViewDelegate>
 @property (nonatomic, strong) DONUser *currentUser;
@@ -92,7 +92,7 @@
                     [DONUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
                         NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                         for (UIViewController *aViewController in allViewControllers) {
-                            if ([aViewController isKindOfClass:[DONMainViewController class]]) {
+                            if ([aViewController isKindOfClass:[DonQueryCollectionViewController class]]) {
                                 [self.navigationController popToViewController:aViewController animated:YES];
                             }
                         }

@@ -9,4 +9,4 @@
 #import "DONSecrets.h"
 NSString *const PARSE_APPLICATION_ID = @"t3jEndddGK5P0ci79sZyqdTJRaJiD685wnna2IlT";
 NSString *const PARSE_CLIENT_KEY = @"w5uWFCQpHGvRLa0tPJT6efOFhNJBQQ9VZLwrNYSF";
-//NSString *const googleMapApiKey = @"AIzaSyCMQxuDnUmNCa3wMPYWFdR0HlWkmnzIHrI"; AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo
+NSString *const GOOGLE_MAPS_API_KEY = @"AIzaSyAWZUE3WvRtmGx1ZIa8rA6fZ4CGcGjE_Qo";

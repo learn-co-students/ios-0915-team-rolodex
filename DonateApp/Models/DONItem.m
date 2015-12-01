@@ -177,7 +177,15 @@
 -(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion
 {
     if (![DONUser currentUser]) {
-        NSLog(@"Aborting view increment - no current user detected");
+        NSLog(@"Incrementing for guest user once");
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *viewedObjects = [defaults objectForKey:@"viewedObjects"];
+        for (NSString *objID in viewedObjects) {
+            if ([objID isEqualToString:self.objectId]) {
+                NSLog(@"Already incremented for guest user - aborting");
+                return;
+            }
+        }
     }
     
     [DONActivity activitiesForItem:self withCompletion:^(NSArray *activities) {
@@ -188,6 +196,13 @@
             [DONActivity addActivityType:kActivityTypeView toItem:self fromUser:[DONUser currentUser] toUser:nil withCompletion:^(BOOL success) {
                 self.views = [NSNumber numberWithInt:[self.views intValue] + 1];
                 [self saveEventually];
+                
+                if (![DONUser currentUser]) {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    NSMutableArray *viewedObjects = [defaults objectForKey:@"viewedObjects"];
+                    [viewedObjects addObject:self.objectId];
+                    [defaults synchronize];
+                }
                 completion(YES);
             }];
 
