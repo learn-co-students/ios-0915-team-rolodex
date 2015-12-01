@@ -15,7 +15,7 @@
 @implementation DONItem
 
 @dynamic name;
-@dynamic description;
+@dynamic itemDescription;
 @dynamic pickupInstructions;
 @dynamic listedBy;
 @dynamic createdAt;
@@ -80,7 +80,7 @@
 		DONItem *object = [DONItem object];
 
     object.name = name;
-    object.description = description;
+    object.itemDescription = description;
 		object.pickupInstructions = pickupInstructions;
 		object.itemImagePF = itemImagePF;
 		

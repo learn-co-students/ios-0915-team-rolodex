@@ -10,6 +10,7 @@
 #import "DONItem.h"
 #import "DONUser.h"
 #import "DONCategory.h"
+#import "DonInfowindow.h"
 
 @import GoogleMaps;
 
@@ -63,7 +64,17 @@
                 [catQ findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     DONCategory * category = (DONCategory *)objects[0];
                     NSLog(@"category name = %@", category.name);
-                    [self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name];
+                    
+                    
+                    __block UIImage * iconImage = [UIImage new];
+                    PFFile * iconImageFile = eachItem[@"imageFile"];
+                    [iconImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                        if (!error) {
+                            iconImage = [UIImage imageWithData:imageData];
+                        }
+                    }];
+                    
+                    [self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name itemName:eachItem.name discription:eachItem.itemDescription itemImage:iconImage];
                 }];
              }
            }
@@ -71,43 +82,45 @@
 }
 
 -(void)addMakerWithLatitude:(double)latitude
-                  longitude:(double)longitude category:(NSString *)categoryName{
+                  longitude:(double)longitude
+                   category:(NSString *)categoryName itemName:(NSString *)name
+                discription:(NSString *)discription itemImage:(UIImage *)itemImage{
     
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(latitude,longitude);
-    marker.title = @"New York";
-    marker.snippet = @"HELLO this is f yeah!";
-    UIImage * iconImi = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",categoryName]];
+    marker.title = name;
+    marker.snippet = discription;
+    //UIImage * iconImi = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",categoryName]];
     // CGSize size = CGSizeApplyAffineTransform(iconImi.size, CGAffineTransformMakeScale(0.5, 0.5));
-    marker.icon = iconImi;
+    //marker.icon = iconImi;
+
+    //marker.icon = itemImage;
     marker.map = self.mapView;
     marker.infoWindowAnchor = CGPointMake(0.6, 0.3);
 }
 
 #pragma marker delegate
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
-    
+
 }
 
 -(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
 {
     NSLog(@"infoVieww!");
-    UIView *view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, 0, 200, 100);
-    view.backgroundColor = [UIColor blackColor];
-    view.alpha = 0.1;
-    UILabel * title = [[UILabel alloc] initWithFrame: view.bounds];
-    title.textColor = [UIColor blueColor];
-    title.text = @" hello infoView";
-    [view addSubview:title];
     
-    return view;
+    DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
+    infoWindow.title.text = marker.snippet;
+    [infoWindow.title sizeToFit];
+    infoWindow.itemImage.image = [UIImage imageNamed:@"clara.jpg"];
+    infoWindow.itemImage.layer.cornerRadius = 50;
+    infoWindow.itemImage.layer.masksToBounds = YES;
+
+    return infoWindow;
 }
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
     CGPoint point = [mapView.projection pointForCoordinate:marker.position];
-
     return NO;
 }
 

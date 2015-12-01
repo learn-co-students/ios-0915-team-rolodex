@@ -11,14 +11,11 @@
 
 #import "ParseUI.h"
 
-//#import "DONFakeThing.h"
 
 @interface QueryCell : UICollectionViewCell
 
 @property (strong , nonatomic)DONUser * pageUser;
 @property (weak, nonatomic) IBOutlet UILabel *cellTitle;
 @property (weak, nonatomic) IBOutlet PFImageView *image;
-
-//@property (strong, nonatomic) DONFakeThing * thing;
 
 @end

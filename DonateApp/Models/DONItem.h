@@ -23,7 +23,7 @@
 
 //
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *itemDescription;
 @property (nonatomic, strong) NSString *pickupInstructions;
 @property (nonatomic, strong) DONUser *listedBy;
 @property (nonatomic, strong) NSNumber *views;

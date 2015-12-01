@@ -10,6 +10,5 @@
 
 @interface DonQueryCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *queryCollection;
 
 @end
