@@ -18,6 +18,7 @@
 #import "Masonry.h"
 #define MAS_SHORTHAND
 
+// make default loading state grey out and no actions then add actions and color once loaded
 
 @interface DONItemViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) DONItem *item;
@@ -80,16 +81,17 @@
     
     // Set right bar favorite button
     UIImage *favImgOutlined = [UIImage imageNamed:@"favorite-outline"];
-    UIImage *favImgFilled = [UIImage imageNamed:@"favorite-filled"];
+    favImgOutlined = [favImgOutlined imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.favoriteButton setImage:favImgOutlined forState:UIControlStateNormal];
-    [self.favoriteButton setImage:favImgFilled forState:UIControlStateHighlighted];
     
     self.favoriteButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.favoriteButton.imageView.tintColor = [UIColor grayColor];
     self.favoriteButton.frame = CGRectMake(0,0,22,22);
     
     [self.favoriteButton addTarget:self action:@selector(favoriteTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.favoriteButton.userInteractionEnabled = NO;
     
     UIBarButtonItem *favoriteButton = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteButton];
     self.navigationItem.rightBarButtonItem = favoriteButton;
@@ -106,9 +108,9 @@
     self.userProfileView = [[DONViewItemUserProfileView alloc] init];
     self.itemStatsView = [[DONItemStatsView alloc] init];
     
-    self.claimButton = [[DONViewItemButton alloc] initWithDefaultText:@"CLAIM" toggledText:@"CLAIMED" buttonState:DONViewItemButtonStateToggled color:DONViewItemButtonTypeBlue];
+    self.claimButton = [[DONViewItemButton alloc] initWithDefaultText:@"CLAIM" toggledText:@"CLAIMED" buttonState:DONViewItemButtonStateDisabled color:DONViewItemButtonTypeBlue];
     
-    self.verifyButton = [[DONViewItemButton alloc] initWithDefaultText:@"VERIFY" toggledText:@"VERIFIED" buttonState:DONViewItemButtonStateToggled color:DONViewItemButtonTypeGreen];;
+    self.verifyButton = [[DONViewItemButton alloc] initWithDefaultText:@"VERIFY" toggledText:@"VERIFIED" buttonState:DONViewItemButtonStateDisabled color:DONViewItemButtonTypeGreen];
     
     self.numberOfClaimsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
     self.numberOfVerificationsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
@@ -186,7 +188,7 @@
     [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.claimButton.mas_bottom).offset(5);
         make.left.equalTo(self.containerView).offset(20);
-        make.width.equalTo(@100);
+//        make.width.equalTo(@100);
     }];
     
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -284,8 +286,6 @@
 
 -(void)favoriteTapped
 {
-    [self toggleFavoriteButtonImages];
-    
     [DONActivity activitiesForItem:self.item withCompletion:^(NSArray *activities) {
         BOOL itemIsFavorite = [DONActivity activityExists:kActivityTypeFavorite forUser:[DONUser currentUser] inItemActivities:activities];
         
@@ -322,8 +322,14 @@
         
         BOOL userHasVerifiedItem = [DONActivity activityExists:kActivityTypeVerification forUser:[DONUser currentUser] inItemActivities:activities];
         
+        BOOL userHasFavoritedItem = [DONActivity activityExists:kActivityTypeFavorite forUser:[DONUser currentUser] inItemActivities:activities];
+        
         self.claimButton.buttonState = userHasClaimedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
         self.verifyButton.buttonState = userHasVerifiedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
+        NSString *imgName = userHasFavoritedItem ? @"favorite-filled" : @"favorite-outline";
+        UIImage *favImg = [UIImage imageNamed:imgName];
+        [self.favoriteButton setImage:favImg forState:UIControlStateNormal];
+        self.favoriteButton.userInteractionEnabled = YES;
     }];
 }
 

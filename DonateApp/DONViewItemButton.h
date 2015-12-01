@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, DONViewItemButtonState)
 {
     DONViewItemButtonStateDefault,
-    DONViewItemButtonStateToggled
+    DONViewItemButtonStateToggled,
+    DONViewItemButtonStateDisabled
 };
 
 typedef NS_ENUM(NSInteger, DONViewItemButtonType)

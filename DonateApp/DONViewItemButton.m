@@ -126,8 +126,18 @@
     
     if (buttonState == DONViewItemButtonStateDefault) {
         self.textLabel.text = self.defaultText;
-    } else {
+    } else if (buttonState == DONViewItemButtonStateToggled) {
         self.textLabel.text = self.toggledText;
+    } else {
+        self.textLabel.text = @"...";
+    }
+    
+    if (buttonState == DONViewItemButtonStateDisabled) {
+        self.textLabel.textColor = [UIColor grayColor];
+        self.userInteractionEnabled = NO;
+    } else {
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.userInteractionEnabled = YES;
     }
 }
 @end

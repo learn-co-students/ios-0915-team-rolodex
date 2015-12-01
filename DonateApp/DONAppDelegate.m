@@ -50,7 +50,7 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [self.drawerController setShouldStretchDrawer:NO];
-    
+
     // Set Animation style for drawer using the visual state manager
     [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
     [self.drawerController
@@ -65,6 +65,7 @@
     
     // Main window setup and root view controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window setRootViewController:self.drawerController];
     [self.window makeKeyAndVisible];
     
