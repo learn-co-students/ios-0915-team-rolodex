@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, DONViewItemButtonState)
+typedef NS_ENUM(NSInteger, DONViewItemButtonToggleState)
 {
     DONViewItemButtonStateDefault,
     DONViewItemButtonStateToggled,
-    DONViewItemButtonStateDisabled
+    DONViewItemButtonStateNoData
+};
+
+typedef NS_ENUM(NSInteger, DONViewItemButtonEnabledState)
+{
+    DONViewItemButtonStateDisabled,
+    DONViewItemButtonStateEnabled
 };
 
 typedef NS_ENUM(NSInteger, DONViewItemButtonType)
@@ -25,9 +31,14 @@ typedef NS_ENUM(NSInteger, DONViewItemButtonType)
 
 @interface DONViewItemButton : UIControl
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, assign) DONViewItemButtonState buttonState;
+@property (nonatomic, assign) DONViewItemButtonToggleState toggledState;
+@property (nonatomic, assign) DONViewItemButtonEnabledState enabledState;
 
 -(instancetype)initWithText:(NSString *)text color:(DONViewItemButtonType)buttonType;
--(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText buttonState:(DONViewItemButtonState)buttonState color:(DONViewItemButtonType)buttonType;
+-(instancetype)initWithDefaultText:(NSString *)defaultText
+                       toggledText:(NSString *)toggledText
+                      toggledState:(DONViewItemButtonToggleState)toggledState
+                      enabledState:(DONViewItemButtonEnabledState)enabledState
+                             color:(DONViewItemButtonType)buttonType;
 
 @end
