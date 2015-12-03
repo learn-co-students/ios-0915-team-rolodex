@@ -10,6 +10,8 @@
 #import "Masonry.h"
 
 @interface DONViewItemButton ()
+@property (nonatomic, strong) NSString *defaultText;
+@property (nonatomic, strong) NSString *toggledText;
 @property (nonatomic, assign) DONViewItemButtonType DONButtonType;
 @property (nonatomic, strong) UILabel *textLabel;
 @property (nonatomic, strong) UIView *background;
@@ -33,20 +35,21 @@
     return self;
 }
 
--(instancetype)initWithEnabledText:(NSString *)enabledText disabledText:(NSString *)disabledText enabled:(BOOL)enabled color:(DONViewItemButtonType)buttonType
+-(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText toggledState:(DONViewItemButtonToggleState)toggledState enabledState:(DONViewItemButtonEnabledState)enabledState color:(DONViewItemButtonType)buttonType
 {
     self = [super init];
     if (!self) return nil;
 
     self.DONButtonType = buttonType;
-    self.enabledText = enabledText;
-    self.disabledText = disabledText;
+    self.defaultText = defaultText;
+    self.toggledText = toggledText;
     
     [self setupViews];
     [self setupViewProperties];
     [self constrainViews];
     
-    self.currentState = enabled;
+    self.toggledState = toggledState;
+    self.enabledState = enabledState;
 
     return self;
 }
@@ -67,8 +70,6 @@
     
     self.textLabel.font = [UIFont systemFontOfSize:16];
     self.textLabel.textColor = [UIColor whiteColor];
-
-    self.textLabel.text = self.disabledText;
     
     UIColor *color;
     switch (self.DONButtonType) {
@@ -120,14 +121,26 @@
     self.textLabel.text = text;
 }
 
--(void)setCurrentState:(BOOL)currentState
+-(void)setToggledState:(DONViewItemButtonToggleState)state
 {
-    _currentState = currentState;
+    _toggledState = state;
     
-    if (currentState) {
-        self.textLabel.text = self.enabledText;
-    } else {
-        self.textLabel.text = self.disabledText;
+    if (state == DONViewItemButtonStateDefault) {
+        self.textLabel.text = self.defaultText;
+    } else if (state == DONViewItemButtonStateToggled) {
+        self.textLabel.text = self.toggledText;
+    } else if (state == DONViewItemButtonStateNoData) {
+        self.textLabel.text = @"...";
+    }
+}
+-(void)setEnabledState:(DONViewItemButtonEnabledState)state
+{
+    _enabledState = state;
+
+    if (state == DONViewItemButtonStateDisabled) {
+        self.textLabel.textColor = [UIColor grayColor];
+    } else if (state == DONViewItemButtonStateEnabled) {
+        self.textLabel.textColor = [UIColor whiteColor];
     }
 }
 @end

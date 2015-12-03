@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupLeftMenuButton];
+//    [self setupLeftMenuButton];
     
     self.view.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:235.0/255.0 blue:241.0/255.0 alpha:1.0];
     UIColor * barColor = [UIColor whiteColor];
@@ -45,16 +45,16 @@
 {
     [self configureTestingData];
 }
-
--(void)setupLeftMenuButton{
-    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
-    leftDrawerButton.tintColor = [UIColor blackColor];
-    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
-}
-
--(void)leftDrawerButtonPress:(id)sender{
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-}
+//
+//-(void)setupLeftMenuButton{
+//    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+//    leftDrawerButton.tintColor = [UIColor blackColor];
+//    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+//}
+//
+//-(void)leftDrawerButtonPress:(id)sender{
+//    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+//}
 /*
 #pragma mark - Navigation
 
@@ -127,8 +127,7 @@
 
 - (IBAction)viewItemTapped:(id)sender {
     [DONItem fetchItemWithItemId:@"3UpAq8hj0Q" withCompletion:^(DONItem *item, NSError *error) {
-        DONItemViewController *vc = [[DONItemViewController alloc] init];
-        vc.item = item;
+        DONItemViewController *vc = [[DONItemViewController alloc] initWithItem:item];
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }

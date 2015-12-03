@@ -63,7 +63,7 @@
     [self.viewsImageView setTintColor:[UIColor colorWithRed:0 green:255.0/255.0 blue:171.0/255.0 alpha:1.0f]];
     self.viewsImageView.contentMode = UIViewContentModeScaleAspectFit;
     
-    self.favoritesImageView.image = [UIImage imageNamed:@"favorite"];
+    self.favoritesImageView.image = [UIImage imageNamed:@"favorite-outline"];
     self.favoritesImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     self.background.layer.cornerRadius = 5.0f;

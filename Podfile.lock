@@ -3,7 +3,8 @@ PODS:
   - ChameleonFramework (2.0.6):
     - ChameleonFramework/Default (= 2.0.6)
   - ChameleonFramework/Default (2.0.6)
-  - GoogleMaps (1.11.0)
+  - DateTools (1.7.0)
+  - GoogleMaps (1.10.5)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MMDrawerController (0.6.0):
@@ -18,7 +19,6 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.6.0):
     - MMDrawerController/Core
-  - OpenInGoogleMaps (0.1.0)
   - Parse (1.10.0):
     - Bolts/Tasks (~> 1.5)
   - ParseUI (1.1.7):
@@ -28,11 +28,11 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework
+  - DateTools
   - GoogleMaps
   - Masonry
   - MBProgressHUD
   - MMDrawerController
-  - OpenInGoogleMaps
   - Parse
   - ParseUI
   - SCLAlertView-Objective-C
@@ -40,11 +40,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
-  GoogleMaps: 272cf7e7b8aacf4319eac47d57f3b7d142c0826a
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
-  OpenInGoogleMaps: 60dd887d2e2b2149166a03bd6dab1d4478a7d3e8
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
   SCLAlertView-Objective-C: e36ab12dc1ec4ff6f932888083b21d71a3a1ad23

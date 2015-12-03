@@ -9,10 +9,7 @@ pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
 pod 'GoogleMaps'
-pod "OpenInGoogleMaps"
-
-
-
+pod 'DateTools'
 pod 'SCLAlertView-Objective-C'
 
 # disable bitcode in every sub-target

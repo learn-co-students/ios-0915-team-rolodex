@@ -32,6 +32,9 @@
     NSLog(@"Current user %@", self.currentUser);
     
     self.navigationItem.title = @"My Profile";
+
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"\u2699" style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     

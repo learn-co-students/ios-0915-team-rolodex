@@ -12,12 +12,15 @@
 #import "DONCategory.h"
 #import "QueryCell.h"
 #import "SearchCell.h"
-#import "OpenInGoogleMapsController.h"
 
 #import <ChameleonFramework/Chameleon.h>
 #import "DonGoogleMapViewController.h"
-
 #import "DonContainerViewController.h"
+// Drawer menu code
+#import "MMDrawerBarButtonItem.h"
+#import "UIViewController+MMDrawerController.h"
+
+#import "DONItemViewController.h"
 
 @interface DonQueryCollectionViewController ()
 
@@ -41,15 +44,44 @@
     self.searchCollectionView.delegate = self;
     self.searchCollectionView.dataSource = self;
 
+    //moved data loading to viewWillAppear
+    
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+ 
+    //[self activeXibCell];
     [self searchBarCellStyle];
     [self getCategoryWithBlock:^(BOOL success) {
         NSLog(@"get the catoory");
     }];
 
+    // Drawer menu code
+    [self setupLeftMenuButton];
+
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //[self getAllPdata]; // do you set this as a main Queae ?
+
 }
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+// Drawer menu code
+
+-(void)setupLeftMenuButton{
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    leftDrawerButton.tintColor = [UIColor blackColor];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+}
+
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 #pragma mark collectionView delegate
@@ -83,6 +115,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
     
+
     if (collectionView == self.searchCollectionView) {
         NSLog(@"I tapped searchCollectionView");
         self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
