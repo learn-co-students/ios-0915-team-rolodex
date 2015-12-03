@@ -69,7 +69,12 @@
     self.title.text = self.item.name;
     self.itemDescription.text = self.item.itemDescription;
     [DONLocationController cityAndStateForGeoPoint:self.item.location withCompletion:^(NSString *string) {
-        self.location.text = string;
+        if ([string isEqualToString:@"(null), (null)"])
+        {
+            self.location.text = @"Location";
+        } else {
+            self.location.text = string;
+        }
     }];
     self.pickupLocation.text = self.item.pickupInstructions;
     self.expiration.text = @"Listed";

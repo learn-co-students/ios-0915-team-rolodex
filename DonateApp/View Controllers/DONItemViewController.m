@@ -11,6 +11,7 @@
 #import "DONItemStatsView.h"
 #import "DONViewItemButton.h"
 #import "DONViewOtherUserProfileViewController.h"
+#import "DONUserProfileViewController.h"
 #import "DONActivity.h"
 #import "SCLAlertView.h"
 #import "DONViewItemDescriptionView.h"
@@ -288,9 +289,14 @@
 -(void)userProfileTapped
 {
     UIStoryboard *userProfileStoryboard = [UIStoryboard storyboardWithName:@"Jon" bundle:[NSBundle mainBundle]];
-    DONViewOtherUserProfileViewController *otherUserProfileVC = [userProfileStoryboard instantiateViewControllerWithIdentifier:@"viewOtherUserProfile"];
-    otherUserProfileVC.user = self.item.listedBy;
-    [self.navigationController pushViewController:otherUserProfileVC animated:YES];
+    if (self.isItemOwner) {
+        DONUserProfileViewController *userProfileVC = [userProfileStoryboard instantiateInitialViewController];
+        [self.navigationController pushViewController:userProfileVC animated:YES];
+    } else {
+        DONViewOtherUserProfileViewController *otherUserProfileVC = [userProfileStoryboard instantiateViewControllerWithIdentifier:@"viewOtherUserProfile"];
+        otherUserProfileVC.user = self.item.listedBy;
+        [self.navigationController pushViewController:otherUserProfileVC animated:YES];
+    }
 }
 
 -(void)claimButtonTapped

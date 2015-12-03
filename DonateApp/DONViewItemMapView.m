@@ -93,12 +93,12 @@
     [super layoutSubviews];
     CALayer *topBorder = [CALayer layer];
     topBorder.borderColor = [UIColor lightGrayColor].CGColor;
-    topBorder.borderWidth = 1;
+    topBorder.borderWidth = 0.5f;
     topBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(self.frame)+2, 1);
     topBorder.shadowColor = [UIColor blackColor].CGColor;
-    topBorder.shadowRadius = 1.5f;
+    topBorder.shadowRadius = 2.0f;
     topBorder.shadowOpacity = 0.5f;
-    topBorder.shadowOffset = CGSizeMake(0, 2);
+    topBorder.shadowOffset = CGSizeMake(0, 1);
     [self.layer addSublayer:topBorder];
     
 }
