@@ -8,8 +8,9 @@ pod 'ChameleonFramework'
 pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
-pod 'Mapbox-iOS-SDK'
 pod 'GoogleMaps'
+pod "OpenInGoogleMaps"
+
 
 
 pod 'SCLAlertView-Objective-C'

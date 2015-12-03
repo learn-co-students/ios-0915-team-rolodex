@@ -63,24 +63,68 @@
                 [catQ whereKey:@"objectId" equalTo: [test[0] valueForKey:@"objectId"]];
                 [catQ findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     DONCategory * category = (DONCategory *)objects[0];
-                    NSLog(@"category name = %@", category.name);
+                    NSLog(@"category name = %@ with image %@", category.name, category.imageFile);
+                    //category.imageFile
                     
                     
-                    __block UIImage * iconImage = [UIImage new];
-                    PFFile * iconImageFile = eachItem[@"imageFile"];
+                    __block UIImage *iconImage = [UIImage new];
+                    PFFile *iconImageFile = category.imageFile;
+                    
+                    __weak typeof(self) tmpself = self;
+
+
+                    
+                    //TODO: Create a weak reference to SELF to be used within this block (calling self in BLOCK created a retain cycle)
+                    
+                    
                     [iconImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                        
+                    
+                        
                         if (!error) {
-                            iconImage = [UIImage imageWithData:imageData];
+                            
+                            
+                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                iconImage = [UIImage imageWithData:imageData];
+                                [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude
+                                            discription:eachItem.itemDescription itemImage:iconImage];
+
+                                
+                                
+                            }];
+                            
+                            
                         }
                     }];
+//
                     
-                    [self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name itemName:eachItem.name discription:eachItem.itemDescription itemImage:iconImage];
+                
+                    
+                    //[self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name itemName:eachItem.name discription:eachItem.itemDescription itemImage:iconImage];
+                    
                 }];
              }
            }
         }];
 }
 
+
+
+-(void)addMarkerWithItem:(DONItem *)item WithLatitude:(double)latitude
+               longitude:(double)longitude discription:(NSString *)discription itemImage:(UIImage *)itemImage{
+    
+    GMSMarker * marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(latitude,longitude);
+    marker.userData = item;
+    marker.snippet = discription;
+    marker.map = self.mapView;
+    marker.icon = itemImage;
+    marker.infoWindowAnchor = CGPointMake(0.6, 0.3);
+    
+}
+
+
+/*
 -(void)addMakerWithLatitude:(double)latitude
                   longitude:(double)longitude
                    category:(NSString *)categoryName itemName:(NSString *)name
@@ -90,14 +134,18 @@
     marker.position = CLLocationCoordinate2DMake(latitude,longitude);
     marker.title = name;
     marker.snippet = discription;
+    
     //UIImage * iconImi = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",categoryName]];
     // CGSize size = CGSizeApplyAffineTransform(iconImi.size, CGAffineTransformMakeScale(0.5, 0.5));
     //marker.icon = iconImi;
 
-    //marker.icon = itemImage;
+    // marker.icon = itemImage;
+    //marker.userData =
+    
     marker.map = self.mapView;
     marker.infoWindowAnchor = CGPointMake(0.6, 0.3);
 }
+*/
 
 #pragma marker delegate
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
@@ -111,10 +159,13 @@
     DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
     infoWindow.title.text = marker.snippet;
     [infoWindow.title sizeToFit];
-    infoWindow.itemImage.image = [UIImage imageNamed:@"clara.jpg"];
-    infoWindow.itemImage.layer.cornerRadius = 50;
-    infoWindow.itemImage.layer.masksToBounds = YES;
-
+    
+    //infoWindow.itemImage.image = [UIImage imageNamed:@"clara.jpg"];
+    // infoWindow.itemImage.layer.cornerRadius = 50;
+    // infoWindow.itemImage.layer.masksToBounds = YES;
+    
+    infoWindow.itemImage.file = [marker.userData imageFile];
+    [infoWindow.itemImage loadInBackground];
     return infoWindow;
 }
 
@@ -130,7 +181,6 @@
     self.itemsOnMap = [NSMutableArray new];
     [DONItem allItemsWithCompletion:^(BOOL success, NSArray *allItems) {
         if (success) {
-            //NSLog(@"allItems ,%@",allItems);
             self.itemsOnMap = allItems.mutableCopy;
             completaionBlock(YES);
             for (DONItem * eachitem in allItems) {
@@ -143,5 +193,9 @@
         }
     }];
 }
+
+#pragma marker URL redirect
+
+
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseUI.h"
+
 #import "DONItem.h"
 
 
 @interface DonInfowindow : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *itemImage;
+@property (weak, nonatomic) IBOutlet PFImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (strong, nonatomic)DONItem * item;
 @end

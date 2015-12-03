@@ -41,22 +41,12 @@ static NSString * const reuseIdentifier = @"cell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSInteger numberOfItems = collectionView == self.collectionView ? self.items.count : self.allCategory.count;
@@ -65,23 +55,15 @@ static NSString * const reuseIdentifier = @"cell";
 
 
 #pragma mark <UICollectionViewDelegate>
-
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
         QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
         DONItem * item = self.items[indexPath.row];
 
-        cell.cellTitle.text = item.name;
+        //cell.cellTitle.text = item.name;
         cell.image.file = item.imageFile;
         [cell.image loadInBackground];
-       //cell.image.image = [UIImage imageNamed:@"clara.jpg"];
-
-        
-        //[self setupTheQueryCell:cell atIndexPath:indexPath];
-    
-    
 
         return cell;
 }
@@ -92,10 +74,21 @@ static NSString * const reuseIdentifier = @"cell";
     if (collectionView == self.collectionView) {
         
         NSLog(@"I tapped collectionView");
+        DONItem * selectedItem = self.items[indexPath.row];
+        if (selectedItem.location) {
+            CGFloat lat = selectedItem.location.latitude;
+            CGFloat lon = selectedItem.location.longitude;
+            NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
+            NSLog(@"lat and long %@",coordinateString);
+            // wirte a bool method also with animation indicat the cell lead to a map
+            [self activeGoogleMapToLocationQuery:coordinateString];
+        }   else if (selectedItem.pickupInstructions) {
+            NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+            NSLog(@"location=%@",pareselocationString);
+            [self activeGoogleMapToLocationQuery:pareselocationString];
+        }
     }
-
 }
-
 
 
 #pragma mark cell Style
@@ -133,11 +126,11 @@ static NSString * const reuseIdentifier = @"cell";
     NSMutableArray * testData = [NSMutableArray new];
     for (int i = 0 ; i < 5 ; i++)
     {
-        [testData addObject:realData[0]];
-        [testData addObject:realData[1]];
-        [testData addObject:realData[2]];
-        [testData addObject:realData[3]];
-        [testData addObject:realData[4]];
+        [testData addObject:realData[i]];
+//        [testData addObject:realData[1]];
+//        [testData addObject:realData[2]];
+//        [testData addObject:realData[3]];
+//        [testData addObject:realData[4]];
     }
     
     return testData;
@@ -157,9 +150,25 @@ static NSString * const reuseIdentifier = @"cell";
             NSLog(@"Error:");
         }
     }];
-
-    
 }
+#pragma marker maps
 
+-(void)activeGoogleMapToLocationQuery:(NSString *)itemLocation{
+    
+    NSURL * googleCallBack = [ NSURL URLWithString: @"comgooglemaps://" ];
+    /*
+     need to add a check statement if the user has googlmap not installed add the function that allow user to turn on its current location
+     */
+    NSString * saddr = @"40.705329,-74.0161583";
+
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@",saddr,itemLocation];
+    
+    if ([[UIApplication sharedApplication] canOpenURL: googleCallBack]) {
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:googleMapsURLString]];
+    } else {
+        NSLog(@"Can't use comgooglemaps://");
+    }
+}
 
 @end

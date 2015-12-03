@@ -12,6 +12,7 @@
 #import "DONCategory.h"
 #import "QueryCell.h"
 #import "SearchCell.h"
+#import "OpenInGoogleMapsController.h"
 
 #import <ChameleonFramework/Chameleon.h>
 #import "DonGoogleMapViewController.h"
@@ -21,7 +22,6 @@
 @interface DonQueryCollectionViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *greeting;
 @property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
 
@@ -158,5 +158,7 @@
         self.containerViewController = segue.destinationViewController;
     }
 }
+
+
 
 @end
