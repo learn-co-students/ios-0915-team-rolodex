@@ -9,9 +9,11 @@
 #import "DONUserProfileViewController.h"
 #import "DONUser.h"
 #import "DONProfileItemCollectionViewController.h"
+#import "DONUserProfileItemCountView.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <Masonry/Masonry.h>
+#import "DONActivity.h"
 #define MAS_SHORTHAND
 
 #import "DONUserSettingsTableViewController.h"
@@ -20,8 +22,10 @@
 @property (nonatomic, strong) DONUser *currentUser;
 @property (nonatomic, strong) PFImageView *userPhotoImageView;
 @property (nonatomic, strong) UILabel *userNameLabel;
-@property (nonatomic, strong) UILabel *donatedItemsLabel;
-@property (nonatomic, strong) UILabel *donatedItemsCaptionLabel;
+@property (nonatomic, strong) UIStackView *itemCountStackView;
+@property (nonatomic, strong) DONUserProfileItemCountView *donatedItemsView;
+@property (nonatomic, strong) DONUserProfileItemCountView *claimedItemsView;
+@property (nonatomic, strong) DONUserProfileItemCountView *favoritedItemsView;
 @property (nonatomic, strong) UIView *itemViewSection;
 
 @property (nonatomic, strong) DONProfileItemCollectionViewController *collectionViewController;
@@ -36,7 +40,7 @@
     NSLog(@"Current user %@", self.currentUser);
     
     self.navigationItem.title = @"My Profile";
-
+    
     // Remove "Back" nav bar text next to back arrow
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
@@ -47,7 +51,7 @@
     [settingsButton setTitleTextAttributes:fontDictionary forState:UIControlStateNormal];
     
     self.navigationItem.rightBarButtonItem = settingsButton;
-
+    
     [self setupViews];
     [self constrainViews];
     [self setupViewData];
@@ -64,14 +68,18 @@
 {
     self.userPhotoImageView = [[PFImageView alloc] init];
     self.userNameLabel = [[UILabel alloc] init];
-    self.donatedItemsLabel = [[UILabel alloc] init];
-    self.donatedItemsCaptionLabel = [[UILabel alloc] init];
+    self.itemCountStackView = [[UIStackView alloc] init];
+    self.donatedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"donated"];
+    self.claimedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"claimed"];
+    self.favoritedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"favorited"];
     self.itemViewSection = [[UIView alloc] init];
     
     [self.view addSubview:self.userPhotoImageView];
     [self.view addSubview:self.userNameLabel];
-    [self.view addSubview:self.donatedItemsLabel];
-    [self.view addSubview:self.donatedItemsCaptionLabel];
+    [self.view addSubview:self.itemCountStackView];
+    [self.itemCountStackView addArrangedSubview:self.donatedItemsView];
+    [self.itemCountStackView addArrangedSubview:self.favoritedItemsView];
+    [self.itemCountStackView addArrangedSubview:self.claimedItemsView];
     [self.view addSubview:self.itemViewSection];
 }
 
@@ -88,19 +96,21 @@
         make.centerX.equalTo(self.view);
     }];
     
-    [self.donatedItemsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.itemCountStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
         make.top.equalTo(self.userNameLabel.mas_bottom).offset(30);
-        make.centerX.equalTo(self.view);
     }];
     
-    [self.donatedItemsCaptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.donatedItemsLabel.mas_bottom);
-        make.centerX.equalTo(self.view);
-    }];
+    for (UIView *view in _itemCountStackView.arrangedSubviews) {
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@60);
+            
+        }];
+    }
     
     [self.itemViewSection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(self.donatedItemsCaptionLabel.mas_bottom).offset(10);
+        make.top.equalTo(self.itemCountStackView.mas_bottom).offset(10);
     }];
 }
 
@@ -119,18 +129,20 @@
     self.userNameLabel.text = self.currentUser.username;
     self.userNameLabel.font = [UIFont systemFontOfSize:28];
     self.userNameLabel.textColor = textColor;
-    
-    self.donatedItemsLabel.font = [UIFont systemFontOfSize:36];
-    self.donatedItemsLabel.textColor = textColor;
+   
+    self.itemCountStackView.alignment = UIStackViewAlignmentCenter;
+    self.itemCountStackView.axis = UILayoutConstraintAxisHorizontal;
+    self.itemCountStackView.distribution = UIStackViewDistributionFillEqually;
+    self.itemCountStackView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success) {
-        self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)items.count];
+        self.donatedItemsView.amount = items.count;
     }];
     
-    self.donatedItemsCaptionLabel.font = [UIFont systemFontOfSize:14];
-    self.donatedItemsCaptionLabel.textColor = textColor;
-    self.donatedItemsCaptionLabel.text = @"donated";
-    
+    [DONActivity activitiesForUser:[DONUser currentUser] withCompletion:^(NSArray *activities) {
+        self.favoritedItemsView.amount = [DONActivity numberOfActivities:kActivityTypeFavorite inItemActivities:activities];
+        self.claimedItemsView.amount = [DONActivity numberOfActivities:kActivityTypeClaim inItemActivities:activities];
+    }];
 }
 
 -(void)setupItemCollectionView
@@ -152,16 +164,39 @@
 -(void)setupGestures
 {
     UITapGestureRecognizer *tapDonatedItems = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedDonatedItems)];
-    [self.donatedItemsLabel addGestureRecognizer:tapDonatedItems];
-    [self.donatedItemsCaptionLabel addGestureRecognizer:tapDonatedItems];
-    self.donatedItemsLabel.userInteractionEnabled = YES;
-    self.donatedItemsCaptionLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapFavoriteItems = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFavoriteItems)];
+    UITapGestureRecognizer *tapClaimedItems = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedClaimedItems)];
+    [self.donatedItemsView addGestureRecognizer:tapDonatedItems];
+    [self.favoritedItemsView addGestureRecognizer:tapFavoriteItems];
+    [self.claimedItemsView addGestureRecognizer:tapClaimedItems];
+    
 }
 
 -(void)tappedDonatedItems
 {
     [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success) {
-        NSLog(@"%@",items);
+        self.collectionViewController.items = items;
+    }];
+}
+
+-(void)tappedFavoriteItems
+{
+    [DONActivity activitiesForUser:[DONUser currentUser] activityType:kActivityTypeFavorite withCompletion:^(NSArray *activities) {
+        NSMutableArray *items = [@[] mutableCopy];
+        for (DONActivity *activity in activities) {
+            [items addObject:activity.item];
+        }
+        self.collectionViewController.items = items;
+    }];
+}
+
+-(void)tappedClaimedItems
+{
+    [DONActivity activitiesForUser:[DONUser currentUser] activityType:kActivityTypeClaim withCompletion:^(NSArray *activities) {
+        NSMutableArray *items = [@[] mutableCopy];
+        for (DONActivity *activity in activities) {
+            [items addObject:activity.item];
+        }
         self.collectionViewController.items = items;
     }];
 }
