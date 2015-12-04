@@ -5,26 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
-        <scene sceneID="OPp-of-Y4y">
-            <objects>
-                <viewController id="jLh-0S-Lmu" customClass="MapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BYa-6m-ypP"/>
-                        <viewControllerLayoutGuide type="bottom" id="PfR-FE-K01"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GOx-MR-JcB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xVx-Fz-BB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="328.5" y="354.5"/>
-        </scene>
         <!--Don Google Map View Controller-->
         <scene sceneID="wfO-y7-Anu">
             <objects>
@@ -37,14 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dne-4X-2BB">
-                                <rect key="frame" x="0.0" y="207" width="375" height="460"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dne-4X-2BB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="dne-4X-2BB" firstAttribute="top" secondItem="0Cr-mW-XQv" secondAttribute="top" id="eb7-jZ-adM"/>
+                            <constraint firstItem="dne-4X-2BB" firstAttribute="leading" secondItem="0Cr-mW-XQv" secondAttribute="leading" id="kvD-5M-Owh"/>
+                            <constraint firstItem="kTy-Pi-zCd" firstAttribute="top" secondItem="dne-4X-2BB" secondAttribute="bottom" id="mEb-ko-aMa"/>
+                            <constraint firstAttribute="trailing" secondItem="dne-4X-2BB" secondAttribute="trailing" id="te9-cv-bbs"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>

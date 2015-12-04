@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We only use your location to help you find nearby items</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -30,8 +31,27 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>tree</string>
+			<key>CFBundleURLName</key>
+			<string>Rdex.DonateApp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>donateApp://</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -46,5 +66,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>item 0</key>
+	<string>googlechromes</string>
+	<key>item 1</key>
+	<string>comgooglemaps</string>
 </dict>
 </plist>

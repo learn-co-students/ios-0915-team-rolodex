@@ -12,8 +12,6 @@
 
 @interface SearchCell : UICollectionViewCell
 
-//@property (weak, nonatomic) IBOutlet  UIImageView * imageView;
-@property (weak, nonatomic) IBOutlet UILabel *searchLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *imageView;
 
 @end
