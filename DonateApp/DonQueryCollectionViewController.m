@@ -21,9 +21,11 @@
 #import "UIViewController+MMDrawerController.h"
 
 #import "DONItemViewController.h"
+#import "DONCollectionViewDataModel.h"
 
 @interface DonQueryCollectionViewController ()
 
+// Guang
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
@@ -32,8 +34,12 @@
 
 @property (strong, nonatomic) NSString * userOnPage;
 @property (strong, nonatomic) NSArray * items;
-@property (strong, nonatomic) NSMutableArray * allCategory;
+@property (strong, nonatomic) NSArray * allCategory;
 
+// Jon
+@property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
+@property (nonatomic, strong) UIButton *mapButton;
+@property (nonatomic, strong) UIColor *mapButtonColor;
 @end
 
 @implementation DonQueryCollectionViewController
@@ -51,28 +57,34 @@
  
     //[self activeXibCell];
     [self searchBarCellStyle];
-    [self getCategoryWithBlock:^(BOOL success) {
-        NSLog(@"get the catoory");
-    }];
+    
+    // Data model
+    [self setupNotifications];
+    self.dataModel = [DONCollectionViewDataModel sharedInstance];
 
     // Drawer menu code
-    [self setupLeftMenuButton];
-
+    [self setupNavigationBar];
+   
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self getAllPdata]; // do you set this as a main Queae ?
-
 }
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark Navigation Bar Setup
 // Drawer menu code
+
+-(void)setupNavigationBar {
+    [self setupLeftMenuButton];
+    [self setupRightMenuButton];
+    
+}
 
 -(void)setupLeftMenuButton{
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
@@ -82,6 +94,50 @@
 
 -(void)leftDrawerButtonPress:(id)sender{
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+-(void)setupRightMenuButton {
+    self.mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.mapButton.frame = CGRectMake(0, 0, 22, 22);
+    UIImage *locationIcon = [[UIImage imageNamed:@"Location Icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.mapButton setImage:locationIcon forState:UIControlStateNormal];
+    self.mapButtonColor = [UIColor grayColor];
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
+    self.mapButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.mapButton.imageView.frame = CGRectMake(0, 0, 22, 22);
+    [self.mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.mapButton];
+    [self.navigationItem setRightBarButtonItem:item animated:YES];
+    
+}
+
+#pragma mark Notifications
+-(void)setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(updatedCategories) name:kDidUpdateCategoriesNotification object:nil];
+    [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
+    [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
+}
+
+-(void)updatedCategories
+{
+    // Reload the collection view
+    
+    self.allCategory = self.dataModel.allCategories;
+    [self.searchCollectionView reloadData];
+}
+
+-(void)updatingItems
+{
+    // Turn the userinteraction OFF
+    self.searchCollectionView.userInteractionEnabled = NO;
+}
+
+-(void)updatedItems
+{
+    // turn the UserInteraction back ON
+    self.searchCollectionView.userInteractionEnabled = YES;
 }
 
 #pragma mark collectionView delegate
@@ -108,10 +164,18 @@
         UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
         sCell.imageView.image = iconImage;
         
-//        
 //        sCell.imageView.file = category.imageFile;
 //        [sCell.imageView loadInBackground];
+        NSString *categoryName = category.name;
+        UIImage *image = [UIImage imageNamed:categoryName];
+        sCell.imageView.image = image;
         
+        if (!category.selected) {
+            sCell.imageView.alpha = 0.6f;
+        } else {
+            sCell.imageView.alpha = 1.0f;
+        }
+
         return sCell;
     }
     return nil;
@@ -121,12 +185,16 @@
     
 
     if (collectionView == self.searchCollectionView) {
-        NSLog(@"I tapped searchCollectionView");
+        DONCategory *category = self.allCategory[indexPath.row];
+        [self.dataModel toggleCategory:category];
+        
         self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
+
         [self makeTheStackOfcats];
         UILabel * selectedlabel = [ UILabel new ];
         selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
-        selectedlabel.hidden = ! selectedlabel.hidden;
+        selectedlabel.hidden = !category.selected;
+        
     }
 }
 
@@ -158,24 +226,11 @@
 // style for the category style
 -(void)searchBarCellStyle{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(75, 75);
+    flowLayout.itemSize = CGSizeMake(60, 60);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // add vertical
     self.searchCollectionView.collectionViewLayout = flowLayout;
 }
 
-#pragma mark  data
-
--(void)getCategoryWithBlock:(void (^)(BOOL success))completationBlock{
-    
-    [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
-        if (success){
-            self.allCategory = [NSMutableArray new];
-            self.allCategory = categories.mutableCopy;
-            NSLog(@"self.allCategory %@",self.allCategory);
-            [self.searchCollectionView reloadData];
-        }
-    }];
-}
 
   #pragma mark container vew
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -186,6 +241,14 @@
 
 -(IBAction)goTomap:(id)sender {
     [self.containerViewController swapViewControllers];
+    
+    if (self.mapButtonColor == [UIColor grayColor]) {
+        self.mapButtonColor = [UIColor blackColor];
+    } else {
+        self.mapButtonColor = [UIColor grayColor];
+    }
+    
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -196,6 +259,7 @@
     }
 }
 
+#pragma view life cycle
 
 
 @end

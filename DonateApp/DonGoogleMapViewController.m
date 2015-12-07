@@ -12,14 +12,14 @@
 #import "DONUser.h"
 #import "DONCategory.h"
 #import "DonInfowindow.h"
-
+#import "DONCollectionViewDataModel.h"
 @import GoogleMaps;
 
 @interface DonGoogleMapViewController () <GMSMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *googleMapView;
 @property (strong, nonatomic) GMSMapView * mapView;
-@property (strong, nonatomic) NSMutableArray * itemsOnMap;
+@property (strong, nonatomic) NSArray * itemsOnMap;
 
 @end
 
@@ -33,9 +33,12 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     [self createMap];
-    [self positionMarkers];
+    [self itmeMapUpdate];
+    //[self positionMarkers];
     locationManager = [[CLLocationManager alloc] init];
     // current location get!
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itmeMapUpdate) name:kDidUpdateItemsNotification object:nil];
 
 }
 
@@ -56,9 +59,11 @@
 
 -(void)positionMarkers{
     
-    [self getLocationswithCompletion:^(BOOL success){
-        if (success) {
+    //[self getLocationswithCompletion:^(BOOL success){
+     //   if (success) {
+    
             for (DONItem * eachItem in self.itemsOnMap) {
+                NSLog(@"%@",eachItem);
                // [self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:eachItem.categories];
                 NSArray * test = [eachItem objectForKey:@"categories"];
                 PFQuery * catQ = [PFQuery queryWithClassName:@"Category"];
@@ -95,8 +100,8 @@
                     //[self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name itemName:eachItem.name discription:eachItem.itemDescription itemImage:iconImage];
                 }];
              }
-           }
-        }];
+       //    }
+     //   }];
 }
 
 -(void)addMarkerWithItem:(DONItem *)item WithLatitude:(double)latitude
@@ -176,6 +181,7 @@
 
 
 #pragma marker get data
+/*
 -(void)getLocationswithCompletion:(void (^)(BOOL success))completaionBlock;{
     
     self.itemsOnMap = [NSMutableArray new];
@@ -193,7 +199,7 @@
         }
     }];
 }
-
+*/
 #pragma marker imageResize and other small methods
 
 -(UIImage *)imageByDrawingWhiteCircleBehindImage:(UIImage *)image andResizingToSize:(CGSize)size
@@ -245,6 +251,9 @@
     return image;
 }
 
-
+-(void)itmeMapUpdate{
+    self.itemsOnMap = [DONCollectionViewDataModel sharedInstance].items;
+    [self positionMarkers];
+}
 
 @end

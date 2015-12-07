@@ -161,6 +161,19 @@
     }];
 }
 
++(void)itemsWithCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success, NSArray *items))completion
+{
+    PFQuery *itemCategoryQuery = [self query];
+    [itemCategoryQuery whereKey:@"categories" containedIn:categories];
+    [itemCategoryQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            completion(YES,objects);
+        } else {
+            completion(NO, nil);
+        }
+    }];
+}
+
 +(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion{
     
     PFQuery *itemCategoryQuery = [self query];
