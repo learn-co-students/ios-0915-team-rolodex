@@ -28,15 +28,6 @@
 //@property (strong, nonatomic)  UIImageView *backGroundView;
 @property (strong,nonatomic)  UIImageView *selectedImageView;
 
-//guang props
-//
-//@property (strong, nonatomic) UICollectionView *queryCollection;
-
-//@property (strong, nonatomic) UICollectionView *collectionView;
-//@property (strong, nonatomic) UICollectionView *searchCollectionView;
-
-///end guang props
-
 
 @property (strong, nonatomic) UILabel *useCurrentLocationLabel;
 @property (strong, nonatomic) UISwitch *useCurrentLocationSwitch;
@@ -44,16 +35,20 @@
 @property (strong, nonatomic)  UIButton *saveButton;
 
 //scrollview ish
-//@property (strong, nonatomic)  UIScrollView *categorySelect;
+@property (strong, nonatomic)  UIScrollView *categorySelect;
 //@property (strong, nonatomic)  UIView *categoryContentView;
-//@property (strong, nonatomic)  UIStackView *categoryStackView;
-//@property (strong, nonatomic)  UIImageView *firstTag;
-//@property (strong, nonatomic)  UIImageView *secondTag;
-//@property (strong, nonatomic)  UIImageView *thirdTag;
-//@property (strong, nonatomic)  UIImageView *fourthTag;
-
-//@property (strong, nonatomic)  UIImageView *<##>Tag;
-
+@property (strong, nonatomic)  UIStackView *categoryStackView;
+@property (strong, nonatomic)  UIImageView *firstTag;
+@property (strong, nonatomic)  UIImageView *secondTag;
+@property (strong, nonatomic)  UIImageView *thirdTag;
+@property (strong, nonatomic)  UIImageView *fourthTag;
+@property (strong, nonatomic)  UIImageView *fifthTag;
+@property (strong, nonatomic)  UIImageView *sixthTag;
+@property (strong, nonatomic)  UIImageView *seventhTag;
+@property (strong, nonatomic)  UIImageView *eigthTag;
+@property (strong, nonatomic)  UIImageView *ninthTag;
+@property (strong, nonatomic)  UIImageView *tenthTag;
+@property (strong, nonatomic)  UIImageView *eleventhTag;
 
 @property (strong, nonatomic)  UITextField *itemNameTextField;
 @property (strong, nonatomic)  UITextField *itemDescriptionTextField;
@@ -74,6 +69,8 @@
 @property (strong, nonatomic) UIImage *itemImage;
 @property (strong, nonatomic) PFFile *itemImagePF;
 @property (strong, nonatomic) NSString *categoryString;
+@property (strong, nonatomic) NSMutableArray *categories;
+
 //@property (strong, nonatomic) DONCategory *
 
 
