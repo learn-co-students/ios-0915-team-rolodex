@@ -10,7 +10,7 @@
 #import "DONUser.h"
 #import "DONItem.h"
 #import "DONCategory.h"
-#import "QueryCell.h"
+//#import "QueryCell.h"
 #import "SearchCell.h"
 
 #import <ChameleonFramework/Chameleon.h>
@@ -100,14 +100,18 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (collectionView == self.searchCollectionView) {
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
         DONCategory * category = self.allCategory[indexPath.row];
         //sCell.searchLabel.text = category.name;
-        sCell.imageView.file = category.imageFile;
-        [sCell.imageView loadInBackground];
-        [self makeTheStackOfcats];
+        
+        UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
+        sCell.imageView.image = iconImage;
+        
+//        
+//        sCell.imageView.file = category.imageFile;
+//        [sCell.imageView loadInBackground];
+        
         return sCell;
     }
     return nil;
@@ -119,7 +123,7 @@
     if (collectionView == self.searchCollectionView) {
         NSLog(@"I tapped searchCollectionView");
         self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
-        
+        [self makeTheStackOfcats];
         UILabel * selectedlabel = [ UILabel new ];
         selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
         selectedlabel.hidden = ! selectedlabel.hidden;
@@ -143,23 +147,23 @@
 
   #pragma mark  cell style
 //style for the old collection.  we are not using it this method anymore, but keep it for now :)
--(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
-    UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
-    UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
-    NSArray * x = @[one,two];
-    cell.backgroundColor = GradientColor(UIGradientStyleRadial,cell.frame,x);
-
-}
+//-(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+//    cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
+//    UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
+//    UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
+//    NSArray * x = @[one,two];
+//    cell.backgroundColor = GradientColor(UIGradientStyleRadial,cell.frame,x);
+//
+//}
 // style for the category style
 -(void)searchBarCellStyle{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(60, 60);
+    flowLayout.itemSize = CGSizeMake(75, 75);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // add vertical
     self.searchCollectionView.collectionViewLayout = flowLayout;
 }
 
-  #pragma mark  data
+#pragma mark  data
 
 -(void)getCategoryWithBlock:(void (^)(BOOL success))completationBlock{
     

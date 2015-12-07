@@ -12,7 +12,7 @@
 #import "DONItem.h"
 
 
-@interface DonInfowindow : UIView
+@interface DonInfowindow : UIVisualEffectView
 
 @property (weak, nonatomic) IBOutlet PFImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UILabel *title;

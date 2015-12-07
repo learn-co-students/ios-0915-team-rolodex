@@ -59,14 +59,45 @@
 }
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    if ([[UIApplication sharedApplication] canOpenURL:
-         [NSURL URLWithString:@"comgooglemaps://"]]) {
-        [[UIApplication sharedApplication] openURL:
-         [NSURL URLWithString:[self gmapAppURL]]];
-    } else {
+{   NSLog(@" you tapped me on the map");
+    
+    if (self.location) {
+        CGFloat lat = coordinate.latitude;
+        CGFloat lon = coordinate.longitude;
+        NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
+        NSLog(@"lat and long %@",coordinateString);
+        // wirte a bool method also with animation indicat the cell lead to a map
+        [self activeGoogleMapToLocationQuery:coordinateString];
+    }/*
+        else if (selectedItem.pickupInstructions) {
+        NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        NSLog(@"location=%@",pareselocationString);
+        [self activeGoogleMapToLocationQuery:pareselocationString];
+      */
+    
+    else {
         [[UIApplication sharedApplication] openURL:
         [NSURL URLWithString:[self amapAppURL]]];
+    }
+}
+
+#pragma marker map direction
+
+-(void)activeGoogleMapToLocationQuery:(NSString *)itemLocation{
+    
+    NSURL * googleCallBack = [ NSURL URLWithString: @"comgooglemaps://" ];
+    /*
+     need to add a check statement if the user has googlmap not installed add the function that allow user to turn on its current location
+     */
+    NSString * saddr = @"40.705329,-74.0161583";
+    
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@",saddr,itemLocation];
+    
+    if ([[UIApplication sharedApplication] canOpenURL: googleCallBack]) {
+        [[UIApplication sharedApplication] openURL:
+         [NSURL URLWithString:googleMapsURLString]];
+    } else {
+        NSLog(@"Can't use comgooglemaps://");
     }
 }
 
@@ -75,7 +106,6 @@
     CGFloat latitude = self.mapView.camera.target.latitude;
     CGFloat longitude = self.mapView.camera.target.longitude;
     CGFloat zoom = self.mapView.camera.zoom;
-    
     return [NSString stringWithFormat:@"comgooglemaps://?q=%0.6f,%0.6f&zoom=%0.6f", latitude, longitude, zoom];
 }
                                                    
@@ -84,7 +114,6 @@
     CGFloat latitude = self.mapView.camera.target.latitude;
     CGFloat longitude = self.mapView.camera.target.longitude;
     CGFloat zoom = self.mapView.camera.zoom;
-    
     return [NSString stringWithFormat:@"http://maps.apple.com/?q=%0.6f,%0.6f&z=%0.6f", latitude, longitude, zoom];
 }
 
@@ -100,7 +129,6 @@
     topBorder.shadowOpacity = 0.5f;
     topBorder.shadowOffset = CGSizeMake(0, 2);
     [self.layer addSublayer:topBorder];
-    
 }
 
 

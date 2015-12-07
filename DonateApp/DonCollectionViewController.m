@@ -12,6 +12,7 @@
 #import "DONItem.h"
 #import "DONCategory.h"
 #import "QueryCell.h"
+#import "DONItemViewController.h"
 
 @interface DonCollectionViewController ()
 
@@ -74,6 +75,7 @@ static NSString * const reuseIdentifier = @"cell";
     if (collectionView == self.collectionView) {
         
         NSLog(@"I tapped collectionView");
+        /* push to the map direction
         DONItem * selectedItem = self.items[indexPath.row];
         if (selectedItem.location) {
             CGFloat lat = selectedItem.location.latitude;
@@ -87,6 +89,10 @@ static NSString * const reuseIdentifier = @"cell";
             NSLog(@"location=%@",pareselocationString);
             [self activeGoogleMapToLocationQuery:pareselocationString];
         }
+        */
+        DONItem *item = self.items[indexPath.row];
+        DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:item];
+        [self.navigationController pushViewController:itemViewController animated:YES];
     }
 }
 

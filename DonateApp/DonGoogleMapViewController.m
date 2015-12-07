@@ -7,6 +7,7 @@
 //
 
 #import "DonGoogleMapViewController.h"
+#import "DONItemViewController.h"
 #import "DONItem.h"
 #import "DONUser.h"
 #import "DONCategory.h"
@@ -25,7 +26,7 @@
 @implementation DonGoogleMapViewController
 
 {
-    //GMSMapView * mapView;
+    CLLocationManager *locationManager;
 }
 
 
@@ -33,6 +34,8 @@
     [super viewDidLoad];
     [self createMap];
     [self positionMarkers];
+    locationManager = [[CLLocationManager alloc] init];
+    // current location get!
 
 }
 
@@ -49,7 +52,6 @@
     self.mapView.myLocationEnabled = YES;
     self.mapView.delegate = self;
     [self.googleMapView addSubview: self.mapView];
-
 }
 
 -(void)positionMarkers{
@@ -64,51 +66,38 @@
                 [catQ findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                     DONCategory * category = (DONCategory *)objects[0];
                     NSLog(@"category name = %@ with image %@", category.name, category.imageFile);
-                    //category.imageFile
-                    
-                    
-                    __block UIImage *iconImage = [UIImage new];
-                    PFFile *iconImageFile = category.imageFile;
+
+                    UIImage *localIconImage = [self imageByDrawingWhiteCircleBehindImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]] andResizingToSize:CGSizeMake(20, 20)];
                     
                     __weak typeof(self) tmpself = self;
-
-
+                    [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude
+                                   discription:eachItem.itemDescription itemImage:localIconImage];
                     
+                    /*
+                    __block UIImage *iconImage = [UIImage new];
+                    PFFile *iconImageFile = category.imageFile;
+                    __weak typeof(self) tmpself = self;
+
                     //TODO: Create a weak reference to SELF to be used within this block (calling self in BLOCK created a retain cycle)
                     
-                    
                     [iconImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-                        
                     
-                        
                         if (!error) {
-                            
-                            
                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                 iconImage = [UIImage imageWithData:imageData];
+                                UIImage * resizedIcon = [self image:iconImage scaledToSize:CGSizeMake(31,31)];
                                 [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude
-                                            discription:eachItem.itemDescription itemImage:iconImage];
-
-                                
-                                
+                                            discription:eachItem.itemDescription itemImage:resizedIcon];
                             }];
-                            
-                            
                         }
                     }];
-//
-                    
-                
-                    
+                    */
                     //[self addMakerWithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude category:category.name itemName:eachItem.name discription:eachItem.itemDescription itemImage:iconImage];
-                    
                 }];
              }
            }
         }];
 }
-
-
 
 -(void)addMarkerWithItem:(DONItem *)item WithLatitude:(double)latitude
                longitude:(double)longitude discription:(NSString *)discription itemImage:(UIImage *)itemImage{
@@ -120,32 +109,20 @@
     marker.map = self.mapView;
     marker.icon = itemImage;
     marker.infoWindowAnchor = CGPointMake(0.6, 0.3);
-    
 }
+//
+//-(CLLocationCoordinate2D) getLocation{
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    [locationManager requestWhenInUseAuthorization];
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    locationManager.distanceFilter = kCLDistanceFilterNone;
+//    [locationManager startUpdatingLocation];
+//    CLLocation *location = [locationManager location];
+//    CLLocationCoordinate2D coordinate = [location coordinate];
+//    return coordinate;
+//}
 
-
-/*
--(void)addMakerWithLatitude:(double)latitude
-                  longitude:(double)longitude
-                   category:(NSString *)categoryName itemName:(NSString *)name
-                discription:(NSString *)discription itemImage:(UIImage *)itemImage{
-    
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(latitude,longitude);
-    marker.title = name;
-    marker.snippet = discription;
-    
-    //UIImage * iconImi = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",categoryName]];
-    // CGSize size = CGSizeApplyAffineTransform(iconImi.size, CGAffineTransformMakeScale(0.5, 0.5));
-    //marker.icon = iconImi;
-
-    // marker.icon = itemImage;
-    //marker.userData =
-    
-    marker.map = self.mapView;
-    marker.infoWindowAnchor = CGPointMake(0.6, 0.3);
-}
-*/
 
 #pragma marker delegate
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
@@ -157,15 +134,31 @@
     NSLog(@"infoVieww!");
     
     DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
+    
+    
+    //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    infoWindow.itemImage.file = [marker.userData imageFile];
+    [infoWindow.itemImage loadInBackground];
+    // }];
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    effectView.frame = infoWindow.title.frame;
+    [infoWindow addSubview:effectView];
+    [infoWindow sendSubviewToBack:effectView];
+    
     infoWindow.title.text = marker.snippet;
+    
+    infoWindow.title.adjustsFontSizeToFitWidth = YES;
     [infoWindow.title sizeToFit];
+    
+    UIEdgeInsets insets = UIEdgeInsetsMake(5, 5, 5, 5);
+    infoWindow.title.frame = UIEdgeInsetsInsetRect(infoWindow.title.frame, insets);
     
     //infoWindow.itemImage.image = [UIImage imageNamed:@"clara.jpg"];
     // infoWindow.itemImage.layer.cornerRadius = 50;
     // infoWindow.itemImage.layer.masksToBounds = YES;
     
-    infoWindow.itemImage.file = [marker.userData imageFile];
-    [infoWindow.itemImage loadInBackground];
     return infoWindow;
 }
 
@@ -174,6 +167,13 @@
     CGPoint point = [mapView.projection pointForCoordinate:marker.position];
     return NO;
 }
+
+-(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
+    NSLog(@"tapped into the infobox!");
+    DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:marker.userData];
+    [self.navigationController pushViewController:itemViewController animated:YES];
+}
+
 
 #pragma marker get data
 -(void)getLocationswithCompletion:(void (^)(BOOL success))completaionBlock;{
@@ -194,7 +194,56 @@
     }];
 }
 
-#pragma marker URL redirect
+#pragma marker imageResize and other small methods
+
+-(UIImage *)imageByDrawingWhiteCircleBehindImage:(UIImage *)image andResizingToSize:(CGSize)size
+{
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size.width, size.height)];
+   circlePath.lineWidth = 1;
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    
+    [[UIColor whiteColor] setFill];
+    [circlePath fill];
+//    
+//    [[UIColor colorWithWhite:0.2 alpha:0.7] setStroke];
+//    [circlePath stroke];
+//
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return result;
+}
+
+- (UIImage *)image:(UIImage*)originalImage scaledToSize:(CGSize)size
+{
+    //avoid redundant drawing
+    if (CGSizeEqualToSize(originalImage.size, size))
+    {
+        return originalImage;
+    }
+    //create drawing context
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
+    //draw
+    [originalImage drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+    //capture resultant image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //const float colorMasking[6] = {1.0, 1.0, 0.0, 0.0, 1.0, 1.0};
+    //image = [UIImage imageWithCGImage: CGImageCreateWithMaskingColors(image.CGImage, colorMasking)];
+    
+    /*
+    const float colorMasking[6] = {1.0, 1.0, 0.0, 0.0, 1.0, 1.0}; //{255.0, 255.0, 255.0, 255.0, 255.0, 255.0};
+    CGImageRef imageRef = CGImageCreateWithMaskingColors(originalImage.CGImage, colorMasking);
+    UIImage* finalImage = [UIImage imageWithCGImage:imageRef];
+    */
+
+    return image;
+}
 
 
 
