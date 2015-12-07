@@ -8,7 +8,8 @@ pod 'ChameleonFramework'
 pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
-pod 'Mapbox-iOS-SDK'
+pod 'GoogleMaps'
+pod 'DateTools'
 pod 'SCLAlertView-Objective-C'
 
 # disable bitcode in every sub-target

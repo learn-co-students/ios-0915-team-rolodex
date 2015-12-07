@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import "DONUser.h"
 #import "DONSettingsEnum.h"
-#import "DONMainViewController.h"
+#import "DONQueryCollectionViewController.h"
 
 @interface DONUserSettingsTableViewController () <UITableViewDelegate>
 @property (nonatomic, strong) DONUser *currentUser;
@@ -27,6 +27,9 @@
 {
     self.currentUser = [DONUser currentUser];
     self.navigationItem.title = @"Settings";
+   
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:236.0/255.0 green:235.0/255.0 blue:241.0/255.0 alpha:1.0];
 }
@@ -89,7 +92,7 @@
                     [DONUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
                         NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
                         for (UIViewController *aViewController in allViewControllers) {
-                            if ([aViewController isKindOfClass:[DONMainViewController class]]) {
+                            if ([aViewController isKindOfClass:[DonQueryCollectionViewController class]]) {
                                 [self.navigationController popToViewController:aViewController animated:YES];
                             }
                         }

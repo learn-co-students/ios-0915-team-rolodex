@@ -10,6 +10,7 @@
 
 @implementation DONCategory
 @dynamic name;
+@dynamic selected;
 
 + (void)load {
     [self registerSubclass];
@@ -49,5 +50,19 @@
     }];
 }
 
+
++(void)allCategoriesWithCompletion:(void (^)(BOOL success, NSArray *categories))completion
+{
+    PFQuery *categoriesQuery = [self.class query];
+    [categoriesQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        completion(YES, objects);
+    }];
+}
+
+-(PFFile *)imageFile
+{
+    return [self objectForKey:@"icon"];
+    
+}
 
 @end

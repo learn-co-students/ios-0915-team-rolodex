@@ -9,7 +9,11 @@
 #import "PFObject.h"
 #import "PFSubclassing.h"
 #import <ParseUI/ParseUI.h>
+
 #import	"CoreLocation/CoreLocation.h"
+
+
+#import "PFGeoPoint.h"
 
 
 @class DONUser;
@@ -24,22 +28,24 @@
 
 //
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *itemDescription;
 @property (nonatomic, strong) NSString *pickupInstructions;
 @property (nonatomic, strong) DONUser *listedBy;
 @property (nonatomic, strong) NSNumber *views;
+
 //@property (nonatomic) CLLocationManager *manager;
 
 //@property (nonatomic, strong) PFGeoPoint *location;
+
+
 
 @property (nonatomic, strong) PFFile *itemImagePF;
 
 @property (nonatomic, strong) UIImage *itemImage;
 
 @property (nonatomic, strong, readonly) PFFile *imageFile;
+@property (nonatomic, strong) PFGeoPoint*  location;
 
-
-//@property (nonatomic, strong)
 
 +(NSString *)parseClassName;
 
@@ -86,5 +92,7 @@
  Returns an array of items for the given category
 */
 +(void)itemsWithCategory:(NSString *)category withCompletion:(void (^)(BOOL success, NSArray *items))completion;
-
++(void)itemsWithCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success, NSArray *items))completion;
++(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion;
+-(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion;
 @end

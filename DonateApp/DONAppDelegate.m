@@ -13,6 +13,8 @@
 #import "MMDrawerController.h"
 #import "DONDrawerViewController.h"
 
+#import <GoogleMaps/googleMaps.h>
+
 @interface DONAppDelegate ()
 @property (nonatomic, strong) MMDrawerController *drawerController;
 @end
@@ -23,11 +25,29 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [Parse setApplicationId:PARSE_APPLICATION_ID clientKey:PARSE_CLIENT_KEY];
+    [GMSServices provideAPIKey:GOOGLE_MAPS_API_KEY];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *viewedObjects = [[defaults objectForKey:@"viewedObjects"] mutableCopy];
+    
+    if (!viewedObjects) {
+        [defaults setObject:[NSArray new] forKey:@"viewedObjects"];
+    }
+    [defaults synchronize];
     
     // Center and Drawer View Controllers
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"centerViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
+    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    
+    // Set custom back arrow for navigation controller
+    [navigationController.navigationBar setBackIndicatorImage:
+     [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
+     [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
+    
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
     // MMDrawerController init and setup
@@ -35,11 +55,11 @@
                              initWithCenterViewController:navigationController
                              leftDrawerViewController:leftSideDrawerViewController];
     [self.drawerController setShowsShadow:YES];
-    [self.drawerController setMaximumLeftDrawerWidth:250.0];
-    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [self.drawerController setMaximumLeftDrawerWidth:220.0];
+    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [self.drawerController setShouldStretchDrawer:NO];
-    
+
     // Set Animation style for drawer using the visual state manager
     [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
     [self.drawerController
@@ -54,6 +74,7 @@
     
     // Main window setup and root view controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window setRootViewController:self.drawerController];
     [self.window makeKeyAndVisible];
     

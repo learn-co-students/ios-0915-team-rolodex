@@ -10,5 +10,5 @@
 #import "DONItem.h"
 
 @interface DONItemViewController : UIViewController
-@property (nonatomic, strong) DONItem *item;
+-(instancetype)initWithItem:(DONItem *)item;
 @end
