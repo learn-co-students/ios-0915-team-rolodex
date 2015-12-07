@@ -61,13 +61,16 @@
     [self postWillUpdateItemsNotification];
     
     if (categories.count == 0) {
-        categories = self.allCategories;
+        [DONItem allItemsWithCompletion:^(BOOL success, NSArray *items) {
+            self.items = items;
+            [self postDidUpdateItemsNotification];
+        }];
+    } else {
+        [DONItem itemsWithCategories:categories withCompletion:^(BOOL success, NSArray *items) {
+            self.items = items;
+            [self postDidUpdateItemsNotification];
+        }];
     }
-    
-    [DONItem itemsWithCategories:categories withCompletion:^(BOOL success, NSArray *items) {
-        self.items = items;
-        [self postDidUpdateItemsNotification];
-    }];
 }
 
 -(void)postCategoriesUpdateNotification

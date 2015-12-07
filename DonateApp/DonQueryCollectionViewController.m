@@ -38,6 +38,8 @@
 
 // Jon
 @property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
+@property (nonatomic, strong) UIButton *mapButton;
+@property (nonatomic, strong) UIColor *mapButtonColor;
 @end
 
 @implementation DonQueryCollectionViewController
@@ -95,15 +97,16 @@
 }
 
 -(void)setupRightMenuButton {
-    UIButton *mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    mapButton.frame = CGRectMake(0, 0, 22, 22);
+    self.mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.mapButton.frame = CGRectMake(0, 0, 22, 22);
     UIImage *locationIcon = [[UIImage imageNamed:@"Location Icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [mapButton setImage:locationIcon forState:UIControlStateNormal];
-    [mapButton.imageView setTintColor:[UIColor grayColor]];
-    mapButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    mapButton.imageView.frame = CGRectMake(0, 0, 22, 22);
-    [mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
+    [self.mapButton setImage:locationIcon forState:UIControlStateNormal];
+    self.mapButtonColor = [UIColor grayColor];
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
+    self.mapButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.mapButton.imageView.frame = CGRectMake(0, 0, 22, 22);
+    [self.mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.mapButton];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
     
 }
@@ -185,7 +188,7 @@
         [self makeTheStackOfcats];
         UILabel * selectedlabel = [ UILabel new ];
         selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
-        selectedlabel.hidden = ! selectedlabel.hidden;
+        selectedlabel.hidden = !category.selected;
         
     }
 }
@@ -232,6 +235,14 @@
 
 -(IBAction)goTomap:(id)sender {
     [self.containerViewController swapViewControllers];
+    
+    if (self.mapButtonColor == [UIColor grayColor]) {
+        self.mapButtonColor = [UIColor blackColor];
+    } else {
+        self.mapButtonColor = [UIColor grayColor];
+    }
+    
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
