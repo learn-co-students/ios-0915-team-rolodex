@@ -11,24 +11,54 @@
 #import "DONItem.h"
 #import "DONUser.h"
 #import "SCLAlertView.h"
-
-
+#import "Masonry.h"
+#import "SearchCell.h"
+#import "DONCategory.h"
 
 @interface DONAddItemViewController : UIViewController
+
+
+//layout constraints for keybaord
+
+
+
+@property (nonatomic, strong)  UIScrollView *scrollView;
+@property (nonatomic,strong)  UIView *containerView;
+//@property (strong, nonatomic) UIImage *background;
+//@property (strong, nonatomic)  UIImageView *backGroundView;
+@property (strong,nonatomic)  UIImageView *selectedImageView;
+
+//guang props
+//
+//@property (strong, nonatomic) UICollectionView *queryCollection;
+
+//@property (strong, nonatomic) UICollectionView *collectionView;
+//@property (strong, nonatomic) UICollectionView *searchCollectionView;
+
+///end guang props
+
+
+@property (strong, nonatomic) UILabel *useCurrentLocationLabel;
+@property (strong, nonatomic) UISwitch *useCurrentLocationSwitch;
 @property (nonatomic, strong) UIColor *onTintColor;
-//image shown to user for item
-@property (weak, nonatomic) IBOutlet UIImageView *addPhotoPlaceholder;
+@property (strong, nonatomic)  UIButton *saveButton;
 
-@property (weak, nonatomic) UISwitch *useCurrentLocationSwitch;
+//scrollview ish
+//@property (strong, nonatomic)  UIScrollView *categorySelect;
+//@property (strong, nonatomic)  UIView *categoryContentView;
+//@property (strong, nonatomic)  UIStackView *categoryStackView;
+//@property (strong, nonatomic)  UIImageView *firstTag;
+//@property (strong, nonatomic)  UIImageView *secondTag;
+//@property (strong, nonatomic)  UIImageView *thirdTag;
+//@property (strong, nonatomic)  UIImageView *fourthTag;
 
-@property (weak,nonatomic) IBOutlet UIImageView *selectedImageView;
+//@property (strong, nonatomic)  UIImageView *<##>Tag;
 
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
-//VC properties
-@property (weak, nonatomic) IBOutlet UITextField *itemNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *itemDescriptionTextField;
-@property (weak, nonatomic) IBOutlet UITextField *pickupInstructionsTextField;
+@property (strong, nonatomic)  UITextField *itemNameTextField;
+@property (strong, nonatomic)  UITextField *itemDescriptionTextField;
+@property (strong, nonatomic)  UITextField *pickupInstructionsTextField;
+@property (strong, nonatomic)  UITextField *categoriesTextField;
 
 
 
@@ -38,14 +68,18 @@
 @property (strong, nonatomic) NSString *itemDescription;
 @property (strong, nonatomic) NSString *pickupInstructions;
 @property (strong, nonatomic) DONUser *listedBy;
+@property (strong, nonatomic) CLLocation *itemLocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) PFGeoPoint *locationPF;
-@property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) UIImage *itemImage;
 @property (strong, nonatomic) PFFile *itemImagePF;
-@property (strong, nonatomic) NSString *category;
+@property (strong, nonatomic) NSString *categoryString;
+//@property (strong, nonatomic) DONCategory *
 
 
--(IBAction)saveButtonTapped:(id)sender;
+
+
+-(void)saveButtonTapped;
 
 
 

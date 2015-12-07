@@ -12,6 +12,7 @@
 #import "DONUser.h"
 #import "DONCategory.h"
 
+
 @implementation DONItem
 
 @dynamic name;
@@ -30,6 +31,9 @@
 + (void)load {
     [self registerSubclass];
 }
+
+//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations
+
 
 +(NSString *)parseClassName
 {
@@ -108,7 +112,7 @@
     return [self objectForKey:@"image"];
 
 }
-
+//adds new category
 -(void)addCategory:(NSString *)category withCompletion:(void (^)(BOOL success))completion;
 {
     [DONCategory categoryWithName:category withCompletion:^(BOOL success, DONCategory *category) {
@@ -119,6 +123,7 @@
     }];
 }
 
+//add category to item for category that's already created
 -(void)addCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success))completion;
 {
     NSOperationQueue *bgQueue = [[NSOperationQueue alloc] init];
@@ -142,7 +147,7 @@
     
     [bgQueue addOperation:finalOperation];
 }
-
+//query for filter by category
 +(void)itemsWithCategory:(NSString *)category withCompletion:(void (^)(BOOL success, NSArray *items))completion
 {
     [DONCategory categoryWithName:category withCompletion:^(BOOL success, DONCategory *category) {

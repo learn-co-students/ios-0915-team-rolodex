@@ -9,6 +9,9 @@
 #import "PFObject.h"
 #import "PFSubclassing.h"
 #import <ParseUI/ParseUI.h>
+#import	"CoreLocation/CoreLocation.h"
+
+
 @class DONUser;
 
 @class CLLocation;
@@ -25,6 +28,8 @@
 @property (nonatomic, strong) NSString *pickupInstructions;
 @property (nonatomic, strong) DONUser *listedBy;
 @property (nonatomic, strong) NSNumber *views;
+//@property (nonatomic) CLLocationManager *manager;
+
 //@property (nonatomic, strong) PFGeoPoint *location;
 
 @property (nonatomic, strong) PFFile *itemImagePF;

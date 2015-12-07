@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		256E57A81C037CE200FF0C6E /* DONPickItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E57A71C037CE200FF0C6E /* DONPickItemTableViewController.m */; };
 		259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 25881C201BFCE58A00C4E2AD /* DONSecrets.m */; };
 		259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259356D01BFD3FA100F49474 /* DONAddItemViewController.m */; };
 		25F6041E1BFF994800E0530B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F6041D1BFF994800E0530B /* CoreLocation.framework */; };
@@ -55,8 +54,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		256E57A61C037CE200FF0C6E /* DONPickItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONPickItemTableViewController.h; sourceTree = "<group>"; };
-		256E57A71C037CE200FF0C6E /* DONPickItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONPickItemTableViewController.m; sourceTree = "<group>"; };
 		25881C201BFCE58A00C4E2AD /* DONSecrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONSecrets.m; sourceTree = "<group>"; };
 		259356CF1BFD3FA100F49474 /* DONAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DONAddItemViewController.h; path = ../Storyboards/DONAddItemViewController.h; sourceTree = "<group>"; };
 		259356D01BFD3FA100F49474 /* DONAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DONAddItemViewController.m; path = ../Storyboards/DONAddItemViewController.m; sourceTree = "<group>"; };
@@ -274,13 +271,8 @@
 				614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */,
 				614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */,
 				614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */,
-
-				256E57A61C037CE200FF0C6E /* DONPickItemTableViewController.h */,
-				256E57A71C037CE200FF0C6E /* DONPickItemTableViewController.m */,
-
 				61B25FAD1C0399A500505092 /* DONItemViewController.h */,
 				61B25FAE1C0399A500505092 /* DONItemViewController.m */,
-
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -501,11 +493,7 @@
 				61C7AE3B1BFFAFD10034042A /* DONDrawerViewController.m in Sources */,
 				623667FD1BFFB61000327A9D /* QueryCell.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
-
-				256E57A81C037CE200FF0C6E /* DONPickItemTableViewController.m in Sources */,
-
 				61B25FB51C03C46800505092 /* DONViewItemUserProfileView.m in Sources */,
-
 				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
 				61B25FAF1C0399A500505092 /* DONItemViewController.m in Sources */,
 			);
