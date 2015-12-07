@@ -35,6 +35,7 @@ static NSString * const reuseIdentifier = @"cell";
     [self setupNotifications];
     self.dataModel = [DONCollectionViewDataModel sharedInstance];
     self.dataModel.viewToUpdateHUD = self.collectionView;
+    [self.dataModel loadAllItems];
     
     [self activeXibCell];
     

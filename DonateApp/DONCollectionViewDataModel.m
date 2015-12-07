@@ -39,6 +39,7 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        [self postWillUpdateItemsNotification];
         [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
             if (success){
                 for (DONCategory *category in categories) {
@@ -79,7 +80,9 @@
 
 -(void)postWillUpdateItemsNotification
 {
-    [MBProgressHUD showHUDAddedTo:self.viewToUpdateHUD animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewToUpdateHUD animated:YES];
+    hud.labelText = @"Loading";
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kWillUpdateItemsNotification object:nil];
     });

@@ -59,7 +59,6 @@
     // Data model
     [self setupNotifications];
     self.dataModel = [DONCollectionViewDataModel sharedInstance];
-    [self.dataModel loadAllItems];
 
     // Drawer menu code
     [self setupNavigationBar];
@@ -122,7 +121,7 @@
 {
     // Reload the collection view
     
-    self.allCategory = [self.dataModel.allCategories mutableCopy];
+    self.allCategory = self.dataModel.allCategories;
     [self.searchCollectionView reloadData];
 }
 
@@ -169,7 +168,6 @@
             sCell.imageView.alpha = 1.0f;
         }
         
-        [self makeTheStackOfcats];
         return sCell;
     }
     return nil;
@@ -184,9 +182,11 @@
         
         self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
         
+        [self makeTheStackOfcats];
         UILabel * selectedlabel = [ UILabel new ];
         selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
         selectedlabel.hidden = ! selectedlabel.hidden;
+        
     }
 }
 
