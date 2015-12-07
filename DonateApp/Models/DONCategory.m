@@ -10,6 +10,7 @@
 
 @implementation DONCategory
 @dynamic name;
+@dynamic selected;
 
 + (void)load {
     [self registerSubclass];
@@ -57,4 +58,5 @@
     return [self objectForKey:@"icon"];
     
 }
+
 @end

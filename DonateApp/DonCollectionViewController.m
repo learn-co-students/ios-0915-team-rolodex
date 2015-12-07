@@ -12,12 +12,12 @@
 #import "DONItem.h"
 #import "DONCategory.h"
 #import "QueryCell.h"
+#import "DONCollectionViewDataModel.h"
 
 @interface DonCollectionViewController ()
 
 @property (strong, nonatomic) NSArray * items;
-@property (strong, nonatomic) NSMutableArray * allCategory;
-
+@property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
 @end
 
 @implementation DonCollectionViewController
@@ -32,8 +32,13 @@ static NSString * const reuseIdentifier = @"cell";
     
    //[self.collectionView registerClass:[QueryCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    [self getAllPdata]; // do you set this as a main Queae ?
+    [self setupNotifications];
+    self.dataModel = [DONCollectionViewDataModel sharedInstance];
+    self.dataModel.viewToUpdateHUD = self.collectionView;
+    
     [self activeXibCell];
+    
+    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +46,27 @@ static NSString * const reuseIdentifier = @"cell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Notifications
+-(void)setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
+    [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
+}
+
+-(void)updatingItems
+{
+    // Turn the userinteraction OFF
+    self.collectionView.userInteractionEnabled = NO;
+}
+
+-(void)updatedItems
+{
+    // turn the UserInteraction back ON
+    self.collectionView.userInteractionEnabled = YES;
+    self.items = self.dataModel.items;
+    [self.collectionView reloadData];
+}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -49,8 +75,7 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSInteger numberOfItems = collectionView == self.collectionView ? self.items.count : self.allCategory.count;
-    return numberOfItems;
+    return self.items.count;
 }
 
 
@@ -140,7 +165,6 @@ static NSString * const reuseIdentifier = @"cell";
     
     [DONItem allItemsWithCompletion:^(BOOL success, NSArray *allItems) {
         if (success) {
-            NSLog(@"allItems %@",allItems);
             self.items = [self testingData:allItems];
             [self.collectionView reloadData];
             completationBlock(YES);
