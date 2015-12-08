@@ -10,6 +10,7 @@
 #import "PFGeoPoint.h"
 
 @interface DONLocationController : NSObject
+@property (nonatomic, strong, readonly) CLLocation *lastUpdatedLocation;
 +(instancetype)sharedInstance;
 -(BOOL)locationServicesEnabled;
 -(void)getCurrentUserLocationWithCompletion:(void (^)(CLLocation *location, BOOL success))completion;

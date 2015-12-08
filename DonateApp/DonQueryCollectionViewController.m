@@ -22,6 +22,7 @@
 
 #import "DONItemViewController.h"
 #import "DONCollectionViewDataModel.h"
+#import "DONLocationController.h"
 
 @interface DonQueryCollectionViewController ()
 
@@ -64,7 +65,8 @@
 
     // Drawer menu code
     [self setupNavigationBar];
-   
+    
+    [[DONLocationController sharedInstance] getCurrentUserLocationWithCompletion:nil];
 
 }
 

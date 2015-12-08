@@ -284,6 +284,9 @@
     
     UITapGestureRecognizer *tappedVerifyButton = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(verifyButtonTapped)];
     [self.verifyButton addGestureRecognizer:tappedVerifyButton];
+    
+    UITapGestureRecognizer *tappedMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped)];
+    [self.mapView addGestureRecognizer:tappedMap];
 }
 
 -(void)userProfileTapped
@@ -441,6 +444,46 @@
     [self.favoriteButton setImage:imageForNormalState forState:UIControlStateHighlighted];
     [self.favoriteButton setImage:imageForHighlightedState forState:UIControlStateNormal];
 
+}
+
+-(NSString *)gmapAppURLWithLocation:(CLLocation *)location
+{
+    CGFloat latitude = location.coordinate.latitude;
+    CGFloat longitude = location.coordinate.longitude;
+    CGFloat zoom = self.mapView.mapView.camera.zoom;
+    
+    NSString *saddr = [NSString stringWithFormat:@"%0.5f,%0.5f", latitude, longitude];
+    NSString *eaddr = [NSString stringWithFormat:@"%0.5f,%0.5f", self.item.location.latitude, self.item.location.longitude];
+    NSString *googleMapsURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@&z=%0.5f",saddr,eaddr, zoom];
+    return googleMapsURLString;
+}
+                                                   
+-(NSString *)amapAppURLWithLocation:(CLLocation *)location
+{
+    CGFloat latitude = location.coordinate.latitude;
+    CGFloat longitude = location.coordinate.longitude;
+    CGFloat zoom = self.mapView.mapView.camera.zoom;
+    return [NSString stringWithFormat:@"http://maps.apple.com/?q=%0.6f,%0.6f&z=%0.6f", latitude, longitude, zoom];
+}
+
+-(void)mapTapped
+{
+    BOOL locationEnabled = [[DONLocationController sharedInstance] locationServicesEnabled];
+    NSURL * googleCallBack = [ NSURL URLWithString: @"comgooglemaps://" ];
+    __block BOOL googleMapsAvailable = [[UIApplication sharedApplication] canOpenURL: googleCallBack];
+    
+    
+    if (locationEnabled) {
+       [[DONLocationController sharedInstance] getCurrentUserLocationWithCompletion:^(CLLocation *location, BOOL success) {
+           if (googleMapsAvailable) {
+               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self gmapAppURLWithLocation:location]]];
+               NSLog(@"%@", [self gmapAppURLWithLocation:location]);
+           } else {
+               [[UIApplication sharedApplication] openURL: [NSURL URLWithString:[self amapAppURLWithLocation:location]]];
+               NSLog(@"%@",[self amapAppURLWithLocation:location]);
+           }
+       }];
+    }
 }
 
 @end

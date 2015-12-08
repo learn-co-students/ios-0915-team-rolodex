@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PFGeoPoint.h"
-
+@import GoogleMaps;
 
 @interface DONViewItemMapView : UIView
 -(instancetype)initWithLocation:(PFGeoPoint *)location;
+@property (nonatomic, strong, readonly) CLLocation *location;
+@property (nonatomic, strong, readonly) GMSMapView *mapView;
 @end
