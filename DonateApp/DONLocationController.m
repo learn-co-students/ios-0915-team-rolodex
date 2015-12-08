@@ -9,8 +9,9 @@
 #import "DONLocationController.h"
 @interface DONLocationController () <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLGeocoder *geocoder;
-@property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) void (^locationCompletion)(CLLocation *location, BOOL success);
+@property (nonatomic, strong) CLLocation *lastUpdatedLocation;
 @end
 
 @implementation DONLocationController
@@ -52,21 +53,34 @@
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"Location manager failed with error: %@", error);
-    self.locationCompletion(nil, NO);
+    if (self.locationCompletion) {
+        self.locationCompletion(nil, NO);
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     [self.locationManager stopUpdatingLocation];
+    
     if (locations[0]) {
         NSLog(@"Got a location for the user");
-        self.locationCompletion(locations[0], YES);
+        if (self.locationCompletion) {
+            self.locationCompletion(locations[0], YES);
+        }
     } else {
         NSLog(@"Error finding location for user");
-        self.locationCompletion(nil, NO);
+        if (self.locationCompletion) {
+            self.locationCompletion(nil, NO);
+        }
     }
+    
+    self.lastUpdatedLocation = locations[0];
 }
 
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    NSLog(@"Changed auth status to %d", status);
+}
 
 +(CLLocation *)locationForGeoPoint:(PFGeoPoint *)geoPoint
 {

@@ -8,7 +8,6 @@
 
 #import "DONItem.h"
 #import <Parse/Parse.h>
-#import "PFObject+Subclass.h"
 #import "DONUser.h"
 #import "DONCategory.h"
 #import "DONActivity.h"

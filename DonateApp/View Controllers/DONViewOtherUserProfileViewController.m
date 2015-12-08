@@ -120,7 +120,7 @@
 
 -(void)setupViewData
 {
-    self.userPhotoImageView.file = self.user.photoFile;
+    self.userPhotoImageView.file = self.user.photo;
     [self.userPhotoImageView loadInBackground];
     
     self.userNameLabel.text = self.user.username;

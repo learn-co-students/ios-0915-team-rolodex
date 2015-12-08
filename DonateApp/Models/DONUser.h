@@ -6,8 +6,6 @@
 //  Copyright © 2015 Rolodex. All rights reserved.
 //
 
-#import "PFUser.h"
-#import "PFSubclassing.h"
 #import <Parse/Parse.h>
 
 @interface DONUser : PFUser <PFSubclassing>
@@ -20,9 +18,7 @@
 @property (nonatomic, strong) NSString *user_phone;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
-@property (nonatomic, strong, readonly) PFFile *photoFile;
-
--(void)setPhoto:(UIImage *)photo;
+@property (nonatomic, strong) PFFile *photo;
 
 /* Use the below to grab a reference to the test user
  __block DONUser *testUser;

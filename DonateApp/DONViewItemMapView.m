@@ -7,12 +7,12 @@
 //
 
 #import "DONViewItemMapView.h"
-@import GoogleMaps;
 #import "DONLocationController.h"
 #import "Masonry.h"
+
 @interface DONViewItemMapView () <GMSMapViewDelegate>
-@property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) GMSMapView *mapView;
+@property (nonatomic, strong) CLLocation *location;
 
 @end
 
@@ -31,19 +31,50 @@
 
 -(void)setupViews
 {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:self.location.coordinate zoom:12];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:self.location.coordinate zoom:16.7];
     
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.mapView.myLocationEnabled = YES;
     self.mapView.settings.compassButton = YES;
     self.mapView.delegate = self;
-    
+    self.mapView.userInteractionEnabled = NO;
     [self placeMarkerAtLatitude:self.location.coordinate.latitude longitude:self.location.coordinate.longitude];
-    
     [self addSubview:self.mapView];
+    
     [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
+    
+    [self setupCustomZoom];
+}
+
+-(void)setupCustomZoom
+{
+    BOOL locationServicesEnabled = [[DONLocationController sharedInstance] locationServicesEnabled];
+    
+    if (locationServicesEnabled) {
+        DONLocationController *myController = [DONLocationController sharedInstance];
+        CLLocation *location = myController.lastUpdatedLocation;
+        if (location) {
+            CLLocation *userLocation = location;
+            CLLocation *itemLocation = self.location;
+            CGFloat distanceBetweenLocations = [itemLocation distanceFromLocation:userLocation];
+            CGFloat requiredZoom = [self zoomRequiredForDistance:distanceBetweenLocations];
+            [self.mapView animateToZoom:requiredZoom];
+        }
+    }
+}
+
+-(CGFloat)zoomRequiredForDistance:(CGFloat)distance
+{
+    NSLog(@"Calculating zoom for distance %0.5f", distance);
+    CGFloat screenWidthInPoints = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat earthCircumferenceInMeters = 40000 * 1000;
+    CGFloat googleMapsZoomZeroPointsForWorld = 256;
+    CGFloat calculatedZoom = log2f(distance/screenWidthInPoints/earthCircumferenceInMeters*googleMapsZoomZeroPointsForWorld)*-1;
+    NSLog(@"%0.5f", calculatedZoom);
+    
+    return calculatedZoom - 2.0f;
 }
 
 - (void)placeMarkerAtLatitude:(double)latitude longitude:(double)longitude
@@ -55,67 +86,6 @@
         UIImage *locationIconImage = [UIImage imageNamed:@"Location Icon"];
         marker.icon = locationIconImage;
     });
-    
-}
-
--(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
-{   NSLog(@" you tapped me on the map");
-    
-    if (self.location) {
-        CGFloat lat = coordinate.latitude;
-        CGFloat lon = coordinate.longitude;
-        NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
-        NSLog(@"lat and long %@",coordinateString);
-        // wirte a bool method also with animation indicat the cell lead to a map
-        [self activeGoogleMapToLocationQuery:coordinateString];
-    }/*
-        else if (selectedItem.pickupInstructions) {
-        NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        NSLog(@"location=%@",pareselocationString);
-        [self activeGoogleMapToLocationQuery:pareselocationString];
-      */
-    
-    else {
-        [[UIApplication sharedApplication] openURL:
-        [NSURL URLWithString:[self amapAppURL]]];
-    }
-}
-
-#pragma marker map direction
-
--(void)activeGoogleMapToLocationQuery:(NSString *)itemLocation{
-    
-    NSURL * googleCallBack = [ NSURL URLWithString: @"comgooglemaps://" ];
-    /*
-     need to add a check statement if the user has googlmap not installed add the function that allow user to turn on its current location
-     */
-    NSString * saddr = @"40.705329,-74.0161583";
-    
-    NSString *googleMapsURLString = [NSString stringWithFormat:@"comgooglemaps://?saddr=%@&daddr=%@",saddr,itemLocation];
-    
-    if ([[UIApplication sharedApplication] canOpenURL: googleCallBack]) {
-        [[UIApplication sharedApplication] openURL:
-         [NSURL URLWithString:googleMapsURLString]];
-    } else {
-        NSLog(@"Can't use comgooglemaps://");
-        [[UIApplication sharedApplication] openURL: [NSURL URLWithString:[self amapAppURL]]];
-    }
-}
-
--(NSString *)gmapAppURL
-{
-    CGFloat latitude = self.mapView.camera.target.latitude;
-    CGFloat longitude = self.mapView.camera.target.longitude;
-    CGFloat zoom = self.mapView.camera.zoom;
-    return [NSString stringWithFormat:@"comgooglemaps://?q=%0.6f,%0.6f&zoom=%0.6f", latitude, longitude, zoom];
-}
-                                                   
--(NSString *)amapAppURL
-{
-    CGFloat latitude = self.mapView.camera.target.latitude;
-    CGFloat longitude = self.mapView.camera.target.longitude;
-    CGFloat zoom = self.mapView.camera.zoom;
-    return [NSString stringWithFormat:@"http://maps.apple.com/?q=%0.6f,%0.6f&z=%0.6f", latitude, longitude, zoom];
 }
 
 -(void)layoutSubviews
