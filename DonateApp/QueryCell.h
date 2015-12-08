@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DONUser.h"
 
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 
 //#import "DONFakeThing.h"
 

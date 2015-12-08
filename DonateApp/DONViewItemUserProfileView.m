@@ -7,7 +7,7 @@
 //
 
 #import "DONViewItemUserProfileView.h"
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 #import "Masonry.h"
 
 @interface DONViewItemUserProfileView ()

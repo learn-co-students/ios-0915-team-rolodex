@@ -7,7 +7,7 @@
 //
 
 #import "DONDrawerProfileView.h"
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 
 @interface DONDrawerProfileView ()
 @property (nonatomic, strong) PFImageView *profilePictureImageView;

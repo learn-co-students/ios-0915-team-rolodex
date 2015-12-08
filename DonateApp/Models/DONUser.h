@@ -6,8 +6,6 @@
 //  Copyright © 2015 Rolodex. All rights reserved.
 //
 
-#import "PFUser.h"
-#import "PFSubclassing.h"
 #import <Parse/Parse.h>
 
 @interface DONUser : PFUser <PFSubclassing>

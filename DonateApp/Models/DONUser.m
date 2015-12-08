@@ -7,7 +7,7 @@
 //
 
 #import "DONUser.h"
-#import "PFObject+Subclass.h"
+#import <Parse/Parse.h>
 #import "DONItem.h"
 #import "DONVerification.h"
 

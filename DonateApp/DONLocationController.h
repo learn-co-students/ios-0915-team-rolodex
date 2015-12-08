@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PFGeoPoint.h"
+#import <Parse/Parse.h>
 
 @interface DONLocationController : NSObject
 +(instancetype)sharedInstance;

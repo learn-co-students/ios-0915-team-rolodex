@@ -1,11 +1,28 @@
 PODS:
+  - Bolts (1.5.0):
+    - Bolts/AppLinks (= 1.5.0)
+    - Bolts/Tasks (= 1.5.0)
+  - Bolts/AppLinks (1.5.0):
+    - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
-  - ChameleonFramework (2.0.4):
-    - ChameleonFramework/Default (= 2.0.4)
-  - ChameleonFramework/Default (2.0.4)
+  - ChameleonFramework (2.0.6):
+    - ChameleonFramework/Default (= 2.0.6)
+  - ChameleonFramework/Default (2.0.6)
   - DateTools (1.7.0)
-  - GoogleMaps (1.10.5)
-  - Mapbox-iOS-SDK (2.1.2)
+  - FBSDKCoreKit (4.8.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.8.0)
+    - FBSDKCoreKit/no-arc (= 4.8.0)
+  - FBSDKCoreKit/arc (4.8.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.8.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.8.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.8.0):
+    - FBSDKCoreKit
+  - GoogleMaps (1.11.0)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MMDrawerController (0.6.0):
@@ -22,34 +39,48 @@ PODS:
     - MMDrawerController/Core
   - Parse (1.10.0):
     - Bolts/Tasks (~> 1.5)
+  - ParseFacebookUtilsV4 (1.9.1):
+    - Bolts/Tasks (>= 1.5)
+    - FBSDKCoreKit (~> 4.8)
+    - FBSDKLoginKit (~> 4.8)
+    - Parse (~> 1.9)
   - ParseUI (1.1.7):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - SCLAlertView (0.4.3)
   - SCLAlertView-Objective-C (0.7.9)
 
 DEPENDENCIES:
   - ChameleonFramework
   - DateTools
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - GoogleMaps
-  - Mapbox-iOS-SDK
   - Masonry
   - MBProgressHUD
   - MMDrawerController
   - Parse
+  - ParseFacebookUtilsV4
   - ParseUI
+  - SCLAlertView
   - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
-  ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
+  ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  GoogleMaps: da51c62c338c2d9c47cdad470a0d1e0e4b8544e4
-  Mapbox-iOS-SDK: 19aa6ad9235ad79a46f507cb831ae216d6ea373e
+  FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
+  FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
+  FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
+  GoogleMaps: 272cf7e7b8aacf4319eac47d57f3b7d142c0826a
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
+  ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
+  SCLAlertView: a5c726a80a938fd3127edd7dbc19da33fb936ca3
   SCLAlertView-Objective-C: e36ab12dc1ec4ff6f932888083b21d71a3a1ad23
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

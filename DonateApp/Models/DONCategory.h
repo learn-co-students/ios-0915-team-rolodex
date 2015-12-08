@@ -6,8 +6,7 @@
 //  Copyright © 2015 Rolodex. All rights reserved.
 //
 
-#import "PFObject.h"
-#import "PFSubclassing.h"
+#import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "DONUser.h"
 
