@@ -78,7 +78,8 @@
 
 -(void)setupViewData
 {
-    self.profilePictureImageView.file = self.user.photoFile;
+    self.profilePictureImageView.file = self.user.photo;
+    
     [self.profilePictureImageView loadInBackground];
     
     NSString *username = [NSString stringWithFormat:@"%@", self.user.username];

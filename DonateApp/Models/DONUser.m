@@ -131,19 +131,4 @@
     }];
 }
 
-# pragma mark - Overriden setters & getters
-
--(PFFile *)photoFile
-{
-    return [self objectForKey:@"photo"];
-}
-
--(void)setPhoto:(UIImage *)image
-{
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
-    self[@"photo"] = imageFile;
-    [self saveInBackground];
-}
-
 @end
