@@ -85,7 +85,7 @@
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-ej-z9z">
                                 <rect key="frame" x="0.0" y="126" width="375" height="56"/>
                                 <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.84408538509999997" green="0.84408538509999997" blue="0.84408538509999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="rA5-lp-gn9"/>
                                 </constraints>
