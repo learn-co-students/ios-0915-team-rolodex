@@ -166,8 +166,7 @@
 {
     NSInteger topPadding = 15;
     NSInteger sidePadding = 15;
-    
-    // Scroll view and scroll view container
+    /// Scroll view and scroll view container
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -287,6 +286,10 @@
     
     UITapGestureRecognizer *tappedMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped)];
     [self.mapView addGestureRecognizer:tappedMap];
+    
+    UITapGestureRecognizer *tappedErrorButton = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(errorButtonTapped)];
+    [self.reportErrorButton addGestureRecognizer:tappedErrorButton];
+    
 }
 
 -(void)userProfileTapped
@@ -384,7 +387,17 @@
             }];
         }
     }];
+}
 
+-(void)errorButtonTapped
+{
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    alert.showAnimationType = FadeIn;
+    alert.hideAnimationType = FadeOut;
+
+    alert.customViewColor = [UIColor colorWithRed:192.0/255.0 green:33.0/255.0 blue:33.0/255.0 alpha:1];
+    [alert showSuccess:self title:@"Error Reported!" subTitle:@"Thanks for being awesome. You reported an error with this listing.  We will get to the bottom of it." closeButtonTitle:@"OK" duration:0.0f];
+   
 }
 
 #pragma mark UI Update for Item

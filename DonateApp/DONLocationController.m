@@ -53,7 +53,9 @@
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"Location manager failed with error: %@", error);
-    self.locationCompletion(nil, NO);
+    if (self.locationCompletion) {
+        self.locationCompletion(nil, NO);
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
