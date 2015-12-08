@@ -7,7 +7,7 @@
 //
 
 #import "DONUser.h"
-#import "PFObject+Subclass.h"
+#import <Parse/Parse.h>
 #import "DONItem.h"
 #import "DONVerification.h"
 
@@ -24,6 +24,7 @@
 @dynamic user_phone;
 @dynamic createdAt;
 @dynamic updatedAt;
+@dynamic photo;
 
 + (void)load {
     [self registerSubclass];
@@ -128,21 +129,6 @@
             completion(objects,YES);
         }
     }];
-}
-
-# pragma mark - Overriden setters & getters
-
--(PFFile *)photoFile
-{
-    return [self objectForKey:@"photo"];
-}
-
--(void)setPhoto:(UIImage *)image
-{
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
-    self[@"photo"] = imageFile;
-    [self saveInBackground];
 }
 
 @end

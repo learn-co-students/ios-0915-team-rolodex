@@ -7,7 +7,7 @@
 //
 
 #import "DONDrawerProfileView.h"
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 
 @interface DONDrawerProfileView ()
 @property (nonatomic, strong) PFImageView *profilePictureImageView;
@@ -89,7 +89,7 @@
         
     } else {
         self.defaultProfileImageView.hidden = YES;
-        self.profilePictureImageView.file = self.user.photoFile;
+        self.profilePictureImageView.file = self.user.photo;
         [self.profilePictureImageView loadInBackground];
      
         topText = [NSString stringWithFormat:@"%@", self.user.username];
