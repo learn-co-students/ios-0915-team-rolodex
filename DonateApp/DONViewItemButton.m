@@ -35,7 +35,7 @@
     return self;
 }
 
--(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText buttonState:(DONViewItemButtonState)buttonState color:(DONViewItemButtonType)buttonType
+-(instancetype)initWithDefaultText:(NSString *)defaultText toggledText:(NSString *)toggledText toggledState:(DONViewItemButtonToggleState)toggledState enabledState:(DONViewItemButtonEnabledState)enabledState color:(DONViewItemButtonType)buttonType
 {
     self = [super init];
     if (!self) return nil;
@@ -48,7 +48,8 @@
     [self setupViewProperties];
     [self constrainViews];
     
-    self.buttonState = buttonState;
+    self.toggledState = toggledState;
+    self.enabledState = enabledState;
 
     return self;
 }
@@ -120,14 +121,26 @@
     self.textLabel.text = text;
 }
 
--(void)setButtonState:(DONViewItemButtonState)buttonState
+-(void)setToggledState:(DONViewItemButtonToggleState)state
 {
-    _buttonState = buttonState;
+    _toggledState = state;
     
-    if (buttonState == DONViewItemButtonStateDefault) {
+    if (state == DONViewItemButtonStateDefault) {
         self.textLabel.text = self.defaultText;
-    } else {
+    } else if (state == DONViewItemButtonStateToggled) {
         self.textLabel.text = self.toggledText;
+    } else if (state == DONViewItemButtonStateNoData) {
+        self.textLabel.text = @"...";
+    }
+}
+-(void)setEnabledState:(DONViewItemButtonEnabledState)state
+{
+    _enabledState = state;
+
+    if (state == DONViewItemButtonStateDisabled) {
+        self.textLabel.textColor = [UIColor grayColor];
+    } else if (state == DONViewItemButtonStateEnabled) {
+        self.textLabel.textColor = [UIColor whiteColor];
     }
 }
 @end

@@ -14,6 +14,7 @@
 static NSString *const kActivityTypeVerification = @"verification";
 static NSString *const kActivityTypeFavorite = @"favorite";
 static NSString *const kActivityTypeClaim = @"claim";
+static NSString *const kActivityTypeView = @"view";
 
 @interface DONActivity : PFObject <PFSubclassing>
 @property (nonatomic, strong) DONUser *fromUser;
@@ -23,6 +24,8 @@ static NSString *const kActivityTypeClaim = @"claim";
 
 +(NSString *)parseClassName;
 
++(void)activitiesForUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *activities))completion;
++(void)activitiesForUser:(DONUser *)user withCompletion:(void (^)(NSArray *activities))completion;
 +(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion;
 +(void)removeActivityType:(NSString *)activityType forUser:(DONUser *)user onItem:(DONItem *)item withCompletion:(void (^)(BOOL success))completion;
 +(void)addActivityType:(NSString *)activityType toItem:(DONItem *)item fromUser:(DONUser *)fromUser toUser:(DONUser *)toUser withCompletion:(void (^)(BOOL success))completion;

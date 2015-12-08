@@ -15,7 +15,6 @@ pod 'ParseFacebookUtilsV4'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
-
 pod 'SCLAlertView-Objective-C'
 pod 'SCLAlertView'
 

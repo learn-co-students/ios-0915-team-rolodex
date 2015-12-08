@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "DONUser.h"
 #import "DONCategory.h"
+#import "DONActivity.h"
 
 @implementation DONItem
 
@@ -159,6 +160,19 @@
     }];
 }
 
++(void)itemsWithCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success, NSArray *items))completion
+{
+    PFQuery *itemCategoryQuery = [self query];
+    [itemCategoryQuery whereKey:@"categories" containedIn:categories];
+    [itemCategoryQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            completion(YES,objects);
+        } else {
+            completion(NO, nil);
+        }
+    }];
+}
+
 +(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion{
     
     PFQuery *itemCategoryQuery = [self query];
@@ -171,4 +185,42 @@
     }];
     
 }
+
+-(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion
+{
+    if (![DONUser currentUser]) {
+        NSLog(@"Incrementing for guest user once");
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *viewedObjects = [defaults objectForKey:@"viewedObjects"];
+        for (NSString *objID in viewedObjects) {
+            if ([objID isEqualToString:self.objectId]) {
+                NSLog(@"Already incremented for guest user - aborting");
+                return;
+            }
+        }
+    }
+    
+    [DONActivity activitiesForItem:self withCompletion:^(NSArray *activities) {
+       BOOL activityExists = [DONActivity activityExists:kActivityTypeView forUser:[DONUser currentUser] inItemActivities:activities];
+        if (activityExists) {
+            completion(NO);
+        } else {
+            [DONActivity addActivityType:kActivityTypeView toItem:self fromUser:[DONUser currentUser] toUser:nil withCompletion:^(BOOL success) {
+                self.views = [NSNumber numberWithInt:[self.views intValue] + 1];
+                [self saveEventually];
+                
+                if (![DONUser currentUser]) {
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    NSMutableArray *viewedObjects = [defaults objectForKey:@"viewedObjects"];
+                    [viewedObjects addObject:self.objectId];
+                    [defaults synchronize];
+                }
+                completion(YES);
+            }];
+
+        }
+   }];
+}
+
+
 @end

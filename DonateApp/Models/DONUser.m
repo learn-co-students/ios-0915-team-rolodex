@@ -24,6 +24,7 @@
 @dynamic user_phone;
 @dynamic createdAt;
 @dynamic updatedAt;
+@dynamic photo;
 
 + (void)load {
     [self registerSubclass];

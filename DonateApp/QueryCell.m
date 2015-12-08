@@ -10,7 +10,6 @@
 
 @interface QueryCell ()
 
-
 @end
 
 @implementation QueryCell
@@ -21,7 +20,6 @@
 
 -(void)updateThing{
     self.cellTitle.text = self.pageUser.username;
-    //self.image.image = [UIImage imageNamed:self.thing.image];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import MBProgressHUD
 
 
 class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -131,18 +132,18 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                 let profileImageDataJPEG = UIImageJPEGRepresentation(profileImageData, 1)
                 
                 let profileImageFile = PFFile(data: profileImageDataJPEG!)
-                myUser.setObject(profileImageFile!, forKey: "profile_picture")
+                myUser.setObject(profileImageFile!, forKey: "photo")
             }
             
             // Show activity indicator
-//            let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-//            spiningActivity.labelText = "Sending"
-//            spiningActivity.detailsLabelText = "Please wait"
+            let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            spiningActivity.labelText = "Sending"
+            spiningActivity.detailsLabelText = "Please wait"
             
             myUser.signUpInBackgroundWithBlock { (success, error) -> Void in
                 
                 // Hide activity indicator
-//                spiningActivity.hide(true)
+                spiningActivity.hide(true)
                 
                 var userMessage = "Registration is successful. Thank you!"
                 
@@ -159,13 +160,12 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                     
                     if(success)
                     {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
+                        appDelegate.buildUserInterface()
                     }
-                    
                 }
                 
                 myAlert.addAction(okAction)
-                
                 self.presentViewController(myAlert, animated: true, completion: nil)
                 
             }

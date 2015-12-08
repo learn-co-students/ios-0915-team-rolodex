@@ -10,32 +10,36 @@
 #import "DONUser.h"
 #import "DONItem.h"
 #import "DONCategory.h"
-#import "QueryCell.h"
+//#import "QueryCell.h"
 #import "SearchCell.h"
 
 #import <ChameleonFramework/Chameleon.h>
 #import "DonGoogleMapViewController.h"
-
+#import "DonContainerViewController.h"
 // Drawer menu code
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
 
 #import "DONItemViewController.h"
+#import "DONCollectionViewDataModel.h"
 
 @interface DonQueryCollectionViewController ()
 
-@property(strong,nonatomic)NSMutableArray * fakeData;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+// Guang
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
-@property (weak, nonatomic) IBOutlet UILabel *greeting;
 @property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
 
+@property (weak, nonatomic) DonContainerViewController * containerViewController;
 
 @property (strong, nonatomic) NSString * userOnPage;
 @property (strong, nonatomic) NSArray * items;
-@property (strong, nonatomic) NSMutableArray * allCategory;
+@property (strong, nonatomic) NSArray * allCategory;
 
+// Jon
+@property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
+@property (nonatomic, strong) UIButton *mapButton;
+@property (nonatomic, strong) UIColor *mapButtonColor;
 @end
 
 @implementation DonQueryCollectionViewController
@@ -43,38 +47,44 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    
     self.searchCollectionView.delegate = self;
     self.searchCollectionView.dataSource = self;
 
     //moved data loading to viewWillAppear
     
-    [self activeXibCell];
+    // Remove "Back" nav bar text next to back arrow
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+ 
+    //[self activeXibCell];
     [self searchBarCellStyle];
-    [self getCategoryWithBlock:^(BOOL success) {
-        NSLog(@"get the catoory");
-    }];
+    
+    // Data model
+    [self setupNotifications];
+    self.dataModel = [DONCollectionViewDataModel sharedInstance];
 
     // Drawer menu code
-    [self setupLeftMenuButton];
-
+    [self setupNavigationBar];
+   
 
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getAllPdata]; // do you set this as a main Queae ?
-
 }
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark Navigation Bar Setup
 // Drawer menu code
+
+-(void)setupNavigationBar {
+    [self setupLeftMenuButton];
+    [self setupRightMenuButton];
+    
+}
 
 -(void)setupLeftMenuButton{
     MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
@@ -84,6 +94,50 @@
 
 -(void)leftDrawerButtonPress:(id)sender{
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+-(void)setupRightMenuButton {
+    self.mapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.mapButton.frame = CGRectMake(0, 0, 22, 22);
+    UIImage *locationIcon = [[UIImage imageNamed:@"Location Icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.mapButton setImage:locationIcon forState:UIControlStateNormal];
+    self.mapButtonColor = [UIColor grayColor];
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
+    self.mapButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.mapButton.imageView.frame = CGRectMake(0, 0, 22, 22);
+    [self.mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.mapButton];
+    [self.navigationItem setRightBarButtonItem:item animated:YES];
+    
+}
+
+#pragma mark Notifications
+-(void)setupNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(updatedCategories) name:kDidUpdateCategoriesNotification object:nil];
+    [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
+    [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
+}
+
+-(void)updatedCategories
+{
+    // Reload the collection view
+    
+    self.allCategory = self.dataModel.allCategories;
+    [self.searchCollectionView reloadData];
+}
+
+-(void)updatingItems
+{
+    // Turn the userinteraction OFF
+    self.searchCollectionView.userInteractionEnabled = NO;
+}
+
+-(void)updatedItems
+{
+    // turn the UserInteraction back ON
+    self.searchCollectionView.userInteractionEnabled = YES;
 }
 
 #pragma mark collectionView delegate
@@ -96,40 +150,32 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    NSInteger numberOfItems = collectionView == self.collectionView ? self.items.count : self.allCategory.count;
+    NSInteger numberOfItems = self.allCategory.count;
     return numberOfItems;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // delegate gave the thing also ...in this case it gives you collectionView / indexPath
-    if (collectionView == self.collectionView) {
-
-        QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"qCell" forIndexPath:indexPath];
-        DONItem * item = self.items[indexPath.row];
-        cell.cellTitle.text = item.name;
-        cell.image.file = item.imageFile;
-        [cell.image loadInBackground];
-        
-        /*
-         PFImageView *view = [[PFImageView alloc] initWithImage:kPlaceholderImage];
-
-         */
-
-        [self setupTheQueryCell:cell atIndexPath:indexPath];
-
-        return cell;
-    }
-    
-    
     if (collectionView == self.searchCollectionView) {
-        
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
         DONCategory * category = self.allCategory[indexPath.row];
         //sCell.searchLabel.text = category.name;
-        sCell.imageView.file = category.imageFile;
-        [sCell.imageView loadInBackground];
-        [self makeTheStackOfcats];
+        
+        UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
+        sCell.imageView.image = iconImage;
+        
+//        sCell.imageView.file = category.imageFile;
+//        [sCell.imageView loadInBackground];
+        NSString *categoryName = category.name;
+        UIImage *image = [UIImage imageNamed:categoryName];
+        sCell.imageView.image = image;
+        
+        if (!category.selected) {
+            sCell.imageView.alpha = 0.6f;
+        } else {
+            sCell.imageView.alpha = 1.0f;
+        }
+
         return sCell;
     }
     return nil;
@@ -137,24 +183,23 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
     
-    if (collectionView == self.collectionView) {
 
-        DONItem *item = self.items[indexPath.row];
-        DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:item];
-        [self.navigationController pushViewController:itemViewController animated:YES];
-        
-    }
     if (collectionView == self.searchCollectionView) {
-        NSLog(@"I tapped searchCollectionView");
-        self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
+        DONCategory *category = self.allCategory[indexPath.row];
+        [self.dataModel toggleCategory:category];
         
+        self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
+
+        [self makeTheStackOfcats];
         UILabel * selectedlabel = [ UILabel new ];
         selectedlabel = self.stackedViewLables.arrangedSubviews[indexPath.row];
-        selectedlabel.hidden = ! selectedlabel.hidden;
+        selectedlabel.hidden = !category.selected;
+        
     }
 }
 
-#pragma mark stackView methods
+  #pragma mark stackView methods
+//for the search feature when tap icon the names shows up under
 
 -(void)makeTheStackOfcats{
     self.stackedViewLables.backgroundColor = [UIColor blackColor];
@@ -168,30 +213,17 @@
     }
 }
 
-#pragma mark  cell style
-
--(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
-    UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
-    UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
-    NSArray * x = @[one,two];
-    cell.backgroundColor = GradientColor(UIGradientStyleRadial,cell.frame,x);
-    //cell.thing = [[DONFakeThing alloc] initWithName:@"hello" image:@""];
-   // NSLog(@"title is %@",self.fakeData[indexPath.row]);
-}
-
--(void)activeXibCell{
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //flowLayout.itemSize = CGSizeMake(113, 115);
-    flowLayout.itemSize = CGSizeMake((self.view.frame.size.width/2), (self.view.frame.size.height/4));
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
-    flowLayout.headerReferenceSize = CGSizeZero;
-
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical; // add vertical
-    self.collectionView.collectionViewLayout = flowLayout;
-}
-
+  #pragma mark  cell style
+//style for the old collection.  we are not using it this method anymore, but keep it for now :)
+//-(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+//    cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
+//    UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
+//    UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
+//    NSArray * x = @[one,two];
+//    cell.backgroundColor = GradientColor(UIGradientStyleRadial,cell.frame,x);
+//
+//}
+// style for the category style
 -(void)searchBarCellStyle{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(60, 60);
@@ -199,110 +231,35 @@
     self.searchCollectionView.collectionViewLayout = flowLayout;
 }
 
--(void)searchAction{
+
+  #pragma mark container vew
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    return YES;
 }
 
-#pragma mark  data
-
--(void)getAllPdata{
-        
-    [self getdataFromParseWithBlock:^(BOOL success)
-     {
-         if (success)
-         {
-             //NSLog(@"Get the info %@ with the stuffff %@",self.userOnPage,self.items);
-             self.greeting.text = [NSString stringWithFormat:@" ☞ "];
-         } else{
-         }
-     }];
-}
-
--(NSMutableArray *)testingData:(NSArray *) realData{
-
-    NSMutableArray * testData = [NSMutableArray new];
-    for (int i = 0 ; i < 10 ; i++)
-    {
-        [testData addObject:realData[0]];
-        [testData addObject:realData[1]];
-        [testData addObject:realData[2]];
+-(IBAction)goTomap:(id)sender {
+    [self.containerViewController swapViewControllers];
+    
+    if (self.mapButtonColor == [UIColor grayColor]) {
+        self.mapButtonColor = [UIColor blackColor];
+    } else {
+        self.mapButtonColor = [UIColor grayColor];
     }
     
-    return testData;
-}
-
--(void)getdataFromParseWithBlock:(void (^)(BOOL success))completationBlock{
-//    __block NSString * userName;
-//    __block NSArray * allItems;
-    [DONUser testUserWithCompletion:^(DONUser *user, NSError *error) {
-        if (!error) {
-            //userName = user.username;
-            self.userOnPage = user.username;
-            [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success){
-                if (success == YES)
-                {
-                    self.items = [self testingData:items];
-                    [self.collectionView reloadData];
-                    completationBlock(YES);
-                    NSLog(@"get Items");
-                }
-            }];
-        } else
-        {
-            NSLog(@"Error: %@-%@", error, error.userInfo);
-        }
-    }];
-}
-
-
--(void)getCategoryWithBlock:(void (^)(BOOL success))completationBlock{
-    
-    [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
-        if (success){
-            self.allCategory = [NSMutableArray new];
-            self.allCategory = categories.mutableCopy;
-            NSLog(@"self.allCategory %@",self.allCategory);
-            [self.searchCollectionView reloadData];
-        }
-    }];
-}
-
-#pragma mark location
-
-- (IBAction)goTomap:(id)sender {
-    
+    [self.mapButton.imageView setTintColor:self.mapButtonColor];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    DonGoogleMapViewController * mapView = [DonGoogleMapViewController new];
-    mapView = segue.destinationViewController;
+
+    if ([segue.identifier isEqualToString:@"embedContainer"])
+    {
+        self.containerViewController = segue.destinationViewController;
+    }
 }
 
--(void)locationStuff{
-    
-    //+ (void)geoPointForCurrentLocationInBackground:(void ( ^ ) ( PFGeoPoint *geoPoint , NSError *error ))geoPointHandler
-    //[PFQuery whereKey:nearGeoPoint:]
-}
-
-//-(void)queryLocation{
-//    
-//
-//    NSLog(@"HELLO locations");
-//    
-//    [DONItem fetchItemWithItemId:@"fumHFXNnw8" withCompletion:^(DONItem *item, NSError *error) {
-//        PFGeoPoint * point = [PFGeoPoint geoPointWithLatitude:40.705329 longitude:-74.0161583];
-//        [item setObject:point forKey:@"location"];
-//        [item saveInBackground];
-//    }];
-// 
-//   
-//    
-//    
-//}
-
--(void)geoPointForCurrentLocationInBackground:(void ( ^ ) ( PFGeoPoint *geoPoint , NSError *error ))geoPointHandler{
-    
-}
-
+#pragma view life cycle
 
 
 @end

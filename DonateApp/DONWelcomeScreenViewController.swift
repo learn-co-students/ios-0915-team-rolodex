@@ -11,6 +11,8 @@ import Parse
 import SCLAlertView
 import AVFoundation
 import AVKit
+import MBProgressHUD
+//import DONAppDelegate
 
 
 class DONWelcomeScreenViewController: UIViewController {
@@ -101,15 +103,15 @@ class DONWelcomeScreenViewController: UIViewController {
         }
         
         // Display activity animation
-//        let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-//        spiningActivity.labelText = "Sending"
-//        spiningActivity.detailsLabelText = "Please wait"
-        //spiningActivity.userInteractionEnabled = false
+        let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        spiningActivity.labelText = "Sending"
+        spiningActivity.detailsLabelText = "Please wait"
+        spiningActivity.userInteractionEnabled = false
         
         
         PFUser.logInWithUsernameInBackground(userEmail!, password: userPassword!) { (user:PFUser?, error:NSError?) -> Void in
             
-//            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             
             if(user != nil)
             {
@@ -120,9 +122,10 @@ class DONWelcomeScreenViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "user_name")
                 NSUserDefaults.standardUserDefaults().synchronize()
                 print("Login Successful")
+                
                 // Navigate to Protected page
-//                let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                appDelegate.buildUserInterface()
+                let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
+                appDelegate.buildUserInterface()
                 
             } else {
                 

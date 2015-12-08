@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We only use your location to help you find nearby items</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+	</array>
+	<key>item 0</key>
+	<string>googlechromes</string>
+	<key>item 1</key>
+	<string>comgooglemaps</string>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiZ3Vhbmd6IiwiYSI6ImNpaDdyeThiYTB0MmJ1MWtpM3hlMjA2cGwifQ.65NPTOJseENext3qFP5xxQ</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -18,6 +30,21 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>tree</string>
+			<key>CFBundleURLName</key>
+			<string>Rdex.DonateApp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>donateApp://</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>

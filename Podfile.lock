@@ -22,7 +22,7 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.8.0):
     - FBSDKCoreKit
-  - GoogleMaps (1.11.0)
+  - GoogleMaps (1.11.1)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
   - MMDrawerController (0.6.0):
@@ -73,7 +73,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
-  GoogleMaps: 272cf7e7b8aacf4319eac47d57f3b7d142c0826a
+  GoogleMaps: c947160008f414c66707a5ea60f35e92055c7670
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0

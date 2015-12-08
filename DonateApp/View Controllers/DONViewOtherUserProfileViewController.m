@@ -124,7 +124,7 @@
     [self.userPhotoImageView loadInBackground];
     
     self.userNameLabel.text = self.user.username;
-   
+    
     [DONUser allItemsForUser:self.user withCompletion:^(NSArray *items, BOOL success) {
         self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
     }];
