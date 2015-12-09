@@ -162,20 +162,20 @@
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
         DONCategory * category = self.allCategory[indexPath.row];
         //sCell.searchLabel.text = category.name;
-        
-        UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
-        sCell.imageView.image = iconImage;
-        
 //        sCell.imageView.file = category.imageFile;
 //        [sCell.imageView loadInBackground];
         NSString *categoryName = category.name;
-        UIImage *image = [UIImage imageNamed:categoryName];
+        UIImage *image = [[UIImage imageNamed:categoryName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         sCell.imageView.image = image;
         
         if (!category.selected) {
             sCell.imageView.alpha = 0.6f;
+            sCell.imageView.tintColor = [UIColor blackColor];
         } else {
             sCell.imageView.alpha = 1.0f;
+            
+            sCell.imageView.tintColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
+            
         }
 
         return sCell;
