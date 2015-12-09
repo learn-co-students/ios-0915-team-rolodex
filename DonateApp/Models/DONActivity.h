@@ -25,6 +25,7 @@ static NSString *const kActivityTypeView = @"view";
 +(NSString *)parseClassName;
 
 +(void)activitiesForUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *activities))completion;
++(void)activitiesToUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *))completion;
 +(void)activitiesForUser:(DONUser *)user withCompletion:(void (^)(NSArray *activities))completion;
 +(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion;
 +(void)removeActivityType:(NSString *)activityType forUser:(DONUser *)user onItem:(DONItem *)item withCompletion:(void (^)(BOOL success))completion;

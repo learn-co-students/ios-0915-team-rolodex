@@ -23,7 +23,6 @@
 		614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */; };
 		614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D51BFE333B00BD543A /* DONSettingsEnum.h */; };
 		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
-		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
 		614FF1AB1C05FE71004C74E1 /* DONViewItemDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */; };
 		614FF1AE1C060235004C74E1 /* DONLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AD1C060235004C74E1 /* DONLocationController.m */; };
@@ -84,8 +83,6 @@
 		614A96D51BFE333B00BD543A /* DONSettingsEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONSettingsEnum.h; sourceTree = "<group>"; };
 		614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewOtherUserProfileViewController.h; sourceTree = "<group>"; };
 		614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewOtherUserProfileViewController.m; sourceTree = "<group>"; };
-		614B174F1BFF2DA40001D231 /* DONVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONVerification.h; sourceTree = "<group>"; };
-		614B17501BFF2DA40001D231 /* DONVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONVerification.m; sourceTree = "<group>"; };
 		614B17521BFF61C40001D231 /* DONCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCategory.h; sourceTree = "<group>"; };
 		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
 		614FF1A91C05FE71004C74E1 /* DONViewItemDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemDescriptionView.h; sourceTree = "<group>"; };
@@ -332,8 +329,6 @@
 				61C5748E1BFBE4C500D80141 /* DONUser.m */,
 				61C574931BFC273E00D80141 /* DONItem.h */,
 				61C574941BFC273E00D80141 /* DONItem.m */,
-				614B174F1BFF2DA40001D231 /* DONVerification.h */,
-				614B17501BFF2DA40001D231 /* DONVerification.m */,
 				6284E0E51C051EDF007A4CB1 /* DONActivity.h */,
 				6284E0E61C051EDF007A4CB1 /* DONActivity.m */,
 			);
@@ -526,7 +521,6 @@
 				6284E0E31C051EC2007A4CB1 /* DONViewItemButton.m in Sources */,
 				6284E0E71C051EDF007A4CB1 /* DONActivity.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
-				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
 				6284E0E21C051EC2007A4CB1 /* DONItemStatsView.m in Sources */,
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,

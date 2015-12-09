@@ -159,25 +159,21 @@
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
         DONCategory * category = self.allCategory[indexPath.row];
         //sCell.searchLabel.text = category.name;
-        
-        UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
-        sCell.imageView.image = iconImage;
-        
 //        sCell.imageView.file = category.imageFile;
 //        [sCell.imageView loadInBackground];
         NSString *categoryName = category.name;
-        UIImage *image = [UIImage imageNamed:categoryName];
+        UIImage *image = [[UIImage imageNamed:categoryName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         sCell.imageView.image = image;
+    
         
         if (!category.selected) {
             sCell.imageView.alpha = 0.6f;
-            
+
+            sCell.imageView.tintColor = [UIColor blackColor];
         } else {
             sCell.imageView.alpha = 1.0f;
-            // testing different style
-            UIImage * selectedIcon = [self imageByDrawingWhiteCircleBehindImage:sCell.imageView.image andResizingToSize:CGSizeMake(75, 75) withColor:[UIColor whiteColor]];
-            sCell.imageView.image = selectedIcon;
             
+            sCell.imageView.tintColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];            
         }
 
         return sCell;
@@ -213,22 +209,21 @@
         
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:eachCat.name];
         [attributeString addAttribute:NSUnderlineStyleAttributeName
-                                value:[NSNumber numberWithInt:3]
+                                value:[NSNumber numberWithInt:2]
                                 range:(NSRange){0,[attributeString length]}];
         catLabel.attributedText = attributeString;
         catLabel.textColor = [UIColor blackColor];
         catLabel.backgroundColor = [UIColor clearColor];
         catLabel.hidden = YES;
+        //catLabel.frame = UIEdgeInsetsInsetRect(catLabel.frame, UIEdgeInsetsMake(0, 25, 25, 0));
         [self.stackedViewLables addArrangedSubview:catLabel];
     }
 }
 
   #pragma mark  cell style
-
-// style for the category style
 -(void)searchBarCellStyle{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(70, 70);
+    flowLayout.itemSize = CGSizeMake(65, 65);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // add vertical
     self.searchCollectionView.collectionViewLayout = flowLayout;
 }
@@ -279,6 +274,5 @@
     UIGraphicsEndImageContext();
     return result;
 }
-
 
 @end

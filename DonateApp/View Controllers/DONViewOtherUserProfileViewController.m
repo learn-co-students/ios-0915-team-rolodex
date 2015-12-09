@@ -8,6 +8,7 @@
 
 #import "DONViewOtherUserProfileViewController.h"
 #import "DONUser.h"
+#import "DONActivity.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import <Masonry/Masonry.h>
@@ -106,7 +107,7 @@
     
     [self whiteCenteredLabelWithSize:72 label:self.donatedItemsLabel];
     [self whiteCenteredLabelWithSize:72 label:self.verifiedItemsLabel];
-    
+
     [self whiteCenteredLabelWithSize:14 label:self.donatedItemsCaptionLabel];
     [self whiteCenteredLabelWithSize:14 label:self.verifiedItemsCaptionLabel];
 }
@@ -129,8 +130,8 @@
         self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
     }];
     
-    [DONUser allVerificationsForUser:self.user withCompletion:^(NSArray *items, BOOL success) {
-        self.verifiedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
+    [DONActivity activitiesToUser:self.user activityType:kActivityTypeVerification withCompletion:^(NSArray *activities) {
+        self.verifiedItemsLabel.text = [NSString stringWithFormat:@"%lu", activities.count];
     }];
     
     self.donatedItemsCaptionLabel.text = @"total items donated";

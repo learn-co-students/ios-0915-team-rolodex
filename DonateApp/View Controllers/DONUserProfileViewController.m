@@ -36,6 +36,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.currentUser = [DONUser currentUser];
     NSLog(@"Current user %@", self.currentUser);
     
@@ -113,6 +114,7 @@
         make.top.equalTo(self.itemCountStackView.mas_bottom).offset(10);
     }];
 }
+
 
 -(void)setupViewData
 {
