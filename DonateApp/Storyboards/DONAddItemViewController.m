@@ -29,9 +29,6 @@ static NSString * const reuseIdentifier = @"cell";
 -(void)collectionViewIsh{
 		
 		
-				//category select
-//		self.nib = [UINib new];
-		
 
 		UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
 		[layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -47,12 +44,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.collectionView.userInteractionEnabled = YES;
 		
 		[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-
-
 		self.collectionView.backgroundColor = [UIColor whiteColor];
-		
-		
-
 		
 		self.firstTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.firstTag.image = [UIImage imageNamed:@"book"];
@@ -71,10 +63,8 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		self.sixthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.sixthTag.image = [UIImage imageNamed:@"game"];
-		
 		self.seventhTag = [[UIImageView alloc] initWithFrame:defaultRect];
 	  self.seventhTag.image = [UIImage imageNamed:@"household"];
-		
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.eighthTag.image = [UIImage imageNamed:@"misc"];
 		
@@ -120,24 +110,38 @@ static NSString * const reuseIdentifier = @"cell";
 		return cell;
 }
 
--(void)selectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition{
-		NSLog(@"We're calling selectItemAtIndexPath");
-		
-		[self.categoriesForItem addObject:self.categories[indexPath.row]];
-		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
-		
-		
-}
+
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
 		NSLog(@"We're calling didselectItemAtIndexPath");
 		
 		[self.categoriesForItem addObject:self.categories[indexPath.row]];
+		
+		
+		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		
+		currentImageView.alpha = 0.5;
+		
+		
+		
+		
+		
 		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
 }
 
-
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+		
+		NSLog(@"We're calling didselectItemAtIndexPath");
+		
+		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
+		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
+		
+		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		
+		currentImageView.alpha = 1.0;
+		
+}
 
 
 
@@ -356,7 +360,6 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
 				make.bottom.equalTo(self.scrollView.mas_bottom);
-//				make.top.equalTo(@600);
 				make.height.equalTo(@60);
 		}];
 }
@@ -377,10 +380,11 @@ static NSString * const reuseIdentifier = @"cell";
 
 		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
 				CGFloat scrollViewKeyboard = finalConstraint.size.height;
+		
 				NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
 				
 				[UIView animateWithDuration:duration animations:^{
-						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard) animated:YES];
+						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-25) animated:YES];
 						[self.view layoutIfNeeded];
 				}];
 }
@@ -493,8 +497,6 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 						}
 				}];
 		}
-		
-		
 }
 
 
