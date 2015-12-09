@@ -58,7 +58,6 @@
 		6247BE0B1C162A3E00FDFD3D /* household.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE061C162A3E00FDFD3D /* household.png */; };
 		6247BE0C1C162A3E00FDFD3D /* sport.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE071C162A3E00FDFD3D /* sport.png */; };
 		6247BE0E1C1630C800FDFD3D /* Don-icon in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE0D1C1630C800FDFD3D /* Don-icon */; };
-
 		62697BE81C0CFACC004455CD /* DonContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BE71C0CFACC004455CD /* DonContainerViewController.m */; };
 		62697BEB1C0CFDA2004455CD /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BEA1C0CFDA2004455CD /* EmptySegue.m */; };
 		62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BED1C0D00DC004455CD /* DonCollectionViewController.m */; };
@@ -69,7 +68,6 @@
 		6284E0E31C051EC2007A4CB1 /* DONViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0DF1C051EC2007A4CB1 /* DONViewItemButton.m */; };
 		6284E0E41C051EC2007A4CB1 /* DONViewItemUserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */; };
 		6284E0E71C051EDF007A4CB1 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E61C051EDF007A4CB1 /* DONActivity.m */; };
-
 		6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0E81C051F2C007A4CB1 /* furniture.png */; };
 		6284E0EB1C051F4F007A4CB1 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EA1C051F4F007A4CB1 /* music.png */; };
 		6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */; };
@@ -178,7 +176,6 @@
 		6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemUserProfileView.m; sourceTree = "<group>"; };
 		6284E0E51C051EDF007A4CB1 /* DONActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONActivity.h; sourceTree = "<group>"; };
 		6284E0E61C051EDF007A4CB1 /* DONActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONActivity.m; sourceTree = "<group>"; };
-
 		6284E0E81C051F2C007A4CB1 /* furniture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = furniture.png; sourceTree = "<group>"; };
 		6284E0EA1C051F4F007A4CB1 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
 		6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DonInfowindow.xib; sourceTree = "<group>"; };
@@ -338,14 +335,12 @@
 				614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */,
 				614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */,
 				614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */,
-
 				623668081C051BC700327A9D /* DONDrawerViewController.h */,
 				623668091C051BC700327A9D /* DONDrawerViewController.m */,
 				6284E0D31C051E57007A4CB1 /* DONItemViewController.h */,
 				6284E0D41C051E57007A4CB1 /* DONItemViewController.m */,
 				61DA47491C10B82100A8B23A /* DONProfileItemCollectionViewController.h */,
 				61DA474A1C10B82100A8B23A /* DONProfileItemCollectionViewController.m */,
-
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -405,11 +400,7 @@
 			children = (
 				6247BE0D1C1630C800FDFD3D /* Don-icon */,
 				6284E0EA1C051F4F007A4CB1 /* music.png */,
-				6237E0761BFD35EC00C5AD27 /* book.png */,
-				6237E0771BFD35EC00C5AD27 /* suitcase.png */,
-				6237E0781BFD35EC00C5AD27 /* plant.png */,
 				6284E0E81C051F2C007A4CB1 /* furniture.png */,
-				6237E07A1BFD35EC00C5AD27 /* clothing.png */,
 				61F10EBD1C162D3900E3ED3F /* utensil.png */,
 				61F10EBF1C162D5B00E3ED3F /* misc.png */,
 				6284E0F71C06AD22007A4CB1 /* clara.jpg */,
@@ -510,12 +501,8 @@
 				6247BE0B1C162A3E00FDFD3D /* household.png in Resources */,
 				6247BE021C16274900FDFD3D /* electronics.png in Resources */,
 				6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */,
-				6237E07C1BFD35EC00C5AD27 /* book.png in Resources */,
-				6237E07E1BFD35EC00C5AD27 /* plant.png in Resources */,
-				6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */,
 				6284E0EB1C051F4F007A4CB1 /* music.png in Resources */,
 				6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */,
-				6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */,
 				6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */,
 				6247BE001C1625BD00FDFD3D /* household.png in Resources */,
 				6247BDFA1C15DE5E00FDFD3D /* music.png in Resources */,
@@ -632,15 +619,11 @@
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
 				62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
-
-				62B45AFC1BFF6E000007D314 /* MapViewController.m in Sources */,
-			
 				6236680A1C051BC700327A9D /* DONDrawerViewController.m in Sources */,
 				6284E0F61C06A49C007A4CB1 /* DonInfowindow.m in Sources */,
 				6284E0E41C051EC2007A4CB1 /* DONViewItemUserProfileView.m in Sources */,
 				614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */,
 				6284E0D51C051E57007A4CB1 /* DONItemViewController.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

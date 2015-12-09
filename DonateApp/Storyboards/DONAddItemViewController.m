@@ -7,10 +7,6 @@
 //
 
 #import "DONAddItemViewController.h"
-#import <CoreLocation/CoreLocation.h>
-
-
-
 
 
 @interface DONAddItemViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -18,26 +14,145 @@
 @end
 
 @implementation DONAddItemViewController
+		//-(void)viewDidAppear:(BOOL)animated{
+		//
+		//		[super viewDidAppear:animated];
 
-//-(void)viewDidAppear:(BOOL)animated{
+		//}
+
+
+static NSString * const reuseIdentifier = @"cell";
+
+//make new pfitem *itemInProgress and modify it with John's methods with vc methods
+
+
+-(void)collectionViewIsh{
+		
+		
+				//category select
+//		self.nib = [UINib new];
+		
+
+		UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+		[layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+		layout.minimumInteritemSpacing = 5.0;
+		layout.itemSize = CGSizeMake(120, 120);
+		CGRect defaultRect = CGRectMake(0, 0, 120, 120);
+
+		
+		self.collectionView = [[UICollectionView alloc]initWithFrame:defaultRect collectionViewLayout:layout];
+		self.collectionView.dataSource = self;
+		self.collectionView.delegate = self;
+		self.collectionView.allowsMultipleSelection = YES;
+		self.collectionView.userInteractionEnabled = YES;
+		
+		[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+
+
+		self.collectionView.backgroundColor = [UIColor whiteColor];
+		
+		
+
+		
+		self.firstTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.firstTag.image = [UIImage imageNamed:@"book"];
+		
+		self.secondTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.secondTag.image = [UIImage imageNamed:@"furniture"];
+		
+		self.thirdTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.thirdTag.image = [UIImage imageNamed:@"clothing"];
+		
+		self.fourthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.fourthTag.image = [UIImage imageNamed:@"music"];
+		
+		self.fifthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.fifthTag.image = [UIImage imageNamed:@"electronics"];
+		
+		self.sixthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.sixthTag.image = [UIImage imageNamed:@"game"];
+		
+		self.seventhTag = [[UIImageView alloc] initWithFrame:defaultRect];
+	  self.seventhTag.image = [UIImage imageNamed:@"household"];
+		
+		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+		self.eighthTag.image = [UIImage imageNamed:@"misc"];
+		
+
+		self.firstTagString = [NSString stringWithFormat:@"books"];
+		self.secondTagString = [NSString stringWithFormat:@"furniture"];
+		self.thirdTagString = [NSString stringWithFormat:@"clothing"];
+		self.fourthTagString = [NSString stringWithFormat:@"music"];
+		self.fifthTagString = [NSString stringWithFormat:@"electronics & appliances"];
+		self.sixthTagString = [NSString stringWithFormat:@"games & hobbies"];
+		self.seventhTagString = [NSString stringWithFormat:@"home & garden"];
+		self.eighthTagString = [NSString stringWithFormat:@"other"];
+		
+		self.categories = [NSArray mutableCopy];
+		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString];
+		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag];
+}
+
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+		return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+		return self.categories.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+		cell.userInteractionEnabled = YES;
+		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+		UIImageView *imageView =self.categoriesImageViews[indexPath.row];
+		imageView.userInteractionEnabled = YES;
+		[cell.contentView addSubview:imageView];
+		cell.contentView.userInteractionEnabled = YES;
 //
-//		[super viewDidAppear:animated];
+//		
+//		[self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+//		[self collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+//		
+		return cell;
+}
 
-//}
+-(void)selectItemAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition{
+		NSLog(@"We're calling selectItemAtIndexPath");
+		
+		[self.categoriesForItem addObject:self.categories[indexPath.row]];
+		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
+		
+		
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+		NSLog(@"We're calling didselectItemAtIndexPath");
+		
+		[self.categoriesForItem addObject:self.categories[indexPath.row]];
+		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
+}
+
+
+
+
+
+
 
 - (void)viewDidLoad {
 		
+		self.categoriesForItem = [NSMutableArray new];
 		self.navigationItem.title = @"Donate Item";
 		
 		[super viewDidLoad];
+		[self collectionViewIsh];
+
 		[self setConstraints];
 		
-
-		
-		self.categorySelect.delegate = self;
-		
-		
-		//initialize location manager and request authorization
 		self.locationManager = [[CLLocationManager alloc] init];
 		self.locationManager.delegate = self;
 		
@@ -54,18 +169,6 @@
 		self.containerView.userInteractionEnabled = YES;
 		[self.containerView addGestureRecognizer:tappedBG];
 		
-//		UITapGestureRecognizer *tappedFirstTagInScrollView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedFirstTagSelector)];
-//		self.firstTag.userInteractionEnabled = YES;
-//		[self.firstTag addGestureRecognizer:tappedFirstTagInScrollView];
-//				UITapGestureRecognizer *tappedSecondTagInScrollView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedSecondTagSelector)];
-//		self.secondTag.userInteractionEnabled = YES;
-//		[self.secondTag addGestureRecognizer:tappedSecondTagInScrollView];
-//				UITapGestureRecognizer *tappedThirdTagInScrollView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedThirdTagSelector)];
-//		self.thirdTag.userInteractionEnabled = YES;
-//		[self.thirdTag addGestureRecognizer:tappedThirdTagInScrollView];
-//				UITapGestureRecognizer *tappedFourthTagInScrollView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedFourthTagSelector)];
-//		self.fourthTag.userInteractionEnabled = YES;
-//		[self.fourthTag addGestureRecognizer:tappedFourthTagInScrollView];
 		
 		UIBarButtonItem *stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(cancelClicked)];
 		[stopButton setTintColor:[UIColor blackColor]];
@@ -85,6 +188,7 @@
 				//initialize storyboard objects
 		self.scrollView = [[UIScrollView alloc]init];
 		self.containerView = [[UIView alloc]init];
+		self.topContainerView = [[UIView alloc]init];
 		self.selectedImageView = [[UIImageView alloc]init];
 		
 		self.useCurrentLocationSwitch = [[UISwitch alloc]init];
@@ -94,79 +198,35 @@
 		self.itemNameTextField = [[UITextField alloc]init];
 		self.itemDescriptionTextField= [[UITextField alloc]init];
 		self.pickupInstructionsTextField= [[UITextField alloc]init];
-//		self.categoriesTextField = [[UITextField alloc]init];
 		
 		
-		//category select
-		self.categorySelect = [[UIScrollView alloc] init];
-		self.categoryStackView = [[UIStackView alloc]init];
-//		self.categoryContentView = [[UIView alloc]init];
+		
 
-
-
-
-		self.firstTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
-		self.firstTag.image = [UIImage imageNamed:@"book"];
-		
-		self.secondTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,160, 160)];
-		self.secondTag.image = [UIImage imageNamed:@"clothinga"];
-		
-		self.thirdTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
-		self.thirdTag.image = [UIImage imageNamed:@"book"];
-		
-		self.fourthTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,160, 160)];
-		self.fourthTag.image = [UIImage imageNamed:@"clothinga"];
-		
-		self.fifthTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
-		self.fifthTag.image = [UIImage imageNamed:@"book"];
-		
-		self.sixthTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 160)];
-		self.sixthTag.image = [UIImage imageNamed:@"clothinga"];
-		
-		
-		
-		
-//		self.firstTag = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"book"]];
-//		self.secondTag = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"clothinga"]];
-//		self.thirdTag= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"book"]];
-//		self.fourthTag= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"clothinga"]];
-//		
-//		
-//		
-//		self.fifthTag= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"book"]];
-//		self.sixthTag= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"clothinga"]];
-////		self.seventhTag= [[UIImageView alloc]init];
-////		self.eigthTag= [[UIImageView alloc]init];
 //
-//		NSMutableArray *theImageTags = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag];
-
-		
 #pragma view hierarchy
 
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
-		
+		[self.scrollView addSubview:self.topContainerView];
 		//selectimage
-		[self.containerView addSubview:self.selectedImageView];
+		[self.topContainerView addSubview:self.selectedImageView];
 		
-		//category select scrollview
-		[self.containerView addSubview:self.categorySelect];
-		[self.categorySelect addSubview:self.categoryStackView];
+		//collectionView
+		[self.topContainerView addSubview:self.collectionView];
 
-		
 		//textfields
 		[self.containerView addSubview:self.itemNameTextField];
 		[self.containerView addSubview:self.itemDescriptionTextField];
 		[self.containerView addSubview:self.pickupInstructionsTextField];
-//		[self.containerView addSubview:self.categoriesTextField];
+
 		//switch
 		[self.containerView addSubview:self.useCurrentLocationLabel];
 		[self.containerView addSubview:self.useCurrentLocationSwitch];
 		//save
 		[self.containerView addSubview:self.saveButton];
 		
-		
-		
+		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+		self.topContainerView.backgroundColor = [UIColor whiteColor];
 		
 		
 #pragma setConstraints
@@ -175,12 +235,21 @@
 				make.edges.equalTo(self.view);
 		}];
 		
-		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.right.top.equalTo(self.scrollView);
+//				make.top.equalTo(self.selectedImageView);
+				make.bottom.equalTo(self.collectionView.mas_bottom);
+//				make.bottom.equalTo(self.containerView.mas_top);
+//				make.height.equalTo(@300);
+				make.width.equalTo(self.view);
+		}];
+		
 		
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.edges.equalTo(self.scrollView);
-				make.top.equalTo(self.selectedImageView);
-				make.bottom.equalTo(self.saveButton);
+				make.left.right.bottom.equalTo(self.scrollView);
+				make.top.equalTo(self.topContainerView.mas_bottom);
+								make.height.equalTo(@300);
+//				make.bottom.equalTo(self.saveButton);
 				make.width.equalTo(self.view);
 		}];
 		
@@ -193,110 +262,30 @@
     self.selectedImageView.image = placeHolderThing;
 		}
 		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.equalTo (self.containerView);
-				make.top.equalTo(self.containerView);
+				make.left.right.equalTo (self.topContainerView);
+				make.top.equalTo(self.topContainerView);
 				make.height.equalTo(@200);
 		}];
 		
 		
+		//collectionview
+		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.height.equalTo(@120);
+				make.left.equalTo(self.topContainerView).offset(25);
+				make.right.equalTo(self.topContainerView).offset(-25);
+				make.centerX.equalTo(self.topContainerView.mas_centerX);
+				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
+	}];
+	
+		self.collectionView.scrollEnabled = YES;
 		
-//categoryselect ScrollView
-		
-		self.categorySelect.backgroundColor = [UIColor whiteColor];
-//		self.categorySelect.directionalLockEnabled = YES;
-
-		
-//		self.categoryStackView.layoutMarginsRelativeArrangement = YES;
-		
-		[self.categorySelect mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(self.containerView).offset(25);
-				make.right.equalTo(self.containerView).offset(-25);
-				make.centerX.equalTo(self.containerView.mas_centerX);
-//				make.bottom.equalTo(self.categoriesTextField).offset(-30);
-				make.top.equalTo(self.selectedImageView.mas_bottom).offset(30);
-				make.height.equalTo(@160);
-		}];
-		
-		
-		
-		self.firstTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.firstTag];
-		self.secondTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.secondTag];
-		self.thirdTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.thirdTag];
-		self.fourthTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.fourthTag];
-		self.fifthTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.fifthTag];
-		self.sixthTag.contentMode = UIViewContentModeScaleAspectFit;
-		[self.categoryStackView addArrangedSubview:self.sixthTag];
-		
-		self.categoryStackView.backgroundColor =[UIColor whiteColor];
-		self.categoryStackView.distribution = UIStackViewDistributionFillEqually;
-		self.categoryStackView.axis =UILayoutConstraintAxisHorizontal;
-		self.categoryStackView.alignment = UIStackViewAlignmentCenter;
-		self.categoryStackView.spacing = 10;
-		
-		
-//		NSInteger totalWidth = 0;
-////		CGFloat heightOfOneImage = self.firstTag.frame.size.height;
-////		
-//		for (UIImageView *imageView in theImageTags) {
-////
-//				totalWidth += imageView.frame.size.width;
-//		}
-//
-//		NSNumber *widthNumber = @(totalWidth);
-////
-//////		NSString *heightString = [NSString stringWithFormat:@"@%ld", totalWidth];
-////
-////		
-		[self.categoryStackView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.top.bottom.equalTo(self.categorySelect);
-
-				make.center.equalTo(self.categorySelect);
-//				make.width.equalTo(@960);
-////				make.edges.equalTo(@0);
-//				make.width.equalTo(widthNumber);
-//				make.right.equalTo(@700);
-		}];
-		
-		
-//		self.categorySelect.contentSize = CGSizeMake(self.categoryStackView.frame.size.width * 2, self.categoryStackView.frame.size.height);
-//		self.categorySelect.pagingEnabled = YES;
-//		self.categorySelect.scrollEnabled = YES;
-		
-		
-		// create blank stackView
-		// add it as subview, constrain it, etc
-//		for (DONCategory *category in self.DONcategories) {
-				// get image, set it to a view and put it in stackview
-				// pin its edges with masonry
-		
-		
-		
-		
-		
+		self.collectionView.showsHorizontalScrollIndicator = YES;
 		
 		
 //textFields
 		NSString *placeholderName = [NSString stringWithFormat:@"Item Name"];
 		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
 		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
-		NSString *placeholderCategory = [NSString stringWithFormat:@"What Category Describes Your Item"];
-
-//		self.categoriesTextField.textColor = [UIColor blackColor];
-//		self.categoriesTextField.placeholder = placeholderCategory;
-//		self.categoriesTextField.textAlignment = NSTextAlignmentCenter;
-//		self.categoriesTextField.borderStyle = UITextBorderStyleRoundedRect;
-//		
-//		[self.categoriesTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-//				make.left.equalTo(self.containerView).offset(25);
-//				make.right.equalTo(self.containerView).offset(-25);
-//				make.centerX.equalTo(self.containerView.mas_centerX);
-//				make.bottom.equalTo(self.itemNameTextField.mas_top).offset(-20);
-//		}];
 
 		self.itemNameTextField.textColor = [UIColor blackColor];
 		self.itemNameTextField.placeholder = placeholderName;
@@ -366,89 +355,12 @@
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
-				make.top.equalTo(@600);
+				make.bottom.equalTo(self.scrollView.mas_bottom);
+//				make.top.equalTo(@600);
 				make.height.equalTo(@60);
 		}];
 }
 
-
-//#pragma categorySelections
-//
-//-(void)userTappedFirstTagSelector{
-//		NSLog(@"firstTagTapped");
-//		NSString *householdString = [NSString stringWithFormat:@"Household"];
-//		if (![self.categories containsObject:houseHold]) {
-//				[self.categories addObject:booksString];
-
-//				NSLog(@"%@", [self.categories lastObject]);
-//		self.firstTag.alpha = 0.5;
-//}
-//		else if ([self.categories containsObject:booksString]) {
-//    [self.categories removeObject:booksString];
-//		self.firstTag.alpha = 1.0;
-//				NSLog(@"removed books from array");
-//		}
-//}
-//-(void)userTappedSecondTagSelector{
-//		NSLog(@"2ndTagTapped");
-//		NSString *clothingString = [NSString stringWithFormat:@"Clothing"];
-//		if (![self.categories containsObject:clothingString]) {
-//				[self.categories addObject:clothingString];
-//				self.secondTag.alpha = 0.5;
-//		}
-//		else if ([self.categories containsObject:clothingString]) {
-//    [self.categories removeObject:clothingString];
-//				self.secondTag.alpha = 1.0;
-//				NSLog(@"removed clothing from array");
-//		}
-//}
-
-//-(void)userTappedThirdTagSelector{
-//		NSLog(@"3rdTagTapped");
-//		NSString *furnitureString = [NSString stringWithFormat:@"Furniture"];
-//		if (![self.categories containsObject:furnitureString]) {
-//				[self.categories addObject:furnitureString];
-//				self.thirdTag.alpha = 0.5;
-//		}
-//		else if ([self.categories containsObject:furnitureString]) {
-//    [self.categories removeObject:furnitureString];
-//				self.thirdTag.alpha = 1.0;
-//				NSLog(@"removed furn from array");
-//		}
-//}
-//-(void)userTappedFourthTagSelector{
-//		NSLog(@"4thTagTapped");
-//		NSString *musicString = [NSString stringWithFormat:@"Music"];
-//
-//		if (![self.categories containsObject:musicString]) {
-//				[self.categories addObject:musicString];
-//				self.fourthTag.alpha = 0.5;
-//		}
-//		else if ([self.categories containsObject:musicString]) {
-//    [self.categories removeObject:musicString];
-//				self.fourthTag.alpha = 1.0;
-//				NSLog(@"removed musicString from array");
-//		}
-//}
-
-//-(void)userTapped<##>TagSelector{
-
-
-
-
-//		NSLog(@"<##>TagTapped");
-//		NSString *<##>String = [NSString stringWithFormat:@"<##>"];
-//		
-//		if (![self.categories containsObject:<##>]) {
-//				[self.categories addObject:<##>String];
-//				self.<##>.alpha = 0.5;
-//		}
-//		else if ([self.categories containsObject:musicString]) {
-//    [self.categories removeObject:<##>];
-//				self.<##>.alpha = 1.0;
-//				NSLog(@"removed from array");
-//		}
-//}
 
 
 
@@ -527,13 +439,6 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
-		self.categoryString = self.categoriesTextField.text;
-		item[@"categoryString"] = self.categoryString;
-		
-		if (self.categoryString.length <3) {
-				NSLog(@"self.categories is nil");
-				[alert showWarning:self title:@"Category Required" subTitle:@"Please select an item category" closeButtonTitle:@"OK" duration:0.0f];
-		}
 		
 		self.name =	self.itemNameTextField.text;
 		item[@"name"] = self.name;
@@ -569,9 +474,12 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 		if (self.itemImage) {
     item[@"image"] = self.itemImagePF;
 		}
+		if(self.categoriesForItem){
+				item[@"categories"] = self.categoriesForItem;
+		}
+
 		
-		
-		if (self.categoryString.length>=3 & self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
+		if ((self.categoriesForItem.count>0) & self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 
 				[alert showWaiting:self title:@"Please Wait" subTitle:@"loading" closeButtonTitle:nil duration:3.0f];
 				
@@ -594,7 +502,6 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 		[self.itemNameTextField resignFirstResponder];
 		[self.itemDescriptionTextField resignFirstResponder];
 		[self.pickupInstructionsTextField resignFirstResponder];
-		[self.categoriesTextField resignFirstResponder];
 				//		[self.view endEditing:TRUE];
 }
 

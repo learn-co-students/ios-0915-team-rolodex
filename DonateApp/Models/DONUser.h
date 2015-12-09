@@ -22,6 +22,10 @@
 @property (nonatomic, strong) NSDate *updatedAt;
 @property (nonatomic, strong, readonly) PFFile *photoFile;
 
+
+
+
+
 -(void)setPhoto:(UIImage *)photo;
 
 /* Use the below to grab a reference to the test user

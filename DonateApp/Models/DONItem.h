@@ -47,6 +47,10 @@
 @property (nonatomic, strong) PFGeoPoint*  location;
 
 
+
+
+
+
 +(NSString *)parseClassName;
 
 +(void)fetchItemWithItemId:(NSString *)ID withCompletion:(void (^)(DONItem *item, NSError *error))completion;
@@ -95,4 +99,8 @@
 +(void)itemsWithCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success, NSArray *items))completion;
 +(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion;
 -(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion;
+
+
+
+
 @end
