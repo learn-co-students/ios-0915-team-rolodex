@@ -83,7 +83,11 @@
     [self.profilePictureImageView loadInBackground];
     
     NSString *username = [NSString stringWithFormat:@"%@", self.user.username];
-    self.userNameLabel.text = username;
+    if ([username isEqualToString:@"(null)"]) {
+        self.userNameLabel.text = @"";
+    } else {
+        self.userNameLabel.text = username;
+    }
 
 }
 

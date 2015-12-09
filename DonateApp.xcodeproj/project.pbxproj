@@ -38,7 +38,6 @@
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		61DA474B1C10B82100A8B23A /* DONProfileItemCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DA474A1C10B82100A8B23A /* DONProfileItemCollectionViewController.m */; };
 		61DA474E1C10E74500A8B23A /* DONUserProfileItemCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DA474D1C10E74500A8B23A /* DONUserProfileItemCountView.m */; };
-		61F10EBE1C162D3900E3ED3F /* utensil.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F10EBD1C162D3900E3ED3F /* utensil.png */; };
 		61F10EC01C162D5B00E3ED3F /* misc.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F10EBF1C162D5B00E3ED3F /* misc.png */; };
 		6236680A1C051BC700327A9D /* DONDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 623668091C051BC700327A9D /* DONDrawerViewController.m */; };
 		6236680D1C051C5400327A9D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236680C1C051C5400327A9D /* DONDrawerProfileView.m */; };
@@ -54,7 +53,6 @@
 		6247BDFB1C15DE5E00FDFD3D /* noun_20227_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */; };
 		6247BDFC1C15DE5E00FDFD3D /* noun_34134_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */; };
 		6247BDFD1C15DE5E00FDFD3D /* plant.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF31C15DE5E00FDFD3D /* plant.png */; };
-		6247BDFE1C15DE5E00FDFD3D /* utensil.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF41C15DE5E00FDFD3D /* utensil.png */; };
 		6247BE001C1625BD00FDFD3D /* household.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDFF1C1625BD00FDFD3D /* household.png */; };
 		6247BE021C16274900FDFD3D /* electronics.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE011C16274900FDFD3D /* electronics.png */; };
 		6247BE091C162A3E00FDFD3D /* instrument.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE041C162A3E00FDFD3D /* instrument.png */; };
@@ -134,7 +132,6 @@
 		61DA474A1C10B82100A8B23A /* DONProfileItemCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONProfileItemCollectionViewController.m; sourceTree = "<group>"; };
 		61DA474C1C10E74500A8B23A /* DONUserProfileItemCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserProfileItemCountView.h; sourceTree = "<group>"; };
 		61DA474D1C10E74500A8B23A /* DONUserProfileItemCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserProfileItemCountView.m; sourceTree = "<group>"; };
-		61F10EBD1C162D3900E3ED3F /* utensil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = utensil.png; sourceTree = "<group>"; };
 		61F10EBF1C162D5B00E3ED3F /* misc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = misc.png; sourceTree = "<group>"; };
 		623668081C051BC700327A9D /* DONDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerViewController.h; sourceTree = "<group>"; };
 		623668091C051BC700327A9D /* DONDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerViewController.m; sourceTree = "<group>"; };
@@ -154,7 +151,6 @@
 		6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noun_20227_cc.png; path = "Don-icon/noun_20227_cc.png"; sourceTree = "<group>"; };
 		6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noun_34134_cc.png; path = "Don-icon/noun_34134_cc.png"; sourceTree = "<group>"; };
 		6247BDF31C15DE5E00FDFD3D /* plant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plant.png; path = "Don-icon/plant.png"; sourceTree = "<group>"; };
-		6247BDF41C15DE5E00FDFD3D /* utensil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = utensil.png; path = "Don-icon/utensil.png"; sourceTree = "<group>"; };
 		6247BDFF1C1625BD00FDFD3D /* household.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = household.png; sourceTree = "<group>"; };
 		6247BE011C16274900FDFD3D /* electronics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = electronics.png; sourceTree = "<group>"; };
 		6247BE041C162A3E00FDFD3D /* instrument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instrument.png; sourceTree = "<group>"; };
@@ -421,7 +417,6 @@
 				6247BE0D1C1630C800FDFD3D /* Don-icon */,
 				6284E0EA1C051F4F007A4CB1 /* music.png */,
 				6284E0E81C051F2C007A4CB1 /* furniture.png */,
-				61F10EBD1C162D3900E3ED3F /* utensil.png */,
 				61F10EBF1C162D5B00E3ED3F /* misc.png */,
 				6284E0F71C06AD22007A4CB1 /* clara.jpg */,
 				6247BDEB1C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png */,
@@ -433,7 +428,6 @@
 				6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */,
 				6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */,
 				6247BDF31C15DE5E00FDFD3D /* plant.png */,
-				6247BDF41C15DE5E00FDFD3D /* utensil.png */,
 				6247BE011C16274900FDFD3D /* electronics.png */,
 				6247BDFF1C1625BD00FDFD3D /* household.png */,
 				6247BE041C162A3E00FDFD3D /* instrument.png */,
@@ -488,7 +482,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 577ZL2JGFK;
+						DevelopmentTeam = CPMU5WXMBN;
 					};
 				};
 			};
@@ -542,11 +536,9 @@
 				6247BDFB1C15DE5E00FDFD3D /* noun_20227_cc.png in Resources */,
 				6247BDFC1C15DE5E00FDFD3D /* noun_34134_cc.png in Resources */,
 				6247BDFD1C15DE5E00FDFD3D /* plant.png in Resources */,
-				61F10EBE1C162D3900E3ED3F /* utensil.png in Resources */,
 				614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */,
 				6247BDF61C15DE5E00FDFD3D /* book.png in Resources */,
 				6247BDF81C15DE5E00FDFD3D /* furniture.png in Resources */,
-				6247BDFE1C15DE5E00FDFD3D /* utensil.png in Resources */,
 				61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */,
 				6247BE0C1C162A3E00FDFD3D /* sport.png in Resources */,
 				61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */,

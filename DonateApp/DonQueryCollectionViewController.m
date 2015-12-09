@@ -79,6 +79,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark Navigation Bar Setup
 // Drawer menu code
 
@@ -110,6 +111,7 @@
     [self.mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.mapButton];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
+    self.mapButton.enabled = NO;
     
 }
 
@@ -140,6 +142,10 @@
 {
     // turn the UserInteraction back ON
     self.searchCollectionView.userInteractionEnabled = YES;
+    if (self.allCategory.count == 0 ) {
+        [[DONCollectionViewDataModel sharedInstance] loadCategories];
+    }
+    self.mapButton.enabled = YES;
 }
 
 #pragma mark collectionView delegate
