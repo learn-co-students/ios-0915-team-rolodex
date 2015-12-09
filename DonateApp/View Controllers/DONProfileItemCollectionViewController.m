@@ -25,6 +25,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     self.items = @[];
@@ -73,6 +74,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     DONItem *item = self.items[indexPath.row];
     
     UIView *containerView = [[UIView alloc] init];
