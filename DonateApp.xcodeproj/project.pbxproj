@@ -348,9 +348,7 @@
 				6284E0D61C051E70007A4CB1 /* DonGoogleMapViewController.h */,
 				6284E0D71C051E70007A4CB1 /* DonGoogleMapViewController.m */,
 				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
-
 				6284E0F01C06A409007A4CB1 /* mapStuff */,
-
 			);
 			name = guangClasses;
 			sourceTree = "<group>";
@@ -380,12 +378,9 @@
 		6284E0F01C06A409007A4CB1 /* mapStuff */ = {
 			isa = PBXGroup;
 			children = (
-				6284E0D61C051E70007A4CB1 /* DonGoogleMapViewController.h */,
-				6284E0D71C051E70007A4CB1 /* DonGoogleMapViewController.m */,
 				6284E0F41C06A49C007A4CB1 /* DonInfowindow.h */,
 				6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */,
 				6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */,
-				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
 			);
 			name = mapStuff;
 			sourceTree = "<group>";
@@ -424,7 +419,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 577ZL2JGFK;
+						DevelopmentTeam = 57675254DH;
 					};
 				};
 			};
@@ -452,24 +447,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
-				6247BE0B1C162A3E00FDFD3D /* household.png in Resources */,
-				6247BE021C16274900FDFD3D /* electronics.png in Resources */,
-				6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */,
-				6237E07C1BFD35EC00C5AD27 /* book.png in Resources */,
-				6237E07E1BFD35EC00C5AD27 /* plant.png in Resources */,
-				6237E0801BFD35EC00C5AD27 /* clothing.png in Resources */,
 				4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */,
 				4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */,
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
-				6284E0EB1C051F4F007A4CB1 /* music.png in Resources */,
-				6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */,
-				6237E07D1BFD35EC00C5AD27 /* suitcase.png in Resources */,
 				6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */,
 				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,
 				62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */,
 				61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */,
-				61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */,
 				61C574851BFBCBD000D80141 /* Guang.storyboard in Resources */,
 				614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */,
 				61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */,
@@ -508,21 +493,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A5307ABB9BE74DCAB2C8A68E /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A65BF0449CD1D927218C323F /* Copy Pods Resources */ = {
@@ -689,6 +659,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -708,6 +679,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

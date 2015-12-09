@@ -45,7 +45,7 @@
     self.mapView.myLocationEnabled = YES;
     self.mapView.delegate = self;
     
-//    [self backHomeButtom];
+    [self backHomeButtom];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itmeMapUpdate) name:kDidUpdateItemsNotification object:nil];
 }
@@ -67,8 +67,7 @@
     CLLocationCoordinate2D currentLocation = [self getCurrentLocation];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentLocation.latitude longitude:currentLocation.longitude zoom:11];
     self.mapView.camera = camera;
-    [self backHomeButtom];
-
+    //[self backHomeButtom];
     [self positionMarkers];
 }
 
@@ -223,8 +222,9 @@
 -(void)itmeMapUpdate{
     self.itemsOnMap = [DONCollectionViewDataModel sharedInstance].items;
     // add animation when reload
-    //[self createMap];
     // do not recreat the map but reload the data somehow
+    [self.mapView clear];
+    //[self createMap];
     [self positionMarkers];
     [self centerMap];
     self.mapView.delegate = self;

@@ -19,18 +19,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4N-hc-aMe">
-                                <rect key="frame" x="0.0" y="0.0" width="43" height="21"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-Vr-AiG">
+                                <rect key="frame" x="0.0" y="167" width="375" height="500"/>
                                 <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u73-4O-ykT" customClass="DonSearchBarCollectionView">
-                                <rect key="frame" x="0.0" y="57" width="375" height="73"/>
+                                <color key="backgroundColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="E26-iy-1Q3" kind="embed" identifier="embedContainer" id="Xj6-Qq-fP5"/>
+                                </connections>
+                            </containerView>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-ej-z9z">
+                                <rect key="frame" x="0.0" y="128" width="375" height="39"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.84408538509999997" green="0.84408538509999997" blue="0.84408538509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u73-4O-ykT" customClass="DonSearchBarCollectionView">
+                                <rect key="frame" x="0.0" y="58" width="375" height="70"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="W6x-6V-7kg"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bdv-eB-hNS">
                                     <size key="itemSize" width="70" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -46,7 +54,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="music-record.png" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-Dt-HPJ" customClass="PFImageView">
-                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <animations/>
                                                 </imageView>
                                             </subviews>
@@ -55,10 +63,10 @@
                                         </view>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="trailingMargin" secondItem="HgF-Dt-HPJ" secondAttribute="trailing" constant="-3" id="3gE-ud-qrg"/>
-                                            <constraint firstItem="HgF-Dt-HPJ" firstAttribute="top" secondItem="a9H-wZ-Je2" secondAttribute="topMargin" constant="-3" id="Ls7-gG-0Me"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="HgF-Dt-HPJ" secondAttribute="bottom" constant="-3" id="SAH-Ig-qkh"/>
-                                            <constraint firstItem="HgF-Dt-HPJ" firstAttribute="leading" secondItem="a9H-wZ-Je2" secondAttribute="leadingMargin" constant="-3" id="gCD-Mn-YGv"/>
+                                            <constraint firstAttribute="bottom" secondItem="HgF-Dt-HPJ" secondAttribute="bottom" id="0Rg-X3-Ksz"/>
+                                            <constraint firstItem="HgF-Dt-HPJ" firstAttribute="leading" secondItem="a9H-wZ-Je2" secondAttribute="leading" id="3Y5-9p-8XW"/>
+                                            <constraint firstItem="HgF-Dt-HPJ" firstAttribute="top" secondItem="a9H-wZ-Je2" secondAttribute="top" id="C96-jC-Mql"/>
+                                            <constraint firstItem="HgF-Dt-HPJ" firstAttribute="trailing" secondItem="a9H-wZ-Je2" secondAttribute="trailing" id="Pqi-tf-hUs"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="HgF-Dt-HPJ" id="4Th-Lp-KVp"/>
@@ -66,42 +74,21 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-Cz-Rxh" userLabel="ButtonToMap">
-                                <rect key="frame" x="277" y="100" width="30" height="30"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="goTomap:" destination="9Sp-iy-duU" eventType="touchUpInside" id="hBq-eE-9yi"/>
-                                </connections>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-Vr-AiG">
-                                <rect key="frame" x="0.0" y="180" width="375" height="487"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <segue destination="E26-iy-1Q3" kind="embed" identifier="embedContainer" id="Xj6-Qq-fP5"/>
-                                </connections>
-                            </containerView>
-                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-ej-z9z">
-                                <rect key="frame" x="0.0" y="126" width="375" height="56"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.84408538509999997" green="0.84408538509999997" blue="0.84408538509999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="rA5-lp-gn9"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="width" secondItem="2b9-z7-ALW" secondAttribute="width" id="2gm-Xv-cDn"/>
-                            <constraint firstItem="EDP-Vr-AiG" firstAttribute="height" secondItem="2b9-z7-ALW" secondAttribute="height" multiplier="0.73" id="NTN-EL-Ccg"/>
-                            <constraint firstItem="IPB-ej-z9z" firstAttribute="width" secondItem="2b9-z7-ALW" secondAttribute="width" id="PTI-El-dJY"/>
+                            <constraint firstItem="IPB-ej-z9z" firstAttribute="top" secondItem="u73-4O-ykT" secondAttribute="bottom" id="8dY-cg-QR3"/>
+                            <constraint firstItem="u73-4O-ykT" firstAttribute="width" secondItem="2b9-z7-ALW" secondAttribute="width" id="DXA-05-e1j"/>
+                            <constraint firstAttribute="trailing" secondItem="u73-4O-ykT" secondAttribute="trailing" id="J7R-AY-ytM"/>
+                            <constraint firstItem="IPB-ej-z9z" firstAttribute="bottom" secondItem="EDP-Vr-AiG" secondAttribute="top" id="KHM-lT-eQT"/>
+                            <constraint firstItem="EDP-Vr-AiG" firstAttribute="height" secondItem="2b9-z7-ALW" secondAttribute="height" multiplier="0.75" id="NTN-EL-Ccg"/>
                             <constraint firstItem="IPB-ej-z9z" firstAttribute="leading" secondItem="2b9-z7-ALW" secondAttribute="leading" id="bhM-Wr-BAm"/>
-                            <constraint firstItem="0Ny-Nm-DvQ" firstAttribute="top" secondItem="EDP-Vr-AiG" secondAttribute="bottom" id="clk-2V-VOV"/>
+                            <constraint firstItem="EDP-Vr-AiG" firstAttribute="bottom" secondItem="0Ny-Nm-DvQ" secondAttribute="top" id="clk-2V-VOV"/>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="leading" secondItem="2b9-z7-ALW" secondAttribute="leading" id="fXl-H2-y6a"/>
-                            <constraint firstItem="EDP-Vr-AiG" firstAttribute="top" secondItem="IPB-ej-z9z" secondAttribute="bottom" constant="-2" id="iJN-Tm-P40"/>
-                            <constraint firstAttribute="trailing" secondItem="IPB-ej-z9z" secondAttribute="trailing" id="uTW-ak-ffB"/>
+                            <constraint firstItem="IPB-ej-z9z" firstAttribute="trailing" secondItem="2b9-z7-ALW" secondAttribute="trailing" id="uTW-ak-ffB"/>
+                            <constraint firstItem="IPB-ej-z9z" firstAttribute="height" secondItem="2b9-z7-ALW" secondAttribute="height" multiplier="0.059" id="x0W-8K-IKl"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -109,13 +96,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchCollectionView" destination="u73-4O-ykT" id="Bnp-wX-M9z"/>
-                        <outlet property="searchSelectionLabel" destination="u4N-hc-aMe" id="AvM-9T-Dw5"/>
                         <outlet property="stackedViewLables" destination="IPB-ej-z9z" id="WE9-Em-KMm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OY1-Fk-UzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577.5" y="24.5"/>
+            <point key="canvasLocation" x="569.5" y="-0.5"/>
         </scene>
         <!--Don Container View Controller-->
         <scene sceneID="UMx-Di-ENw">

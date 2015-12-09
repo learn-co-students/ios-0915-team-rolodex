@@ -10,7 +10,6 @@
 #import "DONUser.h"
 #import "DONItem.h"
 #import "DONCategory.h"
-//#import "QueryCell.h"
 #import "SearchCell.h"
 
 #import <ChameleonFramework/Chameleon.h>
@@ -30,7 +29,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
-
 @property (weak, nonatomic) DonContainerViewController * containerViewController;
 
 @property (strong, nonatomic) NSString * userOnPage;
