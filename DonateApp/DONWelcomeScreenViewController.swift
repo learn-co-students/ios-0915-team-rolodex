@@ -26,6 +26,7 @@ class DONWelcomeScreenViewController: UIViewController {
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var appiconOutlet: UIImageView!
     
+    @IBOutlet weak var skipButton: UIButton!
     // Make the status bar White
     override func preferredStatusBarStyle() -> UIStatusBarStyle
     {
@@ -44,6 +45,13 @@ class DONWelcomeScreenViewController: UIViewController {
         }
     }
     
+    @IBAction func skipButtonTapped(sender: UIButton) {
+        // Navigate to Protected page
+        let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
+        appDelegate.buildUserInterface()
+        
+        
+    }
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
