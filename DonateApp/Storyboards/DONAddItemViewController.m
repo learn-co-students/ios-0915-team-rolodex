@@ -14,28 +14,30 @@
 @end
 
 @implementation DONAddItemViewController
-		//-(void)viewDidAppear:(BOOL)animated{
-		//
-		//		[super viewDidAppear:animated];
-
-		//}
 
 
 static NSString * const reuseIdentifier = @"cell";
 
-//make new pfitem *itemInProgress and modify it with John's methods with vc methods
 
 
--(void)collectionViewIsh{
+//set
+//write up readme
+
+
+- (void)viewDidLoad {
+		
+		self.categoriesForItem = [NSMutableArray new];
+		self.navigationItem.title = @"Donate Item";
+		
+		[super viewDidLoad];
 		
 		
-
 		UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
 		[layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
 		layout.minimumInteritemSpacing = 5.0;
-		layout.itemSize = CGSizeMake(120, 120);
-		CGRect defaultRect = CGRectMake(0, 0, 120, 120);
-
+		layout.itemSize = CGSizeMake(65, 65);
+		CGRect defaultRect = CGRectMake(0, 0, 65, 65);
+		
 		
 		self.collectionView = [[UICollectionView alloc]initWithFrame:defaultRect collectionViewLayout:layout];
 		self.collectionView.dataSource = self;
@@ -48,27 +50,21 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		self.firstTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.firstTag.image = [UIImage imageNamed:@"book"];
-		
 		self.secondTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.secondTag.image = [UIImage imageNamed:@"furniture"];
-		
 		self.thirdTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.thirdTag.image = [UIImage imageNamed:@"clothing"];
-		
 		self.fourthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.fourthTag.image = [UIImage imageNamed:@"music"];
-		
 		self.fifthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.fifthTag.image = [UIImage imageNamed:@"electronics"];
-		
 		self.sixthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.sixthTag.image = [UIImage imageNamed:@"game"];
 		self.seventhTag = [[UIImageView alloc] initWithFrame:defaultRect];
-	  self.seventhTag.image = [UIImage imageNamed:@"household"];
+		self.seventhTag.image = [UIImage imageNamed:@"household"];
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.eighthTag.image = [UIImage imageNamed:@"misc"];
 		
-
 		self.firstTagString = [NSString stringWithFormat:@"books"];
 		self.secondTagString = [NSString stringWithFormat:@"furniture"];
 		self.thirdTagString = [NSString stringWithFormat:@"clothing"];
@@ -76,85 +72,13 @@ static NSString * const reuseIdentifier = @"cell";
 		self.fifthTagString = [NSString stringWithFormat:@"electronics & appliances"];
 		self.sixthTagString = [NSString stringWithFormat:@"games & hobbies"];
 		self.seventhTagString = [NSString stringWithFormat:@"home & garden"];
-		self.eighthTagString = [NSString stringWithFormat:@"other"];
+		self.eighthTagString = [NSString stringWithFormat:@"misc"];
 		
 		self.categories = [NSArray mutableCopy];
 		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString];
 		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag];
-}
-
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-		return 1;
-}
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-		return self.categories.count;
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-		cell.userInteractionEnabled = YES;
-		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-		UIImageView *imageView =self.categoriesImageViews[indexPath.row];
-		imageView.userInteractionEnabled = YES;
-		[cell.contentView addSubview:imageView];
-		cell.contentView.userInteractionEnabled = YES;
-//
-//		
-//		[self.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-//		[self collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
-//		
-		return cell;
-}
-
-
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-		NSLog(@"We're calling didselectItemAtIndexPath");
-		
-		[self.categoriesForItem addObject:self.categories[indexPath.row]];
 		
 		
-		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
-		
-		currentImageView.alpha = 0.5;
-		
-		
-		
-		
-		
-		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
-}
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-		
-		NSLog(@"We're calling didselectItemAtIndexPath");
-		
-		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
-		NSLog(@"self.categoriesForItem is: %@",[self.categoriesForItem lastObject]);
-		
-		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
-		
-		currentImageView.alpha = 1.0;
-		
-}
-
-
-
-
-
-- (void)viewDidLoad {
-		
-		self.categoriesForItem = [NSMutableArray new];
-		self.navigationItem.title = @"Donate Item";
-		
-		[super viewDidLoad];
-		[self collectionViewIsh];
-
 		[self setConstraints];
 		
 		self.locationManager = [[CLLocationManager alloc] init];
@@ -202,35 +126,31 @@ static NSString * const reuseIdentifier = @"cell";
 		self.itemNameTextField = [[UITextField alloc]init];
 		self.itemDescriptionTextField= [[UITextField alloc]init];
 		self.pickupInstructionsTextField= [[UITextField alloc]init];
-		
-		
-		
 
-//
 #pragma view hierarchy
-
+		
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
 		[self.scrollView addSubview:self.topContainerView];
-		//selectimage
+				//selectimage
 		[self.topContainerView addSubview:self.selectedImageView];
 		
-		//collectionView
+				//collectionView
 		[self.topContainerView addSubview:self.collectionView];
-
-		//textfields
+		
+				//textfields
 		[self.containerView addSubview:self.itemNameTextField];
 		[self.containerView addSubview:self.itemDescriptionTextField];
 		[self.containerView addSubview:self.pickupInstructionsTextField];
-
-		//switch
+		
+				//switch
 		[self.containerView addSubview:self.useCurrentLocationLabel];
 		[self.containerView addSubview:self.useCurrentLocationSwitch];
-		//save
+				//save
 		[self.containerView addSubview:self.saveButton];
 		
-		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-		self.topContainerView.backgroundColor = [UIColor whiteColor];
+//		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+//		self.topContainerView.backgroundColor = [UIColor whiteColor];
 		
 		
 #pragma setConstraints
@@ -241,10 +161,10 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.top.equalTo(self.scrollView);
-//				make.top.equalTo(self.selectedImageView);
+						//				make.top.equalTo(self.selectedImageView);
 				make.bottom.equalTo(self.collectionView.mas_bottom);
-//				make.bottom.equalTo(self.containerView.mas_top);
-//				make.height.equalTo(@300);
+						//				make.bottom.equalTo(self.containerView.mas_top);
+						//				make.height.equalTo(@300);
 				make.width.equalTo(self.view);
 		}];
 		
@@ -252,8 +172,8 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.bottom.equalTo(self.scrollView);
 				make.top.equalTo(self.topContainerView.mas_bottom);
-								make.height.equalTo(@300);
-//				make.bottom.equalTo(self.saveButton);
+				make.height.equalTo(@300);
+						//				make.bottom.equalTo(self.saveButton);
 				make.width.equalTo(self.view);
 		}];
 		
@@ -272,25 +192,25 @@ static NSString * const reuseIdentifier = @"cell";
 		}];
 		
 		
-		//collectionview
+				//collectionview
 		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.height.equalTo(@120);
+				make.height.equalTo(@65);
 				make.left.equalTo(self.topContainerView).offset(25);
 				make.right.equalTo(self.topContainerView).offset(-25);
 				make.centerX.equalTo(self.topContainerView.mas_centerX);
 				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
-	}];
-	
+		}];
+		
 		self.collectionView.scrollEnabled = YES;
 		
 		self.collectionView.showsHorizontalScrollIndicator = YES;
 		
 		
-//textFields
+				//textFields
 		NSString *placeholderName = [NSString stringWithFormat:@"Item Name"];
 		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
 		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
-
+		
 		self.itemNameTextField.textColor = [UIColor blackColor];
 		self.itemNameTextField.placeholder = placeholderName;
 		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
@@ -313,7 +233,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.right.equalTo(self.containerView).offset(-25);
 				make.centerX.equalTo(self.containerView.mas_centerX);
 				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
-
+				
 		}];
 		
 		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
@@ -330,11 +250,11 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		
 		
-		#pragma LocationSwitch
-
+#pragma LocationSwitch
+		
 		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
 		
-		self.useCurrentLocationLabel.textColor = [UIColor whiteColor];
+		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
 		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
 		
 		[self.useCurrentLocationSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -347,7 +267,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
 		}];
 		
-		//save button
+				//save button
 		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
 		self.saveButton.userInteractionEnabled = YES;
 		
@@ -359,15 +279,70 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.scrollView.mas_bottom);
+				make.bottom.equalTo(self.scrollView.mas_bottom).offset(20);
 				make.height.equalTo(@60);
 		}];
 }
 
 
 
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+		return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+		return self.categories.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
 
+
+		NSLog(@"cellForItemAtIndexPath getting called: \n\n\n\n");
+		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+		cell.userInteractionEnabled = YES;
+		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+		UIImageView *imageView =self.categoriesImageViews[indexPath.row];
+		imageView.userInteractionEnabled = YES;
+		[cell.contentView addSubview:imageView];
+		cell.contentView.userInteractionEnabled = YES;
+
+		return cell;
+}
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+		NSLog(@"We're calling didselectItemAtIndexPath");
+		
+		[self.categoriesForItem addObject:self.categories[indexPath.row]];
+		
+		
+		
+		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		
+		currentImageView.alpha = 0.5;
+		
+		
+
+}
+
+
+		 
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+		
+		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
+		
+		
+		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
+	
+		
+		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		
+		currentImageView.alpha = 1.0;
+		
+}
 
 
 
@@ -384,7 +359,7 @@ static NSString * const reuseIdentifier = @"cell";
 				NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
 				
 				[UIView animateWithDuration:duration animations:^{
-						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-25) animated:YES];
+						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
 						[self.view layoutIfNeeded];
 				}];
 }
@@ -404,16 +379,14 @@ static NSString * const reuseIdentifier = @"cell";
 		[super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
- #pragma mark - textfields
- */
-- (void)useCurrentLocationSwitchTapped{
-PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 
-		if (!self.useCurrentLocationSwitch.isOn) {
-				[self.locationManager stopUpdatingLocation];
-				self.locationPF = nilGeoPoint;
-							NSLog(@"current location switch is NOT on, self.itemLocation= %@", self.itemLocation);
+- (void)useCurrentLocationSwitchTapped{
+
+		if (self.useCurrentLocationSwitch.isOn) {
+		self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
+		
+		[self.locationManager stopUpdatingLocation];
+		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
 		}
 }
 
@@ -431,10 +404,6 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 		DONItem *item = (DONItem*)[PFObject objectWithClassName:@"DONItem"];
 		
 		
-//		
-//		if (self.selectedImageView.image == nil||NULL) {
-//				
-//		}
 		
 		if (self.itemImage !=nil||NULL) {
 				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
@@ -467,36 +436,42 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
 		}];
 		
 		
-		
 		self.listedBy = [DONUser currentUser];
 		if (self.listedBy) { item[@"listedBy"] = self.listedBy;}
 		
-		if (!self.locationPF) {self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];}
-		item[@"location"] = self.locationPF;
+		if (self.locationPF) {
+		item[@"location"] = self.locationPF;}
 		self.views = @0;
 		item[@"views"] = self.views;
 		if (self.itemImage) {
     item[@"image"] = self.itemImagePF;
 		}
-		if(self.categoriesForItem){
-				item[@"categories"] = self.categoriesForItem;
+		if (!self.categoriesForItem.count) {
+				[self.categoriesForItem addObject:self.eighthTagString];
 		}
-
+		NSLog(@"self.categoriesForItem contains %@", [self.categoriesForItem lastObject]);
 		
-		if ((self.categoriesForItem.count>0) & self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
+		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 
-				[alert showWaiting:self title:@"Please Wait" subTitle:@"loading" closeButtonTitle:nil duration:3.0f];
+				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
 				
+				
+				
+				
+				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
+								item[@"categories"] = @[category];
+						
 				[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-						NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
+				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
 						if (succeeded) {
-										//						[alert showNotice:self title:@"Success" subTitle:@"Item Uploaded" closeButtonTitle:@"Done" duration:0.2f];
+
 								[self dismissViewControllerAnimated:YES completion:^{
-										NSLog(@"VC dismissed");
+		
 								}];
 						}
 				}];
-		}
+		}];
+}
 }
 
 
@@ -540,7 +515,13 @@ PFGeoPoint *nilGeoPoint = [PFGeoPoint geoPointWithLatitude:1.0 longitude:-1.0];
  }
  */
 
-
+//-(void)placehodlder:(NSString *) {
+//		
+//		NSString *alertMessage = [NSString stringWithFormat:@"%@ is missing", ];
+//		
+//		self.alertController = [UIAlertController alertControllerWithTitle:@"Missing Field" message:@"error", preferredStyle:<#(UIAlertControllerStyle)#>]
+//		
+//}
 
 
 

@@ -22,6 +22,7 @@
 
 
 
+@property (strong, nonnull)UIAlertController *alertController;
 
 
 @property (nonatomic, strong)  UIScrollView *scrollView;
