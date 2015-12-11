@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *user_phone;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
-<<<<<<< HEAD
+
 @property (nonatomic, strong, readonly) PFFile *photoFile;
 
 

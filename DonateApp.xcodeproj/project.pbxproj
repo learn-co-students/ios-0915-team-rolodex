@@ -43,25 +43,6 @@
 		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
 		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
-
-		6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEB1C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png */; };
-		6247BDF61C15DE5E00FDFD3D /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEC1C15DE5E00FDFD3D /* book.png */; };
-		6247BDF71C15DE5E00FDFD3D /* clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDED1C15DE5E00FDFD3D /* clothing.png */; };
-		6247BDF81C15DE5E00FDFD3D /* furniture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEE1C15DE5E00FDFD3D /* furniture.png */; };
-		6247BDF91C15DE5E00FDFD3D /* misc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEF1C15DE5E00FDFD3D /* misc.png */; };
-		6247BDFA1C15DE5E00FDFD3D /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF01C15DE5E00FDFD3D /* music.png */; };
-		6247BDFB1C15DE5E00FDFD3D /* noun_20227_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */; };
-		6247BDFC1C15DE5E00FDFD3D /* noun_34134_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */; };
-		6247BDFD1C15DE5E00FDFD3D /* plant.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF31C15DE5E00FDFD3D /* plant.png */; };
-		6247BDFE1C15DE5E00FDFD3D /* utensil.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDF41C15DE5E00FDFD3D /* utensil.png */; };
-		6247BE001C1625BD00FDFD3D /* household.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDFF1C1625BD00FDFD3D /* household.png */; };
-		6247BE021C16274900FDFD3D /* electronics.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE011C16274900FDFD3D /* electronics.png */; };
-		6247BE091C162A3E00FDFD3D /* instrument.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE041C162A3E00FDFD3D /* instrument.png */; };
-		6247BE0A1C162A3E00FDFD3D /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE051C162A3E00FDFD3D /* game.png */; };
-		6247BE0B1C162A3E00FDFD3D /* household.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE061C162A3E00FDFD3D /* household.png */; };
-		6247BE0C1C162A3E00FDFD3D /* sport.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE071C162A3E00FDFD3D /* sport.png */; };
-		6247BE0E1C1630C800FDFD3D /* Don-icon in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE0D1C1630C800FDFD3D /* Don-icon */; };
-
 		62697BE81C0CFACC004455CD /* DonContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BE71C0CFACC004455CD /* DonContainerViewController.m */; };
 		62697BEB1C0CFDA2004455CD /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BEA1C0CFDA2004455CD /* EmptySegue.m */; };
 		62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BED1C0D00DC004455CD /* DonCollectionViewController.m */; };
@@ -72,10 +53,6 @@
 		6284E0E31C051EC2007A4CB1 /* DONViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0DF1C051EC2007A4CB1 /* DONViewItemButton.m */; };
 		6284E0E41C051EC2007A4CB1 /* DONViewItemUserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */; };
 		6284E0E71C051EDF007A4CB1 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E61C051EDF007A4CB1 /* DONActivity.m */; };
-
-		6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0E81C051F2C007A4CB1 /* furniture.png */; };
-		6284E0EB1C051F4F007A4CB1 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EA1C051F4F007A4CB1 /* music.png */; };
-
 		6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */; };
 		6284E0F61C06A49C007A4CB1 /* DonInfowindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */; };
 		62B45AF51BFE20480007D314 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AF41BFE20480007D314 /* SearchCell.m */; };
@@ -164,9 +141,6 @@
 		6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemUserProfileView.m; sourceTree = "<group>"; };
 		6284E0E51C051EDF007A4CB1 /* DONActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONActivity.h; sourceTree = "<group>"; };
 		6284E0E61C051EDF007A4CB1 /* DONActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONActivity.m; sourceTree = "<group>"; };
-		6284E0E81C051F2C007A4CB1 /* furniture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = furniture.png; sourceTree = "<group>"; };
-		6284E0EA1C051F4F007A4CB1 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
-
 		6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DonInfowindow.xib; sourceTree = "<group>"; };
 		6284E0F41C06A49C007A4CB1 /* DonInfowindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonInfowindow.h; sourceTree = "<group>"; };
 		6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonInfowindow.m; sourceTree = "<group>"; };
@@ -396,37 +370,6 @@
 			name = collectionScreen;
 			sourceTree = "<group>";
 		};
-
-		6237E0741BFD357600C5AD27 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				6247BE0D1C1630C800FDFD3D /* Don-icon */,
-				6284E0EA1C051F4F007A4CB1 /* music.png */,
-				6284E0E81C051F2C007A4CB1 /* furniture.png */,
-				61F10EBD1C162D3900E3ED3F /* utensil.png */,
-				61F10EBF1C162D5B00E3ED3F /* misc.png */,
-				6284E0F71C06AD22007A4CB1 /* clara.jpg */,
-				6247BDEB1C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png */,
-				6247BDEC1C15DE5E00FDFD3D /* book.png */,
-				6247BDED1C15DE5E00FDFD3D /* clothing.png */,
-				6247BDEE1C15DE5E00FDFD3D /* furniture.png */,
-				6247BDEF1C15DE5E00FDFD3D /* misc.png */,
-				6247BDF01C15DE5E00FDFD3D /* music.png */,
-				6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */,
-				6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */,
-				6247BDF31C15DE5E00FDFD3D /* plant.png */,
-				6247BDF41C15DE5E00FDFD3D /* utensil.png */,
-				6247BE011C16274900FDFD3D /* electronics.png */,
-				6247BDFF1C1625BD00FDFD3D /* household.png */,
-				6247BE041C162A3E00FDFD3D /* instrument.png */,
-				6247BE051C162A3E00FDFD3D /* game.png */,
-				6247BE061C162A3E00FDFD3D /* household.png */,
-				6247BE071C162A3E00FDFD3D /* sport.png */,
-			);
-			name = icons;
-			sourceTree = "<group>";
-		};
-
 		6284E0F01C06A409007A4CB1 /* mapStuff */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,17 +442,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
-
-				6247BE0B1C162A3E00FDFD3D /* household.png in Resources */,
-				6247BE021C16274900FDFD3D /* electronics.png in Resources */,
-				6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */,
-				6284E0EB1C051F4F007A4CB1 /* music.png in Resources */,
-				6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */,
-
 				4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */,
 				4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */,
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
-
 				6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */,
 				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,

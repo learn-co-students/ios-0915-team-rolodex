@@ -214,6 +214,7 @@ static NSString * const reuseIdentifier = @"cell";
 		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
 		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
 		
+		self.itemNameTextField.layer.borderColor = [UIColor blackColor].CGColor;
 		self.itemNameTextField.textColor = [UIColor blackColor];
 		self.itemNameTextField.placeholder = placeholderName;
 		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
@@ -225,7 +226,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.centerX.equalTo(self.containerView.mas_centerX);
 				make.bottom.equalTo(self.itemDescriptionTextField.mas_top).offset(-20);
 		}];
-		
+		self.itemDescriptionTextField.layer.borderColor = [UIColor blackColor].CGColor;
 		self.itemDescriptionTextField.textColor = [UIColor blackColor];
 		self.itemDescriptionTextField.placeholder = placeholderDescription;
 		self.itemDescriptionTextField.textAlignment = NSTextAlignmentCenter;
@@ -238,7 +239,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
 				
 		}];
-		
+		self.pickupInstructionsTextField.layer.borderColor = [UIColor blackColor].CGColor;
 		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
 		self.pickupInstructionsTextField.placeholder = placeholderPickup;
 		self.pickupInstructionsTextField.textAlignment = NSTextAlignmentCenter;

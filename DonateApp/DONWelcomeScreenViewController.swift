@@ -46,7 +46,9 @@ class DONWelcomeScreenViewController: UIViewController {
     }
     
     @IBAction func skipButtonTapped(sender: UIButton) {
-        // Navigate to Protected page
+			
+			NSLog("skip buttontapped")
+				// Navigate to Protected page
         let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
         appDelegate.buildUserInterface()
         
