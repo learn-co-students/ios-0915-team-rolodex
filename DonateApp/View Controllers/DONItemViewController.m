@@ -212,7 +212,7 @@
     
     [self.userProfileView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView).offset(sidePadding);
-        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-sidePadding);
+        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-5);
         make.height.equalTo(@40);
     }];
     

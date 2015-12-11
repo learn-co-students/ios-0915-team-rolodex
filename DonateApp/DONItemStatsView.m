@@ -49,7 +49,7 @@
 
 -(void)setupViewProperties
 {
-    self.alpha = 0.8;
+    self.alpha = 0.7f;
     self.viewsLabel.font = [UIFont systemFontOfSize:18];
     self.viewsLabel.textColor = [UIColor whiteColor];
     self.viewsLabel.text = @"0";
