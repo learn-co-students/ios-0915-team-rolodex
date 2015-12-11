@@ -9,6 +9,12 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
+#import	"CoreLocation/CoreLocation.h"
+
+
+#import "PFGeoPoint.h"
+
+
 @class DONUser;
 
 @class CLLocation;
@@ -26,12 +32,22 @@
 @property (nonatomic, strong) DONUser *listedBy;
 @property (nonatomic, strong) NSNumber *views;
 
+//@property (nonatomic) CLLocationManager *manager;
+
+//@property (nonatomic, strong) PFGeoPoint *location;
+
+
+
 @property (nonatomic, strong) PFFile *itemImagePF;
 
 @property (nonatomic, strong) UIImage *itemImage;
 
 @property (nonatomic, strong, readonly) PFFile *imageFile;
 @property (nonatomic, strong) PFGeoPoint*  location;
+
+
+
+
 
 
 +(NSString *)parseClassName;
@@ -82,4 +98,8 @@
 +(void)itemsWithCategories:(NSArray *)categories withCompletion:(void (^)(BOOL success, NSArray *items))completion;
 +(void)allItemsWithCompletion:(void (^)(BOOL success, NSArray *allItems))completion;
 -(void)incrementViewForCurrentUserWithCompletion:(void (^)(BOOL success))completion;
+
+
+
+
 @end

@@ -21,6 +21,12 @@
     return @"Category";
 }
 
+//-(UIImage*)imageForCategory {
+//		if(self.name isEqual: @"Books"){
+//				return [UIImage imageNamed: @"bookIcon"];
+//		}
+//}
+
 +(void)categoryWithName:(NSString *)name withCompletion:(void (^)(BOOL success, DONCategory *category))completion
 {
     PFQuery *categoryQuery = [self.class query];

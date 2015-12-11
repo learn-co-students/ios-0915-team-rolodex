@@ -129,16 +129,22 @@ static NSString * const reuseIdentifier = @"cell";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-        DONItem * item = self.items[indexPath.row];
-
-        //cell.cellTitle.text = item.name;
-        cell.image.file = item.imageFile;
-        [cell.image loadInBackground];
-
-        return cell;
+    QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    DONItem * item = self.items[indexPath.row];
+    cell.cellTitle.text = item.name;
+    
+//    cell.cellTitle.textColor = [UIColor whiteColor];
+    
+//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    [cell.contentView addSubview:bluredEffectView];
+//    [bluredEffectView setFrame:cell.cellTitle.frame];
+    
+    cell.image.file = item.imageFile;
+    [cell.image loadInBackground];
+    
+    return cell;
 }
- 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
     
@@ -146,20 +152,20 @@ static NSString * const reuseIdentifier = @"cell";
         
         NSLog(@"I tapped collectionView");
         /* push to the map direction
-        DONItem * selectedItem = self.items[indexPath.row];
-        if (selectedItem.location) {
-            CGFloat lat = selectedItem.location.latitude;
-            CGFloat lon = selectedItem.location.longitude;
-            NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
-            NSLog(@"lat and long %@",coordinateString);
-            // wirte a bool method also with animation indicat the cell lead to a map
-            [self activeGoogleMapToLocationQuery:coordinateString];
-        }   else if (selectedItem.pickupInstructions) {
-            NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-            NSLog(@"location=%@",pareselocationString);
-            [self activeGoogleMapToLocationQuery:pareselocationString];
-        }
-        */
+         DONItem * selectedItem = self.items[indexPath.row];
+         if (selectedItem.location) {
+         CGFloat lat = selectedItem.location.latitude;
+         CGFloat lon = selectedItem.location.longitude;
+         NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
+         NSLog(@"lat and long %@",coordinateString);
+         // wirte a bool method also with animation indicat the cell lead to a map
+         [self activeGoogleMapToLocationQuery:coordinateString];
+         }   else if (selectedItem.pickupInstructions) {
+         NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+         NSLog(@"location=%@",pareselocationString);
+         [self activeGoogleMapToLocationQuery:pareselocationString];
+         }
+         */
         DONItem *item = self.items[indexPath.row];
         DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:item];
         [self.navigationController pushViewController:itemViewController animated:YES];
