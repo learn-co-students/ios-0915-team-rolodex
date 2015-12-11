@@ -173,17 +173,15 @@
         UIImage *image = [[UIImage imageNamed:categoryName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         sCell.imageView.image = image;
     
-        
         if (!category.selected) {
-            sCell.imageView.alpha = 0.6f;
+            sCell.imageView.alpha = 0.74f;
 
             sCell.imageView.tintColor = [UIColor blackColor];
         } else {
             sCell.imageView.alpha = 1.0f;
             
-            sCell.imageView.tintColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];            
+            sCell.imageView.tintColor = [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
         }
-
         return sCell;
     }
     return nil;
@@ -195,7 +193,6 @@
     if (collectionView == self.searchCollectionView) {
         DONCategory *category = self.allCategory[indexPath.row];
         [self.dataModel toggleCategory:category];
-        
         self.searchSelectionLabel.text = [self.allCategory[indexPath.row] name];
 
         [self makeTheStackOfcats];
@@ -271,7 +268,6 @@
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [color setFill];
     [circlePath fill];
-    
        // [[UIColor colorWithWhite:0.2 alpha:1] setStroke];
     [[UIColor blueColor] setStroke];
         [circlePath stroke];
