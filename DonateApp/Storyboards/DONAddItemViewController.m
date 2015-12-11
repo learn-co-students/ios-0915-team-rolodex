@@ -150,6 +150,7 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.containerView addSubview:self.saveButton];
 		
 //		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
 //		self.topContainerView.backgroundColor = [UIColor whiteColor];
 		
 		
@@ -172,7 +173,7 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.bottom.equalTo(self.scrollView);
 				make.top.equalTo(self.topContainerView.mas_bottom);
-				make.height.equalTo(@300);
+				make.height.equalTo(@250);
 						//				make.bottom.equalTo(self.saveButton);
 				make.width.equalTo(self.view);
 		}];
@@ -188,7 +189,9 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo (self.topContainerView);
 				make.top.equalTo(self.topContainerView);
-				make.height.equalTo(@200);
+				make.width.equalTo(self.view);
+				make.height.equalTo(@250);
+				
 		}];
 		
 		
@@ -409,7 +412,8 @@ static NSString * const reuseIdentifier = @"cell";
 				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
 				self.itemImagePF = [PFFile fileWithName:@"photo.jpg" data:imageData];
 		} else {
-				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
+								[self presentAlertController:@"Item Image"];
+//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		
@@ -417,19 +421,24 @@ static NSString * const reuseIdentifier = @"cell";
 		item[@"name"] = self.name;
 
 		if (self.name.length<3) {
-				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
+						[self presentAlertController:@"Item Name"];
+//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		self.itemDescription = self.itemDescriptionTextField.text;
 		item[@"itemDescription"] = self.itemDescription;
 		if (self.itemDescription.length <3) {
-				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
-		}
 		
+				[self presentAlertController:@"Item Description"];
+//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
+		}
 		self.pickupInstructions =	self.pickupInstructionsTextField.text;
 		item[@"pickupInstructions"] = self.pickupInstructions;
 		if (self.pickupInstructions.length <3) {
-				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
+				
+				[self presentAlertController:@"Pickup Instructions"];
+				
+//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		[alert alertIsDismissed:^{
 				NSLog(@"SCLAlertView dismissed!");
@@ -515,13 +524,29 @@ static NSString * const reuseIdentifier = @"cell";
  }
  */
 
-//-(void)placehodlder:(NSString *) {
-//		
-//		NSString *alertMessage = [NSString stringWithFormat:@"%@ is missing", ];
-//		
-//		self.alertController = [UIAlertController alertControllerWithTitle:@"Missing Field" message:@"error", preferredStyle:<#(UIAlertControllerStyle)#>]
-//		
-//}
+
+//for when UIAlertView in SCLAlertView becomes unresponsive
+-(UIAlertController *)presentAlertController:(NSString *)fieldName {
+		
+
+		
+		NSString *alertMessage = [NSString stringWithFormat:@"%@ field is incomplete",fieldName];
+		
+		self.alertController = [UIAlertController alertControllerWithTitle:@"Missing Field" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+		
+		self.alertController.view.tintColor = [UIColor grayColor];
+		self.alertController.view.layer.borderWidth = 2.0;
+		self.alertController.view.layer.borderColor = [UIColor darkGrayColor].CGColor;
+		self.alertController.view.layer.cornerRadius = 5.0;
+		self.alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+		
+		[self.alertController addAction:self.alertAction];
+		
+		[self presentViewController:self.alertController animated:YES completion:nil];
+		
+		return self.alertController;
+
+}
 
 
 

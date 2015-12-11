@@ -22,8 +22,8 @@
 
 
 
-@property (strong, nonnull)UIAlertController *alertController;
-
+@property (strong, nonatomic) UIAlertController *alertController;
+@property (strong, nonatomic) UIAlertAction *alertAction;
 
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic,strong)  UIView *containerView;
