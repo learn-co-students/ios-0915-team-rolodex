@@ -40,46 +40,49 @@
 }
 
 - (void)buildUserInterface {
-    // Center and Drawer View Controllers
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
-    UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
-    [navigationController.navigationBar setBackIndicatorImage:
-    [UIImage imageNamed:@"Back-arrow"]];
-    [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
-    [UIImage imageNamed:@"Back-arrow"]];
-    [navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
+        // Center and Drawer View Controllers
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
+        UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
+        UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+        [navigationController.navigationBar setBackIndicatorImage:
+         [UIImage imageNamed:@"Back-arrow"]];
+        [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
+         [UIImage imageNamed:@"Back-arrow"]];
+        [navigationController.navigationBar setTintColor:[UIColor blackColor]];
+        [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
+        
+        DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
+        
+        // MMDrawerController init and setup
+        self.drawerController = [[MMDrawerController alloc]
+                                 initWithCenterViewController:navigationController
+                                 leftDrawerViewController:leftSideDrawerViewController];
+        [self.drawerController setShowsShadow:YES];
+        [self.drawerController setMaximumLeftDrawerWidth:220.0];
+        [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
+        [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+        [self.drawerController setShouldStretchDrawer:NO];
     
-    DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
-
-    // MMDrawerController init and setup
-    self.drawerController = [[MMDrawerController alloc]
-                             initWithCenterViewController:navigationController
-                             leftDrawerViewController:leftSideDrawerViewController];
-    [self.drawerController setShowsShadow:YES];
-    [self.drawerController setMaximumLeftDrawerWidth:220.0];
-    [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
-    [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [self.drawerController setShouldStretchDrawer:NO];
-
-    // Set Animation style for drawer using the visual state manager
-    [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
-    [self.drawerController
-     setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
-         MMDrawerControllerDrawerVisualStateBlock block;
-         block = [[MMExampleDrawerVisualStateManager sharedManager]
-                  drawerVisualStateBlockForDrawerSide:drawerSide];
-         if(block){
-             block(drawerController, drawerSide, percentVisible);
-         }
-     }];
-
+        // Set Animation style for drawer using the visual state manager
+        [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
+        [self.drawerController
+         setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+             MMDrawerControllerDrawerVisualStateBlock block;
+             block = [[MMExampleDrawerVisualStateManager sharedManager]
+                      drawerVisualStateBlockForDrawerSide:drawerSide];
+             if(block){
+                 block(drawerController, drawerSide, percentVisible);
+             }
+         }];
+    
     // Main window setup and root view controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.drawerController];
     [self.window makeKeyAndVisible];
+
+    
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

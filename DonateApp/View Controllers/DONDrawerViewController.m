@@ -9,7 +9,8 @@
 #import "DONDrawerViewController.h"
 #import "DONDrawerProfileView.h"
 #import "DONUserProfileViewController.h"
-#import "UIViewController+MMDrawerController.h"
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
+#import "DonateApp-Bridging-Header.h"
 
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
@@ -54,7 +55,7 @@
  numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return 1;
-    return 4;
+    return 2;
 }
 
 #pragma mark - Table View UI Setup
@@ -65,7 +66,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) return (self.profileViewTopInset + self.profileViewBottomInset + 60);
-    return 40.0;
+    return 60.0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -118,21 +119,15 @@
             cellImage = [UIImage imageNamed:@"ListItem"];
             cellText = @"List Item";
             break;
-        }
-        case DrawerSectionInviteFriends: {
-            cellImage = [UIImage imageNamed:@"InviteFriends"];
-            cellText = @"Invite Friends";
-            break;
-        }
-        case DrawerSectionHelp: {
+        } case DrawerSectionHelp: {
             cellImage = [UIImage imageNamed:@"Help"];
             cellText = @"Help";
             break;
         }
-        case DrawerSectionTempLogin: {
-            cellImage = nil;
-            cellText = @"Temp Login";
-        }
+//        case DrawerSectionTempLogin: {
+//            cellImage = nil;
+//            cellText = @"Temp Login";
+//        }
         default: {
             break;
         }
@@ -140,15 +135,15 @@
     
     cellImage = [cellImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentInset, 10, 20, 20)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentInset, 20, 30, 30)];
     imageView.image = cellImage;
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView setTintColor:[UIColor whiteColor]];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 15, 0, self.view.bounds.size.width - CGRectGetMaxX(imageView.frame), 40.0)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imageView.frame) + 15, 10, self.view.bounds.size.width - CGRectGetMaxX(imageView.frame), 40.0)];
     
     label.text = cellText;
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont systemFontOfSize:20];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentLeft;
     
@@ -189,7 +184,11 @@
                 [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:profileViewController animated:YES];
             }];
         } else {
-            NSLog(@"User sign up flow segue goes here.");
+             [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"Laurent" bundle:nil];
+                UIViewController *signupVC = [loginStoryboard instantiateInitialViewController];
+                [self.mm_drawerController.centerViewController presentViewController:signupVC animated:YES completion:nil];
+             }];
         }
     } else {
         switch (indexPath.row) {
@@ -202,23 +201,19 @@
 
                 break;
             }
-            case DrawerSectionInviteFriends: {
-                
-                break;
-            }
             case DrawerSectionHelp: {
                 
                 break;
             }
-            case DrawerSectionTempLogin: {
-                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
-                    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    DONUserProfileViewController *tempSigninvc = [mainStoryboard instantiateInitialViewController];
-                 [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:tempSigninvc animated:YES];
-                }];
-
-                break;
-            }
+//            case DrawerSectionTempLogin: {
+//                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+//                    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//                    DONUserProfileViewController *tempSigninvc = [mainStoryboard instantiateInitialViewController];
+//                 [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:tempSigninvc animated:YES];
+//                }];
+//
+//                break;
+//            }
             default: {
                 break;
             }

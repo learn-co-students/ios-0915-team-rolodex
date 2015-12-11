@@ -12,17 +12,19 @@ import SCLAlertView
 import AVFoundation
 import AVKit
 import MBProgressHUD
+import MMDrawerController
 //import DONAppDelegate
 
 
-class DONWelcomeScreenViewController: UIViewController {
 
+class DONWelcomeScreenViewController: UIViewController {
+    
     
     // Variables for video background
     var player      = AVPlayer()
     var movietitle  = "video"
     var movietype   = "mp4"
-
+    
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var appiconOutlet: UIImageView!
     
@@ -47,11 +49,22 @@ class DONWelcomeScreenViewController: UIViewController {
     
     @IBAction func skipButtonTapped(sender: UIButton) {
         // Navigate to Protected page
+        
+        
         let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
-        appDelegate.buildUserInterface()
-        
-        
+        if let vc = appDelegate.window.rootViewController {
+            if (vc.dynamicType != self.dynamicType) {
+                if let drawerController = self.presentingViewController as? MMDrawerController,
+                    let centerNavController = drawerController.centerViewController as? UINavigationController {
+                    centerNavController.visibleViewController?.dismissViewControllerAnimated(true, completion: nil)
+                }
+
+            } else {
+                appDelegate.buildUserInterface()
+            }
+        }
     }
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
@@ -96,7 +109,7 @@ class DONWelcomeScreenViewController: UIViewController {
     @IBOutlet weak var userEmailAddressTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
     
-
+    
     // Login Button
     @IBAction func signInButtonTapped(sender: AnyObject)
     {
@@ -119,7 +132,7 @@ class DONWelcomeScreenViewController: UIViewController {
         
         PFUser.logInWithUsernameInBackground(userEmail!, password: userPassword!) { (user:PFUser?, error:NSError?) -> Void in
             
-        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             
             if(user != nil)
             {
@@ -158,7 +171,7 @@ class DONWelcomeScreenViewController: UIViewController {
     {
         super.viewDidLoad()
         
-   
+        
         // Change the color of the placeholder in the text fields
         let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
         userEmailAddressTextField.attributedPlaceholder = attributedEmailPlaceholder
@@ -186,11 +199,12 @@ class DONWelcomeScreenViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool)
     {
+        super.viewDidAppear(animated)
         //Timer to show keyboard
         //NSThread.sleepForTimeInterval(0.5)
         //userEmailAddressTextField.becomeFirstResponder()
     }
-
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
