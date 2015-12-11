@@ -1,4 +1,5 @@
 PODS:
+  - APParallaxHeader (0.1.6)
   - Bolts (1.5.0):
     - Bolts/AppLinks (= 1.5.0)
     - Bolts/Tasks (= 1.5.0)
@@ -51,6 +52,7 @@ PODS:
   - SCLAlertView-Objective-C (0.7.9)
 
 DEPENDENCIES:
+  - APParallaxHeader
   - ChameleonFramework
   - DateTools
   - FBSDKCoreKit
@@ -67,6 +69,7 @@ DEPENDENCIES:
   - SCLAlertView-Objective-C
 
 SPEC CHECKSUMS:
+  APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60

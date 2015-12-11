@@ -15,6 +15,7 @@
         <!--Don Query Collection View Controller-->
         <scene sceneID="Bc8-7C-j1e">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OY1-Fk-UzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="testOne" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Sp-iy-duU" customClass="DonQueryCollectionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hxh-Cr-MFo"/>
@@ -24,14 +25,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4N-hc-aMe">
-                                <rect key="frame" x="0.0" y="0.0" width="43" height="21"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3K-Cz-Rxh" userLabel="ButtonToMap">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <animations/>
@@ -43,7 +36,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-Vr-AiG">
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="0.99400529449999997" blue="0.45113310880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="E26-iy-1Q3" kind="embed" identifier="embedContainer" id="Xj6-Qq-fP5"/>
                                 </connections>
@@ -77,8 +70,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-Dt-HPJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-Dt-HPJ">
+                                                    <rect key="frame" x="1" y="1" width="65" height="65"/>
                                                     <animations/>
                                                 </imageView>
                                             </subviews>
@@ -119,11 +112,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchCollectionView" destination="u73-4O-ykT" id="Bnp-wX-M9z"/>
-                        <outlet property="searchSelectionLabel" destination="u4N-hc-aMe" id="AvM-9T-Dw5"/>
                         <outlet property="stackedViewLables" destination="IPB-ej-z9z" id="WE9-Em-KMm"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OY1-Fk-UzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="577.5" y="24.5"/>
         </scene>
@@ -182,10 +173,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="179" height="165"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-Rl-4ZK" customClass="PFImageView">
-                                            <rect key="frame" x="0.0" y="0.0" width="187" height="165"/>
-                                            <animations/>
-                                        </imageView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZt-7X-C8X">
                                             <rect key="frame" x="0.0" y="137" width="179" height="28"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DHm-2S-meG">
@@ -194,7 +181,7 @@
                                                 <animations/>
                                             </view>
                                             <animations/>
-                                            <blurEffect style="extraLight"/>
+                                            <blurEffect style="light"/>
                                         </visualEffectView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh9-ze-T6b">
                                             <rect key="frame" x="0.0" y="137" width="179" height="28"/>
@@ -204,6 +191,10 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GP0-Rl-4ZK" customClass="PFImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="187" height="165"/>
+                                            <animations/>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

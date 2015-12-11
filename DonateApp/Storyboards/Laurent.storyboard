@@ -5,14 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--guang.collection-->
-        <scene sceneID="mBz-qd-Po3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="guang.collection" id="Pju-AI-J9j" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3mE-gJ-IlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="593.5" y="430"/>
-        </scene>
         <!--Welcome_Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -120,7 +112,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="skipButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p0g-lo-GUm"/>
-                                                <segue destination="Pju-AI-J9j" kind="show" id="8nM-eK-wAt"/>
                                             </connections>
                                         </button>
                                     </subviews>

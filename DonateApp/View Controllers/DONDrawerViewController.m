@@ -9,7 +9,7 @@
 #import "DONDrawerViewController.h"
 #import "DONDrawerProfileView.h"
 #import "DONUserProfileViewController.h"
-#import "UIViewController+MMDrawerController.h"
+#import <MMDrawerController/UIViewController+MMDrawerController.h>
 
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
@@ -207,7 +207,12 @@
                 break;
             }
             case DrawerSectionHelp: {
-                
+                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"HelpScreenStoryboard" bundle:nil];
+                    DONUserProfileViewController *tempSigninvc = [mainStoryboard instantiateInitialViewController];
+                    [(UINavigationController *)self.mm_drawerController.centerViewController pushViewController:tempSigninvc animated:YES];
+                }];
+
                 break;
             }
             case DrawerSectionTempLogin: {

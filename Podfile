@@ -17,6 +17,8 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'SCLAlertView-Objective-C'
 pod 'SCLAlertView'
+pod 'APParallaxHeader'
+
 
 # disable bitcode in every sub-target
 post_install do |installer|
