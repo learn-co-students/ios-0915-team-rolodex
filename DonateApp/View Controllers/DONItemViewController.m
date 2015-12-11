@@ -32,13 +32,20 @@
 @property (nonatomic, strong) PFImageView *itemImageView;
 @property (nonatomic, strong) DONViewItemUserProfileView *userProfileView;
 @property (nonatomic, strong) DONItemStatsView *itemStatsView;
+
 @property (nonatomic, strong) DONViewItemButton *claimButton;
 @property (nonatomic, strong) DONViewItemButton *numberOfClaimsView;
-@property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *verifyButton;
+@property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
+@property (nonatomic, strong) DONViewItemButton *reportErrorButton;
+@property (nonatomic, strong) DONViewItemButton *numberOfErrorsView;
+@property (nonatomic, strong) UIStackView *interactionsStackView;
+@property (nonatomic, strong) UIView *claimContainer;
+@property (nonatomic, strong) UIView *verifyContainer;
+@property (nonatomic, strong) UIView *flagContainer;
+
 @property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
 @property (nonatomic, strong) DONViewItemMapView *mapView;
-@property (nonatomic, strong) DONViewItemButton *reportErrorButton;
 @property (nonatomic, assign) BOOL isItemOwner;
 @end
 
@@ -140,18 +147,38 @@
     
     self.mapView = [[DONViewItemMapView alloc] initWithLocation:self.item.location];
     
-    self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"REPORT ERROR" color:DONViewItemButtonTypeRed];
+    self.reportErrorButton = [[DONViewItemButton alloc] initWithDefaultText:@"FLAG" toggledText:@"FLAGGED" toggledState:DONViewItemButtonStateNoData enabledState:DONViewItemButtonStateDisabled color:DONViewItemButtonTypeRed];
+    
+    self.numberOfErrorsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
+    
+    self.interactionsStackView = [[UIStackView alloc] init];
+    self.interactionsStackView.alignment = UIStackViewAlignmentFill;
+    self.interactionsStackView.axis = UILayoutConstraintAxisHorizontal;
+    self.interactionsStackView.distribution = UIStackViewDistributionEqualSpacing;
+    
+    self.claimContainer = [[UIView alloc] init];
+    self.verifyContainer = [[UIView alloc] init];
+    self.flagContainer = [[UIView alloc] init];
 }
 
 -(void)setupViewHierarchy
 {
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.containerView];
+    [self.containerView addSubview:self.interactionsStackView];
     
-    [self.containerView addSubview:self.claimButton];
-    [self.containerView addSubview:self.verifyButton];
-    [self.containerView addSubview:self.numberOfClaimsView];
-    [self.containerView addSubview:self.numberOfVerificationsView];
+    [self.claimContainer addSubview:self.claimButton];
+    [self.claimContainer addSubview:self.numberOfClaimsView];
+    
+    [self.verifyContainer addSubview:self.verifyButton];
+    [self.verifyContainer addSubview:self.numberOfVerificationsView];
+    
+    [self.flagContainer addSubview:self.reportErrorButton];
+    [self.flagContainer addSubview:self.numberOfErrorsView];
+   
+    [self.interactionsStackView addArrangedSubview:self.claimContainer];
+    [self.interactionsStackView addArrangedSubview:self.verifyContainer];
+    [self.interactionsStackView addArrangedSubview:self.flagContainer];
     
     [self.containerView addSubview:self.itemImageView];
     [self.containerView addSubview:self.userProfileView];
@@ -159,13 +186,12 @@
 
     [self.containerView addSubview:self.itemDescriptionView];
     [self.containerView addSubview:self.mapView];
-    [self.containerView addSubview:self.reportErrorButton];
 }
 
 -(void)setupConstraints
 {
     NSInteger topPadding = 15;
-    NSInteger sidePadding = 15;
+    NSInteger sidePadding = 10;
     /// Scroll view and scroll view container
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -174,7 +200,7 @@
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.scrollView);
         make.top.equalTo(self.itemImageView);
-        make.bottom.equalTo(self.reportErrorButton).offset(topPadding);
+        make.bottom.equalTo(self.mapView).offset(topPadding);
         make.width.equalTo(self.view);
     }];
     
@@ -186,37 +212,55 @@
     
     [self.userProfileView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView).offset(sidePadding);
-        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-sidePadding);
+        make.bottom.equalTo(self.itemImageView.mas_bottom).offset(-5);
         make.height.equalTo(@40);
     }];
     
-   [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.containerView).offset(sidePadding);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@30);
+        make.right.equalTo(self.containerView).offset(-sidePadding);
+        make.centerY.equalTo(self.userProfileView);
     }];
     
     [self.numberOfClaimsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.claimButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
+        make.top.bottom.equalTo(self.claimButton);
     }];
     
-    [self.verifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.numberOfClaimsView.mas_right).offset(5);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+    [self.claimContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.claimButton);
+        make.right.equalTo(self.numberOfClaimsView);
     }];
-    
+   
     [self.numberOfVerificationsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.verifyButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
+        make.top.bottom.equalTo(self.claimButton);
     }];
     
-    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.claimButton.mas_bottom).offset(5);
+    [self.verifyContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.verifyButton);
+        make.right.equalTo(self.numberOfVerificationsView);
+    }];
+    
+    [self.numberOfErrorsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reportErrorButton.mas_right).offset(1);
+        make.top.bottom.equalTo(self.claimButton);
+    }];
+    
+    [self.flagContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.reportErrorButton);
+        make.right.equalTo(self.numberOfErrorsView);
+    }];
+    
+    [self.interactionsStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView).offset(sidePadding);
+        make.right.equalTo(self.containerView).offset(-sidePadding);
+        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        make.height.equalTo(@30);
     }];
    
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
+        make.top.equalTo(self.interactionsStackView.mas_bottom).offset(5);
         make.left.equalTo(self.containerView).offset(sidePadding);
         make.right.equalTo(self.containerView).offset(-sidePadding);
     }];
@@ -226,13 +270,6 @@
         make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
-    
-    [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mapView.mas_bottom).offset(topPadding);
-        make.height.equalTo(@35);
-        make.centerX.equalTo(self.containerView);
-    }];
-    
 }
 
 -(void)setupLocationBasedViews
@@ -241,6 +278,7 @@
         if (shouldDisplay) {
             self.claimButton.enabledState = DONViewItemButtonStateEnabled;
             self.verifyButton.enabledState = DONViewItemButtonStateEnabled;
+            self.reportErrorButton.enabledState = DONViewItemButtonStateEnabled;
         }
     }];
 }
@@ -347,14 +385,14 @@
 
     self.verifyButton.enabled = NO;
 
-    if (self.verifyButton.toggledState == DONViewItemButtonStateDefault && self.claimButton.enabledState == DONViewItemButtonStateEnabled) {
+    if (self.verifyButton.toggledState == DONViewItemButtonStateDefault && self.verifyButton.enabledState == DONViewItemButtonStateEnabled) {
         alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
         [DONActivity addActivityType:kActivityTypeVerification toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
             [self updateItemData];
             self.verifyButton.enabled = YES;
             [alert showSuccess:self title:@"Verified!" subTitle:@"Thanks for being awesome. You verified this item." closeButtonTitle:@"OK" duration:2.0f];
         }];
-    } else if (self.verifyButton.toggledState == DONViewItemButtonStateToggled && self.claimButton.enabledState == DONViewItemButtonStateEnabled) {
+    } else if (self.verifyButton.toggledState == DONViewItemButtonStateToggled && self.verifyButton.enabledState == DONViewItemButtonStateEnabled) {
         alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
         [DONActivity removeActivityType:kActivityTypeVerification forUser:[DONUser currentUser] onItem:self.item withCompletion:^(BOOL success) {
             [self updateItemData];
@@ -394,9 +432,29 @@
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     alert.showAnimationType = FadeIn;
     alert.hideAnimationType = FadeOut;
-
-    alert.customViewColor = [UIColor colorWithRed:192.0/255.0 green:33.0/255.0 blue:33.0/255.0 alpha:1];
-    [alert showSuccess:self title:@"Error Reported!" subTitle:@"Thanks for being awesome. You reported an error with this listing.  We will get to the bottom of it." closeButtonTitle:@"OK" duration:0.0f];
+   
+    self.reportErrorButton.enabled = NO;
+    
+    if (self.reportErrorButton.toggledState == DONViewItemButtonStateDefault && self.reportErrorButton.enabledState == DONViewItemButtonStateEnabled) {
+        alert.customViewColor = [UIColor colorWithRed:192.0/255.0 green:33.0/255.0 blue:33.0/255.0 alpha:1];
+        [DONActivity addActivityType:kActivityTypeError toItem:self.item fromUser:[DONUser currentUser] toUser:self.item.listedBy withCompletion:^(BOOL success) {
+            [self updateItemData];
+            self.reportErrorButton.enabled = YES;
+            [alert showSuccess:self title:@"Error Reported!" subTitle:@"Thanks for being awesome. You flagged this listing as gone." closeButtonTitle:@"OK" duration:0.0f];
+        }];
+    } else if (self.reportErrorButton.toggledState == DONViewItemButtonStateToggled && self.reportErrorButton.enabledState == DONViewItemButtonStateEnabled) {
+        [DONActivity removeActivityType:kActivityTypeVerification forUser:[DONUser currentUser] onItem:self.item withCompletion:^(BOOL success) {
+            alert.customViewColor = [UIColor colorWithRed:192.0/255.0 green:33.0/255.0 blue:33.0/255.0 alpha:1];
+            [self updateItemData];
+            self.verifyButton.enabled = YES;
+        }];
+        [alert showSuccess:self title:@"Unflagged!" subTitle:@"Thanks for the update. You unflagged this item." closeButtonTitle:@"OK" duration:2.0f];
+    } else if (![self.locationController locationServicesEnabled]) {
+        [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
+    } else if (self.reportErrorButton.enabledState == DONViewItemButtonStateDisabled) {
+        [alert showNotice:self title:@"Notice" subTitle:@"To prevent abuse, you can only flag items when you are nearby." closeButtonTitle:@"OK" duration:0.0f];
+    }
+    
    
 }
 
@@ -409,26 +467,34 @@
         NSInteger numberOfFavorites = [DONActivity numberOfActivities:kActivityTypeFavorite inItemActivities:activities];
         NSInteger numberOfVerifications = [DONActivity numberOfActivities:kActivityTypeVerification inItemActivities:activities];
         NSInteger numberOfViews = [self.item.views intValue];
+        NSInteger numberOfErrors = [DONActivity numberOfActivities:kActivityTypeError inItemActivities:activities];
         
-        self.itemStatsView.numberOfFavorites = [NSString stringWithFormat:@"%lu", numberOfFavorites];
-        self.itemStatsView.numberOfViews = [NSString stringWithFormat:@"%lu", numberOfViews];
-        self.numberOfVerificationsView.text = [NSString stringWithFormat:@"%lu", numberOfVerifications];
-        self.numberOfClaimsView.text = [NSString stringWithFormat:@"%lu", numberOfClaims];
+        self.itemStatsView.numberOfFavorites = [NSString stringWithFormat:@"%lu", (long)numberOfFavorites];
+        self.itemStatsView.numberOfViews = [NSString stringWithFormat:@"%lu", (long)numberOfViews];
+        self.numberOfVerificationsView.text = [NSString stringWithFormat:@"%lu", (long) numberOfVerifications];
+        self.numberOfClaimsView.text = [NSString stringWithFormat:@"%lu", (long) numberOfClaims];
+        self.numberOfErrorsView.text = [NSString stringWithFormat:@"%lu", (long) numberOfErrors];
         
         BOOL userHasClaimedItem = [DONActivity activityExists:kActivityTypeClaim forUser:[DONUser currentUser] inItemActivities:activities];
         
         BOOL userHasVerifiedItem = [DONActivity activityExists:kActivityTypeVerification forUser:[DONUser currentUser] inItemActivities:activities];
         
+        BOOL userHasFlaggedItem = [DONActivity activityExists:kActivityTypeError forUser:[DONUser currentUser] inItemActivities:activities];
+        
         BOOL userHasFavoritedItem = [DONActivity activityExists:kActivityTypeFavorite forUser:[DONUser currentUser] inItemActivities:activities];
         
         self.claimButton.toggledState = userHasClaimedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
         self.verifyButton.toggledState = userHasVerifiedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
-
+        self.reportErrorButton.toggledState = userHasFlaggedItem ? DONViewItemButtonStateToggled : DONViewItemButtonStateDefault;
+        
         if (userHasClaimedItem) {
             self.claimButton.enabledState = DONViewItemButtonStateEnabled;
         }
         if (userHasVerifiedItem) {
             self.verifyButton.enabledState = DONViewItemButtonStateEnabled;
+        }
+        if (userHasFlaggedItem) {
+            self.reportErrorButton.enabledState = DONViewItemButtonStateEnabled;
         }
         
         NSString *imgName = userHasFavoritedItem ? @"favorite-filled" : @"favorite-outline";

@@ -94,9 +94,10 @@
      
         topText = [NSString stringWithFormat:@"%@", self.user.username];
         self.topLabel.text = topText;
+        self.bottomLabel.text = @"...";
         
         [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success) {
-            self.bottomLabel.text = [NSString stringWithFormat:@"%lu offered items", items.count];
+            self.bottomLabel.text = [NSString stringWithFormat:@"%lu offered items", (unsigned long)items.count];
         }];
     }
 }

@@ -41,7 +41,7 @@
 
 -(void)setupViewProperties
 {
-    self.alpha = 0.8f;
+    self.alpha = 0.7f;
     [self.profilePictureImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.width.and.height.equalTo(@40);
