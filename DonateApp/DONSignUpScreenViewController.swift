@@ -10,9 +10,9 @@ import UIKit
 import SCLAlertView
 import MBProgressHUD
 
-
 class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
+    
         @IBOutlet weak var profilePhotoImageView: UIImageView!
         @IBOutlet weak var userEmailAddressTextField: UITextField!
         @IBOutlet weak var userPasswordTextField: UITextField!
@@ -170,4 +170,6 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                 
             }
         }
+    
+ 
 }
