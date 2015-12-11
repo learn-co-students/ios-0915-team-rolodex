@@ -104,8 +104,8 @@
     }];
     
     [self.background mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.textLabel).offset(-15);
-        make.right.equalTo(self.textLabel).offset(15);
+        make.left.equalTo(self.textLabel).offset(-7);
+        make.right.equalTo(self.textLabel).offset(7);
         make.top.equalTo(self.textLabel).offset(-5);
         make.bottom.equalTo(self.textLabel).offset(5);
     }];

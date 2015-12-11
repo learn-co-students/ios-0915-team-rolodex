@@ -44,6 +44,13 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
     UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
+    [navigationController.navigationBar setBackIndicatorImage:
+    [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
+    [UIImage imageNamed:@"Back-arrow"]];
+    [navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
+    
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
     // MMDrawerController init and setup
@@ -90,8 +97,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    NSLog(@"BECOMEACTIVE");
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

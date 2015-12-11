@@ -36,9 +36,10 @@
 @property (nonatomic, strong) DONViewItemButton *numberOfClaimsView;
 @property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *verifyButton;
+@property (nonatomic, strong) DONViewItemButton *reportErrorButton;
+@property (nonatomic, strong) DONViewItemButton *numberOfErrorsView;
 @property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
 @property (nonatomic, strong) DONViewItemMapView *mapView;
-@property (nonatomic, strong) DONViewItemButton *reportErrorButton;
 @property (nonatomic, assign) BOOL isItemOwner;
 @end
 
@@ -140,7 +141,9 @@
     
     self.mapView = [[DONViewItemMapView alloc] initWithLocation:self.item.location];
     
-    self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"REPORT ERROR" color:DONViewItemButtonTypeRed];
+    self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"FLAG" color:DONViewItemButtonTypeRed];
+    
+    self.numberOfErrorsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
 }
 
 -(void)setupViewHierarchy
@@ -160,6 +163,7 @@
     [self.containerView addSubview:self.itemDescriptionView];
     [self.containerView addSubview:self.mapView];
     [self.containerView addSubview:self.reportErrorButton];
+    [self.containerView addSubview:self.numberOfErrorsView];
 }
 
 -(void)setupConstraints
@@ -174,7 +178,7 @@
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.scrollView);
         make.top.equalTo(self.itemImageView);
-        make.bottom.equalTo(self.reportErrorButton).offset(topPadding);
+        make.bottom.equalTo(self.mapView).offset(topPadding);
         make.width.equalTo(self.view);
     }];
     
@@ -210,6 +214,16 @@
         make.top.equalTo(self.claimButton);
     }];
     
+    [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        make.left.equalTo(self.numberOfVerificationsView.mas_right).offset(5);
+    }];
+    
+    [self.numberOfErrorsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reportErrorButton.mas_right).offset(1);
+        make.top.equalTo(self.claimButton);
+    }];
+    
     [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.claimButton.mas_bottom).offset(5);
         make.left.equalTo(self.containerView).offset(sidePadding);
@@ -227,11 +241,6 @@
         make.height.equalTo(@200);
     }];
     
-    [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mapView.mas_bottom).offset(topPadding);
-        make.height.equalTo(@35);
-        make.centerX.equalTo(self.containerView);
-    }];
     
 }
 
