@@ -18,7 +18,16 @@
 @property (nonatomic, strong) NSString *user_phone;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) PFFile *photoFile;
+
+
+
+
+
+-(void)setPhoto:(UIImage *)photo;
+
 @property (nonatomic, strong) PFFile *photo;
+
 
 /* Use the below to grab a reference to the test user
  __block DONUser *testUser;
