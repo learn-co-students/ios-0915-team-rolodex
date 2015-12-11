@@ -9,6 +9,7 @@
 import UIKit
 import SCLAlertView
 import MBProgressHUD
+import MMDrawerController
 
 class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -161,7 +162,17 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                     if(success)
                     {
                         let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
-                        appDelegate.buildUserInterface()
+                        if let vc = appDelegate.window.rootViewController {
+                            if (vc.dynamicType != self.dynamicType) {
+                                if let drawerController = self.presentingViewController as? MMDrawerController {
+                                    
+                                    drawerController.centerViewController.dismissViewControllerAnimated(true, completion: nil)
+                                }
+                            } else {
+                                print("building the UI");
+                                appDelegate.buildUserInterface()
+                            }
+                        }
                     }
                 }
                 
