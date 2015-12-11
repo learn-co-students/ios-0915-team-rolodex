@@ -49,6 +49,7 @@
 
 -(void)setupViewProperties
 {
+    self.alpha = 0.8;
     self.viewsLabel.font = [UIFont systemFontOfSize:18];
     self.viewsLabel.textColor = [UIColor whiteColor];
     self.viewsLabel.text = @"0";
@@ -67,7 +68,7 @@
     self.favoritesImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     self.background.layer.cornerRadius = 5.0f;
-    self.background.backgroundColor = [UIColor colorWithRed:203.0/255.0 green:203.0/255.0 blue:203.0/255.0 alpha:1];
+    self.background.backgroundColor = [UIColor grayColor];
 
 }
 

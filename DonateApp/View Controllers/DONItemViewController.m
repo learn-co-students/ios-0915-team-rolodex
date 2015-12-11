@@ -32,12 +32,18 @@
 @property (nonatomic, strong) PFImageView *itemImageView;
 @property (nonatomic, strong) DONViewItemUserProfileView *userProfileView;
 @property (nonatomic, strong) DONItemStatsView *itemStatsView;
+
 @property (nonatomic, strong) DONViewItemButton *claimButton;
 @property (nonatomic, strong) DONViewItemButton *numberOfClaimsView;
-@property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *verifyButton;
+@property (nonatomic, strong) DONViewItemButton *numberOfVerificationsView;
 @property (nonatomic, strong) DONViewItemButton *reportErrorButton;
 @property (nonatomic, strong) DONViewItemButton *numberOfErrorsView;
+@property (nonatomic, strong) UIStackView *interactionsStackView;
+@property (nonatomic, strong) UIView *claimContainer;
+@property (nonatomic, strong) UIView *verifyContainer;
+@property (nonatomic, strong) UIView *flagContainer;
+
 @property (nonatomic, strong) DONViewItemDescriptionView *itemDescriptionView;
 @property (nonatomic, strong) DONViewItemMapView *mapView;
 @property (nonatomic, assign) BOOL isItemOwner;
@@ -144,17 +150,35 @@
     self.reportErrorButton = [[DONViewItemButton alloc] initWithText:@"FLAG" color:DONViewItemButtonTypeRed];
     
     self.numberOfErrorsView = [[DONViewItemButton alloc] initWithText:@"0" color:DONViewItemButtonTypeGray];
+    
+    self.interactionsStackView = [[UIStackView alloc] init];
+    self.interactionsStackView.alignment = UIStackViewAlignmentFill;
+    self.interactionsStackView.axis = UILayoutConstraintAxisHorizontal;
+    self.interactionsStackView.distribution = UIStackViewDistributionEqualSpacing;
+    
+    self.claimContainer = [[UIView alloc] init];
+    self.verifyContainer = [[UIView alloc] init];
+    self.flagContainer = [[UIView alloc] init];
 }
 
 -(void)setupViewHierarchy
 {
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.containerView];
+    [self.containerView addSubview:self.interactionsStackView];
     
-    [self.containerView addSubview:self.claimButton];
-    [self.containerView addSubview:self.verifyButton];
-    [self.containerView addSubview:self.numberOfClaimsView];
-    [self.containerView addSubview:self.numberOfVerificationsView];
+    [self.claimContainer addSubview:self.claimButton];
+    [self.claimContainer addSubview:self.numberOfClaimsView];
+    
+    [self.verifyContainer addSubview:self.verifyButton];
+    [self.verifyContainer addSubview:self.numberOfVerificationsView];
+    
+    [self.flagContainer addSubview:self.reportErrorButton];
+    [self.flagContainer addSubview:self.numberOfErrorsView];
+   
+    [self.interactionsStackView addArrangedSubview:self.claimContainer];
+    [self.interactionsStackView addArrangedSubview:self.verifyContainer];
+    [self.interactionsStackView addArrangedSubview:self.flagContainer];
     
     [self.containerView addSubview:self.itemImageView];
     [self.containerView addSubview:self.userProfileView];
@@ -162,14 +186,12 @@
 
     [self.containerView addSubview:self.itemDescriptionView];
     [self.containerView addSubview:self.mapView];
-    [self.containerView addSubview:self.reportErrorButton];
-    [self.containerView addSubview:self.numberOfErrorsView];
 }
 
 -(void)setupConstraints
 {
     NSInteger topPadding = 15;
-    NSInteger sidePadding = 15;
+    NSInteger sidePadding = 10;
     /// Scroll view and scroll view container
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -194,43 +216,51 @@
         make.height.equalTo(@40);
     }];
     
-   [self.claimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.containerView).offset(sidePadding);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@30);
+        make.right.equalTo(self.containerView).offset(-sidePadding);
+        make.centerY.equalTo(self.userProfileView);
     }];
     
     [self.numberOfClaimsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.claimButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
+        make.top.bottom.equalTo(self.claimButton);
     }];
     
-    [self.verifyButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.numberOfClaimsView.mas_right).offset(5);
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+    [self.claimContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.claimButton);
+        make.right.equalTo(self.numberOfClaimsView);
     }];
-    
+   
     [self.numberOfVerificationsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.verifyButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
+        make.top.bottom.equalTo(self.claimButton);
     }];
     
-    [self.reportErrorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
-        make.left.equalTo(self.numberOfVerificationsView.mas_right).offset(5);
+    [self.verifyContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.verifyButton);
+        make.right.equalTo(self.numberOfVerificationsView);
     }];
     
     [self.numberOfErrorsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.reportErrorButton.mas_right).offset(1);
-        make.top.equalTo(self.claimButton);
+        make.top.bottom.equalTo(self.claimButton);
     }];
     
-    [self.itemStatsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.claimButton.mas_bottom).offset(5);
+    [self.flagContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.reportErrorButton);
+        make.right.equalTo(self.numberOfErrorsView);
+    }];
+    
+    [self.interactionsStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView).offset(sidePadding);
+        make.right.equalTo(self.containerView).offset(-sidePadding);
+        make.top.equalTo(self.itemImageView.mas_bottom).offset(topPadding);
+        make.height.equalTo(@30);
     }];
    
     [self.itemDescriptionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.itemStatsView.mas_bottom).offset(5);
+        make.top.equalTo(self.interactionsStackView.mas_bottom).offset(5);
         make.left.equalTo(self.containerView).offset(sidePadding);
         make.right.equalTo(self.containerView).offset(-sidePadding);
     }];
@@ -240,8 +270,6 @@
         make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
-    
-    
 }
 
 -(void)setupLocationBasedViews
