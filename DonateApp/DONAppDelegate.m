@@ -8,7 +8,7 @@
 
 #import "DONAppDelegate.h"
 #import "DONSecrets.h"
-#import "Parse.h"
+#import <Parse/Parse.h>
 #import "MMExampleDrawerVisualStateManager.h"
 #import "MMDrawerController.h"
 #import "DONDrawerViewController.h"
@@ -35,19 +35,16 @@
     }
     [defaults synchronize];
     
+
+    
+    return YES;
+}
+
+- (void)buildUserInterface {
     // Center and Drawer View Controllers
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"guang.collection" bundle:[NSBundle mainBundle]];
     UIViewController * centerViewController = [storyboard instantiateViewControllerWithIdentifier:@"testOne"];
     UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:centerViewController];
-    
-    // Set custom back arrow for navigation controller
-    [navigationController.navigationBar setBackIndicatorImage:
-     [UIImage imageNamed:@"Back-arrow"]];
-    [navigationController.navigationBar setBackIndicatorTransitionMaskImage:
-     [UIImage imageNamed:@"Back-arrow"]];
-    [navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    [navigationController.navigationItem.leftBarButtonItem setImageInsets:UIEdgeInsetsMake(15, 0, -5, 0)];
-    
     DONDrawerViewController * leftSideDrawerViewController = [[DONDrawerViewController alloc] init];
 
     // MMDrawerController init and setup
@@ -71,14 +68,11 @@
              block(drawerController, drawerSide, percentVisible);
          }
      }];
-    
+
     // Main window setup and root view controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window setRootViewController:self.drawerController];
     [self.window makeKeyAndVisible];
-    
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -97,6 +91,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSLog(@"BECOMEACTIVE");
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

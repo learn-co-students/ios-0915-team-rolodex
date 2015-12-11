@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 25881C201BFCE58A00C4E2AD /* DONSecrets.m */; };
 		259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259356D01BFD3FA100F49474 /* DONAddItemViewController.m */; };
+		2D71FA1EC08CBCB5BD12657F /* Pods_DonateApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13AD95DE8CDBF32E94ED641 /* Pods_DonateApp.framework */; };
+		4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4B1101BC1C0F527900B8B59E /* video.mp4 */; };
+		4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B21231C0CC6E900DBCE23 /* Laurent.storyboard */; };
+		4B2B212A1C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B21261C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift */; };
+		4B2B212B1C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B21271C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift */; };
+		4B2B212D1C0CC7AC00DBCE23 /* DONSignUpScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B21291C0CC7AC00DBCE23 /* DONSignUpScreenViewController.swift */; };
 		614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */; };
 		614A96C71BFCE72300BD543A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614A96C51BFCE72300BD543A /* Main.storyboard */; };
 		614A96C91BFCE74F00BD543A /* DONAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96C81BFCE74F00BD543A /* DONAppDelegate.m */; };
@@ -17,7 +23,6 @@
 		614A96D31BFE157000BD543A /* DONUserSettingsUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D21BFE157000BD543A /* DONUserSettingsUpdateViewController.m */; };
 		614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D51BFE333B00BD543A /* DONSettingsEnum.h */; };
 		614A96D91BFE645400BD543A /* DONViewOtherUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */; };
-		614B17511BFF2DA40001D231 /* DONVerification.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17501BFF2DA40001D231 /* DONVerification.m */; };
 		614B17541BFF61C40001D231 /* DONCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 614B17531BFF61C40001D231 /* DONCategory.m */; };
 		614FF1AB1C05FE71004C74E1 /* DONViewItemDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AA1C05FE71004C74E1 /* DONViewItemDescriptionView.m */; };
 		614FF1AE1C060235004C74E1 /* DONLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614FF1AD1C060235004C74E1 /* DONLocationController.m */; };
@@ -27,20 +32,18 @@
 		61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C574731BFBC88F00D80141 /* Assets.xcassets */; };
 		61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574821BFBCBCB00D80141 /* Mickey.storyboard */; };
 		61C574851BFBCBD000D80141 /* Guang.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574841BFBCBD000D80141 /* Guang.storyboard */; };
-		61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574861BFBCBD600D80141 /* Laurent.storyboard */; };
 		61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C574881BFBCBDA00D80141 /* Jon.storyboard */; };
 		61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */; };
 		61C5748F1BFBE4C500D80141 /* DONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C5748E1BFBE4C500D80141 /* DONUser.m */; };
 		61C574951BFC273E00D80141 /* DONItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C574941BFC273E00D80141 /* DONItem.m */; };
 		61DA474B1C10B82100A8B23A /* DONProfileItemCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DA474A1C10B82100A8B23A /* DONProfileItemCollectionViewController.m */; };
 		61DA474E1C10E74500A8B23A /* DONUserProfileItemCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61DA474D1C10E74500A8B23A /* DONUserProfileItemCountView.m */; };
-		61F10EBE1C162D3900E3ED3F /* utensil.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F10EBD1C162D3900E3ED3F /* utensil.png */; };
-		61F10EC01C162D5B00E3ED3F /* misc.png in Resources */ = {isa = PBXBuildFile; fileRef = 61F10EBF1C162D5B00E3ED3F /* misc.png */; };
 		6236680A1C051BC700327A9D /* DONDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 623668091C051BC700327A9D /* DONDrawerViewController.m */; };
 		6236680D1C051C5400327A9D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236680C1C051C5400327A9D /* DONDrawerProfileView.m */; };
 		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
 		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
+
 		6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEB1C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png */; };
 		6247BDF61C15DE5E00FDFD3D /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDEC1C15DE5E00FDFD3D /* book.png */; };
 		6247BDF71C15DE5E00FDFD3D /* clothing.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BDED1C15DE5E00FDFD3D /* clothing.png */; };
@@ -58,6 +61,7 @@
 		6247BE0B1C162A3E00FDFD3D /* household.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE061C162A3E00FDFD3D /* household.png */; };
 		6247BE0C1C162A3E00FDFD3D /* sport.png in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE071C162A3E00FDFD3D /* sport.png */; };
 		6247BE0E1C1630C800FDFD3D /* Don-icon in Resources */ = {isa = PBXBuildFile; fileRef = 6247BE0D1C1630C800FDFD3D /* Don-icon */; };
+
 		62697BE81C0CFACC004455CD /* DonContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BE71C0CFACC004455CD /* DonContainerViewController.m */; };
 		62697BEB1C0CFDA2004455CD /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BEA1C0CFDA2004455CD /* EmptySegue.m */; };
 		62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BED1C0D00DC004455CD /* DonCollectionViewController.m */; };
@@ -68,15 +72,15 @@
 		6284E0E31C051EC2007A4CB1 /* DONViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0DF1C051EC2007A4CB1 /* DONViewItemButton.m */; };
 		6284E0E41C051EC2007A4CB1 /* DONViewItemUserProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E11C051EC2007A4CB1 /* DONViewItemUserProfileView.m */; };
 		6284E0E71C051EDF007A4CB1 /* DONActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0E61C051EDF007A4CB1 /* DONActivity.m */; };
+
 		6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0E81C051F2C007A4CB1 /* furniture.png */; };
 		6284E0EB1C051F4F007A4CB1 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EA1C051F4F007A4CB1 /* music.png */; };
+
 		6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */; };
 		6284E0F61C06A49C007A4CB1 /* DonInfowindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */; };
-		6284E0F81C06AD22007A4CB1 /* clara.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6284E0F71C06AD22007A4CB1 /* clara.jpg */; };
 		62B45AF51BFE20480007D314 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AF41BFE20480007D314 /* SearchCell.m */; };
 		62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AF81BFF6CDF0007D314 /* Settings.bundle */; };
 		62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */; };
-		CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 840C03F25902F002B71EBF83 /* libPods-DonateApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +88,12 @@
 		259356CF1BFD3FA100F49474 /* DONAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DONAddItemViewController.h; path = ../Storyboards/DONAddItemViewController.h; sourceTree = "<group>"; };
 		259356D01BFD3FA100F49474 /* DONAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DONAddItemViewController.m; path = ../Storyboards/DONAddItemViewController.m; sourceTree = "<group>"; };
 		43DC9E76B0808AD45B0DDCE2 /* Pods-DonateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.release.xcconfig"; sourceTree = "<group>"; };
+		4B1101BC1C0F527900B8B59E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		4B2B21231C0CC6E900DBCE23 /* Laurent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Laurent.storyboard; sourceTree = "<group>"; };
+		4B2B21251C0CC7AC00DBCE23 /* DonateApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DonateApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		4B2B21261C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DONWelcomeScreenViewController.swift; sourceTree = "<group>"; };
+		4B2B21271C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DONForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		4B2B21291C0CC7AC00DBCE23 /* DONSignUpScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DONSignUpScreenViewController.swift; sourceTree = "<group>"; };
 		614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		614A96C51BFCE72300BD543A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		614A96C81BFCE74F00BD543A /* DONAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONAppDelegate.m; sourceTree = "<group>"; };
@@ -96,8 +106,6 @@
 		614A96D51BFE333B00BD543A /* DONSettingsEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONSettingsEnum.h; sourceTree = "<group>"; };
 		614A96D71BFE645400BD543A /* DONViewOtherUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewOtherUserProfileViewController.h; sourceTree = "<group>"; };
 		614A96D81BFE645400BD543A /* DONViewOtherUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewOtherUserProfileViewController.m; sourceTree = "<group>"; };
-		614B174F1BFF2DA40001D231 /* DONVerification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONVerification.h; sourceTree = "<group>"; };
-		614B17501BFF2DA40001D231 /* DONVerification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONVerification.m; sourceTree = "<group>"; };
 		614B17521BFF61C40001D231 /* DONCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCategory.h; sourceTree = "<group>"; };
 		614B17531BFF61C40001D231 /* DONCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCategory.m; sourceTree = "<group>"; };
 		614FF1A91C05FE71004C74E1 /* DONViewItemDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONViewItemDescriptionView.h; sourceTree = "<group>"; };
@@ -115,7 +123,6 @@
 		61C574781BFBC88F00D80141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C574821BFBCBCB00D80141 /* Mickey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mickey.storyboard; sourceTree = "<group>"; };
 		61C574841BFBCBD000D80141 /* Guang.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Guang.storyboard; sourceTree = "<group>"; };
-		61C574861BFBCBD600D80141 /* Laurent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Laurent.storyboard; sourceTree = "<group>"; };
 		61C574881BFBCBDA00D80141 /* Jon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Jon.storyboard; sourceTree = "<group>"; };
 		61C5748A1BFBCC2A00D80141 /* DONMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONMainViewController.h; sourceTree = "<group>"; };
 		61C5748B1BFBCC2A00D80141 /* DONMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONMainViewController.m; sourceTree = "<group>"; };
@@ -128,8 +135,6 @@
 		61DA474A1C10B82100A8B23A /* DONProfileItemCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONProfileItemCollectionViewController.m; sourceTree = "<group>"; };
 		61DA474C1C10E74500A8B23A /* DONUserProfileItemCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONUserProfileItemCountView.h; sourceTree = "<group>"; };
 		61DA474D1C10E74500A8B23A /* DONUserProfileItemCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONUserProfileItemCountView.m; sourceTree = "<group>"; };
-		61F10EBD1C162D3900E3ED3F /* utensil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = utensil.png; sourceTree = "<group>"; };
-		61F10EBF1C162D5B00E3ED3F /* misc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = misc.png; sourceTree = "<group>"; };
 		623668081C051BC700327A9D /* DONDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONDrawerViewController.h; sourceTree = "<group>"; };
 		623668091C051BC700327A9D /* DONDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONDrawerViewController.m; sourceTree = "<group>"; };
 		6236680B1C051C2200327A9D /* DONDrawerProfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DONDrawerProfileView.h; path = "View Controllers/DONDrawerProfileView.h"; sourceTree = "<group>"; };
@@ -139,23 +144,6 @@
 		6237E0651BFCFBD500C5AD27 /* DonQueryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonQueryCollectionViewController.h; sourceTree = "<group>"; };
 		6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonQueryCollectionViewController.m; sourceTree = "<group>"; };
 		6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.collection.storyboard; sourceTree = "<group>"; };
-		6247BDEB1C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1447907507_clothing_accesories_clothes_fabric-03.png"; path = "Don-icon/1447907507_clothing_accesories_clothes_fabric-03.png"; sourceTree = "<group>"; };
-		6247BDEC1C15DE5E00FDFD3D /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = book.png; path = "Don-icon/book.png"; sourceTree = "<group>"; };
-		6247BDED1C15DE5E00FDFD3D /* clothing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clothing.png; path = "Don-icon/clothing.png"; sourceTree = "<group>"; };
-		6247BDEE1C15DE5E00FDFD3D /* furniture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = furniture.png; path = "Don-icon/furniture.png"; sourceTree = "<group>"; };
-		6247BDEF1C15DE5E00FDFD3D /* misc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = misc.png; path = "Don-icon/misc.png"; sourceTree = "<group>"; };
-		6247BDF01C15DE5E00FDFD3D /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = music.png; path = "Don-icon/music.png"; sourceTree = "<group>"; };
-		6247BDF11C15DE5E00FDFD3D /* noun_20227_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noun_20227_cc.png; path = "Don-icon/noun_20227_cc.png"; sourceTree = "<group>"; };
-		6247BDF21C15DE5E00FDFD3D /* noun_34134_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noun_34134_cc.png; path = "Don-icon/noun_34134_cc.png"; sourceTree = "<group>"; };
-		6247BDF31C15DE5E00FDFD3D /* plant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plant.png; path = "Don-icon/plant.png"; sourceTree = "<group>"; };
-		6247BDF41C15DE5E00FDFD3D /* utensil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = utensil.png; path = "Don-icon/utensil.png"; sourceTree = "<group>"; };
-		6247BDFF1C1625BD00FDFD3D /* household.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = household.png; sourceTree = "<group>"; };
-		6247BE011C16274900FDFD3D /* electronics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = electronics.png; sourceTree = "<group>"; };
-		6247BE041C162A3E00FDFD3D /* instrument.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instrument.png; sourceTree = "<group>"; };
-		6247BE051C162A3E00FDFD3D /* game.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game.png; sourceTree = "<group>"; };
-		6247BE061C162A3E00FDFD3D /* household.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = household.png; sourceTree = "<group>"; };
-		6247BE071C162A3E00FDFD3D /* sport.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sport.png; sourceTree = "<group>"; };
-		6247BE0D1C1630C800FDFD3D /* Don-icon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Don-icon"; sourceTree = "<group>"; };
 		62697BE61C0CFACC004455CD /* DonContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonContainerViewController.h; sourceTree = "<group>"; };
 		62697BE71C0CFACC004455CD /* DonContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonContainerViewController.m; sourceTree = "<group>"; };
 		62697BE91C0CFDA2004455CD /* EmptySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptySegue.h; sourceTree = "<group>"; };
@@ -178,15 +166,15 @@
 		6284E0E61C051EDF007A4CB1 /* DONActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONActivity.m; sourceTree = "<group>"; };
 		6284E0E81C051F2C007A4CB1 /* furniture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = furniture.png; sourceTree = "<group>"; };
 		6284E0EA1C051F4F007A4CB1 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+
 		6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DonInfowindow.xib; sourceTree = "<group>"; };
 		6284E0F41C06A49C007A4CB1 /* DonInfowindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonInfowindow.h; sourceTree = "<group>"; };
 		6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonInfowindow.m; sourceTree = "<group>"; };
-		6284E0F71C06AD22007A4CB1 /* clara.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clara.jpg; sourceTree = "<group>"; };
 		62B45AF31BFE20480007D314 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		62B45AF41BFE20480007D314 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		62B45AF81BFF6CDF0007D314 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guang.map.Storyboard; sourceTree = "<group>"; };
-		840C03F25902F002B71EBF83 /* libPods-DonateApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DonateApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D13AD95DE8CDBF32E94ED641 /* Pods_DonateApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB99CF7E70277FCAE56AE9BA /* Pods-DonateApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,17 +183,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB5A6F32513C8FE833586BCE /* libPods-DonateApp.a in Frameworks */,
+				2D71FA1EC08CBCB5BD12657F /* Pods_DonateApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2B212E1C0CFE7300DBCE23 /* Login Process - Swift Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B2B21261C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift */,
+				4B2B21271C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift */,
+				4B2B21291C0CC7AC00DBCE23 /* DONSignUpScreenViewController.swift */,
+			);
+			name = "Login Process - Swift Files";
+			sourceTree = "<group>";
+		};
 		4F378F0A51C55C7601FEC699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				840C03F25902F002B71EBF83 /* libPods-DonateApp.a */,
+				D13AD95DE8CDBF32E94ED641 /* Pods_DonateApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -260,11 +258,14 @@
 		61C574661BFBC88F00D80141 /* DonateApp */ = {
 			isa = PBXGroup;
 			children = (
+				4B1101BC1C0F527900B8B59E /* video.mp4 */,
+				4B2B21251C0CC7AC00DBCE23 /* DonateApp-Bridging-Header.h */,
 				61C574731BFBC88F00D80141 /* Assets.xcassets */,
 				61C574921BFBE7E100D80141 /* DONSecrets.h */,
 				25881C201BFCE58A00C4E2AD /* DONSecrets.m */,
 				61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */,
 				614A96C81BFCE74F00BD543A /* DONAppDelegate.m */,
+				4B2B212E1C0CFE7300DBCE23 /* Login Process - Swift Files */,
 				6237E0591BFBD28A00C5AD27 /* guangClasses */,
 				61C574811BFBCB4F00D80141 /* Models */,
 				61C574801BFBCB4500D80141 /* View Controllers */,
@@ -292,8 +293,8 @@
 				614A96C41BFCE72300BD543A /* LaunchScreen.storyboard */,
 				614A96C51BFCE72300BD543A /* Main.storyboard */,
 				61C574821BFBCBCB00D80141 /* Mickey.storyboard */,
+				4B2B21231C0CC6E900DBCE23 /* Laurent.storyboard */,
 				61C574841BFBCBD000D80141 /* Guang.storyboard */,
-				61C574861BFBCBD600D80141 /* Laurent.storyboard */,
 				61C574881BFBCBDA00D80141 /* Jon.storyboard */,
 			);
 			path = Storyboards;
@@ -354,8 +355,6 @@
 				61C5748E1BFBE4C500D80141 /* DONUser.m */,
 				61C574931BFC273E00D80141 /* DONItem.h */,
 				61C574941BFC273E00D80141 /* DONItem.m */,
-				614B174F1BFF2DA40001D231 /* DONVerification.h */,
-				614B17501BFF2DA40001D231 /* DONVerification.m */,
 				6284E0E51C051EDF007A4CB1 /* DONActivity.h */,
 				6284E0E61C051EDF007A4CB1 /* DONActivity.m */,
 			);
@@ -366,8 +365,10 @@
 			isa = PBXGroup;
 			children = (
 				62B45AF81BFF6CDF0007D314 /* Settings.bundle */,
-				6237E0741BFD357600C5AD27 /* icons */,
 				6237E06C1BFCFFF900C5AD27 /* collectionScreen */,
+				6284E0D61C051E70007A4CB1 /* DonGoogleMapViewController.h */,
+				6284E0D71C051E70007A4CB1 /* DonGoogleMapViewController.m */,
+				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
 				6284E0F01C06A409007A4CB1 /* mapStuff */,
 			);
 			name = guangClasses;
@@ -395,6 +396,7 @@
 			name = collectionScreen;
 			sourceTree = "<group>";
 		};
+
 		6237E0741BFD357600C5AD27 /* icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,15 +426,13 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+
 		6284E0F01C06A409007A4CB1 /* mapStuff */ = {
 			isa = PBXGroup;
 			children = (
-				6284E0D61C051E70007A4CB1 /* DonGoogleMapViewController.h */,
-				6284E0D71C051E70007A4CB1 /* DonGoogleMapViewController.m */,
 				6284E0F41C06A49C007A4CB1 /* DonInfowindow.h */,
 				6284E0F51C06A49C007A4CB1 /* DonInfowindow.m */,
 				6284E0EE1C06876B007A4CB1 /* DonInfowindow.xib */,
-				62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */,
 			);
 			name = mapStuff;
 			sourceTree = "<group>";
@@ -471,6 +471,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 57675254DH;
 					};
 				};
 			};
@@ -498,37 +499,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
+
 				6247BE0B1C162A3E00FDFD3D /* household.png in Resources */,
 				6247BE021C16274900FDFD3D /* electronics.png in Resources */,
 				6247BDF51C15DE5E00FDFD3D /* 1447907507_clothing_accesories_clothes_fabric-03.png in Resources */,
 				6284E0EB1C051F4F007A4CB1 /* music.png in Resources */,
 				6284E0E91C051F2C007A4CB1 /* furniture.png in Resources */,
+
+				4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */,
+				4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */,
+				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
+
 				6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */,
-				6247BE001C1625BD00FDFD3D /* household.png in Resources */,
-				6247BDFA1C15DE5E00FDFD3D /* music.png in Resources */,
-				6247BE0A1C162A3E00FDFD3D /* game.png in Resources */,
 				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				614A96C71BFCE72300BD543A /* Main.storyboard in Resources */,
 				62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */,
-				6247BE0E1C1630C800FDFD3D /* Don-icon in Resources */,
-				6247BE091C162A3E00FDFD3D /* instrument.png in Resources */,
-				61F10EC01C162D5B00E3ED3F /* misc.png in Resources */,
 				61C574891BFBCBDA00D80141 /* Jon.storyboard in Resources */,
-				6247BDF71C15DE5E00FDFD3D /* clothing.png in Resources */,
-				61C574871BFBCBD600D80141 /* Laurent.storyboard in Resources */,
-				6284E0F81C06AD22007A4CB1 /* clara.jpg in Resources */,
 				61C574851BFBCBD000D80141 /* Guang.storyboard in Resources */,
-				6247BDF91C15DE5E00FDFD3D /* misc.png in Resources */,
-				6247BDFB1C15DE5E00FDFD3D /* noun_20227_cc.png in Resources */,
-				6247BDFC1C15DE5E00FDFD3D /* noun_34134_cc.png in Resources */,
-				6247BDFD1C15DE5E00FDFD3D /* plant.png in Resources */,
-				61F10EBE1C162D3900E3ED3F /* utensil.png in Resources */,
 				614A96C61BFCE72300BD543A /* LaunchScreen.storyboard in Resources */,
-				6247BDF61C15DE5E00FDFD3D /* book.png in Resources */,
-				6247BDF81C15DE5E00FDFD3D /* furniture.png in Resources */,
-				6247BDFE1C15DE5E00FDFD3D /* utensil.png in Resources */,
 				61C574741BFBC88F00D80141 /* Assets.xcassets in Resources */,
-				6247BE0C1C162A3E00FDFD3D /* sport.png in Resources */,
 				61C574831BFBCBCB00D80141 /* Mickey.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,7 +586,6 @@
 				6284E0E31C051EC2007A4CB1 /* DONViewItemButton.m in Sources */,
 				6284E0E71C051EDF007A4CB1 /* DONActivity.m in Sources */,
 				6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */,
-				614B17511BFF2DA40001D231 /* DONVerification.m in Sources */,
 				6284E0E21C051EC2007A4CB1 /* DONItemStatsView.m in Sources */,
 				614B17541BFF61C40001D231 /* DONCategory.m in Sources */,
 				259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */,
@@ -616,13 +604,16 @@
 				61C5748C1BFBCC2A00D80141 /* DONMainViewController.m in Sources */,
 				61C574691BFBC88F00D80141 /* main.m in Sources */,
 				62B45AF51BFE20480007D314 /* SearchCell.m in Sources */,
+				4B2B212D1C0CC7AC00DBCE23 /* DONSignUpScreenViewController.swift in Sources */,
 				259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */,
 				62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */,
 				614A96D01BFD2AF500BD543A /* DONUserSettingsTableViewController.m in Sources */,
 				6236680A1C051BC700327A9D /* DONDrawerViewController.m in Sources */,
+				4B2B212A1C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift in Sources */,
 				6284E0F61C06A49C007A4CB1 /* DonInfowindow.m in Sources */,
 				6284E0E41C051EC2007A4CB1 /* DONViewItemUserProfileView.m in Sources */,
 				614A96D61BFE333B00BD543A /* DONSettingsEnum.h in Sources */,
+				4B2B212B1C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift in Sources */,
 				6284E0D51C051E57007A4CB1 /* DONItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,12 +706,19 @@
 			baseConfigurationReference = FB99CF7E70277FCAE56AE9BA /* Pods-DonateApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -729,12 +727,18 @@
 			baseConfigurationReference = 43DC9E76B0808AD45B0DDCE2 /* Pods-DonateApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

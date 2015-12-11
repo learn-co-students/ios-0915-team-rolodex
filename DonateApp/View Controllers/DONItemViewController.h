@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DONItem.h"
+#import <MessageUI/MessageUI.h>
 
-@interface DONItemViewController : UIViewController
+@interface DONItemViewController : UIViewController <MFMailComposeViewControllerDelegate>
 -(instancetype)initWithItem:(DONItem *)item;
 @end

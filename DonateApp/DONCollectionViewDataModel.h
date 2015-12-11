@@ -22,6 +22,7 @@ static NSString *const kDidUpdateCategoriesNotification = @"DONDidUpdateCategori
 @property (nonatomic, strong) UIView *viewToUpdateHUD;
 
 +(instancetype)sharedInstance;
+-(void)loadCategories;
 -(void)loadAllItems;
 -(void)toggleCategory:(DONCategory *)category;
 

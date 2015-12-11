@@ -16,6 +16,7 @@
 	<string>comgooglemaps</string>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1IjoiZ3Vhbmd6IiwiYSI6ImNpaDdyeThiYTB0MmJ1MWtpM3hlMjA2cGwifQ.65NPTOJseENext3qFP5xxQ</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -58,9 +59,13 @@
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1IjoiZ3Vhbmd6IiwiYSI6ImNpaDdyeThiYTB0MmJ1MWtpM3hlMjA2cGwifQ.65NPTOJseENext3qFP5xxQ</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>blah Requires Access To Your Location To Proceed</string>
+
+	<string>We only use your location to help you find nearby items</string>
+
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Laurent</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

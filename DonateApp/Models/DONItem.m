@@ -8,7 +8,6 @@
 
 #import "DONItem.h"
 #import <Parse/Parse.h>
-#import "PFObject+Subclass.h"
 #import "DONUser.h"
 #import "DONCategory.h"
 #import "DONActivity.h"
@@ -63,18 +62,18 @@
 }
 
 +(void)createItemWithNameForCurrentUserWithCompletionBlock:(NSString *)name
-																											 description:(NSString *)description
-																								pickupInstructions:(NSString *)pickupInstructions
-																															tags:(NSArray *)tags
-																												 itemImagePF:(PFFile *)itemImagePF
+                                                                                             description:(NSString *)description
+                                                                                pickupInstructions:(NSString *)pickupInstructions
+                                                                                                            tags:(NSArray *)tags
+                                                                                                 itemImagePF:(PFFile *)itemImagePF
 
 
 //																				location:(PFGeoPoint *)location
 
 
-																						 withCompletion:(void(^)(BOOL success, DONItem *object))completionBlock{
+                                                                         withCompletion:(void(^)(BOOL success, DONItem *object))completionBlock{
 //																							 withCompletion:(void(^)(BOOL success, DONItem *newItem))completionBlock {
-//		
+//
 
 		// BIG TODO: DONItem is a sublclass of PFObject.  How can we best handle that and not repeat steps!
 		

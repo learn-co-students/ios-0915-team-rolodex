@@ -36,6 +36,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.currentUser = [DONUser currentUser];
     NSLog(@"Current user %@", self.currentUser);
     
@@ -114,6 +115,7 @@
     }];
 }
 
+
 -(void)setupViewData
 {
     self.userPhotoImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -121,7 +123,7 @@
     self.userPhotoImageView.layer.borderWidth = 1.0f;
     self.userPhotoImageView.layer.borderColor = [UIColor blackColor].CGColor;
     
-    self.userPhotoImageView.file = self.currentUser.photoFile;
+    self.userPhotoImageView.file = self.currentUser.photo;
     [self.userPhotoImageView loadInBackground];
     
     UIColor *textColor = [UIColor colorWithRed:140.0/255.0 green:140.0/255.0 blue:140.0/255.0 alpha:1];

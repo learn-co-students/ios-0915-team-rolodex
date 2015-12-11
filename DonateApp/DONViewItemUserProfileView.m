@@ -7,7 +7,7 @@
 //
 
 #import "DONViewItemUserProfileView.h"
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 #import "Masonry.h"
 
 @interface DONViewItemUserProfileView ()
@@ -78,11 +78,16 @@
 
 -(void)setupViewData
 {
-    self.profilePictureImageView.file = self.user.photoFile;
+    self.profilePictureImageView.file = self.user.photo;
+    
     [self.profilePictureImageView loadInBackground];
     
     NSString *username = [NSString stringWithFormat:@"%@", self.user.username];
-    self.userNameLabel.text = username;
+    if ([username isEqualToString:@"(null)"]) {
+        self.userNameLabel.text = @"";
+    } else {
+        self.userNameLabel.text = username;
+    }
 
 }
 

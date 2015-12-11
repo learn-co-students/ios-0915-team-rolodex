@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ParseUI.h"
+#import <ParseUI/ParseUI.h>
 
 
 @interface SearchCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet PFImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

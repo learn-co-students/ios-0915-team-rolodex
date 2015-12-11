@@ -7,9 +7,8 @@
 //
 
 #import "DONUser.h"
-#import "PFObject+Subclass.h"
+#import <Parse/Parse.h>
 #import "DONItem.h"
-#import "DONVerification.h"
 
 @interface DONUser ()
 
@@ -24,6 +23,7 @@
 @dynamic user_phone;
 @dynamic createdAt;
 @dynamic updatedAt;
+@dynamic photo;
 
 + (void)load {
     [self registerSubclass];
@@ -90,60 +90,6 @@
 }
 
 
-+ (void)allVerificationsForCurrentUserWithCompletion:(void (^)(NSArray *items, BOOL success))completion
-{
-    // Get the current user
-    if (![DONUser currentUser]) {
-        NSLog(@"Failed loading verifications. No current user found");
-        return;
-    }
-    
-    PFQuery *verificationsQuery = [PFQuery queryWithClassName:[DONVerification parseClassName]];
-    [verificationsQuery whereKey:@"verifiee" equalTo:[DONUser currentUser]];
-    
-    [verificationsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
-        if (error) {
-            NSLog(@"Error fetching verifications for current user: %@", error);
-            completion(nil,NO);
-        } else {
-            NSLog(@"Successfully fetched and loaded verifications for current user");
-            completion(objects,YES);
-        }
-    }];
-}
-
-+ (void)allVerificationsForUser:(DONUser *)user withCompletion:(void (^)(NSArray *items, BOOL success))completion
-{
-    PFQuery *verificationsQuery = [PFQuery queryWithClassName:[DONVerification parseClassName]];
-    [verificationsQuery whereKey:@"verifiee" equalTo:user];
-    
-    [verificationsQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
-        if (error) {
-            NSLog(@"Error fetching verifications for specific user: %@", error);
-            completion(nil,NO);
-        } else {
-            NSLog(@"Successfully fetched and loaded verifications for specific user");
-            completion(objects,YES);
-        }
-    }];
-}
-
-# pragma mark - Overriden setters & getters
-
--(PFFile *)photoFile
-{
-    return [self objectForKey:@"photo"];
-}
-
--(void)setPhoto:(UIImage *)image
-{
-    NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
-    self[@"photo"] = imageFile;
-    [self saveInBackground];
-}
 
 
 

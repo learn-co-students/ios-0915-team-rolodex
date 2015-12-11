@@ -6,8 +6,7 @@
 //  Copyright © 2015 Rolodex. All rights reserved.
 //
 
-#import "PFObject.h"
-#import "PFSubclassing.h"
+#import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "DONUser.h"
 #import "DONItem.h"
@@ -26,6 +25,7 @@ static NSString *const kActivityTypeView = @"view";
 +(NSString *)parseClassName;
 
 +(void)activitiesForUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *activities))completion;
++(void)activitiesToUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *))completion;
 +(void)activitiesForUser:(DONUser *)user withCompletion:(void (^)(NSArray *activities))completion;
 +(void)activitiesForItem:(DONItem *)item withCompletion:(void (^)(NSArray *activities))completion;
 +(void)removeActivityType:(NSString *)activityType forUser:(DONUser *)user onItem:(DONItem *)item withCompletion:(void (^)(BOOL success))completion;

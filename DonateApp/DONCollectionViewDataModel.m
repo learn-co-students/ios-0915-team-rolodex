@@ -8,7 +8,7 @@
 
 #import "DONCollectionViewDataModel.h"
 #import "DONItem.h"
-#import <MBProgressHUD.h>
+#import "MBProgressHUD.h"
 
 @interface DONCollectionViewDataModel ()
 @property (nonatomic, strong) NSArray *items;
@@ -50,12 +50,29 @@
                 [self postCategoriesUpdateNotification];
                 [DONItem allItemsWithCompletion:^(BOOL success, NSArray *allItems) {
                     self.items = allItems;
-                    [self postDidUpdateItemsNotification];
+                    if (success) {
+                        [self postDidUpdateItemsNotification];
+                    }
                 }];
             }
         }];
     });
 }
+
+-(void)loadCategories
+{
+    [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
+        if (success){
+            for (DONCategory *category in categories) {
+                category.selected = NO;
+            }
+            self.allCategories = categories;
+            
+            [self postCategoriesUpdateNotification];
+        }
+    }];
+}
+
 -(void)loadItemsWithCategories:(NSArray *)categories
 {
     [self postWillUpdateItemsNotification];
@@ -63,12 +80,16 @@
     if (categories.count == 0) {
         [DONItem allItemsWithCompletion:^(BOOL success, NSArray *items) {
             self.items = items;
-            [self postDidUpdateItemsNotification];
+            if (success) {
+                [self postDidUpdateItemsNotification];
+            }
         }];
     } else {
         [DONItem itemsWithCategories:categories withCompletion:^(BOOL success, NSArray *items) {
             self.items = items;
-            [self postDidUpdateItemsNotification];
+            if (success) {
+                [self postDidUpdateItemsNotification];
+            }
         }];
     }
 }

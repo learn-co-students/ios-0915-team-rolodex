@@ -10,7 +10,6 @@
 #import "DONUser.h"
 #import "DONItem.h"
 #import "DONCategory.h"
-//#import "QueryCell.h"
 #import "SearchCell.h"
 
 #import <ChameleonFramework/Chameleon.h>
@@ -22,6 +21,7 @@
 
 #import "DONItemViewController.h"
 #import "DONCollectionViewDataModel.h"
+#import "DONLocationController.h"
 
 
 
@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *searchCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *searchSelectionLabel;
 @property (weak, nonatomic) IBOutlet UIStackView *stackedViewLables;
-
 @property (weak, nonatomic) DonContainerViewController * containerViewController;
 
 @property (strong, nonatomic) NSString * userOnPage;
@@ -57,7 +56,6 @@
     // Remove "Back" nav bar text next to back arrow
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
  
-    //[self activeXibCell];
     [self searchBarCellStyle];
     
     // Data model
@@ -66,7 +64,8 @@
 
     // Drawer menu code
     [self setupNavigationBar];
-   
+    
+    [[DONLocationController sharedInstance] getCurrentUserLocationWithCompletion:nil];
 
 }
 
@@ -78,6 +77,7 @@
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 
 #pragma mark Navigation Bar Setup
 // Drawer menu code
@@ -110,6 +110,7 @@
     [self.mapButton addTarget:self action:@selector(goTomap:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.mapButton];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
+    self.mapButton.enabled = NO;
     
 }
 
@@ -140,6 +141,10 @@
 {
     // turn the UserInteraction back ON
     self.searchCollectionView.userInteractionEnabled = YES;
+    if (self.allCategory.count == 0 ) {
+        [[DONCollectionViewDataModel sharedInstance] loadCategories];
+    }
+    self.mapButton.enabled = YES;
 }
 
 #pragma mark collectionView delegate
@@ -162,20 +167,21 @@
         SearchCell * sCell = [self.searchCollectionView dequeueReusableCellWithReuseIdentifier:@"searchCell" forIndexPath:indexPath];
         DONCategory * category = self.allCategory[indexPath.row];
         //sCell.searchLabel.text = category.name;
-        
-        UIImage * iconImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]];
-        sCell.imageView.image = iconImage;
-        
 //        sCell.imageView.file = category.imageFile;
 //        [sCell.imageView loadInBackground];
         NSString *categoryName = category.name;
-        UIImage *image = [UIImage imageNamed:categoryName];
+        UIImage *image = [[UIImage imageNamed:categoryName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         sCell.imageView.image = image;
+    
         
         if (!category.selected) {
             sCell.imageView.alpha = 0.6f;
+
+            sCell.imageView.tintColor = [UIColor blackColor];
         } else {
             sCell.imageView.alpha = 1.0f;
+            
+            sCell.imageView.tintColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];            
         }
 
         return sCell;
@@ -200,39 +206,35 @@
     }
 }
 
-  #pragma mark stackView methods
+#pragma mark stackView methods
 //for the search feature when tap icon the names shows up under
 
 -(void)makeTheStackOfcats{
     self.stackedViewLables.backgroundColor = [UIColor blackColor];
     for (DONCategory * eachCat in self.allCategory) {
         UILabel * catLabel = [[UILabel alloc] init];
-        catLabel.text = eachCat.name;
-        catLabel.textColor = [UIColor whiteColor];
-        catLabel.backgroundColor = [UIColor blackColor];
+        //catLabel.text = eachCat.name;
+        
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:eachCat.name];
+        [attributeString addAttribute:NSUnderlineStyleAttributeName
+                                value:[NSNumber numberWithInt:2]
+                                range:(NSRange){0,[attributeString length]}];
+        catLabel.attributedText = attributeString;
+        catLabel.textColor = [UIColor blackColor];
+        catLabel.backgroundColor = [UIColor clearColor];
         catLabel.hidden = YES;
+        //catLabel.frame = UIEdgeInsetsInsetRect(catLabel.frame, UIEdgeInsetsMake(0, 25, 25, 0));
         [self.stackedViewLables addArrangedSubview:catLabel];
     }
 }
 
   #pragma mark  cell style
-//style for the old collection.  we are not using it this method anymore, but keep it for now :)
-//-(void)setupTheQueryCell:(QueryCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-//    cell.backgroundColor = RandomFlatColorWithShade(UIShadeStyleLight);
-//    UIColor * one = RandomFlatColorWithShade(UIShadeStyleLight);
-//    UIColor * two = RandomFlatColorWithShade(UIShadeStyleLight);
-//    NSArray * x = @[one,two];
-//    cell.backgroundColor = GradientColor(UIGradientStyleRadial,cell.frame,x);
-//
-//}
-// style for the category style
 -(void)searchBarCellStyle{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(60, 60);
+    flowLayout.itemSize = CGSizeMake(65, 65);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // add vertical
     self.searchCollectionView.collectionViewLayout = flowLayout;
 }
-
 
   #pragma mark container vew
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -261,7 +263,24 @@
     }
 }
 
-#pragma view life cycle
+#pragma view style things 
 
+-(UIImage *)imageByDrawingWhiteCircleBehindImage:(UIImage *)image andResizingToSize:(CGSize)size withColor:(UIColor*)color
+{
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size.width, size.height)];
+    circlePath.lineWidth = 1;
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    [color setFill];
+    [circlePath fill];
+    
+       // [[UIColor colorWithWhite:0.2 alpha:1] setStroke];
+    [[UIColor blueColor] setStroke];
+        [circlePath stroke];
+    
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
+}
 
 @end

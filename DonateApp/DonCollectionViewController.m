@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) NSArray * items;
 @property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
+@property (nonatomic, strong) UIView *temporaryBackground;
 @end
 
 @implementation DonCollectionViewController
@@ -41,6 +42,48 @@ static NSString * const reuseIdentifier = @"cell";
     [self activeXibCell];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+}
+
+
+-(void)viewDidLayoutSubviews
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.temporaryBackground = [[UIView alloc] init];
+        
+        UILabel *text2 = [[UILabel alloc] init];
+        text2.textColor = [UIColor lightGrayColor];
+        text2.font = [UIFont systemFontOfSize:14];
+        text2.textAlignment = NSTextAlignmentCenter;
+        text2.lineBreakMode = NSLineBreakByWordWrapping;
+        text2.numberOfLines = 3;
+        text2.text = @"Please note an internet connection is required for this application to function!";
+        text2.frame = CGRectMake(30, 0, CGRectGetWidth(self.collectionView.frame) - 60, 150);
+        [self.temporaryBackground addSubview:text2];
+        
+        UIImage *giveReceive = [[UIImage imageNamed:@"GiveReceive"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImageView *backgroundImageView = [[UIImageView alloc] init];
+        backgroundImageView.tintColor = [UIColor lightGrayColor];
+        backgroundImageView.image = giveReceive;
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+        backgroundImageView.frame = CGRectMake(CGRectGetMaxX(self.collectionView.frame)/4, CGRectGetMaxY(self.collectionView.frame)/4, CGRectGetWidth(self.collectionView.frame)/2, CGRectGetWidth(self.collectionView.frame)/2);
+        backgroundImageView.center = self.collectionView.center;
+
+        [self.temporaryBackground addSubview:backgroundImageView];
+        
+        UILabel *text = [[UILabel alloc] init];
+        text.textColor = [UIColor lightGrayColor];
+        text.font = [UIFont systemFontOfSize:14];
+        text.textAlignment = NSTextAlignmentCenter;
+        text.lineBreakMode = NSLineBreakByWordWrapping;
+        text.numberOfLines = 3;
+        text.text = @"\"When we give cheerfully and accept gratefully, everyone is blessed.\n-Maya Angelou\"";
+        text.frame = CGRectMake(30, CGRectGetMaxY(backgroundImageView.frame)-10, CGRectGetWidth(self.collectionView.frame)-60,150);
+        [self.temporaryBackground addSubview: text];
+        
+        [self.collectionView insertSubview:self.temporaryBackground atIndex:0];
+        
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +110,7 @@ static NSString * const reuseIdentifier = @"cell";
     // turn the UserInteraction back ON
     self.collectionView.userInteractionEnabled = YES;
     self.items = self.dataModel.items;
+    self.temporaryBackground.hidden = YES;
     [self.collectionView reloadData];
 }
 
@@ -85,16 +129,22 @@ static NSString * const reuseIdentifier = @"cell";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-        DONItem * item = self.items[indexPath.row];
-
-        //cell.cellTitle.text = item.name;
-        cell.image.file = item.imageFile;
-        [cell.image loadInBackground];
-
-        return cell;
+    QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    DONItem * item = self.items[indexPath.row];
+    cell.cellTitle.text = item.name;
+    
+//    cell.cellTitle.textColor = [UIColor whiteColor];
+    
+//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    [cell.contentView addSubview:bluredEffectView];
+//    [bluredEffectView setFrame:cell.cellTitle.frame];
+    
+    cell.image.file = item.imageFile;
+    [cell.image loadInBackground];
+    
+    return cell;
 }
- 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
     
@@ -102,20 +152,20 @@ static NSString * const reuseIdentifier = @"cell";
         
         NSLog(@"I tapped collectionView");
         /* push to the map direction
-        DONItem * selectedItem = self.items[indexPath.row];
-        if (selectedItem.location) {
-            CGFloat lat = selectedItem.location.latitude;
-            CGFloat lon = selectedItem.location.longitude;
-            NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
-            NSLog(@"lat and long %@",coordinateString);
-            // wirte a bool method also with animation indicat the cell lead to a map
-            [self activeGoogleMapToLocationQuery:coordinateString];
-        }   else if (selectedItem.pickupInstructions) {
-            NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-            NSLog(@"location=%@",pareselocationString);
-            [self activeGoogleMapToLocationQuery:pareselocationString];
-        }
-        */
+         DONItem * selectedItem = self.items[indexPath.row];
+         if (selectedItem.location) {
+         CGFloat lat = selectedItem.location.latitude;
+         CGFloat lon = selectedItem.location.longitude;
+         NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
+         NSLog(@"lat and long %@",coordinateString);
+         // wirte a bool method also with animation indicat the cell lead to a map
+         [self activeGoogleMapToLocationQuery:coordinateString];
+         }   else if (selectedItem.pickupInstructions) {
+         NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+         NSLog(@"location=%@",pareselocationString);
+         [self activeGoogleMapToLocationQuery:pareselocationString];
+         }
+         */
         DONItem *item = self.items[indexPath.row];
         DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:item];
         [self.navigationController pushViewController:itemViewController animated:YES];

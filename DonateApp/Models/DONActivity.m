@@ -34,6 +34,15 @@
     }];
 }
 
++(void)activitiesToUser:(DONUser *)user activityType:(NSString *)activityType withCompletion:(void (^)(NSArray *))completion
+{
+    PFQuery *query = [self.class query];
+    [query whereKey:@"type" equalTo:activityType];
+    [query whereKey:@"toUser" equalTo:user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        completion(objects);
+    }];
+}
 
 +(void)activitiesForUser:(DONUser *)user withCompletion:(void (^)(NSArray *))completion
 {
