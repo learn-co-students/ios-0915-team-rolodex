@@ -97,6 +97,12 @@ static NSString * const reuseIdentifier = @"cell";
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
     [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
+    [center addObserver:self selector:@selector(userLogin) name:@"DONUserLoggedIn" object:nil];
+}
+
+-(void)userLogin
+{
+    [self.dataModel loadAllItems];
 }
 
 -(void)updatingItems

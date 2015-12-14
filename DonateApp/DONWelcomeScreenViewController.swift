@@ -49,21 +49,30 @@ class DONWelcomeScreenViewController: UIViewController {
     
     @IBAction func skipButtonTapped(sender: UIButton) {
         // Navigate to Protected page
-        
-        
+        self.displayMainScreen()
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setValue("UserTappedSkip", forKey: "UserSkip")
+        userDefaults.synchronize()
+    }
+    
+    func displayMainScreen() {
         let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
         if let vc = appDelegate.window.rootViewController {
             if (vc.dynamicType != self.dynamicType) {
                 if let drawerController = self.presentingViewController as? MMDrawerController,
                     let centerNavController = drawerController.centerViewController as? UINavigationController {
-                    centerNavController.visibleViewController?.dismissViewControllerAnimated(true, completion: nil)
+                        centerNavController.visibleViewController?.dismissViewControllerAnimated(true, completion: nil)
                 }
-
+                
             } else {
                 appDelegate.buildUserInterface()
             }
         }
-    }
+        
+        let center = NSNotificationCenter.defaultCenter()
+        let notification = NSNotification(name: "DONUserLoggedIn", object: nil)
+        center.postNotification(notification)
+}
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -143,11 +152,8 @@ class DONWelcomeScreenViewController: UIViewController {
                 
                 NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "user_name")
                 NSUserDefaults.standardUserDefaults().synchronize()
-                print("Login Successful")
                 
-                // Navigate to Protected page
-                let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
-                appDelegate.buildUserInterface()
+                self.displayMainScreen()
                 
             } else {
                 
@@ -168,10 +174,29 @@ class DONWelcomeScreenViewController: UIViewController {
         return true
     }
     
+    func userHasSkippedLogin() -> Bool {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        return userDefaults.valueForKey("UserSkip") != nil ? true : false
+    }
+    
+    func displayedModally() -> Bool {
+        return self.presentingViewController != nil ? true : false
+    }
+    
+    func shouldSkipLogin() -> Bool {
+        let userIsLoggedIn = PFUser.currentUser() != nil
+        let userIntendsToSkipLogin = self.userHasSkippedLogin() && !self.displayedModally()
+        
+        return userIsLoggedIn || userIntendsToSkipLogin
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+       
+        if self.shouldSkipLogin() {
+            self.displayMainScreen()
+        }
         
         // Change the color of the placeholder in the text fields
         let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
