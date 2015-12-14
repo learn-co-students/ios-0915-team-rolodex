@@ -125,172 +125,216 @@ static NSString * const reuseIdentifier = @"cell";
 #pragma initialization
 		
 				//initialize storyboard objects
-		self.scrollView = [[UIScrollView alloc]init];
-		self.containerView = [[UIView alloc]init];
-		self.topContainerView = [[UIView alloc]init];
+		
+		
+		self.collectionContainerView = [[UIView alloc]init];
 		self.selectedImageView = [[UIImageView alloc]init];
 		
 		self.useCurrentLocationSwitch = [[UISwitch alloc]init];
 		self.useCurrentLocationLabel = [[UILabel alloc]init];
 		self.saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		
-		self.itemNameTextField = [[UITextField alloc]init];
-		self.itemDescriptionTextField= [[UITextField alloc]init];
-		self.pickupInstructionsTextField= [[UITextField alloc]init];
+//		self.itemNameTextField = [[UITextField alloc]init];
+//		self.itemDescriptionTextField= [[UITextField alloc]init];
+//		self.pickupInstructionsTextField= [[UITextField alloc]init];
 
 #pragma view hierarchy
 		
+		//make scrollview view
+		self.scrollView = [[UIScrollView alloc]init];
 		[self.view addSubview: self.scrollView];
+		[self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.left.right.bottom.equalTo(self.view);
+				make.top.equalTo(self.mas_topLayoutGuideBottom);
+		}];
+		
+		self.containerView = [[UIView alloc]init];
 		[self.scrollView addSubview:self.containerView];
-		[self.scrollView addSubview:self.topContainerView];
-				//selectimage
-		[self.topContainerView addSubview:self.selectedImageView];
 		
-				//collectionView
-		[self.topContainerView addSubview:self.collectionView];
+		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.edges.equalTo(self.scrollView);
+				make.bottom.equalTo(self.scrollView.mas_bottom);
 		
-				//textfields
-		[self.containerView addSubview:self.itemNameTextField];
-		[self.containerView addSubview:self.itemDescriptionTextField];
-		[self.containerView addSubview:self.pickupInstructionsTextField];
+				// remove this dummy value later
+				make.height.equalTo(@750);
+		}];
 		
-				//switch
-		[self.containerView addSubview:self.useCurrentLocationLabel];
-		[self.containerView addSubview:self.useCurrentLocationSwitch];
-				//save
-		[self.containerView addSubview:self.saveButton];
 		
+		[self.containerView addSubview:self.selectedImageView];
+		
+		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.left.right.equalTo(self.containerView);
+				make.height.equalTo(@100);
+				
+		}];
+		
+		
+		
+		[self.containerView addSubview:self.collectionContainerView];
+		
+		[self.collectionContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
+				make.left.right.equalTo(self.containerView);
+				make.bottom.equalTo(self.itemNameTextField.mas_top);
+				make.height.width.equalTo(@65);
+		}];
+		
+		
+		
+		
+//		
+//		[self.collectionContainerView addSubview:self.collectionView];
+//		
+//				//textfields
+//		[self.containerView addSubview:self.itemNameTextField];
+//		[self.containerView addSubview:self.itemDescriptionTextField];
+//		[self.containerView addSubview:self.pickupInstructionsTextField];
+//		
+//				//switch
+//		[self.containerView addSubview:self.useCurrentLocationLabel];
+//		[self.containerView addSubview:self.useCurrentLocationSwitch];
+//				//save
+//		[self.containerView addSubview:self.saveButton];
+//		
 //		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor whiteColor];
-		
+//		self.view.backgroundColor = [UIColor grayColor];
+//		self.collectionContainerView.backgroundColor = [UIColor blackColor];
+//		self.scrollView.backgroundColor = [UIColor whiteColor];
+//		
 		
 #pragma setConstraints
 				//SCROLLVIEW & CONTAINER
-		[self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.edges.equalTo(self.view);
-		}];
-		
-		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.top.equalTo(self.scrollView);
-						//				make.top.equalTo(self.selectedImageView);
-				make.bottom.equalTo(self.collectionView.mas_bottom);
-						//				make.bottom.equalTo(self.containerView.mas_top);
-						//				make.height.equalTo(@300);
-				make.width.equalTo(self.view);
-		}];
-		
-		
-		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.bottom.equalTo(self.scrollView);
-				make.top.equalTo(self.topContainerView.mas_bottom);
-				make.height.equalTo(@250);
-						//				make.bottom.equalTo(self.saveButton);
-				make.width.equalTo(self.view);
-		}];
-		
-				//IMAGE & Placeholder
-		self.selectedImageView.contentMode = UIViewContentModeScaleAspectFit;
-		
-		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.equalTo (self.topContainerView);
-				make.top.equalTo(self.topContainerView);
-				make.width.equalTo(self.view);
-				make.height.equalTo(@250);
-				
-		}];
-		
-		
-				//collectionview
-		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.height.equalTo(@65);
-				make.left.equalTo(self.topContainerView).offset(25);
-				make.right.equalTo(self.topContainerView).offset(-25);
-				make.centerX.equalTo(self.topContainerView.mas_centerX);
-				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
-		}];
-		
-		self.collectionView.scrollEnabled = YES;
-		
-		self.collectionView.showsHorizontalScrollIndicator = YES;
-		
-		
-				//textFields
-		NSString *placeholderName = [NSString stringWithFormat:@"Item Name"];
-		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
-		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
-		
-		self.itemNameTextField.textColor = [UIColor blackColor];
-		self.itemNameTextField.placeholder = placeholderName;
-		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
-		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
-		
-		[self.itemNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(self.containerView).offset(25);
-				make.right.equalTo(self.containerView).offset(-25);
-				make.centerX.equalTo(self.containerView.mas_centerX);
-				make.bottom.equalTo(self.itemDescriptionTextField.mas_top).offset(-20);
-		}];
-		
-		self.itemDescriptionTextField.textColor = [UIColor blackColor];
-		self.itemDescriptionTextField.placeholder = placeholderDescription;
-		self.itemDescriptionTextField.textAlignment = NSTextAlignmentCenter;
-		self.itemDescriptionTextField.borderStyle = UITextBorderStyleRoundedRect;
-		
-		[self.itemDescriptionTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(self.containerView).offset(25);
-				make.right.equalTo(self.containerView).offset(-25);
-				make.centerX.equalTo(self.containerView.mas_centerX);
-				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
-				
-		}];
-		
-		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
-		self.pickupInstructionsTextField.placeholder = placeholderPickup;
-		self.pickupInstructionsTextField.textAlignment = NSTextAlignmentCenter;
-		self.pickupInstructionsTextField.borderStyle = UITextBorderStyleRoundedRect;
-		
-		[self.pickupInstructionsTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(self.containerView).offset(25);
-				make.right.equalTo(self.containerView).offset(-25);
-				make.centerX.equalTo(self.containerView.mas_centerX);
-				make.bottom.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(-50);
-		}];
-		
-		
+//		[self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.edges.equalTo(self.view);
+//		}];
+//		
+//				//collectionview
+//		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.height.equalTo(@65);
+//				make.left.equalTo(self.collectionContainerView).offset(25);
+//				make.right.equalTo(self.collectionContainerView).offset(-25);
+//				make.centerX.equalTo(self.collectionContainerView.mas_centerX);
+//				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
+//		}];
+//		
+//		[self.collectionContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.right.top.equalTo(self.scrollView);
+//						//				make.top.equalTo(self.selectedImageView);
+//				make.bottom.equalTo(self.collectionView.mas_bottom);
+//						//				make.bottom.equalTo(self.containerView.mas_top);
+//						//				make.height.equalTo(@300);
+//				make.width.equalTo(self.view);
+//		}];
+//		
+//		
+//		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+////				make.left.right.bottom.equalTo(self.scrollView);
+//				make.left.right.equalTo(self.scrollView);
+//				make.bottom.equalTo(self.view);
+//				make.top.equalTo(self.collectionContainerView.mas_bottom);
+//				
+////				make.top.equalTo(self.collectionContainerView.mas_bottom);
+////				make.height.equalTo(@250);
+////						//				make.bottom.equalTo(self.saveButton);
+////				make.width.equalTo(self.view);
+////		}];
+//		
+//				//IMAGE & Placeholder
+//		self.selectedImageView.contentMode = UIViewContentModeScaleAspectFit;
+//		
+//		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.right.equalTo (self.collectionContainerView);
+//				make.top.equalTo(self.collectionContainerView);
+//				make.width.equalTo(self.view);
+//				make.height.equalTo(@250);
+//				
+//		}];
+//		
+//		
+//
+//		
+//		self.collectionView.scrollEnabled = YES;
+//		
+//		self.collectionView.showsHorizontalScrollIndicator = YES;
+//		
+//		
+//				//textFields
+//		NSString *placeholderName = [NSString stringWithFormat:@"Item Name"];
+//		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
+//		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
+//		
+//		self.itemNameTextField.textColor = [UIColor blackColor];
+//		self.itemNameTextField.placeholder = placeholderName;
+//		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
+//		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
+//		
+//		[self.itemNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.top.equalTo(self.collectionContainerView.mas_bottom);
+//				make.left.equalTo(self.containerView).offset(25);
+//				make.right.equalTo(self.containerView).offset(-25);
+//				make.centerX.equalTo(self.containerView.mas_centerX);
+//				make.bottom.equalTo(self.itemDescriptionTextField.mas_top).offset(-20);
+//		}];
+//		
+//		self.itemDescriptionTextField.textColor = [UIColor blackColor];
+//		self.itemDescriptionTextField.placeholder = placeholderDescription;
+//		self.itemDescriptionTextField.textAlignment = NSTextAlignmentCenter;
+//		self.itemDescriptionTextField.borderStyle = UITextBorderStyleRoundedRect;
+//		
+//		[self.itemDescriptionTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.equalTo(self.containerView).offset(25);
+//				make.right.equalTo(self.containerView).offset(-25);
+//				make.centerX.equalTo(self.containerView.mas_centerX);
+//				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
+//				
+//		}];
+//		
+//		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
+//		self.pickupInstructionsTextField.placeholder = placeholderPickup;
+//		self.pickupInstructionsTextField.textAlignment = NSTextAlignmentCenter;
+//		self.pickupInstructionsTextField.borderStyle = UITextBorderStyleRoundedRect;
+//		
+//		[self.pickupInstructionsTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.equalTo(self.containerView).offset(25);
+//				make.right.equalTo(self.containerView).offset(-25);
+//				make.centerX.equalTo(self.containerView.mas_centerX);
+//				make.bottom.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(-50);
+//		}];
+//		
+//		
 		
 #pragma LocationSwitch
-		
-		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
-		
-		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
-		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
-		
-		[self.useCurrentLocationSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.right.equalTo(self.containerView.mas_right).offset(-15);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
-		}];
-		
-		[self.useCurrentLocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.equalTo(self.containerView.mas_left).offset(25);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
-		}];
-		
-				//save button
-		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
-		self.saveButton.userInteractionEnabled = YES;
-		
-		NSString *saveTitleLabel = @"SAVE"; NSString *savedTitleLabel = @"ITEM SAVED";
-		[self.saveButton setTitle:saveTitleLabel forState:UIControlStateNormal];[self.saveButton setTitle:savedTitleLabel forState:UIControlStateHighlighted];
-		self.saveButton.userInteractionEnabled = YES;
-		
-		[self.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-		
-		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.scrollView.mas_bottom).offset(20);
-				make.height.equalTo(@60);
-		}];
+//		
+//		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
+//		
+//		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
+//		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
+//		
+//		[self.useCurrentLocationSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.right.equalTo(self.containerView.mas_right).offset(-15);
+//				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+//		}];
+//		
+//		[self.useCurrentLocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.equalTo(self.containerView.mas_left).offset(25);
+//				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+//		}];
+//		
+//				//save button
+//		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
+//		self.saveButton.userInteractionEnabled = YES;
+//		
+//		NSString *saveTitleLabel = @"SAVE"; NSString *savedTitleLabel = @"ITEM SAVED";
+//		[self.saveButton setTitle:saveTitleLabel forState:UIControlStateNormal];[self.saveButton setTitle:savedTitleLabel forState:UIControlStateHighlighted];
+//		self.saveButton.userInteractionEnabled = YES;
+//		
+//		[self.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+//		
+//		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//				make.left.right.equalTo(self.containerView);
+//				make.bottom.equalTo(self.scrollView.mas_bottom).offset(-20);
+//				make.height.equalTo(@60);
+//		}];
 }
 
 
@@ -367,7 +411,7 @@ static NSString * const reuseIdentifier = @"cell";
 				NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
 				
 				[UIView animateWithDuration:duration animations:^{
-						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
+						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard) animated:YES];
 						[self.view layoutIfNeeded];
 				}];
 }

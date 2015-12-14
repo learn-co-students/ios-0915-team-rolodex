@@ -27,7 +27,7 @@
 
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic,strong)  UIView *containerView;
-@property (nonatomic,strong)  UIView *topContainerView;
+@property (nonatomic,strong)  UIView *collectionContainerView;
 //@property (strong, nonatomic) UIImage *background;
 //@property (strong, nonatomic)  UIImageView *backGroundView;
 @property (strong,nonatomic)  UIImageView *selectedImageView;
