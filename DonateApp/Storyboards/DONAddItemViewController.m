@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.collectionView.backgroundColor = [UIColor whiteColor];
 		
 		self.firstTag = [[UIImageView alloc] initWithFrame:defaultRect];
-		self.firstTag.image = [UIImage imageNamed:@"book"];
+		self.firstTag.image = [UIImage imageNamed:@"books"];
 		self.secondTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.secondTag.image = [UIImage imageNamed:@"furniture"];
 		self.thirdTag = [[UIImageView alloc] initWithFrame:defaultRect];
@@ -59,7 +59,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.fifthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.fifthTag.image = [UIImage imageNamed:@"electronics"];
 		self.sixthTag = [[UIImageView alloc] initWithFrame:defaultRect];
-		self.sixthTag.image = [UIImage imageNamed:@"game"];
+		self.sixthTag.image = [UIImage imageNamed:@"games"];
 		self.seventhTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.seventhTag.image = [UIImage imageNamed:@"household"];
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
@@ -181,6 +181,7 @@ static NSString * const reuseIdentifier = @"cell";
 				//IMAGE & Placeholder
 		
 		UIImage *placeHolderThing = [UIImage imageNamed:@"addPhotoPlaceholder"];
+        
 		self.selectedImageView.contentMode = UIViewContentModeScaleAspectFit;
 		
 		if (![self.selectedImageView.image isEqual:self.itemImage]) {
