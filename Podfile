@@ -2,7 +2,9 @@
 # platform :ios, '6.0'
  use_frameworks!
 
-target 'DonateApp' do
+xcodeproj 'CURB ALERT.xcodeproj'
+
+target 'CURB ALERT' do
 pod 'Parse'
 pod 'ParseUI'
 pod 'ChameleonFramework'
