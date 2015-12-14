@@ -182,6 +182,7 @@
                         <outlet property="skipButton" destination="pNN-2m-XQ8" id="BN7-Wr-scZ"/>
                         <outlet property="userEmailAddressTextField" destination="mZq-qO-t0B" id="tpV-kL-iwz"/>
                         <outlet property="userPasswordTextField" destination="fgj-T3-uFr" id="GWG-YN-xOy"/>
+                        <outlet property="visualEffectView" destination="SlA-EL-ckk" id="VpH-zQ-Oa8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

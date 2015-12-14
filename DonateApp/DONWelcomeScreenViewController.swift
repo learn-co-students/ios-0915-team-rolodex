@@ -28,6 +28,7 @@ class DONWelcomeScreenViewController: UIViewController {
     @IBOutlet weak var loginButtonOutlet: UIButton!
     @IBOutlet weak var appiconOutlet: UIImageView!
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var skipButton: UIButton!
     // Make the status bar White
     override func preferredStatusBarStyle() -> UIStatusBarStyle
@@ -38,13 +39,7 @@ class DONWelcomeScreenViewController: UIViewController {
     // Dismiss Keyboard when tapped out of the text fields
     func screenTapped()
     {
-        for subview in view.subviews
-        {
-            if(subview.isFirstResponder())
-            {
-                subview.resignFirstResponder()
-            }
-        }
+        self.view.endEditing(true)
     }
     
     @IBAction func skipButtonTapped(sender: UIButton) {
@@ -218,7 +213,7 @@ class DONWelcomeScreenViewController: UIViewController {
         
         // Recognize tap gesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("screenTapped"))
-        self.view.addGestureRecognizer(tapGestureRecognizer)
+        self.visualEffectView.addGestureRecognizer(tapGestureRecognizer)
         
         //firstResponderDelay()
     }
