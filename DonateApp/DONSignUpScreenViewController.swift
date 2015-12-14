@@ -86,7 +86,6 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             self.edgesForExtendedLayout = UIRectEdge()
         }
         
-
         
         @IBAction func selectProfilePhotoButtonTapped(sender: AnyObject)
         {

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -11,6 +10,7 @@
         <!--help view-->
         <scene sceneID="fvr-0j-WJx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xLb-jn-rVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="helpScreen" title="help view" id="qsE-UV-Lyi" customClass="DonHelpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ahc-ox-HBs"/>
@@ -21,9 +21,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qum-uZ-MY6">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="545.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wUf-9r-01u">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="545.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
                                 </view>
@@ -31,7 +31,7 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="95" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="HTE-ze-vGb">
-                                <rect key="frame" x="0.0" y="13" width="375" height="540.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -43,7 +43,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="furniture" translatesAutoresizingMaskIntoConstraints="NO" id="rEX-WP-3OO">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rEX-WP-3OO">
                                                     <rect key="frame" x="265" y="10" width="80" height="80"/>
                                                     <animations/>
                                                     <constraints>
@@ -51,8 +51,8 @@
                                                         <constraint firstAttribute="height" constant="80" id="geJ-tB-Es0"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFG-oe-vjN">
-                                                    <rect key="frame" x="23" y="5" width="229" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFG-oe-vjN">
+                                                    <rect key="frame" x="23" y="5" width="229" height="14.5"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
@@ -114,23 +114,29 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HTE-ze-vGb" firstAttribute="top" secondItem="hfp-fu-OXn" secondAttribute="topMargin" constant="13" id="6IG-pn-mqO"/>
+                            <constraint firstItem="HTE-ze-vGb" firstAttribute="top" secondItem="hfp-fu-OXn" secondAttribute="topMargin" constant="28" id="6IG-pn-mqO"/>
                             <constraint firstItem="qum-uZ-MY6" firstAttribute="leading" secondItem="hfp-fu-OXn" secondAttribute="leading" id="DUP-8D-CqS"/>
                             <constraint firstItem="JTa-5W-0vJ" firstAttribute="leading" secondItem="hfp-fu-OXn" secondAttribute="leading" id="HQK-OU-mqY"/>
                             <constraint firstAttribute="topMargin" secondItem="qum-uZ-MY6" secondAttribute="top" id="IH0-PB-2Xa"/>
-                            <constraint firstItem="qum-uZ-MY6" firstAttribute="bottom" secondItem="HTE-ze-vGb" secondAttribute="bottomMargin" id="Ifa-f2-KuJ"/>
                             <constraint firstItem="tNh-46-Uho" firstAttribute="leading" secondItem="hfp-fu-OXn" secondAttribute="leading" id="PMU-BM-0ws"/>
                             <constraint firstItem="tNh-46-Uho" firstAttribute="width" secondItem="hfp-fu-OXn" secondAttribute="width" id="Pok-TH-wy9"/>
                             <constraint firstItem="tNh-46-Uho" firstAttribute="top" secondItem="JTa-5W-0vJ" secondAttribute="bottom" id="b8M-xP-BTJ"/>
                             <constraint firstItem="tNh-46-Uho" firstAttribute="trailing" secondItem="hfp-fu-OXn" secondAttribute="trailing" id="bQi-C2-Rf5"/>
                             <constraint firstAttribute="trailing" secondItem="qum-uZ-MY6" secondAttribute="trailing" id="cB3-4X-A41"/>
                             <constraint firstItem="FHt-x0-FH6" firstAttribute="top" secondItem="tNh-46-Uho" secondAttribute="bottom" id="fo6-mz-lWy"/>
+                            <constraint firstItem="FHt-x0-FH6" firstAttribute="top" secondItem="qum-uZ-MY6" secondAttribute="bottom" id="gKV-WY-r7y"/>
                             <constraint firstItem="HTE-ze-vGb" firstAttribute="leading" secondItem="hfp-fu-OXn" secondAttribute="leading" id="gqt-H1-HCU"/>
                             <constraint firstItem="JTa-5W-0vJ" firstAttribute="trailing" secondItem="hfp-fu-OXn" secondAttribute="trailing" id="mTx-N7-Q4J"/>
-                            <constraint firstItem="tNh-46-Uho" firstAttribute="top" secondItem="HTE-ze-vGb" secondAttribute="bottom" id="n51-Oi-v2d"/>
                             <constraint firstItem="tNh-46-Uho" firstAttribute="height" secondItem="hfp-fu-OXn" secondAttribute="height" multiplier="0.17" id="oTi-7f-ImG"/>
                             <constraint firstAttribute="trailing" secondItem="HTE-ze-vGb" secondAttribute="trailing" id="u0X-Az-2eP"/>
+                            <constraint firstItem="FHt-x0-FH6" firstAttribute="top" secondItem="HTE-ze-vGb" secondAttribute="bottom" id="vpQ-4A-4uA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="JTa-5W-0vJ"/>
+                                <exclude reference="tNh-46-Uho"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
@@ -142,12 +148,8 @@
                         <outlet property="textField" destination="tNh-46-Uho" id="vjQ-lD-3rG"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xLb-jn-rVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="295.5" y="428.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="furniture" width="700" height="700"/>
-    </resources>
 </document>

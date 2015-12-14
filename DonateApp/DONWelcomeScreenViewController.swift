@@ -212,6 +212,7 @@ class DONWelcomeScreenViewController: UIViewController {
         self.visualEffectView.addGestureRecognizer(tapGestureRecognizer)
         
         //firstResponderDelay()
+
     }
     
     override func viewDidAppear(animated: Bool)
