@@ -96,7 +96,7 @@
 		614FF1B01C069953004C74E1 /* DONViewItemMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONViewItemMapView.m; sourceTree = "<group>"; };
 		617E920F1C15F54D001CE84E /* DONCollectionViewDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DONCollectionViewDataModel.h; sourceTree = "<group>"; };
 		617E92101C15F54D001CE84E /* DONCollectionViewDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DONCollectionViewDataModel.m; sourceTree = "<group>"; };
-		61C574641BFBC88F00D80141 /* DonateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61C574641BFBC88F00D80141 /* CURB ALERT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CURB ALERT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C574681BFBC88F00D80141 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61C5746A1BFBC88F00D80141 /* DONAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DONAppDelegate.h; sourceTree = "<group>"; };
 		61C574731BFBC88F00D80141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		61C574651BFBC88F00D80141 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				61C574641BFBC88F00D80141 /* DonateApp.app */,
+				61C574641BFBC88F00D80141 /* CURB ALERT.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,9 +407,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		61C574631BFBC88F00D80141 /* DonateApp */ = {
+		61C574631BFBC88F00D80141 /* CURB ALERT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 61C5747B1BFBC88F00D80141 /* Build configuration list for PBXNativeTarget "DonateApp" */;
+			buildConfigurationList = 61C5747B1BFBC88F00D80141 /* Build configuration list for PBXNativeTarget "CURB ALERT" */;
 			buildPhases = (
 				7A72976CF10CAC77A954DA0E /* Check Pods Manifest.lock */,
 				61C574601BFBC88F00D80141 /* Sources */,
@@ -422,9 +422,9 @@
 			);
 			dependencies = (
 			);
-			name = DonateApp;
+			name = "CURB ALERT";
 			productName = DonateApp;
-			productReference = 61C574641BFBC88F00D80141 /* DonateApp.app */;
+			productReference = 61C574641BFBC88F00D80141 /* CURB ALERT.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -442,7 +442,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 61C5745F1BFBC88F00D80141 /* Build configuration list for PBXProject "DonateApp" */;
+			buildConfigurationList = 61C5745F1BFBC88F00D80141 /* Build configuration list for PBXProject "CURB ALERT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -455,7 +455,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				61C574631BFBC88F00D80141 /* DonateApp */,
+				61C574631BFBC88F00D80141 /* CURB ALERT */,
 			);
 		};
 /* End PBXProject section */
@@ -677,7 +677,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CURB ALERT";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -698,7 +698,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CURB ALERT";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -708,7 +708,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		61C5745F1BFBC88F00D80141 /* Build configuration list for PBXProject "DonateApp" */ = {
+		61C5745F1BFBC88F00D80141 /* Build configuration list for PBXProject "CURB ALERT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61C574791BFBC88F00D80141 /* Debug */,
@@ -717,7 +717,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		61C5747B1BFBC88F00D80141 /* Build configuration list for PBXNativeTarget "DonateApp" */ = {
+		61C5747B1BFBC88F00D80141 /* Build configuration list for PBXNativeTarget "CURB ALERT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61C5747C1BFBC88F00D80141 /* Debug */,

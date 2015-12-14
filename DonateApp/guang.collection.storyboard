@@ -41,15 +41,20 @@
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IPB-ej-z9z">
-                                <rect key="frame" x="16" y="135" width="343" height="33"/>
+                                <rect key="frame" x="16" y="88" width="343" height="87"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="rA5-lp-gn9"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rA5-lp-gn9"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u73-4O-ykT" customClass="DonSearchBarCollectionView">
-                                <rect key="frame" x="0.0" y="70" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="23" width="375" height="65"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -95,16 +100,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="width" secondItem="2b9-z7-ALW" secondAttribute="width" id="2gm-Xv-cDn"/>
+                            <constraint firstItem="EDP-Vr-AiG" firstAttribute="top" secondItem="IPB-ej-z9z" secondAttribute="bottom" constant="5" id="6m9-dH-tns"/>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="height" secondItem="2b9-z7-ALW" secondAttribute="height" multiplier="0.73" id="NTN-EL-Ccg"/>
                             <constraint firstItem="u73-4O-ykT" firstAttribute="leading" secondItem="2b9-z7-ALW" secondAttribute="leading" id="Q7d-Jd-wTl"/>
                             <constraint firstItem="u73-4O-ykT" firstAttribute="width" secondItem="2b9-z7-ALW" secondAttribute="width" id="Qvs-xu-sFf"/>
+                            <constraint firstItem="u73-4O-ykT" firstAttribute="top" secondItem="Hxh-Cr-MFo" secondAttribute="bottom" constant="3" id="Z8j-JX-kdI"/>
                             <constraint firstItem="IPB-ej-z9z" firstAttribute="leading" secondItem="2b9-z7-ALW" secondAttribute="leadingMargin" id="bjf-1j-90M"/>
                             <constraint firstItem="0Ny-Nm-DvQ" firstAttribute="top" secondItem="EDP-Vr-AiG" secondAttribute="bottom" id="clk-2V-VOV"/>
+                            <constraint firstItem="u73-4O-ykT" firstAttribute="bottom" secondItem="IPB-ej-z9z" secondAttribute="bottom" id="dLw-SB-NUQ"/>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="leading" secondItem="2b9-z7-ALW" secondAttribute="leading" id="fXl-H2-y6a"/>
                             <constraint firstItem="EDP-Vr-AiG" firstAttribute="top" secondItem="IPB-ej-z9z" secondAttribute="bottom" constant="12" id="iJN-Tm-P40"/>
                             <constraint firstItem="u73-4O-ykT" firstAttribute="bottom" secondItem="IPB-ej-z9z" secondAttribute="top" id="jBh-Ky-3Q1"/>
                             <constraint firstItem="IPB-ej-z9z" firstAttribute="trailing" secondItem="2b9-z7-ALW" secondAttribute="trailingMargin" id="uTW-ak-ffB"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dLw-SB-NUQ"/>
+                                <exclude reference="iJN-Tm-P40"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -130,7 +144,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="423"/>

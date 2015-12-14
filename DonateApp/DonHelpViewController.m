@@ -8,8 +8,7 @@
 
 #import "DonHelpViewController.h"
 #import "DonHelpCustomCell.h"
-//#import <APParallaxHeader/APParallaxHeader.h>
-//#import "UIScrollView+APParallaxHeader.h"
+#import "Masonry.h"
 
 
 @interface DonHelpViewController ()
@@ -28,7 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self textView];
     [self mapDescription];
     
     self.infoTableView.delegate = self;
@@ -42,17 +40,6 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)textView{
-   
-//    NSString* path = [[NSBundle mainBundle] pathForResource:@"Don-text"
-//                                                     ofType:@"txt"];
-//    NSString* content = [NSString stringWithContentsOfFile:path
-//                                                  encoding:NSUTF8StringEncoding
-//                                                     error:NULL];
-    //self.textField.textColor = [UIColor whiteColor];
-    self.textField.text = @"\nCurb Alert was built by a team of special nerds hailing from the Flatiron School: Jon, Guang, Micky, and Laurent. Special thanks to Jim, Tim, Tom (oh, what a song).\nOpen source contributions from Cocoapods, Noun project, GoogleMaps, and the wild city of New York!";
-    
-}
 
 -(void)mapDescription{
     //self.mapText.text = @"Tap the top-right location icon to view a map containing pins of each available item";
@@ -66,40 +53,26 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //static NSString *cellIdentifier = @"cell";
-    //DonHelpCustomCell *cell = (DonHelpCustomCell *)[self.infoTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    cell.cellLabel.text = [self textInfo:indexPath];
-//    cell.cellimageView.image = [UIImage imageNamed:@"books.png"];
-
     return [self textInfo:indexPath];
 }
 
 -(DonHelpCustomCell *)textInfo: (NSIndexPath *)indexPath {
-    
-    //self.allTexts = [NSMutableArray new];
-    //[self.allTexts addObject:viewItem];
-    //[self.allTexts addObject:vieMap];
-    
-    
-    DonHelpCustomCell *cell = (DonHelpCustomCell *)[self.infoTableView dequeueReusableCellWithIdentifier:@"cell"];
-   // [self cellStyle:cell.cellLabel];
-    
 
+    DonHelpCustomCell *cell = (DonHelpCustomCell *)[self.infoTableView dequeueReusableCellWithIdentifier:@"cell"];
+    
     if (indexPath.row == 0) {
         NSString * viewItem = @"Categories - Filter through different kinds of items by selecting one or more categories";
         cell.cellLabel.text = viewItem;
         cell.cellimageView.image = [UIImage imageNamed:@"funie"];
-        //cell.cellimageView.image = [self cellImage:[UIImage imageNamed:@"furniture"]];
     } else if (indexPath.row == 1) {
         NSString * viewMap = @"Nearby - Browse what’s near you on a map";
         cell.cellLabel.text = viewMap;
         cell.cellimageView.image = [UIImage imageNamed:@"mappie"];
-        //cell.cellimageView.image = [self cellImage: [UIImage imageNamed:@"map"]];
 
     } else if (indexPath.row == 2) {
         NSString * eachItem = @"Claim - Acknowledge you’re on your way to pick up an item. Verify - Corroborate that the item is indeed ready for pickup.";
@@ -111,32 +84,32 @@
         cell.cellLabel.text = eachItem;
         cell.cellimageView.image = [UIImage imageNamed:@"flagie"];
 
-    }
-    else {
+    }else if (indexPath.row == 4) {
         
         NSString * listItem = @"List Item - Getting rid of something or happen to see something interesting on the curb? Tap List Item from the menu.";
         cell.cellLabel.text =listItem;
         cell.cellimageView.image = [UIImage imageNamed:@"Listie"];
-        
         cell.cellLabel.adjustsFontSizeToFitWidth = YES;
-//        [cell.cellLabel sizeToFit];
-//        
-//        
-//        
-//        UIEdgeInsets insets = UIEdgeInsetsMake(3, 6, 3, 3);
-//        cell.cellLabel.frame = UIEdgeInsetsInsetRect(cell.cellLabel.frame, insets);
+        
+    }
+    else {
+        if (cell.cellimageView.image == nil ) {
+         
+            [cell.cellLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(cell.mas_right).offset(-25);
+                make.left.equalTo(cell.mas_left).offset(25);
+                make.bottom.equalTo(cell.mas_bottom).offset(-10);
+            }];
+            
+        }
+        NSString * eachItem = @"Curb Alert was built by a team of special nerds hailing from the Flatiron School: Jon, Guang, Mickey, and Laurent. Special thanks to Jim, Tim, Tom (oh, what a song). Open source contributions from Cocoapods, Noun project, GoogleMaps, and the wild city of New York!";
+        cell.cellLabel.text = eachItem;
+      
         }
 
     return cell;
 }
 
-//-(void)cellStyle :(UILabel *)cellLabel{
-//    
-//    cellLabel.adjustsFontSizeToFitWidth = YES;
-//    [cellLabel sizeToFit];
-//    UIEdgeInsets insets = UIEdgeInsetsMake(3, 6, 3, 3);
-//    cellLabel.frame = UIEdgeInsetsInsetRect(cellLabel.frame, insets);
-//}
 
 -(void)contentViewVisual{
 
@@ -156,11 +129,6 @@
     [circlePath fill];
     [UIColor colorWithWhite:0.2 alpha:0.5];
 
-    
-    //
-    //    [[UIColor colorWithWhite:0.2 alpha:0.7] setStroke];
-    //    [circlePath stroke];
-    //
     [cellImage drawInRect:CGRectMake(0, 0, cellImage.size.width, cellImage.size.height)];
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

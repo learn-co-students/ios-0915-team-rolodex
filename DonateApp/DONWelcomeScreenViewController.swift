@@ -38,6 +38,7 @@ class DONWelcomeScreenViewController: UIViewController {
     // Dismiss Keyboard when tapped out of the text fields
     func screenTapped()
     {
+
         for subview in view.subviews
         {
             if(subview.isFirstResponder())
@@ -45,6 +46,7 @@ class DONWelcomeScreenViewController: UIViewController {
                 subview.resignFirstResponder()
             }
         }
+
     }
     
     @IBAction func skipButtonTapped(sender: UIButton) {
@@ -196,6 +198,7 @@ class DONWelcomeScreenViewController: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         //firstResponderDelay()
+
     }
     
     override func viewDidAppear(animated: Bool)
