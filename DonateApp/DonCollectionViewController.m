@@ -19,7 +19,9 @@
 
 @property (strong, nonatomic) NSArray * items;
 @property (nonatomic, strong) DONCollectionViewDataModel *dataModel;
+@property (nonatomic, strong) UILabel *placeholderTextTop;
 @property (nonatomic, strong) UIView *temporaryBackground;
+@property (nonatomic, strong) UILabel *placeholderTextBottom;
 @end
 
 @implementation DonCollectionViewController
@@ -58,6 +60,7 @@ static NSString * const reuseIdentifier = @"cell";
         text2.numberOfLines = 3;
         text2.text = @"Please note an internet connection is required for this application to function!";
         text2.frame = CGRectMake(30, 0, CGRectGetWidth(self.collectionView.frame) - 60, 150);
+        self.placeholderTextTop = text2;
         [self.temporaryBackground addSubview:text2];
         
         UIImage *giveReceive = [[UIImage imageNamed:@"GiveReceive"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -78,6 +81,7 @@ static NSString * const reuseIdentifier = @"cell";
         text.numberOfLines = 3;
         text.text = @"\"When we give cheerfully and accept gratefully, everyone is blessed.\n-Maya Angelou\"";
         text.frame = CGRectMake(30, CGRectGetMaxY(backgroundImageView.frame)-10, CGRectGetWidth(self.collectionView.frame)-60,150);
+        self.placeholderTextBottom = text;
         [self.temporaryBackground addSubview: text];
         
         [self.collectionView insertSubview:self.temporaryBackground atIndex:0];
@@ -115,7 +119,13 @@ static NSString * const reuseIdentifier = @"cell";
     // turn the UserInteraction back ON
     self.collectionView.userInteractionEnabled = YES;
     self.items = self.dataModel.items;
-    self.temporaryBackground.hidden = YES;
+    if (self.items.count > 0 ) {
+        self.temporaryBackground.hidden = YES;
+    } else {
+        self.temporaryBackground.hidden = NO;
+        self.placeholderTextTop.text = @"No items found.";
+        self.placeholderTextBottom.text = @"";
+    }
     [self.collectionView reloadData];
 }
 
