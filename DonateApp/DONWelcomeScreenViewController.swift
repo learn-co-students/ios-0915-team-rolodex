@@ -68,7 +68,7 @@ class DONWelcomeScreenViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
+    /*
     // Video Background
     func playVideo() ->Bool
     {
@@ -97,6 +97,7 @@ class DONWelcomeScreenViewController: UIViewController {
         
         return true
     }
+*/
     
     func playerItemDidReachEnd(notification: NSNotification)
     {
@@ -208,6 +209,6 @@ class DONWelcomeScreenViewController: UIViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.playVideo()
+        //self.playVideo()
     }
 }

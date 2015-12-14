@@ -46,6 +46,12 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             
 //            userPasswordRepeatTextField.returnKeyType = UIReturnKeyType.Done
 //            userPasswordRepeatTextField.delegate = self
+            
+           // self.view.contentMode = UIViewContentMode.BottomRight;
+            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginRiver")!)
+
+            
+            
         }
         
         // Dismiss Keyboard when tapped out of the text fields

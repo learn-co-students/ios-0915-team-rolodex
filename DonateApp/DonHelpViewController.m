@@ -44,12 +44,14 @@
 
 -(void)textView{
    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Don-text"
-                                                     ofType:@"txt"];
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    self.textField.text = content;
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"Don-text"
+//                                                     ofType:@"txt"];
+//    NSString* content = [NSString stringWithContentsOfFile:path
+//                                                  encoding:NSUTF8StringEncoding
+//                                                     error:NULL];
+    //self.textField.textColor = [UIColor whiteColor];
+    self.textField.text = @"\nCurb Alert was built by a team of special nerds hailing from the Flatiron School: Jon, Guang, Micky, and Laurent. Special thanks to Jim, Tim, Tom (oh, what a song).\nOpen source contributions from Cocoapods, Noun project, GoogleMaps, and the wild city of New York!";
+    
 }
 
 -(void)mapDescription{
@@ -64,7 +66,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,27 +89,34 @@
     DonHelpCustomCell *cell = (DonHelpCustomCell *)[self.infoTableView dequeueReusableCellWithIdentifier:@"cell"];
    // [self cellStyle:cell.cellLabel];
     
-    
+
     if (indexPath.row == 0) {
-        NSString * viewItem = @" Click on a category filter to trim down the list of available items.";
+        NSString * viewItem = @"Categories - Filter through different kinds of items by selecting one or more categories";
         cell.cellLabel.text = viewItem;
-        cell.cellimageView.image = [UIImage imageNamed:@"furniture"];
+        cell.cellimageView.image = [UIImage imageNamed:@"funie"];
+        //cell.cellimageView.image = [self cellImage:[UIImage imageNamed:@"furniture"]];
     } else if (indexPath.row == 1) {
-        NSString * viewMap = @"You can even view items on a map to see at a glance what’s nearby.\n Viewing an Item Tap on an image to view the listed item’s description and location Verification, When an item is located within 3.5 blocks or 1.5 avenues (1000ft)";
+        NSString * viewMap = @"Nearby - Browse what’s near you on a map";
         cell.cellLabel.text = viewMap;
-        cell.cellimageView.image = [UIImage imageNamed:@"map"];
+        cell.cellimageView.image = [UIImage imageNamed:@"mappie"];
+        //cell.cellimageView.image = [self cellImage: [UIImage imageNamed:@"map"]];
 
     } else if (indexPath.row == 2) {
-        NSString * eachItem = @" Claim - Indicate you’re going to pick up an item.\n Verify - Verify that an item nearby is actually there.\n Flag - Flag an item that doesn’t exist";
-        
+        NSString * eachItem = @"Claim - Acknowledge you’re on your way to pick up an item. Verify - Corroborate that the item is indeed ready for pickup.";
         cell.cellLabel.text = eachItem;
-        cell.cellimageView.image = [UIImage imageNamed:@"varify"];
+        cell.cellimageView.image = [UIImage imageNamed:@"claim"];
 
-    }else {
+    }else if (indexPath.row == 3) {
+        NSString * eachItem = @"Flag - Went to pick up an item and it wasn’t there? Flag it for removal from the app";
+        cell.cellLabel.text = eachItem;
+        cell.cellimageView.image = [UIImage imageNamed:@"flagie"];
+
+    }
+    else {
         
-        NSString * listItem = @"Click the List Item button in the menu to list your items";
+        NSString * listItem = @"List Item - Getting rid of something or happen to see something interesting on the curb? Tap List Item from the menu.";
         cell.cellLabel.text =listItem;
-        cell.cellimageView.image = [UIImage imageNamed:@"ListItem"];
+        cell.cellimageView.image = [UIImage imageNamed:@"Listie"];
         
         cell.cellLabel.adjustsFontSizeToFitWidth = YES;
 //        [cell.cellLabel sizeToFit];
@@ -116,10 +125,7 @@
 //        
 //        UIEdgeInsets insets = UIEdgeInsetsMake(3, 6, 3, 3);
 //        cell.cellLabel.frame = UIEdgeInsetsInsetRect(cell.cellLabel.frame, insets);
-//        
-        
-
-    }
+        }
 
     return cell;
 }
@@ -140,7 +146,26 @@
     [self.backView addSubview: contentImage];
     [self.backView sendSubviewToBack:contentImage];
     
-    //[self.textField addSubview:contentImage];
+}
+
+-(UIImage *)cellImage: (UIImage*)cellImage{
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, cellImage.size.width, cellImage.size.height)];
+    circlePath.lineWidth = 1;
+    UIGraphicsBeginImageContextWithOptions(cellImage.size, NO, 0);
+    [[UIColor whiteColor] setFill];
+    [circlePath fill];
+    [UIColor colorWithWhite:0.2 alpha:0.5];
+
+    
+    //
+    //    [[UIColor colorWithWhite:0.2 alpha:0.7] setStroke];
+    //    [circlePath stroke];
+    //
+    [cellImage drawInRect:CGRectMake(0, 0, cellImage.size.width, cellImage.size.height)];
+    UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return result;
 }
 
 @end

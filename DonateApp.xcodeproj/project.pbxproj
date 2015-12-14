@@ -10,7 +10,6 @@
 		259356CE1BFD3E8D00F49474 /* DONSecrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 25881C201BFCE58A00C4E2AD /* DONSecrets.m */; };
 		259356D11BFD3FA100F49474 /* DONAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259356D01BFD3FA100F49474 /* DONAddItemViewController.m */; };
 		2D71FA1EC08CBCB5BD12657F /* Pods_DonateApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D13AD95DE8CDBF32E94ED641 /* Pods_DonateApp.framework */; };
-		4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4B1101BC1C0F527900B8B59E /* video.mp4 */; };
 		4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2B21231C0CC6E900DBCE23 /* Laurent.storyboard */; };
 		4B2B212A1C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B21261C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift */; };
 		4B2B212B1C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2B21271C0CC7AC00DBCE23 /* DONForgetPasswordViewController.swift */; };
@@ -70,7 +69,6 @@
 		259356CF1BFD3FA100F49474 /* DONAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DONAddItemViewController.h; path = ../Storyboards/DONAddItemViewController.h; sourceTree = "<group>"; };
 		259356D01BFD3FA100F49474 /* DONAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DONAddItemViewController.m; path = ../Storyboards/DONAddItemViewController.m; sourceTree = "<group>"; };
 		43DC9E76B0808AD45B0DDCE2 /* Pods-DonateApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateApp/Pods-DonateApp.release.xcconfig"; sourceTree = "<group>"; };
-		4B1101BC1C0F527900B8B59E /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		4B2B21231C0CC6E900DBCE23 /* Laurent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Laurent.storyboard; sourceTree = "<group>"; };
 		4B2B21251C0CC7AC00DBCE23 /* DonateApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DonateApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		4B2B21261C0CC7AC00DBCE23 /* DONWelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DONWelcomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				62B45AF81BFF6CDF0007D314 /* Settings.bundle */,
-				4B1101BC1C0F527900B8B59E /* video.mp4 */,
 				4B2B21251C0CC7AC00DBCE23 /* DonateApp-Bridging-Header.h */,
 				61C574731BFBC88F00D80141 /* Assets.xcassets */,
 				61C574921BFBE7E100D80141 /* DONSecrets.h */,
@@ -469,7 +466,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
-				4B1101BD1C0F527900B8B59E /* video.mp4 in Resources */,
 				62DD4C121C1A8BB3004CADE5 /* Don-text.txt in Resources */,
 				4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */,
 				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
