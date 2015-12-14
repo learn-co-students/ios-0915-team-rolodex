@@ -12,11 +12,12 @@
 #import "MMExampleDrawerVisualStateManager.h"
 #import "MMDrawerController.h"
 #import "DONDrawerViewController.h"
-
 #import <GoogleMaps/googleMaps.h>
 
 @interface DONAppDelegate ()
+
 @property (nonatomic, strong) MMDrawerController *drawerController;
+
 @end
 
 @implementation DONAppDelegate

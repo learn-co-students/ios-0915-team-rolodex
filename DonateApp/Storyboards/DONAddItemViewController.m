@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.collectionView.backgroundColor = [UIColor whiteColor];
 		
 		self.firstTag = [[UIImageView alloc] initWithFrame:defaultRect];
-		self.firstTag.image = [UIImage imageNamed:@"book"];
+		self.firstTag.image = [UIImage imageNamed:@"books"];
 		self.secondTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.secondTag.image = [UIImage imageNamed:@"furniture"];
 		self.thirdTag = [[UIImageView alloc] initWithFrame:defaultRect];
@@ -59,7 +59,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.fifthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.fifthTag.image = [UIImage imageNamed:@"electronics"];
 		self.sixthTag = [[UIImageView alloc] initWithFrame:defaultRect];
-		self.sixthTag.image = [UIImage imageNamed:@"game"];
+		self.sixthTag.image = [UIImage imageNamed:@"games"];
 		self.seventhTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.seventhTag.image = [UIImage imageNamed:@"household"];
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
@@ -181,7 +181,9 @@ static NSString * const reuseIdentifier = @"cell";
 				//IMAGE & Placeholder
 		
 		UIImage *placeHolderThing = [UIImage imageNamed:@"addPhotoPlaceholder"];
-		self.selectedImageView.contentMode = UIViewContentModeScaleAspectFit;
+
+		[placeHolderThing resizableImageWithCapInsets:UIEdgeInsetsMake(75.0, 75.0, 75.0, 75.0)];
+		self.selectedImageView.contentMode = UIViewContentModeScaleToFill;
 		
 		if (![self.selectedImageView.image isEqual:self.itemImage]) {
     self.selectedImageView.image = placeHolderThing;
@@ -299,9 +301,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
-
-
-		NSLog(@"cellForItemAtIndexPath getting called: \n\n\n\n");
 		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 		cell.userInteractionEnabled = YES;
 		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -316,13 +315,9 @@ static NSString * const reuseIdentifier = @"cell";
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-		NSLog(@"We're calling didselectItemAtIndexPath");
 		
 		[self.categoriesForItem addObject:self.categories[indexPath.row]];
-		
-		
-		
+
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
 		
 		currentImageView.alpha = 0.5;
@@ -334,8 +329,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 		 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-		
-		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
 		
 		
 		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
@@ -390,6 +383,12 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.locationManager stopUpdatingLocation];
 		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		}
+		
+	else if (!self.useCurrentLocationSwitch.isOn) {
+			
+				NSLog(@"currentlocswitch not on");
+			self.locationPF = nil;
 		}
 }
 
@@ -462,7 +461,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 
-				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
+				[alert showWaiting:self title:@"Uploading" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
 				
 				
 				
@@ -511,7 +510,6 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-		NSLog(@"user canceled image pick");
 		[self dismissViewControllerAnimated:YES completion:nil];
 }
 /*
