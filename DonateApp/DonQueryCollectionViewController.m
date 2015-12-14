@@ -66,8 +66,34 @@
     [self setupNavigationBar];
     
     [[DONLocationController sharedInstance] getCurrentUserLocationWithCompletion:nil];
+    
+//    [self.searchCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:-1 inSection:0]
+//                                atScrollPosition:UICollectionViewScrollPositionLeft
+//                                        animated:YES];
+//    
+    //[self.searchCollectionView setContentOffset:CGPointMake(120, 0)];
+    
+    // self.searchCollectionView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
+    
+     /*
+      scrollToItemAtIndexPath:(NSIndexPath *)indexPath
+      atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
+      animated:(BOOL)animated
+      */
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+//
+//    [self.searchCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
 
 }
+//-(void)viewDidLayoutSubviews{
+//    [super viewDidLayoutSubviews];
+//    
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self.searchCollectionView.collectionViewLayout collectionViewContentSize];
+//        [self.searchCollectionView setContentOffset:CGPointMake(120, 0)];
+//    });
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -227,6 +253,7 @@
 
   #pragma mark  cell style
 -(void)searchBarCellStyle{
+//    [self.searchCollectionView.collectionViewLayout collectionViewContentSize];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.itemSize = CGSizeMake(65, 65);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal; // add vertical
