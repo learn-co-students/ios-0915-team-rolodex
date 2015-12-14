@@ -37,7 +37,6 @@ static NSString * const reuseIdentifier = @"cell";
     [self setupNotifications];
     self.dataModel = [DONCollectionViewDataModel sharedInstance];
     self.dataModel.viewToUpdateHUD = self.collectionView;
-    [self.dataModel loadAllItems];
     
     [self activeXibCell];
     
@@ -102,6 +101,12 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)userLogin
 {
+    [self.dataModel loadAllItems];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self.dataModel loadAllItems];
 }
 
