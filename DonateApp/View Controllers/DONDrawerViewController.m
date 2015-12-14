@@ -10,6 +10,7 @@
 #import "DONDrawerProfileView.h"
 #import "DONUserProfileViewController.h"
 #import <MMDrawerController/UIViewController+MMDrawerController.h>
+#import "DONQueryCollectionViewController.h"
 
 @interface DONDrawerViewController ()
 @property (nonatomic, assign) DrawerSection drawerSectionType;
@@ -192,12 +193,19 @@
     } else {
         switch (indexPath.row) {
             case DrawerSectionListItem: {
-                [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
-                    UIStoryboard *itemStoryboard = [UIStoryboard storyboardWithName:@"Mickey" bundle:nil];
-                    DONUserProfileViewController *listItemViewController = [itemStoryboard instantiateInitialViewController];
-                    [self.mm_drawerController.centerViewController presentViewController:listItemViewController animated:YES completion:nil];
-                }];
-
+                if ([DONUser currentUser]) {
+                    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                        UIStoryboard *itemStoryboard = [UIStoryboard storyboardWithName:@"Mickey" bundle:nil];
+                        DONUserProfileViewController *listItemViewController = [itemStoryboard instantiateInitialViewController];
+                        [self.mm_drawerController.centerViewController presentViewController:listItemViewController animated:YES completion:nil];
+                    }];
+                } else {
+                     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:^(BOOL finished) {
+                         UINavigationController *centerNav = (UINavigationController *)self.mm_drawerController.centerViewController;
+                         DonQueryCollectionViewController *centerVC = [centerNav.childViewControllers firstObject];
+                         [centerVC displayLoginAlert];
+                     }];
+                }
                 break;
             }
             case DrawerSectionHelp: {

@@ -22,6 +22,7 @@
 #import "DONItemViewController.h"
 #import "DONCollectionViewDataModel.h"
 #import "DONLocationController.h"
+#import "SCLAlertView.h"
 
 
 
@@ -83,7 +84,16 @@
 //    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
 //
 //    [self.searchCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+}
 
+-(void)displayLoginAlert
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        alert.showAnimationType = FadeIn;
+        alert.hideAnimationType = FadeOut;
+        [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
+    });
 }
 //-(void)viewDidLayoutSubviews{
 //    [super viewDidLayoutSubviews];

@@ -55,13 +55,11 @@
 
 -(void)setupViewProperties
 {
-    
-    UIColor *textColor = [UIColor colorWithRed:140.0/255.0 green:140.0/255.0 blue:140.0/255.0 alpha:1];
+    self.alpha = 0.74f;
+    self.textColor = [UIColor colorWithRed:140.0/255.0 green:140.0/255.0 blue:140.0/255.0 alpha:1];
     
     self.amountLabel.font = [UIFont systemFontOfSize:36];
     self.captionLabel.font = [UIFont systemFontOfSize:14];
-    self.amountLabel.textColor = textColor;
-    self.captionLabel.textColor = textColor;
     
     self.amountLabel.textAlignment = NSTextAlignmentCenter;
     self.captionLabel.textAlignment = NSTextAlignmentCenter;
@@ -71,7 +69,12 @@
 }
 
 -(void)setAmount:(NSInteger)amount{
-    self.amountLabel.text = [NSString stringWithFormat:@"%lu", amount];
+    self.amountLabel.text = [NSString stringWithFormat:@"%lu", (long)amount];
 }
 
+-(void)setTextColor:(UIColor *)textColor
+{
+    self.amountLabel.textColor = textColor;
+    self.captionLabel.textColor = textColor;
+}
 @end

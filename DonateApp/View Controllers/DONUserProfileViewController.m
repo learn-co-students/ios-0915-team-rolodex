@@ -26,6 +26,7 @@
 @property (nonatomic, strong) DONUserProfileItemCountView *donatedItemsView;
 @property (nonatomic, strong) DONUserProfileItemCountView *claimedItemsView;
 @property (nonatomic, strong) DONUserProfileItemCountView *favoritedItemsView;
+@property (nonatomic, strong) NSArray *userProfileItemCountViews;
 @property (nonatomic, strong) UIView *itemViewSection;
 
 @property (nonatomic, strong) DONProfileItemCollectionViewController *collectionViewController;
@@ -73,6 +74,8 @@
     self.donatedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"donated"];
     self.claimedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"claimed"];
     self.favoritedItemsView = [[DONUserProfileItemCountView alloc] initWithCaption:@"favorited"];
+    self.userProfileItemCountViews = @[self.donatedItemsView,self.claimedItemsView,self.favoritedItemsView];
+    
     self.itemViewSection = [[UIView alloc] init];
     
     [self.view addSubview:self.userPhotoImageView];
@@ -179,6 +182,8 @@
     [DONUser allItemsForCurrentUserWithCompletion:^(NSArray *items, BOOL success) {
         self.collectionViewController.items = items;
     }];
+    
+    [self swapAlpha:self.donatedItemsView];
 }
 
 -(void)tappedFavoriteItems
@@ -190,6 +195,7 @@
         }
         self.collectionViewController.items = items;
     }];
+    [self swapAlpha:self.favoritedItemsView];
 }
 
 -(void)tappedClaimedItems
@@ -201,6 +207,23 @@
         }
         self.collectionViewController.items = items;
     }];
+    [self swapAlpha:self.claimedItemsView];
+}
+
+-(void)swapAlpha:(DONUserProfileItemCountView *)view
+{
+    for (DONUserProfileItemCountView *view in self.userProfileItemCountViews) {
+        view.alpha = 0.74f;
+        view.textColor = [UIColor colorWithRed:140.0/255.0 green:140.0/255.0 blue:140.0/255.0 alpha:1];
+    }
+    
+    if (view.alpha == 1.0f) {
+        view.alpha = 0.74f;
+        view.textColor = [UIColor colorWithRed:140.0/255.0 green:140.0/255.0 blue:140.0/255.0 alpha:1];
+    } else {
+        view.alpha = 1.0f;
+        view.textColor = [UIColor blackColor];
+    }
 }
 
 -(void)viewDidLayoutSubviews

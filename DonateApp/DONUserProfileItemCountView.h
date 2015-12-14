@@ -10,5 +10,6 @@
 
 @interface DONUserProfileItemCountView : UIView
 @property (nonatomic, assign) NSInteger amount;
+@property (nonatomic, strong) UIColor *textColor;
 -(instancetype)initWithCaption:(NSString *)caption;
 @end

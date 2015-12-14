@@ -10,5 +10,5 @@
 
 @interface DonQueryCollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-
+-(void)displayLoginAlert;
 @end

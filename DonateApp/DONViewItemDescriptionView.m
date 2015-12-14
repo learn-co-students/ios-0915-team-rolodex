@@ -68,14 +68,15 @@
     self.backgroundColor = [UIColor whiteColor];
     self.title.text = self.item.name;
     self.itemDescription.text = self.item.itemDescription;
+    self.location.text = @"Location";
+    
     [DONLocationController cityAndStateForGeoPoint:self.item.location withCompletion:^(NSString *string) {
-        if ([string isEqualToString:@"(null), (null)"])
+        if (![string isEqualToString:@"(null), (null)"])
         {
-            self.location.text = @"Location";
-        } else {
             self.location.text = string;
         }
     }];
+    
     self.pickupLocation.text = self.item.pickupInstructions;
     self.expiration.text = @"Listed";
     self.expires.text = self.item.createdAt.timeAgoSinceNow;

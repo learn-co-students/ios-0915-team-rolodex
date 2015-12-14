@@ -37,7 +37,6 @@ static NSString * const reuseIdentifier = @"cell";
     [self setupNotifications];
     self.dataModel = [DONCollectionViewDataModel sharedInstance];
     self.dataModel.viewToUpdateHUD = self.collectionView;
-    [self.dataModel loadAllItems];
     
     [self activeXibCell];
     
@@ -97,6 +96,12 @@ static NSString * const reuseIdentifier = @"cell";
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
     [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.dataModel loadAllItems];
 }
 
 -(void)updatingItems
