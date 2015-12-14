@@ -26,7 +26,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-qO-t0B">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mZq-qO-t0B">
                                             <rect key="frame" x="37" y="279" width="300" height="30"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -46,8 +46,7 @@
                                             <rect key="frame" x="56" y="199" width="258" height="73"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="258" id="FEk-KD-ulO"/>
-                                                <constraint firstAttribute="height" constant="73" id="Sq6-2d-Z7e"/>
+                                                <constraint firstAttribute="height" constant="73" id="qW6-7z-oht"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="38"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,12 +114,25 @@
                                                 <action selector="skipButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p0g-lo-GUm"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loginLoggrey" translatesAutoresizingMaskIntoConstraints="NO" id="yuE-jx-h24">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="loginLoggrey" translatesAutoresizingMaskIntoConstraints="NO" id="yuE-jx-h24">
                                             <rect key="frame" x="111" y="26" width="158" height="158"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="158" id="06H-FG-asg"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZR6-3j-mJ8" secondAttribute="bottom" constant="387" id="1Es-Pq-mmQ"/>
+                                        <constraint firstItem="yuE-jx-h24" firstAttribute="leading" secondItem="8gl-bE-ZPW" secondAttribute="leading" constant="111" id="K0j-K4-e1Z"/>
+                                        <constraint firstItem="yuE-jx-h24" firstAttribute="centerX" secondItem="pNN-2m-XQ8" secondAttribute="centerX" id="VwE-XQ-vvH"/>
+                                        <constraint firstItem="ZR6-3j-mJ8" firstAttribute="top" secondItem="8gl-bE-ZPW" secondAttribute="topMargin" constant="191" id="Yi5-p3-Hko"/>
+                                        <constraint firstItem="mZq-qO-t0B" firstAttribute="top" secondItem="ZR6-3j-mJ8" secondAttribute="bottom" constant="7" id="f3d-30-PLm"/>
+                                        <constraint firstItem="yuE-jx-h24" firstAttribute="top" secondItem="8gl-bE-ZPW" secondAttribute="top" constant="26" id="nXP-nE-3LO"/>
+                                        <constraint firstItem="ZR6-3j-mJ8" firstAttribute="centerX" secondItem="8gl-bE-ZPW" secondAttribute="centerXWithinMargins" id="wpn-B7-2yR"/>
+                                        <constraint firstItem="yuE-jx-h24" firstAttribute="centerX" secondItem="8gl-bE-ZPW" secondAttribute="centerX" id="y93-P6-UZZ"/>
+                                    </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="jQL-4l-RBy"/>
