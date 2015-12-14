@@ -340,8 +340,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 		 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-		
-		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
+
 		
 		
 		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
@@ -396,6 +395,10 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.locationManager stopUpdatingLocation];
 		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		}
+		
+		else if (!self.useCurrentLocationSwitch.isOn) {
+				self.locationPF = nil;
 		}
 }
 
