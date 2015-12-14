@@ -127,8 +127,6 @@ static NSString * const reuseIdentifier = @"cell";
 				//initialize storyboard objects
 		
 		
-		self.collectionContainerView = [[UIView alloc]init];
-		self.selectedImageView = [[UIImageView alloc]init];
 		
 		self.useCurrentLocationSwitch = [[UISwitch alloc]init];
 		self.useCurrentLocationLabel = [[UILabel alloc]init];
@@ -147,7 +145,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.left.right.bottom.equalTo(self.view);
 				make.top.equalTo(self.mas_topLayoutGuideBottom);
 		}];
-		
+		//make containerView
 		self.containerView = [[UIView alloc]init];
 		[self.scrollView addSubview:self.containerView];
 		
@@ -159,32 +157,36 @@ static NSString * const reuseIdentifier = @"cell";
 				make.height.equalTo(@750);
 		}];
 		
-		
+		//make imageView
+		 self.selectedImageView = [[UIImageView alloc]init];
 		[self.containerView addSubview:self.selectedImageView];
 		
 		[self.selectedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.top.left.right.equalTo(self.containerView);
-				make.height.equalTo(@100);
+
 				
 		}];
 		
 		
-		
+		self.collectionContainerView = [[UIView alloc]init];
 		[self.containerView addSubview:self.collectionContainerView];
 		
 		[self.collectionContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.top.equalTo(self.selectedImageView.mas_bottom).offset(20);
-				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.itemNameTextField.mas_top);
-				make.height.width.equalTo(@65);
+				make.left.right.width.equalTo(self.containerView);
+				make.height.equalTo(@100);
+//				make.bottom.equalTo(self.itemNameTextField.mas_top);
+//				make.height.width.equalTo(@65);
+		}];
+		
+		[self.collectionContainerView addSubview:self.collectionView];
+		
+		[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(self.selectedImageView.mas_bottom);
 		}];
 		
 		
-		
-		
-//		
-//		[self.collectionContainerView addSubview:self.collectionView];
-//		
+	
 //				//textfields
 //		[self.containerView addSubview:self.itemNameTextField];
 //		[self.containerView addSubview:self.itemDescriptionTextField];
@@ -337,8 +339,8 @@ static NSString * const reuseIdentifier = @"cell";
 //		}];
 }
 
-
-
+//
+//
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 		return 1;
 }
@@ -364,40 +366,40 @@ static NSString * const reuseIdentifier = @"cell";
 		return cell;
 }
 
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-		NSLog(@"We're calling didselectItemAtIndexPath");
-		
-		[self.categoriesForItem addObject:self.categories[indexPath.row]];
-		
-		
-		
-		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
-		
-		currentImageView.alpha = 0.5;
-		
-		
-
-}
-
-
-		 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
-
-		
-		
-		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
-	
-		
-		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
-		
-		currentImageView.alpha = 1.0;
-		
-}
-
-
-
+//
+//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//		NSLog(@"We're calling didselectItemAtIndexPath");
+//		
+//		[self.categoriesForItem addObject:self.categories[indexPath.row]];
+//		
+//		
+//		
+//		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+//		
+//		currentImageView.alpha = 0.5;
+//		
+//		
+//
+//}
+//
+//
+//		 
+//-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+//
+//		
+//		
+//		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
+//	
+//		
+//		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+//		
+//		currentImageView.alpha = 1.0;
+//		
+//}
+//
+//
+//
 
 #pragma keyboard shifty
 
@@ -415,193 +417,193 @@ static NSString * const reuseIdentifier = @"cell";
 						[self.view layoutIfNeeded];
 				}];
 }
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-//		NSLog(@"%@", [locations lastObject]);
-		self.itemLocation = [locations lastObject];
-//		NSLog(@"self.itemLocation = %@", self.itemLocation);
-}
-
--(void)cancelClicked{
-		[self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-		[super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)useCurrentLocationSwitchTapped{
-
-		if (self.useCurrentLocationSwitch.isOn) {
-		self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
-		
-		[self.locationManager stopUpdatingLocation];
-		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
-		}
-		
-		else if (!self.useCurrentLocationSwitch.isOn) {
-				self.locationPF = nil;
-		}
-}
-
--(void)saveButtonTapped{
-		[self.locationManager stopUpdatingLocation];
-		
-		SCLAlertView *alert = [[SCLAlertView alloc]init];
-		alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
-		alert.showAnimationType = FadeIn;
-		alert.hideAnimationType = FadeOut;
-
-		
-		
-		
-		DONItem *item = (DONItem*)[PFObject objectWithClassName:@"DONItem"];
-		
-		
-		
-		if (self.itemImage !=nil||NULL) {
-				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
-				self.itemImagePF = [PFFile fileWithName:@"photo.jpg" data:imageData];
-		} else {
-								[self presentAlertController:@"Item Image"];
-//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
-		}
-		
-		
-		self.name =	self.itemNameTextField.text;
-		item[@"name"] = self.name;
-
-		if (self.name.length<3) {
-						[self presentAlertController:@"Item Name"];
-//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
-		}
-		
-		self.itemDescription = self.itemDescriptionTextField.text;
-		item[@"itemDescription"] = self.itemDescription;
-		if (self.itemDescription.length <3) {
-		
-				[self presentAlertController:@"Item Description"];
-//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
-		}
-		self.pickupInstructions =	self.pickupInstructionsTextField.text;
-		item[@"pickupInstructions"] = self.pickupInstructions;
-		if (self.pickupInstructions.length <3) {
-				
-				[self presentAlertController:@"Pickup Instructions"];
-				
-//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
-		}
-		[alert alertIsDismissed:^{
-				NSLog(@"SCLAlertView dismissed!");
-		}];
-		
-		
-		self.listedBy = [DONUser currentUser];
-		if (self.listedBy) { item[@"listedBy"] = self.listedBy;}
-		
-		if (self.locationPF) {
-		item[@"location"] = self.locationPF;}
-		self.views = @0;
-		item[@"views"] = self.views;
-		if (self.itemImage) {
-    item[@"image"] = self.itemImagePF;
-		}
-		if (!self.categoriesForItem.count) {
-				[self.categoriesForItem addObject:self.eighthTagString];
-		}
-		NSLog(@"self.categoriesForItem contains %@", [self.categoriesForItem lastObject]);
-		
-		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
-
-				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
-				
-				
-				
-				
-				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
-								item[@"categories"] = @[category];
-						
-				[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
-						if (succeeded) {
-
-								[self dismissViewControllerAnimated:YES completion:^{
-		
-								}];
-						}
-				}];
-		}];
-}
-}
-
-
--(void)userTappedBackgroundImage {
-		[self.itemNameTextField resignFirstResponder];
-		[self.itemDescriptionTextField resignFirstResponder];
-		[self.pickupInstructionsTextField resignFirstResponder];
-				//		[self.view endEditing:TRUE];
-}
-
- #pragma mark - imageUpload
--(void)userTappedImageView{
-				//initialize picker controller
-		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
-				//set self as delegated
-		pickerController.delegate = self;
-				//present picker controller
-		[self presentViewController:pickerController animated:YES completion:nil];
-}
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-		self.itemImage = info[UIImagePickerControllerOriginalImage];
-		self.selectedImageView.image = self.itemImage;
-				//for PNG
-				//		NSData *imageData = UIImagePNGRepresentation(image);
-				//    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
-		[self dismissViewControllerAnimated:YES completion:nil];
-    self.placeholderImageView.hidden = YES;
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-		NSLog(@"user canceled image pick");
-		[self dismissViewControllerAnimated:YES completion:nil];
-}
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
-//for when UIAlertView in SCLAlertView becomes unresponsive
--(UIAlertController *)presentAlertController:(NSString *)fieldName {
-		
-
-		
-		NSString *alertMessage = [NSString stringWithFormat:@"%@ field is incomplete",fieldName];
-		
-		self.alertController = [UIAlertController alertControllerWithTitle:@"Missing Field" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
-		
-		self.alertController.view.tintColor = [UIColor grayColor];
-		self.alertController.view.layer.borderWidth = 2.0;
-		self.alertController.view.layer.borderColor = [UIColor darkGrayColor].CGColor;
-		self.alertController.view.layer.cornerRadius = 5.0;
-		self.alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-		
-		[self.alertController addAction:self.alertAction];
-		
-		[self presentViewController:self.alertController animated:YES completion:nil];
-		
-		return self.alertController;
-
-}
-
+//
+//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+//{
+////		NSLog(@"%@", [locations lastObject]);
+//		self.itemLocation = [locations lastObject];
+////		NSLog(@"self.itemLocation = %@", self.itemLocation);
+//}
+//
+//-(void)cancelClicked{
+//		[self dismissViewControllerAnimated:YES completion:nil];
+//}
+//
+//- (void)didReceiveMemoryWarning {
+//		[super didReceiveMemoryWarning];
+//    // Dispose of any resources that can be recreated.
+//}
+//
+//- (void)useCurrentLocationSwitchTapped{
+//
+//		if (self.useCurrentLocationSwitch.isOn) {
+//		self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
+//		
+//		[self.locationManager stopUpdatingLocation];
+//		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+//		}
+//		
+//		else if (!self.useCurrentLocationSwitch.isOn) {
+//				self.locationPF = nil;
+//		}
+//}
+////
+//-(void)saveButtonTapped{
+//		[self.locationManager stopUpdatingLocation];
+//		
+//		SCLAlertView *alert = [[SCLAlertView alloc]init];
+//		alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
+//		alert.showAnimationType = FadeIn;
+//		alert.hideAnimationType = FadeOut;
+//
+//		
+//		
+//		
+//		DONItem *item = (DONItem*)[PFObject objectWithClassName:@"DONItem"];
+//		
+//		
+//		
+//		if (self.itemImage !=nil||NULL) {
+//				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
+//				self.itemImagePF = [PFFile fileWithName:@"photo.jpg" data:imageData];
+//		} else {
+//								[self presentAlertController:@"Item Image"];
+////				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
+//		}
+//		
+//		
+//		self.name =	self.itemNameTextField.text;
+//		item[@"name"] = self.name;
+//
+//		if (self.name.length<3) {
+//						[self presentAlertController:@"Item Name"];
+////				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
+//		}
+//		
+//		self.itemDescription = self.itemDescriptionTextField.text;
+//		item[@"itemDescription"] = self.itemDescription;
+//		if (self.itemDescription.length <3) {
+//		
+//				[self presentAlertController:@"Item Description"];
+////				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
+//		}
+//		self.pickupInstructions =	self.pickupInstructionsTextField.text;
+//		item[@"pickupInstructions"] = self.pickupInstructions;
+//		if (self.pickupInstructions.length <3) {
+//				
+//				[self presentAlertController:@"Pickup Instructions"];
+//				
+////				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
+//		}
+//		[alert alertIsDismissed:^{
+//				NSLog(@"SCLAlertView dismissed!");
+//		}];
+//		
+//		
+//		self.listedBy = [DONUser currentUser];
+//		if (self.listedBy) { item[@"listedBy"] = self.listedBy;}
+//		
+//		if (self.locationPF) {
+//		item[@"location"] = self.locationPF;}
+//		self.views = @0;
+//		item[@"views"] = self.views;
+//		if (self.itemImage) {
+//    item[@"image"] = self.itemImagePF;
+//		}
+//		if (!self.categoriesForItem.count) {
+//				[self.categoriesForItem addObject:self.eighthTagString];
+//		}
+//		NSLog(@"self.categoriesForItem contains %@", [self.categoriesForItem lastObject]);
+//		
+//		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
+//
+//				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
+//				
+//				
+//				
+//				
+//				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
+//								item[@"categories"] = @[category];
+//						
+//				[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
+//						if (succeeded) {
+//
+//								[self dismissViewControllerAnimated:YES completion:^{
+//		
+//								}];
+//						}
+//				}];
+//		}];
+//}
+//}
+//
+//
+//-(void)userTappedBackgroundImage {
+//		[self.itemNameTextField resignFirstResponder];
+//		[self.itemDescriptionTextField resignFirstResponder];
+//		[self.pickupInstructionsTextField resignFirstResponder];
+//				//		[self.view endEditing:TRUE];
+//}
+//
+// #pragma mark - imageUpload
+//-(void)userTappedImageView{
+//				//initialize picker controller
+//		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
+//				//set self as delegated
+//		pickerController.delegate = self;
+//				//present picker controller
+//		[self presentViewController:pickerController animated:YES completion:nil];
+//}
+//
+//-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+//		self.itemImage = info[UIImagePickerControllerOriginalImage];
+//		self.selectedImageView.image = self.itemImage;
+//				//for PNG
+//				//		NSData *imageData = UIImagePNGRepresentation(image);
+//				//    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
+//		[self dismissViewControllerAnimated:YES completion:nil];
+//    self.placeholderImageView.hidden = YES;
+//}
+//
+//-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+//		NSLog(@"user canceled image pick");
+//		[self dismissViewControllerAnimated:YES completion:nil];
+//}
+///*
+// #pragma mark - Navigation
+// 
+// // In a storyboard-based application, you will often want to do a little preparation before navigation
+// - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+// // Get the new view controller using [segue destinationViewController].
+// // Pass the selected object to the new view controller.
+// }
+// */
+//
+//
+////for when UIAlertView in SCLAlertView becomes unresponsive
+//-(UIAlertController *)presentAlertController:(NSString *)fieldName {
+//		
+//
+//		
+//		NSString *alertMessage = [NSString stringWithFormat:@"%@ field is incomplete",fieldName];
+//		
+//		self.alertController = [UIAlertController alertControllerWithTitle:@"Missing Field" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+//		
+//		self.alertController.view.tintColor = [UIColor grayColor];
+//		self.alertController.view.layer.borderWidth = 2.0;
+//		self.alertController.view.layer.borderColor = [UIColor darkGrayColor].CGColor;
+//		self.alertController.view.layer.cornerRadius = 5.0;
+//		self.alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+//		
+//		[self.alertController addAction:self.alertAction];
+//		
+//		[self presentViewController:self.alertController animated:YES completion:nil];
+//		
+//		return self.alertController;
+//
+//}
+//
 
 
 
