@@ -63,10 +63,6 @@ class DONWelcomeScreenViewController: UIViewController {
                 appDelegate.buildUserInterface()
             }
         }
-        
-        let center = NSNotificationCenter.defaultCenter()
-        let notification = NSNotification(name: "DONUserLoggedIn", object: nil)
-        center.postNotification(notification)
 }
     
     override func prefersStatusBarHidden() -> Bool {
