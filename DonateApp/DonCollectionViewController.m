@@ -106,6 +106,7 @@ static NSString * const reuseIdentifier = @"cell";
 {
     [super viewDidAppear:animated];
     [self.dataModel loadAllItems];
+    NSLog(@"Loading items");
 }
 
 -(void)updatingItems
@@ -118,7 +119,7 @@ static NSString * const reuseIdentifier = @"cell";
 {
     // turn the UserInteraction back ON
     self.collectionView.userInteractionEnabled = YES;
-    self.items = self.dataModel.items;
+    self.items = [NSArray arrayWithArray:self.dataModel.items];
     if (self.items.count > 0 ) {
         self.temporaryBackground.hidden = YES;
     } else {
@@ -127,6 +128,7 @@ static NSString * const reuseIdentifier = @"cell";
         self.placeholderTextBottom.text = @"";
     }
     [self.collectionView reloadData];
+    NSLog(@">>>>>>>>>>>>>>Updated the item store for collection view");
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -154,11 +156,25 @@ static NSString * const reuseIdentifier = @"cell";
 //    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
 //    [cell.contentView addSubview:bluredEffectView];
 //    [bluredEffectView setFrame:cell.cellTitle.frame];
-    
+    cell.image.image = [self greyImage];
     cell.image.file = item.imageFile;
     [cell.image loadInBackground];
     
     return cell;
+}
+
+-(UIImage *)greyImage
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 100.0f, 100.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
