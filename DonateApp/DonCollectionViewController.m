@@ -43,6 +43,7 @@ static NSString * const reuseIdentifier = @"cell";
     [self activeXibCell];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.dataModel loadAllItems];
 }
 
 
@@ -88,6 +89,11 @@ static NSString * const reuseIdentifier = @"cell";
         
     });
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.dataModel reloadItems];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -100,13 +106,6 @@ static NSString * const reuseIdentifier = @"cell";
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(updatingItems) name:kWillUpdateItemsNotification object:nil];
     [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.dataModel loadAllItems];
-    NSLog(@"Loading items");
 }
 
 -(void)updatingItems
@@ -128,7 +127,6 @@ static NSString * const reuseIdentifier = @"cell";
         self.placeholderTextBottom.text = @"";
     }
     [self.collectionView reloadData];
-    NSLog(@">>>>>>>>>>>>>>Updated the item store for collection view");
 }
 
 #pragma mark <UICollectionViewDataSource>
