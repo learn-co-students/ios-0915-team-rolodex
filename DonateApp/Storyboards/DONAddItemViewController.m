@@ -23,6 +23,8 @@ static NSString * const reuseIdentifier = @"cell";
 
 
 - (void)viewDidLoad {
+
+		[self _registerForKeyboardNotifications];
 		
 		self.categoriesForItem = [NSMutableArray new];
 		self.navigationItem.title = @"Donate Item";
@@ -101,8 +103,6 @@ static NSString * const reuseIdentifier = @"cell";
 		self.navigationItem.leftBarButtonItem = stopButton;
 		self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
 		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHideOrShow:) name:@"UIKeyboardWillShowNotification" object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHideOrShow:) name:@"UIKeyboardWillHideNotification" object:nil];
 		
     // Do any additional setup after loading the view.
 		
@@ -168,21 +168,21 @@ static NSString * const reuseIdentifier = @"cell";
 		}];
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.top.equalTo(self.scrollView);
-						//				make.top.equalTo(self.selectedImageView);
+				make.left.right.equalTo(self.scrollView);
+				make.top.equalTo(self.scrollView);
+				make.height.equalTo(@250);
 				make.bottom.equalTo(self.collectionView.mas_bottom);
 						//				make.bottom.equalTo(self.containerView.mas_top);
-						//				make.height.equalTo(@300);
-				make.width.equalTo(self.view);
 		}];
 		
 		
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.bottom.equalTo(self.scrollView);
-				make.top.equalTo(self.topContainerView.mas_bottom);
-				make.height.equalTo(@250);
+				make.edges.equalTo(self.scrollView);
+//				make.top.equalTo(self.mas_topLayoutGuideBottom);
+				make.bottom.equalTo(self.view);
+				make.top.equalTo(self.topContainerView);
+				
 						//				make.bottom.equalTo(self.saveButton);
-				make.width.equalTo(self.view);
 		}];
 		
 				//IMAGE & Placeholder
@@ -192,7 +192,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.left.right.equalTo (self.topContainerView);
 				make.top.equalTo(self.topContainerView);
 				make.width.equalTo(self.view);
-				make.height.equalTo(@250);
+//				make.height.equalTo(@250);
 				
 		}];
 		
@@ -216,18 +216,27 @@ static NSString * const reuseIdentifier = @"cell";
 		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
 		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
 		
+		self.itemNameTextField.layer.cornerRadius = 8.0f;
+		self.itemNameTextField.layer.borderWidth = 1.0f;
+		self.itemNameTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.itemNameTextField.textColor = [UIColor blackColor];
 		self.itemNameTextField.placeholder = placeholderName;
 		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
 		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
 		
 		[self.itemNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(self.topContainerView.mas_bottom).offset(20);
 				make.left.equalTo(self.containerView).offset(25);
 				make.right.equalTo(self.containerView).offset(-25);
 				make.centerX.equalTo(self.containerView.mas_centerX);
 				make.bottom.equalTo(self.itemDescriptionTextField.mas_top).offset(-20);
 		}];
 		
+		self.itemDescriptionTextField.layer.cornerRadius = 8.0f;
+		self.itemDescriptionTextField.layer.borderWidth = 1.0f;
+		self.itemDescriptionTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.itemDescriptionTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.itemDescriptionTextField.textColor = [UIColor blackColor];
 		self.itemDescriptionTextField.placeholder = placeholderDescription;
 		self.itemDescriptionTextField.textAlignment = NSTextAlignmentCenter;
@@ -240,7 +249,10 @@ static NSString * const reuseIdentifier = @"cell";
 				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
 				
 		}];
-		
+		self.pickupInstructionsTextField.layer.cornerRadius = 8.0f;
+		self.pickupInstructionsTextField.layer.borderWidth = 1.0f;
+		self.pickupInstructionsTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.pickupInstructionsTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
 		self.pickupInstructionsTextField.placeholder = placeholderPickup;
 		self.pickupInstructionsTextField.textAlignment = NSTextAlignmentCenter;
@@ -259,17 +271,23 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
 		
+
+		self.useCurrentLocationSwitch.layer.borderColor = [UIColor blackColor].CGColor;
+		
 		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
 		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
+//		self.useCurrentLocationLabel.layer.borderColor = [UIColor blackColor].CGColor;
+		
+		self.useCurrentLocationLabel.layer.cornerRadius = 8.0f;
 		
 		[self.useCurrentLocationSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.equalTo(self.containerView.mas_right).offset(-15);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+				make.top.equalTo(self.useCurrentLocationLabel);
 		}];
 		
 		[self.useCurrentLocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.equalTo(self.containerView.mas_left).offset(25);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+				make.top.equalTo(self.pickupInstructionsTextField.mas_bottom).offset(20);
 		}];
 		
 				//save button
@@ -284,7 +302,8 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.scrollView.mas_bottom).offset(20);
+				make.bottom.equalTo(self.containerView.mas_bottom);
+//				make.top.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(20);
 				make.height.equalTo(@60);
 		}];
 }
@@ -357,20 +376,21 @@ static NSString * const reuseIdentifier = @"cell";
 
 #pragma keyboard shifty
 
--(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
-		
-		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-		
-		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
-		CGFloat scrollViewKeyboard = finalConstraint.size.height;
-		
-		NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
-		
-		[UIView animateWithDuration:duration animations:^{
-				[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
-				[self.view layoutIfNeeded];
-		}];
-}
+//-(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
+//		
+//		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
+//		
+//		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
+//		CGFloat scrollViewKeyboard = finalConstraint.size.height;
+//		
+//		NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
+//		
+//		[UIView animateWithDuration:duration animations:^{
+//				
+//				[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
+//				[self.view layoutIfNeeded];
+//		}];
+//}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -557,6 +577,112 @@ static NSString * const reuseIdentifier = @"cell";
 		return self.alertController;
 		
 }
+
+
+- (UIView *)currentFirstResponder {
+		if ([self.itemNameTextField isFirstResponder]) {
+				return self.itemNameTextField;
+		}
+		if ([self.itemDescriptionTextField isFirstResponder]) {
+				return self.itemDescriptionTextField;
+		}
+		if ([self.pickupInstructionsTextField isFirstResponder]) {
+    return self.pickupInstructionsTextField;
+		}
+		return nil;
+}
+
+
+
+- (void)_registerForKeyboardNotifications {
+		[[NSNotificationCenter defaultCenter] addObserver:self
+																						 selector:@selector(_keyboardWillShow:)
+																								 name:UIKeyboardWillShowNotification
+																							 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+																						 selector:@selector(_keyboardWillHide:)
+																								 name:UIKeyboardWillHideNotification
+																							 object:nil];
+}
+
+- (void)_keyboardWillShow:(NSNotification *)notification {
+		NSDictionary *userInfo = [notification userInfo];
+		CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+		CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+		UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+		
+		CGRect keyboardFrame = [self.view convertRect:endFrame fromView:self.view.window];
+		CGFloat visibleKeyboardHeight = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(keyboardFrame);
+		
+		[self setVisibleKeyboardHeight:visibleKeyboardHeight
+								 animationDuration:duration
+									animationOptions:curve << 16];
+}
+
+- (void)_keyboardWillHide:(NSNotification *)notification {
+		NSDictionary *userInfo = [notification userInfo];
+		CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+		UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+		[self setVisibleKeyboardHeight:0.0
+								 animationDuration:duration
+									animationOptions:curve << 16];
+}
+
+- (void)setVisibleKeyboardHeight:(CGFloat)visibleKeyboardHeight
+							 animationDuration:(NSTimeInterval)animationDuration
+								animationOptions:(UIViewAnimationOptions)animationOptions {
+		
+		dispatch_block_t animationsBlock = ^{
+				self.visibleKeyboardHeight = visibleKeyboardHeight;
+		};
+		
+		if (animationDuration == 0.0) {
+				animationsBlock();
+		} else {
+				[UIView animateWithDuration:animationDuration
+															delay:0.0
+														options:animationOptions | UIViewAnimationOptionBeginFromCurrentState
+												 animations:animationsBlock
+												 completion:nil];
+		}
+}
+
+- (void)setVisibleKeyboardHeight:(CGFloat)visibleKeyboardHeight {
+		if (self.visibleKeyboardHeight != visibleKeyboardHeight) {
+				_visibleKeyboardHeight = visibleKeyboardHeight;
+				[self _updateViewContentOffsetAnimated:NO];
+		}
+}
+
+- (void)_updateViewContentOffsetAnimated:(BOOL)animated {
+
+		CGPoint contentOffset = CGPointZero;
+		if (self.visibleKeyboardHeight > 0.0f) {
+						// Scroll the view to keep fields visible
+				CGFloat offsetForScrollingTextFieldToTop = CGRectGetMinY([self currentFirstResponder].frame);
+				
+				UIView *lowestView;
+				lowestView = self.pickupInstructionsTextField;
+				
+				
+				CGFloat offsetForScrollingLowestViewToBottom = 0.0f;
+				offsetForScrollingLowestViewToBottom += self.visibleKeyboardHeight;
+				offsetForScrollingLowestViewToBottom += CGRectGetMaxY(lowestView.frame);
+				offsetForScrollingLowestViewToBottom -= CGRectGetHeight(self.scrollView.bounds);
+				
+				if (offsetForScrollingLowestViewToBottom < 0) {
+						return; // No scrolling required
+				}
+				
+				contentOffset = CGPointMake(0.0f, MIN(offsetForScrollingTextFieldToTop, offsetForScrollingLowestViewToBottom));
+		}
+		
+		[self.scrollView setContentOffset:contentOffset animated:animated];
+}
+
+
+
+
 
 
 
