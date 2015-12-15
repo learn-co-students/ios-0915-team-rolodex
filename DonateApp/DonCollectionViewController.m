@@ -154,9 +154,16 @@ static NSString * const reuseIdentifier = @"cell";
 //    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
 //    [cell.contentView addSubview:bluredEffectView];
 //    [bluredEffectView setFrame:cell.cellTitle.frame];
-    cell.image.image = [self greyImage];
-    cell.image.file = item.imageFile;
-    [cell.image loadInBackground];
+    dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
+    dispatch_async(myQueue, ^{
+        UIImage *greyImage = [self greyImage];
+        cell.image.file = item.imageFile;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.image.image = greyImage;
+            [cell.image loadInBackground];
+        });
+    });
+
     
     return cell;
 }
