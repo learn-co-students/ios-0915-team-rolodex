@@ -25,7 +25,7 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)viewDidLoad {
 
 		[self _registerForKeyboardNotifications];
-		
+
 		self.categoriesForItem = [NSMutableArray new];
 		self.navigationItem.title = @"Donate Item";
 		
@@ -116,6 +116,15 @@ static NSString * const reuseIdentifier = @"cell";
 		
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.defaultOffset = self.scrollView.contentOffset;
+    });
+
+}
 
 -(void)setConstraints{
 #pragma initialization
@@ -169,7 +178,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.scrollView);
-				make.top.equalTo(self.scrollView);
+				make.top.equalTo(self.scrollView).offset(self.topLayoutGuide.length);
 				make.height.equalTo(@250);
 				make.bottom.equalTo(self.collectionView.mas_bottom);
 						//				make.bottom.equalTo(self.containerView.mas_top);
@@ -581,13 +590,13 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (UIView *)currentFirstResponder {
 		if ([self.itemNameTextField isFirstResponder]) {
-				return self.itemNameTextField;
+            return self.itemNameTextField;
 		}
 		if ([self.itemDescriptionTextField isFirstResponder]) {
-				return self.itemDescriptionTextField;
+            return self.itemDescriptionTextField;
 		}
 		if ([self.pickupInstructionsTextField isFirstResponder]) {
-    return self.pickupInstructionsTextField;
+            return self.pickupInstructionsTextField;
 		}
 		return nil;
 }
@@ -656,36 +665,13 @@ static NSString * const reuseIdentifier = @"cell";
 
 - (void)_updateViewContentOffsetAnimated:(BOOL)animated {
 
-		CGPoint contentOffset = CGPointZero;
-		if (self.visibleKeyboardHeight > 0.0f) {
-						// Scroll the view to keep fields visible
-				CGFloat offsetForScrollingTextFieldToTop = CGRectGetMinY([self currentFirstResponder].frame);
-				
-				UIView *lowestView;
-				lowestView = self.pickupInstructionsTextField;
-				
-				
-				CGFloat offsetForScrollingLowestViewToBottom = 0.0f;
-				offsetForScrollingLowestViewToBottom += self.visibleKeyboardHeight;
-				offsetForScrollingLowestViewToBottom += CGRectGetMaxY(lowestView.frame);
-				offsetForScrollingLowestViewToBottom -= CGRectGetHeight(self.scrollView.bounds);
-				
-				if (offsetForScrollingLowestViewToBottom < 0) {
-						return; // No scrolling required
-				}
-				
-				contentOffset = CGPointMake(0.0f, MIN(offsetForScrollingTextFieldToTop, offsetForScrollingLowestViewToBottom));
-		}
-		
-		[self.scrollView setContentOffset:contentOffset animated:animated];
+    CGPoint currentOffset = self.scrollView.contentOffset;
+    if (currentOffset.y > self.defaultOffset.y) {
+        currentOffset = self.defaultOffset;
+    } else {
+        currentOffset = CGPointMake(0, currentOffset.y + self.visibleKeyboardHeight);
+    }
+    [self.scrollView setContentOffset:currentOffset animated:animated];
 }
-
-
-
-
-
-
-
-
 
 @end
