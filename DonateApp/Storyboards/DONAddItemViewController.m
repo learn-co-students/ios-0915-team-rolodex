@@ -520,7 +520,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 				
-				[alert showWaiting:self title:@"Loading" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
+				[alert showWaiting:self title:@"Saving" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
 				
 				
 				
