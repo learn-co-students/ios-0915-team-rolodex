@@ -17,7 +17,7 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
         @IBOutlet weak var profilePhotoImageView: UIImageView!
         @IBOutlet weak var userEmailAddressTextField: UITextField!
         @IBOutlet weak var userPasswordTextField: UITextField!
-        @IBOutlet weak var userFirstNameTextField: UITextField!
+        @IBOutlet weak var userUserNameTextField: UITextField!
 
         
         // White Status Bar
@@ -32,7 +32,7 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             
             // Change the color of the placeholder in the text fields
             let attributedFirstNamePlaceholder = NSAttributedString(string: "USERNAME", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
-            userFirstNameTextField.attributedPlaceholder = attributedFirstNamePlaceholder
+            userUserNameTextField.attributedPlaceholder = attributedFirstNamePlaceholder
 
             let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
             userEmailAddressTextField.attributedPlaceholder = attributedEmailPlaceholder
@@ -57,19 +57,13 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
         // Dismiss Keyboard when tapped out of the text fields
         func screenTapped()
         {
-            for subview in view.subviews
-            {
-                if(subview.isFirstResponder())
-                {
-                    subview.resignFirstResponder()
-                }
-            }
+           self.view.endEditing(true)
         }
         
         // Keyboard 'Next' (Return key) behavior
         func textFieldShouldReturn(textField: UITextField) -> Bool
         {
-            if (textField == userFirstNameTextField) {
+            if (textField == userUserNameTextField) {
                 userEmailAddressTextField.becomeFirstResponder()
             } else if (textField == userEmailAddressTextField) {
                 userPasswordTextField.becomeFirstResponder()
@@ -113,24 +107,24 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             
             view.endEditing(true)
             
-            let userName = userEmailAddressTextField.text
+            let userEmail = userEmailAddressTextField.text
             let userPassword = userPasswordTextField.text
-            let userFirstName = userFirstNameTextField.text
+            let userUserName = userUserNameTextField.text
 
             
-            if(userName!.isEmpty || userPassword!.isEmpty || userFirstName!.isEmpty)
+            if(userEmail!.isEmpty || userPassword!.isEmpty || userUserName!.isEmpty)
             {
                 // Display error message
-                SCLAlertView().showNotice("Oopss", subTitle: "All fields are required to be filled in.")
+                SCLAlertView().showNotice("Oops", subTitle: "All fields are required to be filled in.")
                 return
             }
             
             
             let myUser:PFUser = PFUser()
-            myUser.username = userName
+            myUser.username = userUserName
             myUser.password = userPassword
-            myUser.email = userName
-            myUser.setObject(userFirstName!, forKey: "first_name")
+            myUser.email = userEmail
+            myUser.setObject(userUserName!, forKey: "first_name")
           
             
             if let profileImageData = profilePhotoImageView.image
@@ -166,18 +160,7 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                     
                     if(success)
                     {
-                        let appDelegate:DONAppDelegate = UIApplication.sharedApplication().delegate as! DONAppDelegate
-                        if let vc = appDelegate.window.rootViewController {
-                            if (vc.dynamicType != self.dynamicType) {
-                                if let drawerController = self.presentingViewController as? MMDrawerController {
-                                    
-                                    drawerController.centerViewController.dismissViewControllerAnimated(true, completion: nil)
-                                }
-                            } else {
-                                print("building the UI");
-                                appDelegate.buildUserInterface()
-                            }
-                        }
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 }
                 
@@ -187,5 +170,4 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             }
         }
     
- 
 }

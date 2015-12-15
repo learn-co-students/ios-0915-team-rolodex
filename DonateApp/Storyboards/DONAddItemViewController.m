@@ -163,7 +163,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
-		[self.containerView addSubview:self.topContainerView];
+		[self.scrollView addSubview:self.topContainerView];
 				//selectimage
 		[self.topContainerView addSubview:self.selectedImageView];
 		
