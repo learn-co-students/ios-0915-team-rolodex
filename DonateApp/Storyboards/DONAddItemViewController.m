@@ -1,10 +1,10 @@
-//
-//  DONAddItemViewController.m
-//  DonateApp
-//
-//  Created by synesthesia on 11/18/15.
-//  Copyright © 2015 Rolodex. All rights reserved.
-//
+		//
+		//  DONAddItemViewController.m
+		//  DonateApp
+		//
+		//  Created by synesthesia on 11/18/15.
+		//  Copyright © 2015 Rolodex. All rights reserved.
+		//
 
 #import "DONAddItemViewController.h"
 
@@ -20,10 +20,6 @@
 
 static NSString * const reuseIdentifier = @"cell";
 
-
-
-//set
-//write up readme
 
 
 - (void)viewDidLoad {
@@ -109,15 +105,15 @@ static NSString * const reuseIdentifier = @"cell";
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHideOrShow:) name:@"UIKeyboardWillHideNotification" object:nil];
 		
     // Do any additional setup after loading the view.
-    
-    self.placeholderImageView = [[UIImageView alloc] init];
-    [self.view addSubview:self.placeholderImageView];
-    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
-    }];
-    self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
-    
+		
+		self.placeholderImageView = [[UIImageView alloc] init];
+		[self.view addSubview:self.placeholderImageView];
+		[self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
+		}];
+		self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
+		self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
+		
 }
 
 
@@ -137,7 +133,7 @@ static NSString * const reuseIdentifier = @"cell";
 		self.itemNameTextField = [[UITextField alloc]init];
 		self.itemDescriptionTextField= [[UITextField alloc]init];
 		self.pickupInstructionsTextField= [[UITextField alloc]init];
-
+		
 #pragma view hierarchy
 		
 		[self.view addSubview: self.scrollView];
@@ -160,9 +156,9 @@ static NSString * const reuseIdentifier = @"cell";
 				//save
 		[self.containerView addSubview:self.saveButton];
 		
-//		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor whiteColor];
+				//		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+				//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+				//		self.topContainerView.backgroundColor = [UIColor whiteColor];
 		
 		
 #pragma setConstraints
@@ -304,25 +300,25 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-
-
+		
+		
+		
 		NSLog(@"cellForItemAtIndexPath getting called: \n\n\n\n");
 		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 		cell.userInteractionEnabled = YES;
 		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
+		
 		UIImageView *imageView =self.categoriesImageViews[indexPath.row];
 		imageView.userInteractionEnabled = YES;
 		[cell.contentView addSubview:imageView];
 		cell.contentView.userInteractionEnabled = YES;
-
+		
 		return cell;
 }
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
+		
 		NSLog(@"We're calling didselectItemAtIndexPath");
 		
 		[self.categoriesForItem addObject:self.categories[indexPath.row]];
@@ -330,27 +326,30 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		
-		currentImageView.alpha = 0.5;
+		currentImageView.tintColor = [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1.0];
 		
 		
-
+		
+		
 }
 
 
-		 
+
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 		
 		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
 		
 		
 		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
-	
+		
 		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
 		
-		currentImageView.alpha = 1.0;
-		
+		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+		currentImageView.alpha = 0.74f;
+		currentImageView.tintColor = [UIColor blackColor];
 }
 
 
@@ -359,25 +358,25 @@ static NSString * const reuseIdentifier = @"cell";
 #pragma keyboard shifty
 
 -(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
-
-		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-
-		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
-				CGFloat scrollViewKeyboard = finalConstraint.size.height;
 		
-				NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
-				
-				[UIView animateWithDuration:duration animations:^{
-						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
-						[self.view layoutIfNeeded];
-				}];
+		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
+		
+		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
+		CGFloat scrollViewKeyboard = finalConstraint.size.height;
+		
+		NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
+		
+		[UIView animateWithDuration:duration animations:^{
+				[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
+				[self.view layoutIfNeeded];
+		}];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-//		NSLog(@"%@", [locations lastObject]);
+				//		NSLog(@"%@", [locations lastObject]);
 		self.itemLocation = [locations lastObject];
-//		NSLog(@"self.itemLocation = %@", self.itemLocation);
+				//		NSLog(@"self.itemLocation = %@", self.itemLocation);
 }
 
 -(void)cancelClicked{
@@ -390,12 +389,16 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 - (void)useCurrentLocationSwitchTapped{
-
-		if (self.useCurrentLocationSwitch.isOn) {
-		self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
 		
-		[self.locationManager stopUpdatingLocation];
-		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		if (self.useCurrentLocationSwitch.isOn) {
+				self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
+				
+				[self.locationManager stopUpdatingLocation];
+				NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		}
+		
+		if (!self.useCurrentLocationSwitch.isOn) {
+				self.locationPF = nil;
 		}
 }
 
@@ -406,7 +409,7 @@ static NSString * const reuseIdentifier = @"cell";
 		alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
 		alert.showAnimationType = FadeIn;
 		alert.hideAnimationType = FadeOut;
-
+		
 		
 		
 		
@@ -418,25 +421,25 @@ static NSString * const reuseIdentifier = @"cell";
 				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
 				self.itemImagePF = [PFFile fileWithName:@"photo.jpg" data:imageData];
 		} else {
-								[self presentAlertController:@"Item Image"];
-//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
+				[self presentAlertController:@"Item Image"];
+						//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		
 		self.name =	self.itemNameTextField.text;
 		item[@"name"] = self.name;
-
+		
 		if (self.name.length<3) {
-						[self presentAlertController:@"Item Name"];
-//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
+				[self presentAlertController:@"Item Name"];
+						//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		self.itemDescription = self.itemDescriptionTextField.text;
 		item[@"itemDescription"] = self.itemDescription;
 		if (self.itemDescription.length <3) {
-		
+				
 				[self presentAlertController:@"Item Description"];
-//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
+						//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		self.pickupInstructions =	self.pickupInstructionsTextField.text;
 		item[@"pickupInstructions"] = self.pickupInstructions;
@@ -444,7 +447,7 @@ static NSString * const reuseIdentifier = @"cell";
 				
 				[self presentAlertController:@"Pickup Instructions"];
 				
-//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
+						//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		[alert alertIsDismissed:^{
 				NSLog(@"SCLAlertView dismissed!");
@@ -455,7 +458,7 @@ static NSString * const reuseIdentifier = @"cell";
 		if (self.listedBy) { item[@"listedBy"] = self.listedBy;}
 		
 		if (self.locationPF) {
-		item[@"location"] = self.locationPF;}
+				item[@"location"] = self.locationPF;}
 		self.views = @0;
 		item[@"views"] = self.views;
 		if (self.itemImage) {
@@ -467,26 +470,26 @@ static NSString * const reuseIdentifier = @"cell";
 		NSLog(@"self.categoriesForItem contains %@", [self.categoriesForItem lastObject]);
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
-
-				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
+				
+				[alert showWaiting:self title:@"Loading" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
 				
 				
 				
 				
 				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
-								item[@"categories"] = @[category];
+						item[@"categories"] = @[category];
 						
-				[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
-						if (succeeded) {
-
-								[self dismissViewControllerAnimated:YES completion:^{
-		
-								}];
-						}
+						[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+								NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
+								if (succeeded) {
+										
+										[self dismissViewControllerAnimated:YES completion:^{
+												
+										}];
+								}
+						}];
 				}];
-		}];
-}
+		}
 }
 
 
@@ -497,7 +500,7 @@ static NSString * const reuseIdentifier = @"cell";
 				//		[self.view endEditing:TRUE];
 }
 
- #pragma mark - imageUpload
+#pragma mark - imageUpload
 -(void)userTappedImageView{
 				//initialize picker controller
 		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
@@ -514,7 +517,7 @@ static NSString * const reuseIdentifier = @"cell";
 				//		NSData *imageData = UIImagePNGRepresentation(image);
 				//    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
 		[self dismissViewControllerAnimated:YES completion:nil];
-    self.placeholderImageView.hidden = YES;
+		self.placeholderImageView.hidden = YES;
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -532,10 +535,10 @@ static NSString * const reuseIdentifier = @"cell";
  */
 
 
-//for when UIAlertView in SCLAlertView becomes unresponsive
+		//for when UIAlertView in SCLAlertView becomes unresponsive
 -(UIAlertController *)presentAlertController:(NSString *)fieldName {
 		
-
+		
 		
 		NSString *alertMessage = [NSString stringWithFormat:@"%@ field is incomplete",fieldName];
 		
@@ -552,7 +555,7 @@ static NSString * const reuseIdentifier = @"cell";
 		[self presentViewController:self.alertController animated:YES completion:nil];
 		
 		return self.alertController;
-
+		
 }
 
 
