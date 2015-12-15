@@ -446,8 +446,8 @@
                     <connections>
                         <outlet property="profilePhotoImageView" destination="2Be-Zq-StA" id="FTR-a4-1aX"/>
                         <outlet property="userEmailAddressTextField" destination="OYC-fv-wcF" id="aFx-Vk-dNZ"/>
-                        <outlet property="userFirstNameTextField" destination="rbJ-Qv-Xax" id="f33-bv-a0R"/>
                         <outlet property="userPasswordTextField" destination="Ba7-nR-gig" id="jDU-1D-6HJ"/>
+                        <outlet property="userUserNameTextField" destination="rbJ-Qv-Xax" id="Yao-Qp-HH6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3b0-sZ-oox" userLabel="First Responder" sceneMemberID="firstResponder"/>

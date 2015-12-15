@@ -51,12 +51,13 @@
     
     self.searchCollectionView.delegate = self;
     self.searchCollectionView.dataSource = self;
-
+    
     //moved data loading to viewWillAppear
     
     // Remove "Back" nav bar text next to back arrow
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
- 
+     self.navigationItem.title = @"Browse";
+    
     [self searchBarCellStyle];
     
     // Data model

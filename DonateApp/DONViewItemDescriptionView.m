@@ -68,7 +68,7 @@
     self.backgroundColor = [UIColor whiteColor];
     self.title.text = self.item.name;
     self.itemDescription.text = self.item.itemDescription;
-    self.location.text = @"Location";
+    self.location.text = @"Pickup Instructions";
     
     [DONLocationController cityAndStateForGeoPoint:self.item.location withCompletion:^(NSString *string) {
         if (![string isEqualToString:@"(null), (null)"])

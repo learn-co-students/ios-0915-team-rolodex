@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, strong) NSMutableArray *selectedCategories;
 @property (nonatomic, strong) NSArray *allCategories;
+@property (nonatomic, assign) BOOL currentlyLoading;
 @end
 
 @implementation DONCollectionViewDataModel
@@ -22,6 +23,7 @@
     self = [super init];
     if (!self) return nil;
     self.selectedCategories = [[NSMutableArray alloc] init];
+    self.currentlyLoading = NO;
     return self;
 }
 
@@ -39,6 +41,7 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        self.currentlyLoading = YES;
         [self postWillUpdateItemsNotification];
         [DONCategory allCategoriesWithCompletion:^(BOOL success, NSArray *categories){
             if (success){
@@ -53,6 +56,7 @@
                     if (success) {
                         [self postDidUpdateItemsNotification];
                     }
+                    self.currentlyLoading = NO;
                 }];
             }
         }];
@@ -73,10 +77,19 @@
     }];
 }
 
+-(void)reloadItems
+{
+    [self loadItemsWithCategories:self.selectedCategories];
+}
+
 -(void)loadItemsWithCategories:(NSArray *)categories
 {
-    [self postWillUpdateItemsNotification];
+    if (self.currentlyLoading) {
+        return;
+    }
     
+    [self postWillUpdateItemsNotification];
+
     if (categories.count == 0) {
         [DONItem allItemsWithCompletion:^(BOOL success, NSArray *items) {
             self.items = items;
@@ -104,6 +117,7 @@
 
 -(void)postWillUpdateItemsNotification
 {
+    self.currentlyLoading = YES;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewToUpdateHUD animated:YES];
     hud.labelText = @"Loading";
     
@@ -115,6 +129,7 @@
 
 -(void)postDidUpdateItemsNotification
 {
+    self.currentlyLoading = NO;
     [MBProgressHUD hideHUDForView:self.viewToUpdateHUD animated:YES];
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidUpdateItemsNotification object:nil];

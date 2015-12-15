@@ -66,27 +66,27 @@
     DonHelpCustomCell *cell = (DonHelpCustomCell *)[self.infoTableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (indexPath.row == 0) {
-        NSString * viewItem = @"Categories - Filter through different kinds of items by selecting one or more categories";
+        NSString * viewItem = @"Filter - Browse different categories by selecting one or more categories up to a maximum of three";
         cell.cellLabel.text = viewItem;
         cell.cellimageView.image = [UIImage imageNamed:@"funie"];
     } else if (indexPath.row == 1) {
-        NSString * viewMap = @"Nearby - Browse what’s near you on a map";
+        NSString * viewMap = @"Nearby - Browse nearby items on a map";
         cell.cellLabel.text = viewMap;
         cell.cellimageView.image = [UIImage imageNamed:@"mappie"];
 
     } else if (indexPath.row == 2) {
-        NSString * eachItem = @"Claim - Acknowledge you’re on your way to pick up an item. Verify - Corroborate that the item is indeed ready for pickup.";
+        NSString * eachItem = @"Claim - Let others know you’ve picked up an item. \n\nVerify - Let others know an item exists in good condition.";
         cell.cellLabel.text = eachItem;
         cell.cellimageView.image = [UIImage imageNamed:@"claim"];
 
     }else if (indexPath.row == 3) {
-        NSString * eachItem = @"Flag - Went to pick up an item and it wasn’t there? Flag it for removal from the app";
+        NSString * eachItem = @"Flag - Keep your community clean and flag erroneous items for removal";
         cell.cellLabel.text = eachItem;
         cell.cellimageView.image = [UIImage imageNamed:@"flagie"];
 
     }else if (indexPath.row == 4) {
         
-        NSString * listItem = @"List Item - Getting rid of something or happen to see something interesting on the curb? Tap List Item from the menu.";
+        NSString * listItem = @"List Item - Getting rid of something or happen to see something interesting on the curb? Tap List Item from the menu to let others know about it.";
         cell.cellLabel.text =listItem;
         cell.cellimageView.image = [UIImage imageNamed:@"Listie"];
         cell.cellLabel.adjustsFontSizeToFitWidth = YES;
@@ -97,12 +97,12 @@
          
             [cell.cellLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.mas_right).offset(-25);
-                make.left.equalTo(cell.mas_left).offset(25);
+                make.left.equalTo(cell.mas_left).offset(20);
                 make.bottom.equalTo(cell.mas_bottom).offset(-10);
             }];
             
         }
-        NSString * eachItem = @"Curb Alert was built by a team of special nerds hailing from the Flatiron School: Jon, Guang, Mickey, and Laurent. Special thanks to Jim, Tim, Tom (oh, what a song). Open source contributions from Cocoapods, Noun project, GoogleMaps, and the wild city of New York!";
+        NSString * eachItem = @"Curb Alert was built by a team of nerds hailing from the Flatiron School: Jon, Guang, Mickey, and Laurent. Special thanks to Jim, Tim, Tom (oh, what a song). Open source contributions from Cocoapods, Noun project, GoogleMaps, and the wild city of New York!";
         cell.cellLabel.text = eachItem;
       
         }

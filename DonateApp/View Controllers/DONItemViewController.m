@@ -270,6 +270,22 @@
         make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
+    
+    if (!self.item.location) {
+        [self.mapView removeFromSuperview];
+//        UILabel *noLocLabel = [[UILabel alloc] init];
+//        noLocLabel.numberOfLines = 3;
+//        noLocLabel.textColor = [UIColor darkGrayColor];
+//        noLocLabel.font = [UIFont systemFontOfSize:16];
+//        noLocLabel.textAlignment = NSTextAlignmentCenter;
+//        noLocLabel.text = @"No location provided\n\nPlease refer to pickup instructions";
+//        [self.containerView addSubview:noLocLabel];
+//        [noLocLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.itemDescriptionView.mas_bottom).offset(40);
+//            make.left.and.right.equalTo(self.containerView);
+//        }];
+//    }
+    }
 }
 
 -(void)setupLocationBasedViews
@@ -368,6 +384,8 @@
             
             [alert showSuccess:self title:@"Unclaimed!" subTitle:@"Thanks for the update! You unclaimed this item." closeButtonTitle:@"OK" duration:2.0f];
         }];
+    } else if (![DONUser currentUser]) {
+        [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (![self.locationController locationServicesEnabled]) {
         [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (self.isItemOwner) {
@@ -399,6 +417,8 @@
             self.verifyButton.enabled = YES;
         }];
         [alert showSuccess:self title:@"Unverified!" subTitle:@"Thanks for the update. You unverified this item." closeButtonTitle:@"OK" duration:2.0f];
+    } else if (![DONUser currentUser]) {
+        [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (![self.locationController locationServicesEnabled]) {
         [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (self.isItemOwner) {
@@ -449,6 +469,8 @@
             self.verifyButton.enabled = YES;
         }];
         [alert showSuccess:self title:@"Unflagged!" subTitle:@"Thanks for the update. You unflagged this item." closeButtonTitle:@"OK" duration:2.0f];
+    } else if (![DONUser currentUser]) {
+        [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (![self.locationController locationServicesEnabled]) {
         [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (self.reportErrorButton.enabledState == DONViewItemButtonStateDisabled) {

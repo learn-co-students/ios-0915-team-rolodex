@@ -63,7 +63,7 @@ class DONWelcomeScreenViewController: UIViewController {
                 appDelegate.buildUserInterface()
             }
         }
-}
+    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
