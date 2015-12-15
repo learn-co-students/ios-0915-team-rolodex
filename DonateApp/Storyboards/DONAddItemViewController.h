@@ -21,7 +21,7 @@
 @interface DONAddItemViewController : UIViewController
 
 
-
+@property (assign, nonatomic) CGFloat visibleKeyboardHeight;
 @property (strong, nonatomic) UIAlertController *alertController;
 @property (strong, nonatomic) UIAlertAction *alertAction;
 
