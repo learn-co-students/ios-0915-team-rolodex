@@ -40,7 +40,6 @@
 		6236680D1C051C5400327A9D /* DONDrawerProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6236680C1C051C5400327A9D /* DONDrawerProfileView.m */; };
 		6237E0611BFCD30500C5AD27 /* QueryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0601BFCD30500C5AD27 /* QueryCell.m */; };
 		6237E0671BFCFBD500C5AD27 /* DonQueryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6237E0661BFCFBD500C5AD27 /* DonQueryCollectionViewController.m */; };
-		6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
 		62697BE81C0CFACC004455CD /* DonContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BE71C0CFACC004455CD /* DonContainerViewController.m */; };
 		62697BEB1C0CFDA2004455CD /* EmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BEA1C0CFDA2004455CD /* EmptySegue.m */; };
 		62697BEE1C0D00DC004455CD /* DonCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62697BED1C0D00DC004455CD /* DonCollectionViewController.m */; };
@@ -56,6 +55,7 @@
 		62B45AF51BFE20480007D314 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B45AF41BFE20480007D314 /* SearchCell.m */; };
 		62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AF81BFF6CDF0007D314 /* Settings.bundle */; };
 		62B45AFE1BFF6E4F0007D314 /* guang.map.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B45AFD1BFF6E4F0007D314 /* guang.map.Storyboard */; };
+		62C746FB1C1F63C500540EB3 /* guang.collection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6237E06A1BFCFFC600C5AD27 /* guang.collection.storyboard */; };
 		62DD4C081C19DD08004CADE5 /* DonHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DD4C071C19DD08004CADE5 /* DonHelpViewController.m */; };
 		62DD4C0C1C19DD9C004CADE5 /* HelpScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DD4C0B1C19DD9C004CADE5 /* HelpScreenStoryboard.storyboard */; };
 		62DD4C101C1A8AE3004CADE5 /* DonHelpText in Resources */ = {isa = PBXBuildFile; fileRef = 62DD4C0F1C1A8AE3004CADE5 /* DonHelpText */; };
@@ -444,7 +444,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = CPMU5WXMBN;
+						DevelopmentTeam = 57675254DH;
 					};
 				};
 			};
@@ -471,10 +471,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
+				62C746FB1C1F63C500540EB3 /* guang.collection.storyboard in Resources */,
 				62DD4C121C1A8BB3004CADE5 /* Don-text.txt in Resources */,
 				4B2B21241C0CC6E900DBCE23 /* Laurent.storyboard in Resources */,
-				6237E06B1BFCFFC600C5AD27 /* guang.collection.storyboard in Resources */,
 				6284E0EF1C06876B007A4CB1 /* DonInfowindow.xib in Resources */,
 				62B45AF91BFF6CDF0007D314 /* Settings.bundle in Resources */,
 				62DD4C0C1C19DD9C004CADE5 /* HelpScreenStoryboard.storyboard in Resources */,

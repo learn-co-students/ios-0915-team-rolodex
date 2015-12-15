@@ -34,8 +34,6 @@ static NSString * const reuseIdentifier = @"cell";
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-   //[self.collectionView registerClass:[QueryCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
     [self setupNotifications];
     self.dataModel = [DONCollectionViewDataModel sharedInstance];
     self.dataModel.viewToUpdateHUD = self.collectionView;
@@ -148,15 +146,10 @@ static NSString * const reuseIdentifier = @"cell";
     DONItem * item = self.items[indexPath.row];
     cell.cellTitle.text = item.name;
     
-//    cell.cellTitle.textColor = [UIColor whiteColor];
-    
-//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    [cell.contentView addSubview:bluredEffectView];
-//    [bluredEffectView setFrame:cell.cellTitle.frame];
-    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
     cell.image.file = item.imageFile;
     [cell.image loadInBackground];
+    }];
     
     return cell;
 }
@@ -166,21 +159,6 @@ static NSString * const reuseIdentifier = @"cell";
     if (collectionView == self.collectionView) {
         
         NSLog(@"I tapped collectionView");
-        /* push to the map direction
-         DONItem * selectedItem = self.items[indexPath.row];
-         if (selectedItem.location) {
-         CGFloat lat = selectedItem.location.latitude;
-         CGFloat lon = selectedItem.location.longitude;
-         NSString * coordinateString = [NSString stringWithFormat:@"%f,%f",lat,lon];
-         NSLog(@"lat and long %@",coordinateString);
-         // wirte a bool method also with animation indicat the cell lead to a map
-         [self activeGoogleMapToLocationQuery:coordinateString];
-         }   else if (selectedItem.pickupInstructions) {
-         NSString * pareselocationString = [selectedItem.pickupInstructions stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-         NSLog(@"location=%@",pareselocationString);
-         [self activeGoogleMapToLocationQuery:pareselocationString];
-         }
-         */
         DONItem *item = self.items[indexPath.row];
         DONItemViewController *itemViewController =[[DONItemViewController alloc] initWithItem:item];
         [self.navigationController pushViewController:itemViewController animated:YES];
@@ -192,7 +170,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)activeXibCell{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //flowLayout.itemSize = CGSizeMake(113, 115);
     flowLayout.itemSize = CGSizeMake((self.view.frame.size.width/2), (self.view.frame.size.height/4));
     flowLayout.minimumInteritemSpacing = 0;
     flowLayout.minimumLineSpacing = 0;
@@ -205,48 +182,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 #pragma mark data stuff
 
--(void)getAllPdata{
-    
-    [self getdataFromParseWithBlock:^(BOOL success)
-     {
-         if (success)
-         {
-             //NSLog(@"Get the info %@ with the stuffff %@",self.userOnPage,self.items);
-             //self.greeting.text = [NSString stringWithFormat:@" ☞ "];
-         } else{
-         }
-     }];
-}
-
--(NSMutableArray *)testingData:(NSArray *) realData{
-    
-    NSMutableArray * testData = [NSMutableArray new];
-    for (int i = 0 ; i < 5 ; i++)
-    {
-        [testData addObject:realData[i]];
-//        [testData addObject:realData[1]];
-//        [testData addObject:realData[2]];
-//        [testData addObject:realData[3]];
-//        [testData addObject:realData[4]];
-    }
-    
-    return testData;
-}
-
--(void)getdataFromParseWithBlock:(void (^)(BOOL success))completationBlock{
-    
-    [DONItem allItemsWithCompletion:^(BOOL success, NSArray *allItems) {
-        if (success) {
-            self.items = [self testingData:allItems];
-            [self.collectionView reloadData];
-            completationBlock(YES);
-            //NSLog(@"allItems %@",allItems);
-            
-        }else{
-            NSLog(@"Error:");
-        }
-    }];
-}
 #pragma marker maps
 
 -(void)activeGoogleMapToLocationQuery:(NSString *)itemLocation{

@@ -68,22 +68,7 @@
     
     [[DONLocationController sharedInstance] getCurrentUserLocationWithCompletion:nil];
     
-//    [self.searchCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:-1 inSection:0]
-//                                atScrollPosition:UICollectionViewScrollPositionLeft
-//                                        animated:YES];
-//    
-    //[self.searchCollectionView setContentOffset:CGPointMake(120, 0)];
-    
-    // self.searchCollectionView.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
-    
-     /*
-      scrollToItemAtIndexPath:(NSIndexPath *)indexPath
-      atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
-      animated:(BOOL)animated
-      */
-//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-//
-//    [self.searchCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+
 }
 
 -(void)displayLoginAlert
@@ -95,15 +80,7 @@
         [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     });
 }
-//-(void)viewDidLayoutSubviews{
-//    [super viewDidLayoutSubviews];
-//    
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [self.searchCollectionView.collectionViewLayout collectionViewContentSize];
-//        [self.searchCollectionView setContentOffset:CGPointMake(120, 0)];
-//    });
-//}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

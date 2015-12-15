@@ -10,7 +10,6 @@
         <!--help view-->
         <scene sceneID="fvr-0j-WJx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xLb-jn-rVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="helpScreen" title="help view" id="qsE-UV-Lyi" customClass="DonHelpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ahc-ox-HBs"/>
@@ -148,6 +147,7 @@
                         <outlet property="textField" destination="tNh-46-Uho" id="vjQ-lD-3rG"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xLb-jn-rVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="295.5" y="428.5"/>
         </scene>

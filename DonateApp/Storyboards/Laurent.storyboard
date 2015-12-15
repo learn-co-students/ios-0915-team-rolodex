@@ -59,7 +59,7 @@
                                         <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nla-Jx-iRp">
                                             <rect key="frame" x="37" y="347" width="300" height="34"/>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.10132956026695311" green="0.20146044204695759" blue="0.8323074494949495" alpha="0.75731102195945943" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.14817966960941245" green="0.20678798184178337" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="hY1-jQ-1Y8"/>
                                             </constraints>
@@ -208,6 +208,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1O-Sq-Xbc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000002" contentMode="center" id="rwy-Kz-vGH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ngp-AO-xva">
                                 <rect key="frame" x="57" y="204" width="260" height="41"/>
                                 <animations/>
@@ -264,28 +276,20 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V2H-sK-VdG" firstAttribute="centerX" secondItem="x0B-GM-Ycz" secondAttribute="centerX" id="56R-hz-ai1"/>
+                            <constraint firstAttribute="trailing" secondItem="s1O-Sq-Xbc" secondAttribute="trailing" id="6kc-AC-EU8"/>
                             <constraint firstItem="4m7-zI-Mk2" firstAttribute="top" secondItem="8Xn-r1-b3Z" secondAttribute="bottom" constant="32" id="B8C-7b-9Mh"/>
+                            <constraint firstItem="s1O-Sq-Xbc" firstAttribute="leading" secondItem="x0B-GM-Ycz" secondAttribute="leading" id="MN4-Oc-no6"/>
+                            <constraint firstItem="4ei-Ta-Nik" firstAttribute="top" secondItem="s1O-Sq-Xbc" secondAttribute="bottom" id="Ob3-rG-Guv"/>
                             <constraint firstItem="Ngp-AO-xva" firstAttribute="top" secondItem="4m7-zI-Mk2" secondAttribute="bottom" constant="111" id="S7W-lN-OGY"/>
                             <constraint firstItem="Ngp-AO-xva" firstAttribute="centerX" secondItem="x0B-GM-Ycz" secondAttribute="centerX" id="W0z-Hj-miw"/>
-                            <constraint firstItem="Ngp-AO-xva" firstAttribute="leading" secondItem="x0B-GM-Ycz" secondAttribute="leadingMargin" constant="34" id="ZLf-kb-42u"/>
                             <constraint firstItem="4m7-zI-Mk2" firstAttribute="leading" secondItem="x0B-GM-Ycz" secondAttribute="leadingMargin" constant="9" id="c3H-d1-fa3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ngp-AO-xva" secondAttribute="trailing" constant="38" id="k1b-EW-Mcc"/>
-                            <constraint firstItem="V2H-sK-VdG" firstAttribute="leading" secondItem="x0B-GM-Ycz" secondAttribute="leadingMargin" constant="37" id="kqb-uF-YGe"/>
+                            <constraint firstAttribute="topMargin" secondItem="s1O-Sq-Xbc" secondAttribute="top" id="qGo-M3-Kqv"/>
                             <constraint firstItem="V2H-sK-VdG" firstAttribute="trailing" secondItem="Ngp-AO-xva" secondAttribute="trailing" id="rTL-ix-syq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="V2H-sK-VdG" secondAttribute="trailing" constant="38" id="t7v-lJ-Fme"/>
                             <constraint firstItem="V2H-sK-VdG" firstAttribute="top" secondItem="Ngp-AO-xva" secondAttribute="bottom" constant="73" id="uT8-pn-les"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ZLf-kb-42u"/>
-                                <exclude reference="k1b-EW-Mcc"/>
-                                <exclude reference="kqb-uF-YGe"/>
-                                <exclude reference="t7v-lJ-Fme"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -310,7 +314,7 @@
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="H63-xy-GIu">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="center" id="HV4-iH-9k8">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.59999999999999998" contentMode="center" id="HV4-iH-9k8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <animations/>
@@ -364,10 +368,10 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
                             </textField>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-GX-j6C">
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-GX-j6C">
                                 <rect key="frame" x="52" y="344" width="268" height="34"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.10812660600855381" green="0.54415246212121204" blue="0.33761520752814128" alpha="0.7651763091216216" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.15294117647058825" green="0.18431372549019609" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Jon-14-M1F"/>
                                 </constraints>

@@ -42,12 +42,15 @@ class DONForgetPasswordViewController: UIViewController {
         super.viewDidLoad()
         
         // Change the color of the placeholder in the text fields
-        let attributedEmailPlaceholder = NSAttributedString(string: "E-mail address", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
+        let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
         emailAddressTextField.attributedPlaceholder = attributedEmailPlaceholder
         
         // Recognize tap gesture
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("screenTapped"))
         self.view.addGestureRecognizer(tapGestureRecognizer)
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginRiver")!)
+
         
     }
     
@@ -58,7 +61,7 @@ class DONForgetPasswordViewController: UIViewController {
         if emailAddress!.isEmpty
         {
             // Display error message
-            SCLAlertView().showNotice("Oupss", subTitle: "Please type in your email address.")
+            SCLAlertView().showNotice("Oops", subTitle: "Please type in your email address.")
             return
         }
         
@@ -67,7 +70,7 @@ class DONForgetPasswordViewController: UIViewController {
             if(error != nil)
             {
                 // Display error message
-                SCLAlertView().showNotice("Oupss", subTitle: error!.localizedDescription)
+                SCLAlertView().showNotice("Oops", subTitle: error!.localizedDescription)
             } else {
                 // Display success message
                 SCLAlertView().showInfo("Success", subTitle: "An email message was sent to you \(emailAddress)")

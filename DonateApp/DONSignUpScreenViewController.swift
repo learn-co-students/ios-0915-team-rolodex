@@ -31,13 +31,13 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             super.viewDidLoad()
             
             // Change the color of the placeholder in the text fields
-            let attributedFirstNamePlaceholder = NSAttributedString(string: "First Name", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
+            let attributedFirstNamePlaceholder = NSAttributedString(string: "USERNAME", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
             userFirstNameTextField.attributedPlaceholder = attributedFirstNamePlaceholder
 
-            let attributedEmailPlaceholder = NSAttributedString(string: "Email Address", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
+            let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
             userEmailAddressTextField.attributedPlaceholder = attributedEmailPlaceholder
             
-            let attributedPasswordPlaceholder = NSAttributedString(string: "Password", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
+            let attributedPasswordPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
             userPasswordTextField.attributedPlaceholder = attributedPasswordPlaceholder
             
             // Recognize tap gesture

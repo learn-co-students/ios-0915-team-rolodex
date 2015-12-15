@@ -190,7 +190,7 @@ class DONWelcomeScreenViewController: UIViewController {
         }
         
         // Change the color of the placeholder in the text fields
-        let attributedEmailPlaceholder = NSAttributedString(string: "EMAIL ADDRESS", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
+        let attributedEmailPlaceholder = NSAttributedString(string: "USERNAME", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
         userEmailAddressTextField.attributedPlaceholder = attributedEmailPlaceholder
         
         let attributedPasswordPlaceholder = NSAttributedString(string: "PASSWORD", attributes: [ NSForegroundColorAttributeName: UIColor.whiteColor() ])
@@ -212,6 +212,8 @@ class DONWelcomeScreenViewController: UIViewController {
         self.visualEffectView.addGestureRecognizer(tapGestureRecognizer)
         
         //firstResponderDelay()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginRiver")!)
+
 
     }
     
