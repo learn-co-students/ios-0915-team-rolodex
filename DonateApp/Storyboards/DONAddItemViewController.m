@@ -7,7 +7,19 @@
 		//
 
 #import "DONAddItemViewController.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 @interface DONAddItemViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -107,9 +119,13 @@ static NSString * const reuseIdentifier = @"cell";
     // Do any additional setup after loading the view.
 		
 		self.placeholderImageView = [[UIImageView alloc] init];
-		[self.view addSubview:self.placeholderImageView];
+		[self.selectedImageView addSubview:self.placeholderImageView];
 		[self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (IS_IPHONE_6 || IS_IPHONE_6P) {
 				make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
+            } else {
+                make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(20, 20, 20, 20));
+            }
 		}];
 		self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
 		self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
@@ -147,7 +163,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
-		[self.scrollView addSubview:self.topContainerView];
+		[self.containerView addSubview:self.topContainerView];
 				//selectimage
 		[self.topContainerView addSubview:self.selectedImageView];
 		
@@ -177,9 +193,12 @@ static NSString * const reuseIdentifier = @"cell";
 		}];
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.equalTo(self.scrollView);
-				make.top.equalTo(self.scrollView).offset(self.topLayoutGuide.length);
+                make.left.right.top.equalTo(self.containerView);
+            if (IS_IPHONE_6 || IS_IPHONE_6P) {
 				make.height.equalTo(@250);
+            } else {
+                make.height.equalTo(@200);
+            }
 				make.bottom.equalTo(self.collectionView.mas_bottom);
 						//				make.bottom.equalTo(self.containerView.mas_top);
 		}];
@@ -188,8 +207,9 @@ static NSString * const reuseIdentifier = @"cell";
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.equalTo(self.scrollView);
 //				make.top.equalTo(self.mas_topLayoutGuideBottom);
-				make.bottom.equalTo(self.view);
-				make.top.equalTo(self.topContainerView);
+            CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+            NSLog(@"%0.3f",navBarHeight);
+            make.height.equalTo(self.view).with.offset(-navBarHeight-20);
 				
 						//				make.bottom.equalTo(self.saveButton);
 		}];
@@ -311,7 +331,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.containerView.mas_bottom);
+				make.bottom.equalTo(self.containerView.mas_bottom).priorityHigh();
 //				make.top.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(20);
 				make.height.equalTo(@60);
 		}];
@@ -666,7 +686,7 @@ static NSString * const reuseIdentifier = @"cell";
 - (void)_updateViewContentOffsetAnimated:(BOOL)animated {
 
     CGPoint currentOffset = self.scrollView.contentOffset;
-    if (currentOffset.y > self.defaultOffset.y) {
+    if (currentOffset.y > self.defaultOffset.y + 30) {
         currentOffset = self.defaultOffset;
     } else {
         currentOffset = CGPointMake(0, currentOffset.y + self.visibleKeyboardHeight);

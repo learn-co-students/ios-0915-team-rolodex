@@ -83,7 +83,7 @@
             DONCategory * category = (DONCategory *)objects[0];
             NSLog(@"category name = %@ with image %@", category.name, category.imageFile);
             
-            UIImage *localIconImage = [self imageByDrawingWhiteCircleBehindImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]] andResizingToSize:CGSizeMake(30, 30) withColor:[UIColor whiteColor]];
+            UIImage *localIconImage = [self imageByDrawingWhiteCircleBehindImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]] andResizingToSize:CGSizeMake(25, 25) withColor:[UIColor whiteColor]];
 
             __weak typeof(self) tmpself = self;
             [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude discription:eachItem.itemDescription itemImage:localIconImage];
