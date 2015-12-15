@@ -41,6 +41,7 @@ static NSString * const reuseIdentifier = @"cell";
     [self activeXibCell];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.dataModel loadAllItems];
 }
 
 
@@ -86,6 +87,11 @@ static NSString * const reuseIdentifier = @"cell";
         
     });
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.dataModel reloadItems];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -100,12 +106,6 @@ static NSString * const reuseIdentifier = @"cell";
     [center addObserver:self selector:@selector(updatedItems) name:kDidUpdateItemsNotification object:nil];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.dataModel loadAllItems];
-}
-
 -(void)updatingItems
 {
     // Turn the userinteraction OFF
@@ -116,7 +116,7 @@ static NSString * const reuseIdentifier = @"cell";
 {
     // turn the UserInteraction back ON
     self.collectionView.userInteractionEnabled = YES;
-    self.items = self.dataModel.items;
+    self.items = [NSArray arrayWithArray:self.dataModel.items];
     if (self.items.count > 0 ) {
         self.temporaryBackground.hidden = YES;
     } else {
@@ -145,13 +145,39 @@ static NSString * const reuseIdentifier = @"cell";
     QueryCell * cell = (QueryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     DONItem * item = self.items[indexPath.row];
     cell.cellTitle.text = item.name;
+
+//    cell.cellTitle.textColor = [UIColor whiteColor];
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    cell.image.file = item.imageFile;
-    [cell.image loadInBackground];
-    }];
+//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffectView *bluredEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    [cell.contentView addSubview:bluredEffectView];
+//    [bluredEffectView setFrame:cell.cellTitle.frame];
+    dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
+    dispatch_async(myQueue, ^{
+        UIImage *greyImage = [self greyImage];
+        cell.image.file = item.imageFile;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.image.image = greyImage;
+            [cell.image loadInBackground];
+        });
+    });
+
     
     return cell;
+}
+
+-(UIImage *)greyImage
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 100.0f, 100.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {

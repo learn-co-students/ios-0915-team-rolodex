@@ -23,9 +23,7 @@
     self = [super init];
     if (!self) return nil;
     self.location = [DONLocationController locationForGeoPoint:location];;
-    
     [self setupViews];
-    
     return self;
 }
 
@@ -74,7 +72,12 @@
     CGFloat calculatedZoom = log2f(distance/screenWidthInPoints/earthCircumferenceInMeters*googleMapsZoomZeroPointsForWorld)*-1;
     NSLog(@"%0.5f", calculatedZoom);
     
-    return calculatedZoom - 2.0f;
+    if (calculatedZoom > 20.0) {
+        calculatedZoom -= 5.0;
+    } else {
+        calculatedZoom -= 2.0;
+    }
+    return calculatedZoom;
 }
 
 - (void)placeMarkerAtLatitude:(double)latitude longitude:(double)longitude

@@ -1,13 +1,25 @@
-//
-//  DONAddItemViewController.m
-//  DonateApp
-//
-//  Created by synesthesia on 11/18/15.
-//  Copyright © 2015 Rolodex. All rights reserved.
-//
+		//
+		//  DONAddItemViewController.m
+		//  DonateApp
+		//
+		//  Created by synesthesia on 11/18/15.
+		//  Copyright © 2015 Rolodex. All rights reserved.
+		//
 
 #import "DONAddItemViewController.h"
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
 
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
 @interface DONAddItemViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -22,12 +34,10 @@ static NSString * const reuseIdentifier = @"cell";
 
 
 
-//set
-//write up readme
-
-
 - (void)viewDidLoad {
-		
+
+		[self _registerForKeyboardNotifications];
+
 		self.categoriesForItem = [NSMutableArray new];
 		self.navigationItem.title = @"Donate Item";
 		
@@ -105,21 +115,32 @@ static NSString * const reuseIdentifier = @"cell";
 		self.navigationItem.leftBarButtonItem = stopButton;
 		self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
 		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHideOrShow:) name:@"UIKeyboardWillShowNotification" object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UIKeyboardWillHideOrShow:) name:@"UIKeyboardWillHideNotification" object:nil];
 		
     // Do any additional setup after loading the view.
-    
-    self.placeholderImageView = [[UIImageView alloc] init];
-    [self.view addSubview:self.placeholderImageView];
-    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
-    }];
-    self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
-    
+		
+		self.placeholderImageView = [[UIImageView alloc] init];
+		[self.selectedImageView addSubview:self.placeholderImageView];
+		[self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (IS_IPHONE_6 || IS_IPHONE_6P) {
+				make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
+            } else {
+                make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(20, 20, 20, 20));
+            }
+		}];
+		self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
+		self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
+		
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.defaultOffset = self.scrollView.contentOffset;
+    });
+
+}
 
 -(void)setConstraints{
 #pragma initialization
@@ -137,12 +158,12 @@ static NSString * const reuseIdentifier = @"cell";
 		self.itemNameTextField = [[UITextField alloc]init];
 		self.itemDescriptionTextField= [[UITextField alloc]init];
 		self.pickupInstructionsTextField= [[UITextField alloc]init];
-
+		
 #pragma view hierarchy
 		
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
-		[self.scrollView addSubview:self.topContainerView];
+		[self.containerView addSubview:self.topContainerView];
 				//selectimage
 		[self.topContainerView addSubview:self.selectedImageView];
 		
@@ -160,9 +181,9 @@ static NSString * const reuseIdentifier = @"cell";
 				//save
 		[self.containerView addSubview:self.saveButton];
 		
-//		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
-//		self.topContainerView.backgroundColor = [UIColor whiteColor];
+				//		self.containerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+				//		self.topContainerView.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:0.5];
+				//		self.topContainerView.backgroundColor = [UIColor whiteColor];
 		
 		
 #pragma setConstraints
@@ -172,21 +193,25 @@ static NSString * const reuseIdentifier = @"cell";
 		}];
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.top.equalTo(self.scrollView);
-						//				make.top.equalTo(self.selectedImageView);
+                make.left.right.top.equalTo(self.containerView);
+            if (IS_IPHONE_6 || IS_IPHONE_6P) {
+				make.height.equalTo(@250);
+            } else {
+                make.height.equalTo(@200);
+            }
 				make.bottom.equalTo(self.collectionView.mas_bottom);
 						//				make.bottom.equalTo(self.containerView.mas_top);
-						//				make.height.equalTo(@300);
-				make.width.equalTo(self.view);
 		}];
 		
 		
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-				make.left.right.bottom.equalTo(self.scrollView);
-				make.top.equalTo(self.topContainerView.mas_bottom);
-				make.height.equalTo(@250);
+				make.edges.equalTo(self.scrollView);
+//				make.top.equalTo(self.mas_topLayoutGuideBottom);
+            CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+            NSLog(@"%0.3f",navBarHeight);
+            make.height.equalTo(self.view).with.offset(-navBarHeight-20);
+				
 						//				make.bottom.equalTo(self.saveButton);
-				make.width.equalTo(self.view);
 		}];
 		
 				//IMAGE & Placeholder
@@ -196,7 +221,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.left.right.equalTo (self.topContainerView);
 				make.top.equalTo(self.topContainerView);
 				make.width.equalTo(self.view);
-				make.height.equalTo(@250);
+//				make.height.equalTo(@250);
 				
 		}];
 		
@@ -220,18 +245,27 @@ static NSString * const reuseIdentifier = @"cell";
 		NSString *placeholderDescription = [NSString stringWithFormat:@"Item Description"];
 		NSString *placeholderPickup = [NSString stringWithFormat:@"Instructions For Pickup"];
 		
+		self.itemNameTextField.layer.cornerRadius = 8.0f;
+		self.itemNameTextField.layer.borderWidth = 1.0f;
+		self.itemNameTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.itemNameTextField.textColor = [UIColor blackColor];
 		self.itemNameTextField.placeholder = placeholderName;
 		self.itemNameTextField.textAlignment = NSTextAlignmentCenter;
 		self.itemNameTextField.borderStyle = UITextBorderStyleRoundedRect;
 		
 		[self.itemNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+				make.top.equalTo(self.topContainerView.mas_bottom).offset(20);
 				make.left.equalTo(self.containerView).offset(25);
 				make.right.equalTo(self.containerView).offset(-25);
 				make.centerX.equalTo(self.containerView.mas_centerX);
 				make.bottom.equalTo(self.itemDescriptionTextField.mas_top).offset(-20);
 		}];
 		
+		self.itemDescriptionTextField.layer.cornerRadius = 8.0f;
+		self.itemDescriptionTextField.layer.borderWidth = 1.0f;
+		self.itemDescriptionTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.itemDescriptionTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.itemDescriptionTextField.textColor = [UIColor blackColor];
 		self.itemDescriptionTextField.placeholder = placeholderDescription;
 		self.itemDescriptionTextField.textAlignment = NSTextAlignmentCenter;
@@ -244,7 +278,10 @@ static NSString * const reuseIdentifier = @"cell";
 				make.bottom.equalTo(self.pickupInstructionsTextField.mas_top).offset(-20);
 				
 		}];
-		
+		self.pickupInstructionsTextField.layer.cornerRadius = 8.0f;
+		self.pickupInstructionsTextField.layer.borderWidth = 1.0f;
+		self.pickupInstructionsTextField.layer.borderColor = [UIColor blackColor].CGColor;
+		self.pickupInstructionsTextField.borderStyle = UITextBorderStyleRoundedRect;
 		self.pickupInstructionsTextField.textColor =[UIColor blackColor];
 		self.pickupInstructionsTextField.placeholder = placeholderPickup;
 		self.pickupInstructionsTextField.textAlignment = NSTextAlignmentCenter;
@@ -263,17 +300,23 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
 		
+
+		self.useCurrentLocationSwitch.layer.borderColor = [UIColor blackColor].CGColor;
+		
 		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
 		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
+//		self.useCurrentLocationLabel.layer.borderColor = [UIColor blackColor].CGColor;
+		
+		self.useCurrentLocationLabel.layer.cornerRadius = 8.0f;
 		
 		[self.useCurrentLocationSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.right.equalTo(self.containerView.mas_right).offset(-15);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+				make.top.equalTo(self.useCurrentLocationLabel);
 		}];
 		
 		[self.useCurrentLocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.equalTo(self.containerView.mas_left).offset(25);
-				make.bottom.equalTo(self.saveButton.mas_top).offset(-25);
+				make.top.equalTo(self.pickupInstructionsTextField.mas_bottom).offset(20);
 		}];
 		
 				//save button
@@ -288,7 +331,8 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
-				make.bottom.equalTo(self.scrollView.mas_bottom).offset(20);
+				make.bottom.equalTo(self.containerView.mas_bottom).priorityHigh();
+//				make.top.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(20);
 				make.height.equalTo(@60);
 		}];
 }
@@ -304,25 +348,25 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-
-
+		
+		
+		
 		NSLog(@"cellForItemAtIndexPath getting called: \n\n\n\n");
 		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 		cell.userInteractionEnabled = YES;
 		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
+		
 		UIImageView *imageView =self.categoriesImageViews[indexPath.row];
 		imageView.userInteractionEnabled = YES;
 		[cell.contentView addSubview:imageView];
 		cell.contentView.userInteractionEnabled = YES;
-
+		
 		return cell;
 }
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-
+		
 		NSLog(@"We're calling didselectItemAtIndexPath");
 		
 		[self.categoriesForItem addObject:self.categories[indexPath.row]];
@@ -330,27 +374,30 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
+		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		
-		currentImageView.alpha = 0.5;
+		currentImageView.tintColor = [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1.0];
 		
 		
-
+		
+		
 }
 
 
-		 
+
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 		
 		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
 		
 		
 		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
-	
+		
 		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
 		
-		currentImageView.alpha = 1.0;
-		
+		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+		currentImageView.alpha = 0.74f;
+		currentImageView.tintColor = [UIColor blackColor];
 }
 
 
@@ -358,26 +405,27 @@ static NSString * const reuseIdentifier = @"cell";
 
 #pragma keyboard shifty
 
--(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
-
-		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-
-		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
-				CGFloat scrollViewKeyboard = finalConstraint.size.height;
-		
-				NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
-				
-				[UIView animateWithDuration:duration animations:^{
-						[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
-						[self.view layoutIfNeeded];
-				}];
-}
+//-(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
+//		
+//		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
+//		
+//		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
+//		CGFloat scrollViewKeyboard = finalConstraint.size.height;
+//		
+//		NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
+//		
+//		[UIView animateWithDuration:duration animations:^{
+//				
+//				[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
+//				[self.view layoutIfNeeded];
+//		}];
+//}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-//		NSLog(@"%@", [locations lastObject]);
+				//		NSLog(@"%@", [locations lastObject]);
 		self.itemLocation = [locations lastObject];
-//		NSLog(@"self.itemLocation = %@", self.itemLocation);
+				//		NSLog(@"self.itemLocation = %@", self.itemLocation);
 }
 
 -(void)cancelClicked{
@@ -390,12 +438,16 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 - (void)useCurrentLocationSwitchTapped{
-
-		if (self.useCurrentLocationSwitch.isOn) {
-		self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
 		
-		[self.locationManager stopUpdatingLocation];
-		NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		if (self.useCurrentLocationSwitch.isOn) {
+				self.locationPF = [PFGeoPoint geoPointWithLocation:self.itemLocation];
+				
+				[self.locationManager stopUpdatingLocation];
+				NSLog(@"current location switch is on, self.itemLocation= %@", self.itemLocation);
+		}
+		
+		if (!self.useCurrentLocationSwitch.isOn) {
+				self.locationPF = nil;
 		}
 }
 
@@ -406,7 +458,7 @@ static NSString * const reuseIdentifier = @"cell";
 		alert.customViewColor =  [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1];
 		alert.showAnimationType = FadeIn;
 		alert.hideAnimationType = FadeOut;
-
+		
 		
 		
 		
@@ -418,25 +470,25 @@ static NSString * const reuseIdentifier = @"cell";
 				NSData *imageData = UIImageJPEGRepresentation(self.itemImage, 0.8);
 				self.itemImagePF = [PFFile fileWithName:@"photo.jpg" data:imageData];
 		} else {
-								[self presentAlertController:@"Item Image"];
-//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
+				[self presentAlertController:@"Item Image"];
+						//				[alert showWarning:self title:@"Image Required" subTitle:@"Please add an image" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		
 		self.name =	self.itemNameTextField.text;
 		item[@"name"] = self.name;
-
+		
 		if (self.name.length<3) {
-						[self presentAlertController:@"Item Name"];
-//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
+				[self presentAlertController:@"Item Name"];
+						//				[alert showWarning:self title:@"Incomplete Name" subTitle:@"Please finish entering name" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		
 		self.itemDescription = self.itemDescriptionTextField.text;
 		item[@"itemDescription"] = self.itemDescription;
 		if (self.itemDescription.length <3) {
-		
+				
 				[self presentAlertController:@"Item Description"];
-//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
+						//				[alert showWarning:self title:@"Incomplete Description" subTitle:@"Please complete description" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		self.pickupInstructions =	self.pickupInstructionsTextField.text;
 		item[@"pickupInstructions"] = self.pickupInstructions;
@@ -444,7 +496,7 @@ static NSString * const reuseIdentifier = @"cell";
 				
 				[self presentAlertController:@"Pickup Instructions"];
 				
-//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
+						//				[alert showWarning:self title:@"Incomplete Instructions" subTitle:@"Please complete pickup instructions" closeButtonTitle:@"OK" duration:0.0f];
 		}
 		[alert alertIsDismissed:^{
 				NSLog(@"SCLAlertView dismissed!");
@@ -455,7 +507,7 @@ static NSString * const reuseIdentifier = @"cell";
 		if (self.listedBy) { item[@"listedBy"] = self.listedBy;}
 		
 		if (self.locationPF) {
-		item[@"location"] = self.locationPF;}
+				item[@"location"] = self.locationPF;}
 		self.views = @0;
 		item[@"views"] = self.views;
 		if (self.itemImage) {
@@ -467,26 +519,26 @@ static NSString * const reuseIdentifier = @"cell";
 		NSLog(@"self.categoriesForItem contains %@", [self.categoriesForItem lastObject]);
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
-
-				[alert showWaiting:self title:@"Success" subTitle:@"Uploading your donation, please wait" closeButtonTitle:nil duration:3.0f];
+				
+				[alert showWaiting:self title:@"Loading" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
 				
 				
 				
 				
 				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
-								item[@"categories"] = @[category];
+						item[@"categories"] = @[category];
 						
-				[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-				NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
-						if (succeeded) {
-
-								[self dismissViewControllerAnimated:YES completion:^{
-		
-								}];
-						}
+						[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+								NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
+								if (succeeded) {
+										
+										[self dismissViewControllerAnimated:YES completion:^{
+												
+										}];
+								}
+						}];
 				}];
-		}];
-}
+		}
 }
 
 
@@ -497,7 +549,7 @@ static NSString * const reuseIdentifier = @"cell";
 				//		[self.view endEditing:TRUE];
 }
 
- #pragma mark - imageUpload
+#pragma mark - imageUpload
 -(void)userTappedImageView{
 				//initialize picker controller
 		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
@@ -514,7 +566,7 @@ static NSString * const reuseIdentifier = @"cell";
 				//		NSData *imageData = UIImagePNGRepresentation(image);
 				//    PFFile *imageFile = [PFFile fileWithName:@"photo.png" data:imageData];
 		[self dismissViewControllerAnimated:YES completion:nil];
-    self.placeholderImageView.hidden = YES;
+		self.placeholderImageView.hidden = YES;
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -532,10 +584,10 @@ static NSString * const reuseIdentifier = @"cell";
  */
 
 
-//for when UIAlertView in SCLAlertView becomes unresponsive
+		//for when UIAlertView in SCLAlertView becomes unresponsive
 -(UIAlertController *)presentAlertController:(NSString *)fieldName {
 		
-
+		
 		
 		NSString *alertMessage = [NSString stringWithFormat:@"%@ field is incomplete",fieldName];
 		
@@ -552,11 +604,94 @@ static NSString * const reuseIdentifier = @"cell";
 		[self presentViewController:self.alertController animated:YES completion:nil];
 		
 		return self.alertController;
+		
+}
 
+
+- (UIView *)currentFirstResponder {
+		if ([self.itemNameTextField isFirstResponder]) {
+            return self.itemNameTextField;
+		}
+		if ([self.itemDescriptionTextField isFirstResponder]) {
+            return self.itemDescriptionTextField;
+		}
+		if ([self.pickupInstructionsTextField isFirstResponder]) {
+            return self.pickupInstructionsTextField;
+		}
+		return nil;
 }
 
 
 
+- (void)_registerForKeyboardNotifications {
+		[[NSNotificationCenter defaultCenter] addObserver:self
+																						 selector:@selector(_keyboardWillShow:)
+																								 name:UIKeyboardWillShowNotification
+																							 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+																						 selector:@selector(_keyboardWillHide:)
+																								 name:UIKeyboardWillHideNotification
+																							 object:nil];
+}
 
+- (void)_keyboardWillShow:(NSNotification *)notification {
+		NSDictionary *userInfo = [notification userInfo];
+		CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+		CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+		UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+		
+		CGRect keyboardFrame = [self.view convertRect:endFrame fromView:self.view.window];
+		CGFloat visibleKeyboardHeight = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(keyboardFrame);
+		
+		[self setVisibleKeyboardHeight:visibleKeyboardHeight
+								 animationDuration:duration
+									animationOptions:curve << 16];
+}
+
+- (void)_keyboardWillHide:(NSNotification *)notification {
+		NSDictionary *userInfo = [notification userInfo];
+		CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+		UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+		[self setVisibleKeyboardHeight:0.0
+								 animationDuration:duration
+									animationOptions:curve << 16];
+}
+
+- (void)setVisibleKeyboardHeight:(CGFloat)visibleKeyboardHeight
+							 animationDuration:(NSTimeInterval)animationDuration
+								animationOptions:(UIViewAnimationOptions)animationOptions {
+		
+		dispatch_block_t animationsBlock = ^{
+				self.visibleKeyboardHeight = visibleKeyboardHeight;
+		};
+		
+		if (animationDuration == 0.0) {
+				animationsBlock();
+		} else {
+				[UIView animateWithDuration:animationDuration
+															delay:0.0
+														options:animationOptions | UIViewAnimationOptionBeginFromCurrentState
+												 animations:animationsBlock
+												 completion:nil];
+		}
+}
+
+- (void)setVisibleKeyboardHeight:(CGFloat)visibleKeyboardHeight {
+		if (self.visibleKeyboardHeight != visibleKeyboardHeight) {
+				_visibleKeyboardHeight = visibleKeyboardHeight;
+				[self _updateViewContentOffsetAnimated:NO];
+		}
+}
+
+- (void)_updateViewContentOffsetAnimated:(BOOL)animated {
+
+    CGPoint currentOffset = self.scrollView.contentOffset;
+    if (currentOffset.y > self.defaultOffset.y + 30) {
+        currentOffset = self.defaultOffset;
+    } else {
+        currentOffset = CGPointMake(0, currentOffset.y + self.visibleKeyboardHeight);
+    }
+    [self.scrollView setContentOffset:currentOffset animated:animated];
+}
 
 @end

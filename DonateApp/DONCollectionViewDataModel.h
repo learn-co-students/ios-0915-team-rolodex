@@ -23,6 +23,7 @@ static NSString *const kDidUpdateCategoriesNotification = @"DONDidUpdateCategori
 
 +(instancetype)sharedInstance;
 -(void)loadCategories;
+-(void)reloadItems;
 -(void)loadAllItems;
 -(void)toggleCategory:(DONCategory *)category;
 

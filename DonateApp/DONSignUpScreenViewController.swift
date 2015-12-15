@@ -121,7 +121,7 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
             if(userName!.isEmpty || userPassword!.isEmpty || userFirstName!.isEmpty)
             {
                 // Display error message
-                SCLAlertView().showNotice("Oopss", subTitle: "All fields are required to fill in.")
+                SCLAlertView().showNotice("Oopss", subTitle: "All fields are required to be filled in.")
                 return
             }
             
@@ -151,7 +151,7 @@ class DONSignUpScreenViewController: UIViewController, UIImagePickerControllerDe
                 // Hide activity indicator
                 spiningActivity.hide(true)
                 
-                var userMessage = "Registration is successful. Thank you!"
+                var userMessage = "Registration was successful. Thank you!"
                 
                 if(!success)
                 {

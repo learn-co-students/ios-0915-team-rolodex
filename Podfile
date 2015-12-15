@@ -7,20 +7,13 @@ xcodeproj 'CURB ALERT.xcodeproj'
 target 'CURB ALERT' do
 pod 'Parse'
 pod 'ParseUI'
-pod 'ChameleonFramework'
 pod 'MBProgressHUD'
 pod 'MMDrawerController'
 pod 'Masonry'
 pod 'GoogleMaps'
 pod 'DateTools'
-pod 'ParseFacebookUtilsV4'
-pod 'FBSDKCoreKit'
-pod 'FBSDKLoginKit'
-pod 'FBSDKShareKit'
 pod 'SCLAlertView-Objective-C'
 pod 'SCLAlertView'
-pod 'APParallaxHeader'
-
 
 # disable bitcode in every sub-target
 post_install do |installer|

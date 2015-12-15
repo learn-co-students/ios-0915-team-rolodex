@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLoggrey" translatesAutoresizingMaskIntoConstraints="NO" id="r9X-y5-RGK">
-                                <rect key="frame" x="106" y="56" width="163" height="130"/>
+                                <rect key="frame" x="63" y="235" width="248" height="197"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="VvW-lH-Qeg"/>
-                                    <constraint firstAttribute="width" constant="163" id="pQZ-sW-1eN"/>
+                                    <constraint firstAttribute="height" constant="197" id="VvW-lH-Qeg"/>
+                                    <constraint firstAttribute="width" constant="248" id="pQZ-sW-1eN"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -30,8 +30,14 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="r9X-y5-RGK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6wP-Q2-fzL"/>
+                            <constraint firstItem="r9X-y5-RGK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KwJ-Z6-jKg"/>
                             <constraint firstItem="r9X-y5-RGK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="36" id="zc6-Fb-6Ud"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="zc6-Fb-6Ud"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

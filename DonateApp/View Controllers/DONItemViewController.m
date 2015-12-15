@@ -270,6 +270,22 @@
         make.left.and.right.equalTo(self.containerView);
         make.height.equalTo(@200);
     }];
+    
+    if (!self.item.location) {
+        [self.mapView removeFromSuperview];
+//        UILabel *noLocLabel = [[UILabel alloc] init];
+//        noLocLabel.numberOfLines = 3;
+//        noLocLabel.textColor = [UIColor darkGrayColor];
+//        noLocLabel.font = [UIFont systemFontOfSize:16];
+//        noLocLabel.textAlignment = NSTextAlignmentCenter;
+//        noLocLabel.text = @"No location provided\n\nPlease refer to pickup instructions";
+//        [self.containerView addSubview:noLocLabel];
+//        [noLocLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.itemDescriptionView.mas_bottom).offset(40);
+//            make.left.and.right.equalTo(self.containerView);
+//        }];
+//    }
+    }
 }
 
 -(void)setupLocationBasedViews
