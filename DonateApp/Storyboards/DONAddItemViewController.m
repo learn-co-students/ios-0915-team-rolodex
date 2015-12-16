@@ -304,7 +304,6 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
 		
-		
 		self.useCurrentLocationSwitch.layer.borderColor = [UIColor blackColor].CGColor;
 		
 		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
@@ -325,7 +324,7 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
 		self.saveButton.userInteractionEnabled = YES;
-		
+        [self.saveButton setTitle:@"SAVE" forState:UIControlStateNormal];
 		[self.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
