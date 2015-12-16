@@ -444,7 +444,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = CPMU5WXMBN;
+						DevelopmentTeam = KXY9EDFTF5;
 					};
 				};
 			};
@@ -679,7 +679,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
 				PRODUCT_NAME = "CURB ALERT";
@@ -700,7 +700,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DonateApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
 				PRODUCT_NAME = "CURB ALERT";

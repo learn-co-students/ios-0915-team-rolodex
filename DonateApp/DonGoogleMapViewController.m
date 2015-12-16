@@ -13,6 +13,7 @@
 #import "DONCategory.h"
 #import "DonInfowindow.h"
 #import "DONCollectionViewDataModel.h"
+#import "MBProgressHUD.h"
 
 #import "Masonry.h"
 
@@ -26,6 +27,8 @@
 //@property (weak, nonatomic) IBOutlet UIButton *backHomeButton;
 
 @property (strong, nonatomic) UIView * mView;
+
+@property (nonatomic, strong) GMSMarker *ignoreNextMarkerSelectionForThisMarker;
 
 @end
 
@@ -85,16 +88,8 @@
             
             UIImage *localIconImage = [self imageByDrawingWhiteCircleBehindImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]] andResizingToSize:CGSizeMake(25, 25) withColor:[UIColor whiteColor]];
 
-            __weak typeof(self) tmpself = self;
-            [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude discription:eachItem.itemDescription itemImage:localIconImage];
-            
-            /*
-             __block UIImage *iconImage = [UIImage new];
-             PFFile *iconImageFile = category.imageFile;
-             __weak typeof(self) tmpself = self;
-             
-             //TODO: Create a weak reference to SELF to be used within this block (calling self in BLOCK created a ?retain cycle)
-             */
+            //__weak typeof(self) tmpself = self;
+            [self addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude discription:eachItem.itemDescription itemImage:localIconImage];
             
         }];
     }
@@ -140,10 +135,27 @@
     
     DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
     
-    //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
     infoWindow.itemImage.file = [marker.userData imageFile];
-    [infoWindow.itemImage loadInBackground];
-    // }];
+    
+    // So Google maps only renders the marker window once, when we return it from this function.
+    // If it changes after the fact (for instance, when the image loads), it does not get refreshed. :(
+    // SO... when the image comes down, we need to fake the user reselecting the marker (by setting mapView.selectedMarker)
+    // BUT... doing that triggers a call to this method again, which just leads to an infinite loop.
+    // So... we let that happen once, but use the ignoreNextMarkerSelectionForThisMarker property to make sure we don't
+    // loop forever.
+    
+    
+    [infoWindow.itemImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(mapView.selectedMarker == marker) {  // make sure the user hasn't tapped a different marker in the meantime
+            if(self.ignoreNextMarkerSelectionForThisMarker != marker) {  // and we're not avoiding that infinite loop...
+                self.ignoreNextMarkerSelectionForThisMarker = marker;    // set this so we only redraw once
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    mapView.selectedMarker = marker;                     // re-select the marker
+                }];
+            }
+        }
+    }];
     
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
@@ -152,12 +164,11 @@
     [infoWindow sendSubviewToBack:effectView];
     
     infoWindow.title.text = marker.snippet;
-    
     infoWindow.title.adjustsFontSizeToFitWidth = YES;
     [infoWindow.title sizeToFit];
-    
     UIEdgeInsets insets = UIEdgeInsetsMake(3, 6, 3, 3);
     infoWindow.title.frame = UIEdgeInsetsInsetRect(infoWindow.title.frame, insets);
+    
     
     return infoWindow;
 }
@@ -188,20 +199,6 @@
     UIGraphicsEndImageContext();
     return result;
 }
-
-/*
--(IBAction)backTolocationCamera:(id)sender{
-    NSLog(@"home button tapped");
-//    [self.backHomeButton setImage:[UIImage imageNamed:@"noun_12594_cc.png"] forState:UIControlStateNormal];
-//    self.backHomeButton.frame = CGRectMake(0, 0, 30, 30);
-//    
-    //self.backHomeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    //self.backHomeButton.imageView.clipsToBounds = YES;
-   // [self.backHomeButton sendSubviewToFront:self.mapView];
-    
-    [self createMap];
-}
-*/
 
 -(void)backHomeButtom{
     
