@@ -56,7 +56,8 @@
 @property (strong, nonatomic)  UIImageView *seventhTag;
 @property (strong, nonatomic) NSString *eighthTagString;
 @property (strong, nonatomic)  UIImageView *eighthTag;
-
+@property (strong, nonatomic) NSString *ninthTagString;
+@property (strong, nonatomic)  UIImageView *ninthTag;
 
 @property (strong, nonatomic)  UITextField *itemNameTextField;
 @property (strong, nonatomic)  UITextField *itemDescriptionTextField;

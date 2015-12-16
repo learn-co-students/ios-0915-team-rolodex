@@ -7,6 +7,7 @@
 		//
 
 #import "DONAddItemViewController.h"
+#import "MBProgressHUD.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -78,19 +79,22 @@ static NSString * const reuseIdentifier = @"cell";
 		self.seventhTag.image = [UIImage imageNamed:@"household"];
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.eighthTag.image = [UIImage imageNamed:@"misc"];
+        self.ninthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+        self.ninthTag.image = [UIImage imageNamed:@"sports"];
 		
 		self.firstTagString = [NSString stringWithFormat:@"books"];
 		self.secondTagString = [NSString stringWithFormat:@"furniture"];
 		self.thirdTagString = [NSString stringWithFormat:@"clothing"];
 		self.fourthTagString = [NSString stringWithFormat:@"music"];
-		self.fifthTagString = [NSString stringWithFormat:@"electronics & appliances"];
-		self.sixthTagString = [NSString stringWithFormat:@"games & hobbies"];
-		self.seventhTagString = [NSString stringWithFormat:@"home & garden"];
+		self.fifthTagString = [NSString stringWithFormat:@"electronics"];
+		self.sixthTagString = [NSString stringWithFormat:@"games"];
+		self.seventhTagString = [NSString stringWithFormat:@"household"];
 		self.eighthTagString = [NSString stringWithFormat:@"misc"];
-		
+		self.ninthTagString = @"sports";
+    
 		self.categories = [NSArray mutableCopy];
-		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString];
-		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag];
+		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString, self.ninthTagString];
+		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag, self.ninthTag];
 		
 		
 		[self setConstraints];
@@ -322,10 +326,6 @@ static NSString * const reuseIdentifier = @"cell";
 		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
 		self.saveButton.userInteractionEnabled = YES;
 		
-		NSString *saveTitleLabel = @"SAVE"; NSString *savedTitleLabel = @"ITEM SAVED";
-		[self.saveButton setTitle:saveTitleLabel forState:UIControlStateNormal];[self.saveButton setTitle:savedTitleLabel forState:UIControlStateHighlighted];
-		self.saveButton.userInteractionEnabled = YES;
-		
 		[self.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -480,17 +480,16 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 				
-				[alert showWaiting:self title:@"Saving" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
-				
-				
-				
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"Saving";
 				
 				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
 						item[@"categories"] = @[category];
 						
 						[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 								NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
-								if (succeeded) {
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            if (succeeded) {
 										
 										[self dismissViewControllerAnimated:YES completion:^{
 												
