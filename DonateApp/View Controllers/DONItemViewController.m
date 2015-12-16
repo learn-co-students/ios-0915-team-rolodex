@@ -471,13 +471,11 @@
         [alert showSuccess:self title:@"Unflagged!" subTitle:@"Thanks for the update. You unflagged this item." closeButtonTitle:@"OK" duration:2.0f];
     } else if (![DONUser currentUser]) {
         [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
-    } else if (![self.locationController locationServicesEnabled]) {
-        [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (self.reportErrorButton.enabledState == DONViewItemButtonStateDisabled) {
         [alert showNotice:self title:@"Notice" subTitle:@"To prevent abuse, you can only flag items when you are nearby." closeButtonTitle:@"OK" duration:0.0f];
+    } else if (![self.locationController locationServicesEnabled]) {
+        [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     }
-    
-   
 }
 
 #pragma mark UI Update for Item
