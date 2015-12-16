@@ -28,7 +28,7 @@ Find your items by browsing donations in your community. Once you find something
 * Guang Zhu
 
 ##DEMO
-
+![Demo](https://github.com/learn-co-students/ios-0915-team-rolodex/blob/master/Demo.gif)
 
 ##Technology Stack
 * Objective-C / Swift

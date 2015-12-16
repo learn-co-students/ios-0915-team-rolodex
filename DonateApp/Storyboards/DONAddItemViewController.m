@@ -7,6 +7,8 @@
 		//
 
 #import "DONAddItemViewController.h"
+#import "MBProgressHUD.h"
+
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -25,6 +27,8 @@
 
 @property (nonatomic, strong) UIImageView *placeholderImageView;
 
+
+
 @end
 
 @implementation DONAddItemViewController
@@ -33,11 +37,10 @@
 static NSString * const reuseIdentifier = @"cell";
 
 
-
 - (void)viewDidLoad {
-
+		
 		[self _registerForKeyboardNotifications];
-
+		
 		self.categoriesForItem = [NSMutableArray new];
 		self.navigationItem.title = @"Donate Item";
 		
@@ -76,19 +79,22 @@ static NSString * const reuseIdentifier = @"cell";
 		self.seventhTag.image = [UIImage imageNamed:@"household"];
 		self.eighthTag = [[UIImageView alloc] initWithFrame:defaultRect];
 		self.eighthTag.image = [UIImage imageNamed:@"misc"];
+        self.ninthTag = [[UIImageView alloc] initWithFrame:defaultRect];
+        self.ninthTag.image = [UIImage imageNamed:@"sports"];
 		
 		self.firstTagString = [NSString stringWithFormat:@"books"];
 		self.secondTagString = [NSString stringWithFormat:@"furniture"];
 		self.thirdTagString = [NSString stringWithFormat:@"clothing"];
 		self.fourthTagString = [NSString stringWithFormat:@"music"];
-		self.fifthTagString = [NSString stringWithFormat:@"electronics & appliances"];
-		self.sixthTagString = [NSString stringWithFormat:@"games & hobbies"];
-		self.seventhTagString = [NSString stringWithFormat:@"home & garden"];
+		self.fifthTagString = [NSString stringWithFormat:@"electronics"];
+		self.sixthTagString = [NSString stringWithFormat:@"games"];
+		self.seventhTagString = [NSString stringWithFormat:@"household"];
 		self.eighthTagString = [NSString stringWithFormat:@"misc"];
-		
+		self.ninthTagString = @"sports";
+    
 		self.categories = [NSArray mutableCopy];
-		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString];
-		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag];
+		self.categories = @[self.firstTagString, self.secondTagString, self.thirdTagString, self.fourthTagString, self.fifthTagString, self.sixthTagString,self.seventhTagString,self.eighthTagString, self.ninthTagString];
+		self.categoriesImageViews = @[self.firstTag, self.secondTag, self.thirdTag, self.fourthTag, self.fifthTag, self.sixthTag, self.seventhTag, self.eighthTag, self.ninthTag];
 		
 		
 		[self setConstraints];
@@ -100,7 +106,7 @@ static NSString * const reuseIdentifier = @"cell";
 				[self.locationManager requestWhenInUseAuthorization];
 				[self.locationManager startUpdatingLocation];
 		}
-		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userTappedImageView)];
+		UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(presentCameraAlertController)];
 		self.selectedImageView.userInteractionEnabled = YES;
 		[self.selectedImageView addGestureRecognizer:tapGesture];
 		self.selectedImageView.backgroundColor = [UIColor blackColor];
@@ -121,11 +127,11 @@ static NSString * const reuseIdentifier = @"cell";
 		self.placeholderImageView = [[UIImageView alloc] init];
 		[self.selectedImageView addSubview:self.placeholderImageView];
 		[self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (IS_IPHONE_6 || IS_IPHONE_6P) {
-				make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
-            } else {
-                make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(20, 20, 20, 20));
-            }
+				if (IS_IPHONE_6 || IS_IPHONE_6P) {
+						make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(40, 40, 40, 40));
+				} else {
+						make.edges.equalTo(self.selectedImageView).insets(UIEdgeInsetsMake(20, 20, 20, 20));
+				}
 		}];
 		self.placeholderImageView.contentMode = UIViewContentModeScaleAspectFit;
 		self.placeholderImageView.image = [UIImage imageNamed:@"addPhotoPlaceholder"];
@@ -134,12 +140,12 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)viewDidLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.defaultOffset = self.scrollView.contentOffset;
-    });
-
+		[super viewDidLayoutSubviews];
+		static dispatch_once_t onceToken;
+		dispatch_once(&onceToken, ^{
+				self.defaultOffset = self.scrollView.contentOffset;
+		});
+		
 }
 
 -(void)setConstraints{
@@ -163,14 +169,12 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.view addSubview: self.scrollView];
 		[self.scrollView addSubview:self.containerView];
+
 		[self.scrollView addSubview:self.topContainerView];
 				//selectimage
+
 		[self.topContainerView addSubview:self.selectedImageView];
-		
-				//collectionView
 		[self.topContainerView addSubview:self.collectionView];
-		
-				//textfields
 		[self.containerView addSubview:self.itemNameTextField];
 		[self.containerView addSubview:self.itemDescriptionTextField];
 		[self.containerView addSubview:self.pickupInstructionsTextField];
@@ -193,12 +197,12 @@ static NSString * const reuseIdentifier = @"cell";
 		}];
 		
 		[self.topContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.top.equalTo(self.containerView);
-            if (IS_IPHONE_6 || IS_IPHONE_6P) {
-				make.height.equalTo(@250);
-            } else {
-                make.height.equalTo(@200);
-            }
+				make.left.right.top.equalTo(self.containerView);
+				if (IS_IPHONE_6 || IS_IPHONE_6P) {
+						make.height.equalTo(@250);
+				} else {
+						make.height.equalTo(@200);
+				}
 				make.bottom.equalTo(self.collectionView.mas_bottom);
 						//				make.bottom.equalTo(self.containerView.mas_top);
 		}];
@@ -206,10 +210,10 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.equalTo(self.scrollView);
-//				make.top.equalTo(self.mas_topLayoutGuideBottom);
-            CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
-            NSLog(@"%0.3f",navBarHeight);
-            make.height.equalTo(self.view).with.offset(-navBarHeight-20);
+						//				make.top.equalTo(self.mas_topLayoutGuideBottom);
+				CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+				NSLog(@"%0.3f",navBarHeight);
+				make.height.equalTo(self.view).with.offset(-navBarHeight-20);
 				
 						//				make.bottom.equalTo(self.saveButton);
 		}];
@@ -221,7 +225,7 @@ static NSString * const reuseIdentifier = @"cell";
 				make.left.right.equalTo (self.topContainerView);
 				make.top.equalTo(self.topContainerView);
 				make.width.equalTo(self.view);
-//				make.height.equalTo(@250);
+						//				make.height.equalTo(@250);
 				
 		}];
 		
@@ -300,12 +304,11 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		[self.useCurrentLocationSwitch addTarget:self action:@selector(useCurrentLocationSwitchTapped) forControlEvents:UIControlEventTouchUpInside];
 		
-
 		self.useCurrentLocationSwitch.layer.borderColor = [UIColor blackColor].CGColor;
 		
 		self.useCurrentLocationLabel.textColor = [UIColor blackColor];
 		self.useCurrentLocationLabel.text = [NSString stringWithFormat:@"Use Current Location?"];
-//		self.useCurrentLocationLabel.layer.borderColor = [UIColor blackColor].CGColor;
+				//		self.useCurrentLocationLabel.layer.borderColor = [UIColor blackColor].CGColor;
 		
 		self.useCurrentLocationLabel.layer.cornerRadius = 8.0f;
 		
@@ -319,20 +322,14 @@ static NSString * const reuseIdentifier = @"cell";
 				make.top.equalTo(self.pickupInstructionsTextField.mas_bottom).offset(20);
 		}];
 		
-				//save button
 		self.saveButton.backgroundColor = [UIColor colorWithRed:0.133 green:0.752 blue:0.392 alpha:1.0];
 		self.saveButton.userInteractionEnabled = YES;
-		
-		NSString *saveTitleLabel = @"SAVE"; NSString *savedTitleLabel = @"ITEM SAVED";
-		[self.saveButton setTitle:saveTitleLabel forState:UIControlStateNormal];[self.saveButton setTitle:savedTitleLabel forState:UIControlStateHighlighted];
-		self.saveButton.userInteractionEnabled = YES;
-		
+        [self.saveButton setTitle:@"SAVE" forState:UIControlStateNormal];
 		[self.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 		
 		[self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.left.right.equalTo(self.containerView);
 				make.bottom.equalTo(self.containerView.mas_bottom).priorityHigh();
-//				make.top.equalTo(self.useCurrentLocationLabel.mas_bottom).offset(20);
 				make.height.equalTo(@60);
 		}];
 }
@@ -349,9 +346,6 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 		
-		
-		
-		NSLog(@"cellForItemAtIndexPath getting called: \n\n\n\n");
 		UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 		cell.userInteractionEnabled = YES;
 		[[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -367,19 +361,12 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 		
-		NSLog(@"We're calling didselectItemAtIndexPath");
-		
 		[self.categoriesForItem addObject:self.categories[indexPath.row]];
-		
-		
 		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
 		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		
 		currentImageView.tintColor = [UIColor colorWithRed:33.0/255.0 green:192.0/255.0 blue:100.0/255.0 alpha:1.0];
-		
-		
-		
 		
 }
 
@@ -387,55 +374,27 @@ static NSString * const reuseIdentifier = @"cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 		
-		NSLog(@"We're calling didDESELERJKLESRJLSEKRJESLKRJelectItemAtIndexPath");
-		
-		
 		[self.categoriesForItem removeObject:self.categories[indexPath.row]];
-		
-		
 		UIImageView *currentImageView = self.categoriesImageViews[indexPath.row];
-		
 		currentImageView.image = [currentImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 		currentImageView.alpha = 0.74f;
 		currentImageView.tintColor = [UIColor blackColor];
 }
 
 
-
-
-#pragma keyboard shifty
-
-//-(void)UIKeyboardWillHideOrShow:(NSNotification *)notification{
-//		
-//		CGRect finalConstraint = [notification.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-//		
-//		if ([notification.name isEqualToString:@"UIKeyboardWillHideNotification"]) {finalConstraint = CGRectZero;}
-//		CGFloat scrollViewKeyboard = finalConstraint.size.height;
-//		
-//		NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
-//		
-//		[UIView animateWithDuration:duration animations:^{
-//				
-//				[self.scrollView setContentOffset:CGPointMake(0, scrollViewKeyboard-50) animated:YES];
-//				[self.view layoutIfNeeded];
-//		}];
-//}
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-				//		NSLog(@"%@", [locations lastObject]);
 		self.itemLocation = [locations lastObject];
-				//		NSLog(@"self.itemLocation = %@", self.itemLocation);
+		//use case for network timeout???
+//		if (![locations lastObject]) {
+//    self.itemLocation = nil;
+//		}
 }
 
 -(void)cancelClicked{
 		[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-		[super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)useCurrentLocationSwitchTapped{
 		
@@ -520,17 +479,16 @@ static NSString * const reuseIdentifier = @"cell";
 		
 		if ( self.name.length>=3 & self.itemDescription.length>=3 & self.pickupInstructions.length>=3 &(self.itemImage!=nil)) {
 				
-				[alert showWaiting:self title:@"Saving" subTitle:@"Please Wait" closeButtonTitle:nil duration:3.0f];
-				
-				
-				
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"Saving";
 				
 				[DONCategory categoryWithName:self.categoriesForItem[0] withCompletion:^(BOOL success, DONCategory *category) {
 						item[@"categories"] = @[category];
 						
 						[item saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 								NSLog(@"succeeded? %d, with error: %@", succeeded, error.localizedDescription);
-								if (succeeded) {
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            if (succeeded) {
 										
 										[self dismissViewControllerAnimated:YES completion:^{
 												
@@ -550,16 +508,35 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 #pragma mark - imageUpload
+
+-(void)userTappedImageViewForCamera{
+		
+}
+
+
 -(void)userTappedImageView{
-				//initialize picker controller
+
+		NSLog(@"usertappedImageView HAPPENEDD!!");
+		
 		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
-				//set self as delegated
 		pickerController.delegate = self;
-				//present picker controller
+		[self presentViewController:pickerController animated:YES completion:nil];
+}
+-(void)userTappedCamera{
+		
+		
+		UIImagePickerController *pickerController = [[UIImagePickerController alloc]init];
+		pickerController.delegate = self;
+		pickerController.allowsEditing = YES;
+		pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 		[self presentViewController:pickerController animated:YES completion:nil];
 }
 
+
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+	
+		
 		self.itemImage = info[UIImagePickerControllerOriginalImage];
 		self.selectedImageView.image = self.itemImage;
 				//for PNG
@@ -607,16 +584,54 @@ static NSString * const reuseIdentifier = @"cell";
 		
 }
 
+-(void)presentCameraAlertController {
+		
+		UIAlertController *alertControllerCamera = [UIAlertController alertControllerWithTitle:@"Use Camera?" message:@"Take a Photo or Select From Camera Roll" preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *alertActionCamera;
+  UIAlertAction *alertActionLibrary;
+		
+		
+		
+		alertControllerCamera.view.tintColor = [UIColor grayColor];
+		alertControllerCamera.view.layer.borderWidth = 2.0;
+		alertControllerCamera.view.layer.borderColor = [UIColor darkGrayColor].CGColor;
+		alertControllerCamera.view.layer.cornerRadius = 5.0;
+		
+		
+		alertActionCamera = [UIAlertAction actionWithTitle:@"Use Camera"
+																								 style:UIAlertActionStyleDefault
+																							 handler:^(UIAlertAction * _Nonnull action) {
+																									 
+																									 [self userTappedCamera];
+																									 
+																							 }];
+		
+		alertActionLibrary = [UIAlertAction actionWithTitle:@"Use Camera Roll"
+																									style:UIAlertActionStyleDefault
+																								handler:^(UIAlertAction * _Nonnull action) {
+																										
+																										NSLog(@"User Camera ROLLLL selected!");
+																										
+																										[self userTappedImageView];
+																										
+																								}];
+		
+		[alertControllerCamera addAction:alertActionCamera];
+		[alertControllerCamera addAction:alertActionLibrary];
+
+		[self presentViewController:alertControllerCamera animated:YES completion:nil];
+
+}
 
 - (UIView *)currentFirstResponder {
 		if ([self.itemNameTextField isFirstResponder]) {
-            return self.itemNameTextField;
+				return self.itemNameTextField;
 		}
 		if ([self.itemDescriptionTextField isFirstResponder]) {
-            return self.itemDescriptionTextField;
+				return self.itemDescriptionTextField;
 		}
 		if ([self.pickupInstructionsTextField isFirstResponder]) {
-            return self.pickupInstructionsTextField;
+				return self.pickupInstructionsTextField;
 		}
 		return nil;
 }
@@ -684,14 +699,14 @@ static NSString * const reuseIdentifier = @"cell";
 }
 
 - (void)_updateViewContentOffsetAnimated:(BOOL)animated {
-
-    CGPoint currentOffset = self.scrollView.contentOffset;
-    if (currentOffset.y > self.defaultOffset.y + 30) {
-        currentOffset = self.defaultOffset;
-    } else {
-        currentOffset = CGPointMake(0, currentOffset.y + self.visibleKeyboardHeight);
-    }
-    [self.scrollView setContentOffset:currentOffset animated:animated];
+		
+		CGPoint currentOffset = self.scrollView.contentOffset;
+		if (currentOffset.y > self.defaultOffset.y + 30) {
+				currentOffset = self.defaultOffset;
+		} else {
+				currentOffset = CGPointMake(0, currentOffset.y + self.visibleKeyboardHeight);
+		}
+		[self.scrollView setContentOffset:currentOffset animated:animated];
 }
 
 @end

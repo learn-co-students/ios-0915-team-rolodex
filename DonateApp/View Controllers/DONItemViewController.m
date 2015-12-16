@@ -473,11 +473,9 @@
         [alert showNotice:self title:@"Notice" subTitle:@"Please login to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
     } else if (![self.locationController locationServicesEnabled]) {
         [alert showNotice:self title:@"Notice" subTitle:@"Please enable location services to utilize this feature." closeButtonTitle:@"OK" duration:0.0f];
-    } else if (self.reportErrorButton.enabledState == DONViewItemButtonStateDisabled) {
-        [alert showNotice:self title:@"Notice" subTitle:@"To prevent abuse, you can only flag items when you are nearby." closeButtonTitle:@"OK" duration:0.0f];
+    } else if (self.verifyButton.enabledState == DONViewItemButtonStateDisabled) {
+        [alert showNotice:self title:@"Notice" subTitle:@"To prevent abuse, you can only verify items when you are nearby." closeButtonTitle:@"OK" duration:0.0f];
     }
-    
-   
 }
 
 #pragma mark UI Update for Item
