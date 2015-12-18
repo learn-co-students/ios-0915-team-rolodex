@@ -22,6 +22,7 @@
 @implementation DONDrawerViewController
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithRed:100.0/255.0
                                                      green:100.0/255.0
@@ -71,6 +72,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 

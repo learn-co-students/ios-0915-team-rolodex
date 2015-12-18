@@ -36,6 +36,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self viewWillAppear:animated];
     [self loadSettingsData];
 }
 

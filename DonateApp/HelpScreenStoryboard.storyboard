@@ -7,11 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Help-->
+        <!--Curb Alert-->
         <scene sceneID="fvr-0j-WJx">
             <objects>
-
-                <viewController storyboardIdentifier="helpScreen" title="Help" id="qsE-UV-Lyi" customClass="DonHelpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="helpScreen" title="Curb Alert" id="qsE-UV-Lyi" customClass="DonHelpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ahc-ox-HBs"/>
                         <viewControllerLayoutGuide type="bottom" id="FHt-x0-FH6"/>

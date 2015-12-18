@@ -444,7 +444,7 @@
 				TargetAttributes = {
 					61C574631BFBC88F00D80141 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = CPMU5WXMBN;
+						DevelopmentTeam = KXY9EDFTF5;
 					};
 				};
 			};
@@ -606,6 +606,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -628,6 +629,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "31a71b06-81c9-4a1d-9b1b-1dd17b27810a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -649,7 +651,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -664,6 +667,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "31a71b06-81c9-4a1d-9b1b-1dd17b27810a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -681,9 +685,9 @@
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.curb-alert";
 				PRODUCT_NAME = "CURB ALERT";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "71e79fa9-12f4-40b6-a853-4d54beafd676";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -702,9 +706,9 @@
 				INFOPLIST_FILE = DonateApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Rdex.DonateApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flatironschool.curb-alert";
 				PRODUCT_NAME = "CURB ALERT";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "71e79fa9-12f4-40b6-a853-4d54beafd676";
 				SWIFT_OBJC_BRIDGING_HEADER = "DonateApp/DonateApp-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

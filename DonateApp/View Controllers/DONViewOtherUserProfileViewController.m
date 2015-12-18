@@ -127,11 +127,11 @@
     self.userNameLabel.text = self.user.username;
     
     [DONUser allItemsForUser:self.user withCompletion:^(NSArray *items, BOOL success) {
-        self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", items.count];
+        self.donatedItemsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)items.count];
     }];
     
     [DONActivity activitiesToUser:self.user activityType:kActivityTypeVerification withCompletion:^(NSArray *activities) {
-        self.verifiedItemsLabel.text = [NSString stringWithFormat:@"%lu", activities.count];
+        self.verifiedItemsLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)activities.count];
     }];
     
     self.donatedItemsCaptionLabel.text = @"total items donated";
