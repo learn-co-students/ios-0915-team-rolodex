@@ -13,6 +13,7 @@
 #import "DONCategory.h"
 #import "DonInfowindow.h"
 #import "DONCollectionViewDataModel.h"
+#import "MBProgressHUD.h"
 
 #import "Masonry.h"
 
@@ -27,7 +28,6 @@
 
 @property (strong, nonatomic) UIView * mView;
 @property (nonatomic, strong) GMSMarker *ignoreNextMarkerSelectionForThisMarker;
-
 @end
 
 @implementation DonGoogleMapViewController
@@ -85,21 +85,9 @@
             NSLog(@"category name = %@ with image %@", category.name, category.imageFile);
             
             UIImage *localIconImage = [self imageByDrawingWhiteCircleBehindImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png",category.name]] andResizingToSize:CGSizeMake(25, 25) withColor:[UIColor whiteColor]];
-            
-            //            __weak typeof(self) tmpself = self;
-            //            [tmpself addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude discription:eachItem.itemDescription itemImage:localIconImage];
-            //
-            
+
+            //__weak typeof(self) tmpself = self;
             [self addMarkerWithItem:eachItem WithLatitude:eachItem.location.latitude longitude:eachItem.location.longitude discription:eachItem.itemDescription itemImage:localIconImage];
-            
-            
-            /*
-             __block UIImage *iconImage = [UIImage new];
-             PFFile *iconImageFile = category.imageFile;
-             __weak typeof(self) tmpself = self;
-             //TODO: Create a weak reference to SELF to be used within this block (calling self in BLOCK created a ?retain cycle)
-             */
-            
         }];
     }
 }
@@ -141,20 +129,7 @@
 -(UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker
 {
     NSLog(@"infoVieww!");
-    
-   // DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
-    
-    //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    ///infoWindow.itemImage.file = [marker.userData imageFile];
-   // [infoWindow.itemImage loadInBackground];
-    // }];
-    
-    
-    
-    
-    
-    
-    
+        
     DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
     
         //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -193,12 +168,11 @@
     [infoWindow sendSubviewToBack:effectView];
     
     infoWindow.title.text = marker.snippet;
-    
     infoWindow.title.adjustsFontSizeToFitWidth = YES;
     [infoWindow.title sizeToFit];
-    
     UIEdgeInsets insets = UIEdgeInsetsMake(3, 6, 3, 3);
     infoWindow.title.frame = UIEdgeInsetsInsetRect(infoWindow.title.frame, insets);
+    
     
     return infoWindow;
 }
@@ -229,20 +203,6 @@
     UIGraphicsEndImageContext();
     return result;
 }
-
-/*
--(IBAction)backTolocationCamera:(id)sender{
-    NSLog(@"home button tapped");
-//    [self.backHomeButton setImage:[UIImage imageNamed:@"noun_12594_cc.png"] forState:UIControlStateNormal];
-//    self.backHomeButton.frame = CGRectMake(0, 0, 30, 30);
-//    
-    //self.backHomeButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    //self.backHomeButton.imageView.clipsToBounds = YES;
-   // [self.backHomeButton sendSubviewToFront:self.mapView];
-    
-    [self createMap];
-}
-*/
 
 -(void)backHomeButtom{
     

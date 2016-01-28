@@ -8,7 +8,8 @@
 
 import UIKit
 import SCLAlertView
-import Parse 
+import Parse
+
 
 class DONForgetPasswordViewController: UIViewController {
 
