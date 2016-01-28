@@ -26,6 +26,7 @@
 @implementation DONUserSettingsUpdateViewController
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
     self.currentUser = [DONUser currentUser];
     NSString *title = [NSString stringWithFormat:@"Change %@", self.fieldToChange];
     self.navigationItem.title = title;
