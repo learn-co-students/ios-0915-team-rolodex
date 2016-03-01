@@ -132,30 +132,29 @@
         
     DonInfowindow * infoWindow = [[[NSBundle mainBundle] loadNibNamed:@"DonInfowindow" owner:self options:nil] objectAtIndex:0];
     
-        //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-    infoWindow.itemImage.file = [marker.userData imageFile];		      infoWindow.itemImage.file = [marker.userData imageFile];
-       [infoWindow.itemImage loadInBackground];		
-     
-       // }];		
-       // So Google maps only renders the marker window once, when we return it from this function.
-       // If it changes after the fact (for instance, when the image loads), it does not get refreshed. :(
-       // SO... when the image comes down, we need to fake the user reselecting the marker (by setting mapView.selectedMarker)
-       // BUT... doing that triggers a call to this method again, which just leads to an infinite loop.
-       // So... we let that happen once, but use the ignoreNextMarkerSelectionForThisMarker property to make sure we don't
-       // loop forever.
-   
-   
-       [infoWindow.itemImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-       if(mapView.selectedMarker == marker) {  // make sure the user hasn't tapped a different marker in the meantime
-         if(self.ignoreNextMarkerSelectionForThisMarker != marker) {  // and we're not avoiding that infinite loop...
-                   self.ignoreNextMarkerSelectionForThisMarker = marker;    // set this so we only redraw once
-
-     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                           mapView.selectedMarker = marker;                     // re-select the marker
-                       }];
-               }
-             }
-     }];
+    //[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    infoWindow.itemImage.file = [marker.userData imageFile];
+    //[infoWindow.itemImage loadInBackground];
+    
+    // }];
+    // So Google maps only renders the marker window once, when we return it from this function.
+    // If it changes after the fact (for instance, when the image loads), it does not get refreshed. :(
+    // SO... when the image comes down, we need to fake the user reselecting the marker (by setting mapView.selectedMarker)
+    // BUT... doing that triggers a call to this method again, which just leads to an infinite loop.
+    // So... we let that happen once, but use the ignoreNextMarkerSelectionForThisMarker property to make sure we don't
+    // loop forever.
+    
+    [infoWindow.itemImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(mapView.selectedMarker == marker) {  // make sure the user hasn't tapped a different marker in the meantime
+            if(self.ignoreNextMarkerSelectionForThisMarker != marker) {  // and we're not avoiding that infinite loop...
+                self.ignoreNextMarkerSelectionForThisMarker = marker;    // set this so we only redraw once
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    mapView.selectedMarker = marker;                     // re-select the marker
+                }];
+            }
+        }
+    }];
     
     
     
